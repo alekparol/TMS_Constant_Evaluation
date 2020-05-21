@@ -25,16 +25,22 @@ namespace TMS_Constant_Evaluation
 
             string projectXPath = "//div[contains(text(),'" + projectTitle + "')]";
             
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
             IWebElement projectTMS =  driver.FindElement(By.XPath("//div[contains(text(),'Porsche BAL 2.0')]"));
 
             projectTMS.Click();
 
             Thread.Sleep(5000);
-            IWebElement planningPage = driver.FindElement(By.XPath("//li[@id='planning']"));
+            IWebElement planningPage = driver.FindElement(By.XPath("//li[@id='status']"));
 
             planningPage.Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(35000);
+
+            StatusPage st = new StatusPage(driver);
+            Console.WriteLine(st.pageTitle.Text);
+            Console.WriteLine(st.filtersButton.Text);
+            Console.WriteLine(st.jobsFilter.Text);
+            Console.WriteLine(st.activityFilter.Text);
             // This should be the returning bool value for the function which will check whether the job under the name is within the PMExcel.
             // If yes, the program wont work for it. 
             bool ifTheJobIsOnPMExcel;
