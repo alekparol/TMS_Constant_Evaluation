@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS_Constant_Evaluation", "TMS_Constant_Evaluation\TMS_Constant_Evaluation.csproj", "{EE5B299B-C28F-400B-8D7E-E353DF3B5457}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS_Constant_Evaluation_Tests", "TMS_Constant_Evaluation_Tests\TMS_Constant_Evaluation_Tests.csproj", "{4E604D1A-0B59-479E-8713-290ADECC8E38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE5B299B-C28F-400B-8D7E-E353DF3B5457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE5B299B-C28F-400B-8D7E-E353DF3B5457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE5B299B-C28F-400B-8D7E-E353DF3B5457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE5B299B-C28F-400B-8D7E-E353DF3B5457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E604D1A-0B59-479E-8713-290ADECC8E38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E604D1A-0B59-479E-8713-290ADECC8E38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E604D1A-0B59-479E-8713-290ADECC8E38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E604D1A-0B59-479E-8713-290ADECC8E38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {173E8A8D-DB09-4600-A614-22B666623DB9}
+	EndGlobalSection
+EndGlobal
