@@ -2,14 +2,30 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
+
+/* filtersButton //button[contains(text(),'Filters')]
+ *  after clicking the bar should be displayed - it should be validated by checking if next element "Activity" is displayed. 
+ *  It can be checked <input type="hidden" name="cup$display" id="cup_display" value="display:none"> - when the Filters is not clicked. 
+ *  <input type="hidden" name="cup$display" id="cup_display" value=""> if is. 
+ *  activityList //*[@id='cup_fpStepActivityName_titletext']
+ *  statusList //*[@id='cup_fpStatusId_titletext']
+ *  
+ *  Options from the list are child nodes of cup_fpStepActivityName_child.
+ *  
+ *  After clicking on activityList there will be dropDown menu displayed. Each element has an id cup_fpStepActivityName_msa_N, where N 
+ *  is an index of the option. There should be created list there to check it with a regex expression. Also cup_fpStepActivityName_msa_N is 
+ *  an option with text the same as the field.
+ * */
+
 namespace TMS_Constant_Evaluation
 {
-    class StatusPage
+    public class StatusPage
     {
 
         /* Fields */
@@ -21,25 +37,80 @@ namespace TMS_Constant_Evaluation
         public IWebElement jobsFilter;
         public IWebElement activityFilter;
 
+        public bool jobsListGeneratedProperly = true;
         public IReadOnlyCollection<IWebElement> jobsList;
+
+        public bool activityListGeneratedProperly = true;
         public IReadOnlyCollection<IWebElement> activityList;
 
+        /* Properties */
+
+        public IWebElement PageTitle
+        {
+            get
+            {
+                return pageTitle;
+            }
+        }
+
+        public IWebElement FiltersButton
+        {
+            get
+            {
+                return filtersButton;
+            }
+        }
+
+        public IWebElement JobsFilter
+        {
+            get
+            {
+                return jobsFilter;
+            }
+        }
+
+        public IWebElement ActivityFilter
+        {
+            get
+            {
+                return activityFilter;
+            }
+        }
+
+        public IReadOnlyCollection<IWebElement> JobsList
+        {
+            get
+            {
+                return jobsList;
+            }
+        }
+
+        public IReadOnlyCollection<IWebElement> ActivityList
+        {
+            get
+            {
+                return activityList;
+            }
+        }
+
+        /* Methods */
+
+        public StatusPage ChoseActivity(string activityPassed, IWebDriver driver)
+        {
+            activityFilter.Click();
+            activityList.ElementAt(5).Click();
+
+            StatusPage newStatusPage = new StatusPage(driver);
+            return newStatusPage;
+        }
 
         /* Constructors */
 
-        /* filtersButton //button[contains(text(),'Filters')]
-         *  after clicking the bar should be displayed - it should be validated by checking if next element "Activity" is displayed. 
-         *  It can be checked <input type="hidden" name="cup$display" id="cup_display" value="display:none"> - when the Filters is not clicked. 
-         *  <input type="hidden" name="cup$display" id="cup_display" value=""> if is. 
-         *  activityList //*[@id='cup_fpStepActivityName_titletext']
-         *  statusList //*[@id='cup_fpStatusId_titletext']
-         *  
-         *  Options from the list are child nodes of cup_fpStepActivityName_child.
-         *  
-         *  After clicking on activityList there will be dropDown menu displayed. Each element has an id cup_fpStepActivityName_msa_N, where N 
-         *  is an index of the option. There should be created list there to check it with a regex expression. Also cup_fpStepActivityName_msa_N is 
-         *  an option with text the same as the field.
-         * */
+        public StatusPage()
+        {
+
+        }
+
 
         public StatusPage(IWebDriver statusPageDriver)
         {
@@ -85,9 +156,9 @@ namespace TMS_Constant_Evaluation
                 activityFilter = auxiliaryValidationList[0];
             }
 
-            //auxiliaryValidationList = statusPageDriver.FindElements(By.XPath("//*[@id='cup_fpJobId_msdd']"))[0].FindElements(By.XPath("//div[@id='cup_fpJobId_child']"));
+            auxiliaryValidationList = jobsFilter.FindElements(By.XPath("//div[@id='cup_fpJobId_child']"));
 
-            /*if(auxiliaryValidationList.Count == 1)
+            if(auxiliaryValidationList.Count == 1)
             {
                 jobsChild = auxiliaryValidationList[0];
                 jobsList = jobsChild.FindElements(By.XPath(".//*"));
@@ -95,11 +166,27 @@ namespace TMS_Constant_Evaluation
                 foreach(IWebElement element in jobsList)
                 {
                     if (jobsListRegex.Match(element.GetAttribute("id")) == null)
-                    { 
-                        
+                    {
+                        jobsListGeneratedProperly = false;
                     }
                 }
-            }*/
+            }
+
+            auxiliaryValidationList = activityFilter.FindElements(By.XPath("//div[@id='cup_fpStepActivityName_child']"));
+
+            if (auxiliaryValidationList.Count == 1)
+            {
+                activityChild = auxiliaryValidationList[0];
+                activityList = activityChild.FindElements(By.XPath(".//*"));
+
+                foreach (IWebElement element in activityList)
+                {
+                    if (activityListRegex.Match(element.GetAttribute("id")) == null)
+                    {
+                        activityListGeneratedProperly = false;
+                    }
+                }
+            }
 
         }
 
