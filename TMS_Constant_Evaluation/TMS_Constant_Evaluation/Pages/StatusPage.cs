@@ -43,6 +43,8 @@ namespace TMS_Constant_Evaluation
         public bool activityListGeneratedProperly = true;
         public IReadOnlyCollection<IWebElement> activityList;
 
+        public IWebElement errorMessage;
+
         /* Properties */
 
         public IWebElement PageTitle
@@ -114,14 +116,24 @@ namespace TMS_Constant_Evaluation
 
         public StatusPage(IWebDriver statusPageDriver)
         {
-            
+
+            var auxiliaryValidationList = statusPageDriver.FindElements(By.XPath("//*[@id='jnotify-item-msg']"));
+
+            if(auxiliaryValidationList.Count == 1)
+            {
+                if (auxiliaryValidationList[0].Text.Contains("Error 500 - Unknown error. Please contact your administrator"))
+                {
+                    errorMessage = auxiliaryValidationList[0];
+                }
+            }
+
             Regex jobsListRegex = new Regex("cup_fpJobId_msa_\\d+");
             Regex activityListRegex = new Regex("cup_fpStepActivityName_msa_\\d+");
 
             IWebElement jobsChild;
             IWebElement activityChild;
 
-            var auxiliaryValidationList = statusPageDriver.FindElements(By.XPath("//*[@id='sel_mnu_itm']"));
+            auxiliaryValidationList = statusPageDriver.FindElements(By.XPath("//*[@id='sel_mnu_itm']"));
 
 
             if(auxiliaryValidationList.Count == 1)
