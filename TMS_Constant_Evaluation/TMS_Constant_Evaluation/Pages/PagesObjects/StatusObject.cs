@@ -51,7 +51,7 @@ namespace TMS_Constant_Evaluation
             jobName = statusObjectTitle.Text;
 
             sourceTargetLanguages = statusObjectTitle.FindElement(By.XPath("..")).FindElement(By.ClassName("grp_lg")).Text;
-            jobStatus = statusObjectTitle.FindElement(By.XPath("..")).FindElement(By.ClassName("grp_aty_501")).Text;
+            jobStatus = statusObjectTitle.FindElement(By.XPath("..")).FindElement(By.XPath("//*[contains(@class, 'tlp_on title')]")).Text;
 
             Int32.TryParse(statusObjectTitle.FindElement(By.XPath("../../..")).FindElement(By.ClassName("r_LCount")).Text,out stepsCount);
 

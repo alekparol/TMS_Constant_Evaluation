@@ -113,6 +113,8 @@ namespace TMS_Constant_Evaluation_Tests
             {
                 // Initialization
                 List<StatusObject> listStatusObjects = new List<StatusObject>();
+                List<StatusObject> secondListStatusObjects = new List<StatusObject>();
+
                 StatusObject auxiliaryStatusObject = new StatusObject();
 
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(40));
@@ -138,8 +140,7 @@ namespace TMS_Constant_Evaluation_Tests
                 StatusPage objectStatusPage = new StatusPage(driver);
 
                 IReadOnlyCollection<IWebElement> listOfTitlesStatusWebElements = driver.FindElements(By.ClassName("grp_ttl"));
-                Assert.AreEqual("RedSys - X171702_4440095", listOfTitlesStatusWebElements.ElementAt(0).Text);
-                Assert.AreEqual("de-de → ar-ae", listOfTitlesStatusWebElements.ElementAt(0).FindElement(By.XPath("..")).FindElement(By.ClassName("grp_lg")).Text);
+               
 
                 if (listOfTitlesStatusWebElements.Count != 0)
                 {
@@ -158,7 +159,20 @@ namespace TMS_Constant_Evaluation_Tests
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
-                //wait.Until(ExpectedConditions.ElementExists(By.Id("cup_fpStepActivityName_msa_0")));
+
+                IReadOnlyCollection<IWebElement> secondListOfTitlesStatusWebElements = driver.FindElements(By.ClassName("grp_ttl"));
+
+                if (secondListOfTitlesStatusWebElements.Count != 0)
+                {
+                    foreach (IWebElement element in secondListOfTitlesStatusWebElements)
+                    {
+                        auxiliaryStatusObject = new StatusObject(element);
+                        secondListStatusObjects.Add(auxiliaryStatusObject);
+                    }
+                }
+
+                Assert.AreNotEqual(listStatusObjects.Count, secondListStatusObjects.Count);
+                Assert.AreEqual("(1)", secondListOfTitlesStatusWebElements.ElementAt(0).FindElement(By.XPath("../../..")).FindElement(By.ClassName("r_LCount")).Text);
 
                 driver.Quit();
             }
