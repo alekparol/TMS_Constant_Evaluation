@@ -17,6 +17,7 @@ namespace TMS_Constant_Evaluation
         public string jobStatus;
 
         public int stepsCount;
+        public IReadOnlyCollection<IWebElement> stepsCollection;
 
         public IWebElement moreInfo;
        
@@ -56,6 +57,16 @@ namespace TMS_Constant_Evaluation
             Int32.TryParse(statusObjectTitle.FindElement(By.XPath("../../..")).FindElement(By.ClassName("r_LCount")).Text,out stepsCount);
 
 
+        }
+
+        public StatusObject(IWebElement statusObjectTitle, int statusObjectIndex)
+        {
+            /*
+             * The structure of the ActivityObjest is like this: r_LH class element contains all the information which are modeled by fields above,
+             * then the r_L class elements are after r_LH and before next r_LH - they are representing steps. After clicking on the step it is no longer
+             * a member of [class='r_L'] but r_L row_slt and after it is expanded - there is another element after it which is a member of the class expanded
+             * 
+             * [class='r_L']*/
         }
 
     }
