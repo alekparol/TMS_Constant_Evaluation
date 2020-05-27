@@ -432,6 +432,9 @@ namespace TMS_Constant_Evaluation_Tests
 
                 stp2.AssigneesClick(driver);
 
+                AssigneesPage ap = new AssigneesPage(driver);
+                Thread.Sleep(10000);
+
                 //string projectXPath = "//div[contains(text(),'" + projectTitle + "')]";
 
                 // Waiting for the Porsche BAL 2.0 project element which exists only for added users

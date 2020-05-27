@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AssigneesPage.cs" />
     <Compile Include="Pages\PagesObjects\ActivitiesObject.cs" />
     <Compile Include="Pages\ParticularProjectPage.cs" />
     <Compile Include="Pages\PagesObjects\StatusObject.cs" />
