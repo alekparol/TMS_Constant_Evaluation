@@ -42,9 +42,28 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Methods */
 
-        public List<AssigneesObject> GetAllAssignees()
+        public List<AssigneesObject> GetAllAssignees(IWebDriver driver)
         {
 
+            List<AssigneesObject> auxiliaryAssigneesObjectList = new List<AssigneesObject>();
+
+            if (assingeesList.Count > 0 && assigneesJobsList.Count > 0)
+            {
+                if (assigneesPageBar.IfPageBarExists)
+                {
+                    while(assigneesPageBar.IfLastPage != 0)
+                    {
+                        assigneesPageBar.GoToNextPage(driver);
+
+
+                    }
+                }
+                /*Here will be initialization for the list*/
+            }
+            else
+            {
+                return auxiliaryAssigneesObjectList;
+            }
         }
 
         /* Constructors */

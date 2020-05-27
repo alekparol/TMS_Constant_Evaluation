@@ -52,12 +52,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\AssigneesPage.cs" />
+    <Compile Include="Pages\Status\Assignees\AssigneesPage.cs" />
     <Compile Include="Pages\PagesObjects\ActivitiesObject.cs" />
-    <Compile Include="Pages\ParticularProjectPage.cs" />
+    <Compile Include="Pages\Status\Assignees\PageObjects\Assignees.cs" />
+    <Compile Include="Pages\Status\Assignees\PageObjects\AssigneesObject.cs" />
+    <Compile Include="Pages\Status\Assignees\PageObjects\AssigneesJobs.cs" />
+    <Compile Include="Pages\PagesObjects\PageBar.cs" />
+    <Compile Include="Pages\Porsche Bal 2.0\ParticularProjectPage.cs" />
     <Compile Include="Pages\PagesObjects\StatusObject.cs" />
-    <Compile Include="Pages\ProjectsPage.cs" />
-    <Compile Include="Pages\StatusPage2.cs" />
+    <Compile Include="Pages\Starting TMS\ProjectsPage.cs" />
+    <Compile Include="Pages\Status\StatusPage2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\StatusPage.cs" />

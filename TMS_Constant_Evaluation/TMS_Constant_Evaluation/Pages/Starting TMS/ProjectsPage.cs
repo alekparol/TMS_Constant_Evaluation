@@ -20,9 +20,33 @@ namespace TMS_Constant_Evaluation.Pages
         private IReadOnlyCollection<IWebElement> projectsList;
         private IWebElement chosenProject;
 
-        private bool isParsedWell;
+        private bool isParsedCorrectly;
 
         /* Properties */
+
+        public IReadOnlyCollection<IWebElement> ProjectsList
+        {
+            get
+            {
+                return projectsList;
+            }
+        }
+
+        public IWebElement ChosenProject
+        {
+            get
+            {
+                return chosenProject;
+            }
+        }
+
+        public bool IsParsedCorrectly
+        {
+            get
+            {
+                return isParsedCorrectly;
+            }
+        }
 
         /* Methods */
 
@@ -44,7 +68,7 @@ namespace TMS_Constant_Evaluation.Pages
             projectsList = driver.FindElements(By.ClassName("dsh_tds_ttl"));
             if(projectsList.Count > 0)
             {
-                isParsedWell = true;
+                isParsedCorrectly = true;
                 chosenProject = projectsList.Where(x => x.Text.ToLower() == chosenProjectName.ToLower()).ElementAt(0);
             }
 
