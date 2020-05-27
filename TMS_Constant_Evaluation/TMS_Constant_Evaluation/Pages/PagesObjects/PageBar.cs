@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,6 +23,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         private string itemsPerPageSelected;
         private IReadOnlyCollection<IWebElement> itemsPerPageOptions;
 
+        private IWebElement pageContainer;
+
         private IWebElement previousPage;
         private IWebElement currentPage;
         private IWebElement nextPage;
@@ -30,8 +33,139 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Properties */
 
-        /* Methods */
-        
+        public bool IfPageBarExists
+        {
+            get
+            {
+                if (pageContainer == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public int IfPreviousPageExists
+        {
+            get
+            {
+                if (this.IfPageBarExists)
+                {
+                    if (previousPage == null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int IfNextPageExists
+        {
+            get
+            {
+                if (this.IfPageBarExists)
+                {
+                    if (nextPage == null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int IfFirstPage
+        {
+            get
+            {
+                if (this.IfPageBarExists)
+                {
+                    if (this.IfPreviousPageExists == 1)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int IfLastPage
+        {
+            get
+            {
+                if (this.IfPageBarExists)
+                {
+                    if (this.IfNextPageExists == 1)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        /* Methods */ 
+
+        public void GoToNextPage(IWebDriver driver)
+        {
+
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+            if (this.IfNextPageExists == 1)
+            {
+                nextPage.Click();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+            }
+        }
+
+        public void GoToPreviousPage(IWebDriver driver)
+        {
+
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+            if (this.IfPreviousPageExists == 1)
+            {
+                nextPage.Click();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+            }
+        }
+
         /* Constructors */
 
         /* IWebDriver as a passed argument temporary. 
@@ -72,7 +206,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("pgr_lst"));
                     if (auxiliaryCollection.Count == 1)
                     {
-                        IWebElement pageContainer = auxiliaryCollection.ElementAt(0);
+                        pageContainer = auxiliaryCollection.ElementAt(0);
 
                         auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_prv"));
                         if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);

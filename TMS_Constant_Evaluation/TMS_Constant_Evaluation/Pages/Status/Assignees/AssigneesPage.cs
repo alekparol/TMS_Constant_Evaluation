@@ -35,10 +35,17 @@ namespace TMS_Constant_Evaluation.Pages
         private IReadOnlyCollection<IWebElement> r_LObjects;
         private List<AssigneesJobs> assigneesJobsList;
 
+        private PageBar assigneesPageBar;
+
 
         /* Properties */
 
         /* Methods */
+
+        public List<AssigneesObject> GetAllAssignees()
+        {
+
+        }
 
         /* Constructors */
 
@@ -90,6 +97,8 @@ namespace TMS_Constant_Evaluation.Pages
 
             auxiliaryCollection = driver.FindElements(By.ClassName("r_LH"));
             if (auxiliaryCollection.Count > 0) r_LHObjects = auxiliaryCollection;
+
+            assigneesPageBar = new PageBar(driver);
 
             assingeesList = new List<Assignees>();
             Assignees auxiliaryAssignee;
