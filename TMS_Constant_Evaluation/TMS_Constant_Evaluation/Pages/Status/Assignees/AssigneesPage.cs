@@ -42,7 +42,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Methods */
 
-        public List<AssigneesObject> GetAllAssignees(IWebDriver driver)
+        /*public List<AssigneesObject> GetAllAssignees(IWebDriver driver)
         {
 
             List<AssigneesObject> auxiliaryAssigneesObjectList = new List<AssigneesObject>();
@@ -58,13 +58,13 @@ namespace TMS_Constant_Evaluation.Pages
 
                     }
                 }
-                /*Here will be initialization for the list*/
+                Here will be initialization for the list
             }
             else
             {
                 return auxiliaryAssigneesObjectList;
             }
-        }
+        }*/
 
         /* Constructors */
 

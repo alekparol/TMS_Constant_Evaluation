@@ -10,6 +10,12 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
+/* TODO: Make a new class for sections which would contain: 
+ * 1. IWebElement section;
+ * 2. Name = section.FindElements(By.ClassName("act_ttl")).ElementAt(0).Text;
+ * 3. Notifications = 
+ **/
+
 namespace TMS_Constant_Evaluation.Pages
 {
     public class ParticularProjectPage
@@ -22,6 +28,8 @@ namespace TMS_Constant_Evaluation.Pages
         private IWebElement planningSection;
         private IWebElement statusSection;
 
+        private bool isParsedCorrectly;
+
         /* Properties */
 
         public string SelectedProjectName
@@ -29,6 +37,38 @@ namespace TMS_Constant_Evaluation.Pages
             get
             {
                 return selectedProject.Text.ToLower().Trim();
+            }
+        }
+
+        public IWebElement JobsSection
+        {
+            get
+            {
+                return jobsSection;
+            }
+        }
+
+        public IWebElement PlanningSection
+        {
+            get
+            {
+                return planningSection;
+            }
+        }
+
+        public IWebElement StatusSection
+        {
+            get
+            {
+                return statusSection;
+            }
+        }
+
+        public bool IsParsedCorrectly
+        {
+            get
+            {
+                return isParsedCorrectly;
             }
         }
     
@@ -71,23 +111,33 @@ namespace TMS_Constant_Evaluation.Pages
 
         public ParticularProjectPage(IWebDriver driver)
         {
-            IReadOnlyCollection<IWebElement> auxiliaryCollection;
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            if (driver.Url == "https://tms.lionbridge.com/")
+            {
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("inworktasks")));
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            auxiliaryCollection = driver.FindElements(By.ClassName("menuSelectedItem"));
-            if (auxiliaryCollection.Count > 0) selectedProject = auxiliaryCollection.ElementAt(0);
+                if(wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("inworktasks"))) != null)
+                {
 
-            auxiliaryCollection = driver.FindElements(By.Id("jobsdashboard"));
-            if (auxiliaryCollection.Count > 0) jobsSection = auxiliaryCollection.ElementAt(0);
+                    isParsedCorrectly = true;
 
-            auxiliaryCollection = driver.FindElements(By.Id("planning"));
-            if (auxiliaryCollection.Count > 0) planningSection = auxiliaryCollection.ElementAt(0);
+                    auxiliaryCollection = driver.FindElements(By.ClassName("menuSelectedItem"));
+                    if (auxiliaryCollection.Count > 0) selectedProject = auxiliaryCollection.ElementAt(0);
 
-            auxiliaryCollection = driver.FindElements(By.Id("status"));
-            if (auxiliaryCollection.Count > 0) statusSection = auxiliaryCollection.ElementAt(0);
+                    auxiliaryCollection = driver.FindElements(By.Id("jobsdashboard"));
+                    if (auxiliaryCollection.Count > 0) jobsSection = auxiliaryCollection.ElementAt(0);
 
+                    auxiliaryCollection = driver.FindElements(By.Id("planning"));
+                    if (auxiliaryCollection.Count > 0) planningSection = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = driver.FindElements(By.Id("status"));
+                    if (auxiliaryCollection.Count > 0) statusSection = auxiliaryCollection.ElementAt(0);
+
+
+                }
+
+            }
         }
 
     }

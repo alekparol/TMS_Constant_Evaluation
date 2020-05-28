@@ -56,22 +56,41 @@ namespace TMS_Constant_Evaluation.Pages
         }
 
         /* Constructors */
-        
+
+        public ProjectsPage(IWebDriver driver)
+        {
+            if (driver.Url == "https://tms.lionbridge.com/")
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName("dsh_tds_ttl")));
+
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+                projectsList = driver.FindElements(By.ClassName("dsh_tds_ttl"));
+                if (projectsList.Count > 0)
+                {
+                    isParsedCorrectly = true;
+                }
+            }
+        }
+
         public ProjectsPage(IWebDriver driver, string chosenProjectName)
         {
-
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName("dsh_tds_ttl")));
-
-            IReadOnlyCollection<IWebElement> auxiliaryCollection;
-
-            projectsList = driver.FindElements(By.ClassName("dsh_tds_ttl"));
-            if(projectsList.Count > 0)
+            if (driver.Url == "https://tms.lionbridge.com/")
             {
-                isParsedCorrectly = true;
-                chosenProject = projectsList.Where(x => x.Text.ToLower() == chosenProjectName.ToLower()).ElementAt(0);
-            }
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName("dsh_tds_ttl")));
 
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+                projectsList = driver.FindElements(By.ClassName("dsh_tds_ttl"));
+                if (projectsList.Count > 0)
+                {
+                    isParsedCorrectly = true;
+                    chosenProject = projectsList.Where(x => x.Text.ToLower() == chosenProjectName.ToLower()).ElementAt(0);
+                }
+            }
+           
         }
 
     }
