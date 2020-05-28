@@ -29,7 +29,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         private IWebElement currentPage;
         private IWebElement nextPage;
 
-        private bool isParsedCorrect;
+        private bool isParsedCorrectly;
 
         /* Properties */
 
@@ -172,54 +172,57 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
          * Also, we assume that the page is fully loaded properly so we are not waiting until some element. */
         public PageBar(IWebDriver driver)
         {
-
-            IReadOnlyCollection<IWebElement> auxiliaryCollection;
-            string auxiliaryString;
-
-            Regex itemsPerPageRegexID = new Regex("msdrpdd\\d+_msdd");
-
-            auxiliaryCollection = driver.FindElements(By.Id("cup_pgp"));
-            if (auxiliaryCollection.Count == 1)
+            if (driver.Url == "https://tms.lionbridge.com/")
             {
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                string auxiliaryString;
 
-                isParsedCorrect = true;
+                Regex itemsPerPageRegexID = new Regex("msdrpdd\\d+_msdd");
 
-                IWebElement pageBarContainer = auxiliaryCollection.ElementAt(0);
-                auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("dd ddSelected"));
-
-                if (auxiliaryCollection.Count > 0)
+                auxiliaryCollection = driver.FindElements(By.Id("cup_pgp"));
+                if (auxiliaryCollection.Count == 1)
                 {
 
-                    itemsPerPage = auxiliaryCollection.First(x => itemsPerPageRegexID.IsMatch(x.GetAttribute("id")));
-                    
-                    string itemsPerPageActualID = itemsPerPage.GetAttribute("id");
-                    string itemsPerPageTitleTextID = itemsPerPageActualID.Replace("msdd", "titletext");
-                    
-                    auxiliaryCollection = itemsPerPage.FindElements(By.Id(itemsPerPageTitleTextID));
-                    if (auxiliaryCollection.Count == 1) itemsPerPageSelected = auxiliaryCollection.ElementAt(0).Text;
+                    isParsedCorrectly = true;
 
-                    string itemsPerPageChildID = itemsPerPageActualID.Replace("msdd", "child");
+                    IWebElement pageBarContainer = auxiliaryCollection.ElementAt(0);
+                    auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("dd ddSelected"));
 
-                    auxiliaryCollection = itemsPerPage.FindElements(By.Id(itemsPerPageChildID));
-                    if (auxiliaryCollection.Count == 1) itemsPerPageOptions = auxiliaryCollection.ElementAt(0).FindElements(By.XPath("//a"));
-
-                    auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("pgr_lst"));
-                    if (auxiliaryCollection.Count == 1)
+                    if (auxiliaryCollection.Count > 0)
                     {
-                        pageContainer = auxiliaryCollection.ElementAt(0);
 
-                        auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_prv"));
-                        if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);
+                        itemsPerPage = auxiliaryCollection.First(x => itemsPerPageRegexID.IsMatch(x.GetAttribute("id")));
 
-                        auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_nxt"));
-                        if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
+                        string itemsPerPageActualID = itemsPerPage.GetAttribute("id");
+                        string itemsPerPageTitleTextID = itemsPerPageActualID.Replace("msdd", "titletext");
 
-                        auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_on"));
-                        if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);
+                        auxiliaryCollection = itemsPerPage.FindElements(By.Id(itemsPerPageTitleTextID));
+                        if (auxiliaryCollection.Count == 1) itemsPerPageSelected = auxiliaryCollection.ElementAt(0).Text;
 
-                    }                
+                        string itemsPerPageChildID = itemsPerPageActualID.Replace("msdd", "child");
 
-                }
+                        auxiliaryCollection = itemsPerPage.FindElements(By.Id(itemsPerPageChildID));
+                        if (auxiliaryCollection.Count == 1) itemsPerPageOptions = auxiliaryCollection.ElementAt(0).FindElements(By.XPath("//a"));
+
+                        auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("pgr_lst"));
+                        if (auxiliaryCollection.Count == 1)
+                        {
+                            pageContainer = auxiliaryCollection.ElementAt(0);
+
+                            auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_prv"));
+                            if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);
+
+                            auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_nxt"));
+                            if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
+
+                            auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_on"));
+                            if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);
+
+                        }
+
+                    }
+
+                }  
 
             }
 
