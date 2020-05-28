@@ -122,5 +122,107 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
         }
 
+        [TestMethod]
+        public void ParticularProjectPage_JobsClick_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+
+                porscheBalPage.JobsClick(driver);
+
+                string sectionName = "jobs";
+                IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
+
+                /* Set of assertions */
+
+                Assert.IsTrue(auxiliaryCollection.Count > 0);
+                Assert.AreEqual(sectionName.ToLower().Trim(), auxiliaryCollection.ElementAt(0).Text.ToLower().Trim());
+                
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ParticularProjectPage_PlanningClick_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+
+                porscheBalPage.PlanningClick(driver);
+
+                string sectionName = "planning";
+                IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
+
+                /* Set of assertions */
+
+                Assert.IsTrue(auxiliaryCollection.Count > 0);
+                Assert.AreEqual(sectionName.ToLower().Trim(), auxiliaryCollection.ElementAt(0).Text.ToLower().Trim());
+
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ParticularProjectPage_StatusClick_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+
+                porscheBalPage.StatusClick(driver);
+
+                string sectionName = "status";
+                IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
+
+                /* Set of assertions */
+
+                Assert.IsTrue(auxiliaryCollection.Count > 0);
+                Assert.AreEqual(sectionName.ToLower().Trim(), auxiliaryCollection.ElementAt(0).Text.ToLower().Trim());
+
+
+            }
+
+        }
+
     }
 }

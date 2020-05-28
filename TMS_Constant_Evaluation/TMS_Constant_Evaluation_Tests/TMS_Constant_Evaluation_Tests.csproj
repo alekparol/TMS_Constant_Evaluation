@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Pages_Tests\Porsche Bal 2.0_Tests\ParticularProcjectPage_Tests.cs" />
     <Compile Include="Pages_Tests\Starting TMS_Tests\ProjectsPage_Tests.cs" />
+    <Compile Include="Pages_Tests\Status_Tests\Assignees_Tests\AssigneesPage_Tests.cs" />
+    <Compile Include="Pages_Tests\Status_Tests\StatusPage2_Tests.cs" />
     <Compile Include="StatusPage_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,7 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages_Tests\PagesObjects_Tests\" />
-    <Folder Include="Pages_Tests\Status_Tests\Assignees_Tests\" />
     <Folder Include="Pages_Tests\Status_Tests\PageObjects_Tests\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

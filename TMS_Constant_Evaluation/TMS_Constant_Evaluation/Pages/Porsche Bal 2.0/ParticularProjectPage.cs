@@ -83,6 +83,8 @@ namespace TMS_Constant_Evaluation.Pages
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
 
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
+
         }
 
         public void PlanningClick(IWebDriver driver)
@@ -94,6 +96,8 @@ namespace TMS_Constant_Evaluation.Pages
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
 
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
+
         }
         public void StatusClick(IWebDriver driver)
         {
@@ -103,6 +107,8 @@ namespace TMS_Constant_Evaluation.Pages
 
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
 
         }
 

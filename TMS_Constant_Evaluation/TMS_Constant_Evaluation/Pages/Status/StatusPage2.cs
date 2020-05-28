@@ -25,6 +25,8 @@ namespace TMS_Constant_Evaluation.Pages
 
         private IWebElement filtersButton;
 
+        private bool isParsedCorrectly;
+
         /* Properties */
     
         public string PageName
@@ -32,6 +34,58 @@ namespace TMS_Constant_Evaluation.Pages
             get
             {
                 return pageName.Text.ToLower().Trim();
+            }
+        }
+
+        public bool IsParsedCorrectly
+        {
+            get
+            {
+                return isParsedCorrectly;
+            }
+        }
+
+        public int IsActivitiesSelected
+        {
+            get
+            {
+                if (activitiesSubPage != null)
+                {
+                    if (activitiesSubPage.GetAttribute("class").Contains("hdr_sub_sel"))
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int IsAssigneesSelected
+        {
+            get
+            {
+                if (assigneesSubPage != null)
+                {
+                    if (assigneesSubPage.GetAttribute("class").Contains("hdr_sub_sel"))
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
             }
         }
 
@@ -46,37 +100,47 @@ namespace TMS_Constant_Evaluation.Pages
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
 
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
+
         }
                 
         /* Constructors */
 
         public StatusPage2(IWebDriver driver)
         {
-
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            IReadOnlyCollection<IWebElement> auxiliaryCollection;
-
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
-
-            auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
-            if (auxiliaryCollection.Count > 0) pageName = auxiliaryCollection.ElementAt(0);
-
-            auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_vws"));
-            if (auxiliaryCollection.Count > 0) viewBar = auxiliaryCollection.ElementAt(0);
-
-            if (viewBar != null)
+            if (driver.Url == "https://tms.lionbridge.com/")
             {
 
-                auxiliaryCollection = viewBar.FindElements(By.Id("status"));
-                if (auxiliaryCollection.Count > 0) activitiesSubPage = auxiliaryCollection.ElementAt(0);
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
-                auxiliaryCollection = viewBar.FindElements(By.Id("statusassignees"));
-                if (auxiliaryCollection.Count > 0) assigneesSubPage = auxiliaryCollection.ElementAt(0);
+                if(wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn"))) != null)
+                {
 
+                    isParsedCorrectly = true;
+
+                    auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
+                    if (auxiliaryCollection.Count > 0) pageName = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_vws"));
+                    if (auxiliaryCollection.Count > 0) viewBar = auxiliaryCollection.ElementAt(0);
+
+                    if (viewBar != null)
+                    {
+
+                        auxiliaryCollection = viewBar.FindElements(By.Id("status"));
+                        if (auxiliaryCollection.Count > 0) activitiesSubPage = auxiliaryCollection.ElementAt(0);
+
+                        auxiliaryCollection = viewBar.FindElements(By.Id("statusassignees"));
+                        if (auxiliaryCollection.Count > 0) assigneesSubPage = auxiliaryCollection.ElementAt(0);
+
+                    }
+
+                    auxiliaryCollection = driver.FindElements(By.Id("cup_fp_btn"));
+                    if (auxiliaryCollection.Count > 0) filtersButton = auxiliaryCollection.ElementAt(0);
+
+                }
             }
-
-            auxiliaryCollection = driver.FindElements(By.Id("cup_fp_btn"));
-            if (auxiliaryCollection.Count > 0) filtersButton = auxiliaryCollection.ElementAt(0);
 
         }
 
