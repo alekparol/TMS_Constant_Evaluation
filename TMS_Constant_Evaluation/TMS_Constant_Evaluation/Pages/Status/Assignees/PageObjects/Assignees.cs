@@ -22,7 +22,7 @@ namespace TMS_Constant_Evaluation.Pages
         private string assigneeName;
         private int assigneeJobsNumber;
 
-        private bool isParsingCorrect;
+        private bool isParsedCorrectly;
 
         /* Properties */
 
@@ -42,11 +42,11 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
-        public bool IsParsingCorrect
+        public bool IsParsedCorrectly
         {
             get
             {
-                return isParsingCorrect;
+                return isParsedCorrectly;
             }
         }
 
@@ -62,7 +62,7 @@ namespace TMS_Constant_Evaluation.Pages
 
             if(r_LHObject.GetAttribute("class") == "r_LH")
             {
-                isParsingCorrect = true;
+                isParsedCorrectly = true;
 
                 auxiliaryCollection = r_LHObject.FindElements(By.ClassName("grp_usr_True"));
                 if (auxiliaryCollection.Count == 1) assigneeName = auxiliaryCollection.ElementAt(0).Text;

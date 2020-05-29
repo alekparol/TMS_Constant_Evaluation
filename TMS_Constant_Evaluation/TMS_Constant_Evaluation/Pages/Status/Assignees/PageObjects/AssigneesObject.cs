@@ -17,14 +17,19 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Fields */
 
+        List<Assignees> assigneesList = new List<Assignees>();
+        List<AssigneesJobs> assigneesJobsList = new List<AssigneesJobs>();
 
+        private PageBar assigneePageBar;
+
+        private bool isParsedCorrectly;
 
         /* Properties */
 
         /* Methods */
 
-        /* Constructors */ 
-        
+        /* Constructors */
+
         /* I think the process should be like that: 
          * 1. We get the whole list of assignees on the internal review page. 
          * 2. We get the whole list of the assignees jobs on the internal review page. 
@@ -32,11 +37,63 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
          * jobs containing the jobs from the whole list of jobs from 0 to number of jobs for this assignee - 1. 
          * 4. We delete the jobs assigneed for the assignee from the list. 
          * 5. We do it until the list of assignees is on the end and list of jobs.count == 0. 
+         * 
+         * 
+         * 
          **/
-        public AssigneesObject(Assignees assignee, List<AssigneesJobs> assigneesJobs)
+        public AssigneesObject(IWebDriver driver)
         {
+            if (driver.Url == "https://tms.lionbridge.com/")
+            {
 
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+                Assignees auxiliaryAssignee;
+                AssigneesJobs auxiliaryAssigneesJobs;
+
+                wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
+
+                assigneePageBar = new PageBar(driver);
+                if (assigneePageBar.IsParsedCorrectly && assigneePageBar.IfPageBarExists)
+                {
+
+                    isParsedCorrectly = true;
+
+                    while (assigneePageBar.IfNextPageExists == 1)
+                    {
+                        if (wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH"))) != null)
+                        {
+
+                            auxiliaryCollection = driver.FindElements(By.ClassName("r_LH"));
+                            if (auxiliaryCollection.Count > 0)
+                            {
+                                foreach (IWebElement element in auxiliaryCollection)
+                                {
+                                    auxiliaryAssignee = new Assignees(element);
+                                    if (auxiliaryAssignee.IsParsedCorrectly) assigneesList.Add(auxiliaryAssignee);
+                                }
+                            }
+
+                            auxiliaryCollection = driver.FindElements(By.ClassName("r_L"));
+                            if (auxiliaryCollection.Count > 0)
+                            {
+                                foreach (IWebElement element in auxiliaryCollection)
+                                {
+                                    auxiliaryAssigneesJobs = new AssigneesJobs(element);
+                                    if (auxiliaryAssigneesJobs.IsParsedCorrectly) assigneesJobsList.Add(auxiliaryAssigneesJobs);
+                                }
+                            }
+
+                            assigneePageBar.GoToNextPage(driver);
+
+                            assigneePageBar = new PageBar(driver);
+
+                        }
+                    }
+
+               }               
+            }
         }
-
     }
 }

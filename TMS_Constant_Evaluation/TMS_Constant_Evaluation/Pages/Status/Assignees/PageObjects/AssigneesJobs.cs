@@ -19,7 +19,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         private string jobsName;
 
-        private bool isParsingCorrect;
+        private bool isParsedCorrectly;
 
         /* Properties */
 
@@ -31,11 +31,11 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
        
-        public bool IsParsingCorrect
+        public bool IsParsedCorrectly
         {
             get
             {
-                return isParsingCorrect;
+                return isParsedCorrectly;
             }
         }
 
@@ -51,14 +51,14 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             if (r_LObject.GetAttribute("class") == "r_L")
             {
 
-                isParsingCorrect = true;
+                isParsedCorrectly = true;
 
                 string rowID = r_LObject.GetAttribute("rowid");
 
                 auxiliaryCollection = r_LObject.FindElements(By.Id(rowID));
                 if (auxiliaryCollection.Count == 1)
                 {
-
+                    
                     IWebElement checkboxRow = auxiliaryCollection.ElementAt(0);
 
                     auxiliaryCollection = checkboxRow.FindElements(By.ClassName("tlp_on"));
