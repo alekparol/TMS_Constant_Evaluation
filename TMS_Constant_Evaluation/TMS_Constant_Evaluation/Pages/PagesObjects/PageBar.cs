@@ -13,10 +13,12 @@ using System.Threading.Tasks;
 
 namespace TMS_Constant_Evaluation.Pages.PagesObjects
 {
-    class PageBar
+    public class PageBar
     {
 
         /* Fields */
+
+        private IWebElement pageBarContainer;
 
         private IWebElement itemsPerPage;
 
@@ -136,6 +138,22 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public IWebElement CurrentPage
+        {
+            get
+            {
+                return currentPage;
+            }
+        }
+
+        public bool IsParsedCorrectly
+        {
+            get
+            {
+                return isParsedCorrectly;
+            }
+        }
+
         /* Methods */ 
 
         public void GoToNextPage(IWebDriver driver)
@@ -159,7 +177,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
             if (this.IfPreviousPageExists == 1)
             {
-                nextPage.Click();
+                previousPage.Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
@@ -174,6 +192,9 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             if (driver.Url == "https://tms.lionbridge.com/")
             {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                wait.Until(ExpectedConditions.ElementExists(By.ClassName("pgr_lst")));
+
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
                 string auxiliaryString;
 
@@ -185,7 +206,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                     isParsedCorrectly = true;
 
-                    IWebElement pageBarContainer = auxiliaryCollection.ElementAt(0);
+                    pageBarContainer = auxiliaryCollection.ElementAt(0);
                     auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("dd ddSelected"));
 
                     if (auxiliaryCollection.Count > 0)
@@ -204,23 +225,25 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                         auxiliaryCollection = itemsPerPage.FindElements(By.Id(itemsPerPageChildID));
                         if (auxiliaryCollection.Count == 1) itemsPerPageOptions = auxiliaryCollection.ElementAt(0).FindElements(By.XPath("//a"));
 
-                        auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("pgr_lst"));
-                        if (auxiliaryCollection.Count == 1)
-                        {
-                            pageContainer = auxiliaryCollection.ElementAt(0);
+                    }
 
-                            auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_prv"));
-                            if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);
+                    auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("pgr_lst"));
+                    if (auxiliaryCollection.Count > 0)
+                    {
 
-                            auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_nxt"));
-                            if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
+                        pageContainer = auxiliaryCollection.ElementAt(0);
 
-                            auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_on"));
-                            if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);
+                        auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_prv"));
+                        if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);
 
-                        }
+                        auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_nxt"));
+                        if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
+
+                        auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_on"));
+                        if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);
 
                     }
+
 
                 }  
 
