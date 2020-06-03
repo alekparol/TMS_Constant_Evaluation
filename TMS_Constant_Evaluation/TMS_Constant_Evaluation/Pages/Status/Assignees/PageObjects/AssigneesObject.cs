@@ -17,14 +17,38 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Fields */
 
-        List<Assignees> assigneesList = new List<Assignees>();
-        List<AssigneesJobs> assigneesJobsList = new List<AssigneesJobs>();
+        private List<Assignees> assigneesList = new List<Assignees>();
+        private List<AssigneesJobs> assigneesJobsList = new List<AssigneesJobs>();
 
         private PageBar assigneePageBar;
 
         private bool isParsedCorrectly;
 
         /* Properties */
+
+        public int AssigneesListSize
+        {
+            get
+            {
+                return assigneesList.Count;
+            }
+        }
+
+        public int AssigneesJobsListSize
+        {
+            get
+            {
+                return assigneesJobsList.Count;
+            }
+        }
+
+        public bool IsParsedCorrectly
+        {
+            get
+            {
+                return isParsedCorrectly;
+            }
+        }
 
         /* Methods */
 
@@ -60,7 +84,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                     isParsedCorrectly = true;
 
-                    while (assigneePageBar.IfNextPageExists == 1)
+                    while (true)
                     {
                         if (wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH"))) != null)
                         {
@@ -85,14 +109,21 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                                 }
                             }
 
-                            assigneePageBar.GoToNextPage(driver);
+                            if(assigneePageBar.IfNextPageExists == 0)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                assigneePageBar.GoToNextPage(driver);
+                            }
+                            
 
                             assigneePageBar = new PageBar(driver);
 
                         }
                     }
-
-               }               
+                }
             }
         }
     }

@@ -29,6 +29,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         private IWebElement previousPage;
         private IWebElement currentPage;
+        private IWebElement lastPage;
         private IWebElement nextPage;
 
         private bool isParsedCorrectly;
@@ -238,6 +239,9 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                         auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_nxt"));
                         if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
+
+                        auxiliaryCollection = pageContainer.FindElements(By.TagName("li"));
+                        if (auxiliaryCollection.Count > 0) lastPage = auxiliaryCollection.ElementAt(auxiliaryCollection.Count - 2);
 
                         auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_on"));
                         if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);

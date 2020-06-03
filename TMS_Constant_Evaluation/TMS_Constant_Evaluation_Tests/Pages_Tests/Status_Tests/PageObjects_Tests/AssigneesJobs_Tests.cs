@@ -14,13 +14,13 @@ using TMS_Constant_Evaluation.Pages.PagesObjects;
 namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tests
 {
     [TestClass]
-    public class AssigneesObject_Tests
+    public class AssigneesJobs_Tests
     {
 
-
         [TestMethod]
-        public void AssigneesObject_ParsingCorrectly_Test_1()
+        public void AssigneesJobs_ParsingCorrectly_Test_1()
         {
+
             using (var driver = new ChromeDriver())
             {
 
@@ -42,16 +42,30 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                AssigneesObject asob = new AssigneesObject(driver);
+                IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_L"));
+                List<AssigneesJobs> assigneesJobs = new List<AssigneesJobs>();
+
+                AssigneesJobs auxiliaryAssigneesJob;
+
+                foreach(IWebElement r_L in r_LObjects)
+                {
+
+                    auxiliaryAssigneesJob = new AssigneesJobs(r_L);
+                    assigneesJobs.Add(auxiliaryAssigneesJob);
+
+                }
 
                 /* Set of assertions */
-                Assert.AreEqual(true, asob.IsParsedCorrectly);
-                Assert.AreNotEqual(0, asob.AssigneesJobsListSize);
-                Assert.AreNotEqual(0, asob.AssigneesListSize);
 
+                Assert.AreEqual(250, assigneesJobs.Count);
+                
+                foreach(AssigneesJobs job in assigneesJobs)
+                {
+                    Assert.AreEqual(true, job.IsParsedCorrectly);
+                    Assert.AreNotEqual("", job.JobsName);
+                }
             }
+
         }
-
-
     }
 }

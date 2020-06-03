@@ -118,5 +118,41 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.Assignees_Tests
 
         }
 
+        [TestMethod]
+        public void AssigneesPage_InternalReview_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+
+                porscheBalPage.StatusClick(driver);
+                StatusPage2 porscheStatusPage = new StatusPage2(driver);
+
+                porscheStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.
+
+                /* Set of assertions */
+
+                Assert.AreEqual(0, porscheAssigneesPage.IsActivitiesSelected);
+                Assert.AreEqual(1, porscheAssigneesPage.IsAssigneesSelected);
+
+            }
+
+        }
+
     }
 }

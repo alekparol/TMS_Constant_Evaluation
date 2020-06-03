@@ -20,8 +20,8 @@ namespace TMS_Constant_Evaluation.Pages
         private IWebElement containerObject;
 
         private string assigneeName;
-        private int assigneeJobsNumber;
 
+        private IWebElement assigneeNumber;
         private bool isParsedCorrectly;
 
         /* Properties */
@@ -34,11 +34,19 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
-        public int AssigneeJobsNumber
+        public string AssigneeJobsNumber
         {
             get
             {
-                return AssigneeJobsNumber;
+                return assigneeNumber.Text;
+            }
+        }
+
+        public IWebElement AssigneeNumber
+        {
+            get
+            {
+                return assigneeNumber;
             }
         }
 
@@ -70,15 +78,7 @@ namespace TMS_Constant_Evaluation.Pages
                 auxiliaryCollection = r_LHObject.FindElements(By.ClassName("r_LCount"));
                 if (auxiliaryCollection.Count == 1)
                 {
-                    auxiliaryString = auxiliaryCollection.ElementAt(0).Text;
-
-                    if (auxiliaryString.Length > 0)
-                    {
-
-                        auxiliaryString = auxiliaryString.Replace("(", "").Replace(")", "");
-                        Int32.TryParse(auxiliaryString, out assigneeJobsNumber);
-                    }
-
+                    assigneeNumber = auxiliaryCollection.ElementAt(0);
                 }
 
             }

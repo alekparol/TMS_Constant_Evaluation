@@ -46,6 +46,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         public AssigneesJobs(IWebElement r_LObject)
         {
             IReadOnlyCollection<IWebElement> auxiliaryCollection;
+            IEnumerable<IWebElement> auxiliarayEnumerable;
+
             string auxiliaryString;
 
             if (r_LObject.GetAttribute("class") == "r_L")
@@ -54,12 +56,12 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 isParsedCorrectly = true;
 
                 string rowID = r_LObject.GetAttribute("rowid");
+                auxiliarayEnumerable = r_LObject.FindElements(By.XPath("child::*")).Where(x => x.GetAttribute("id") == rowID);
 
-                auxiliaryCollection = r_LObject.FindElements(By.Id(rowID));
-                if (auxiliaryCollection.Count == 1)
+                if (auxiliarayEnumerable.Count() == 1)
                 {
                     
-                    IWebElement checkboxRow = auxiliaryCollection.ElementAt(0);
+                    IWebElement checkboxRow = auxiliarayEnumerable.ElementAt(0);
 
                     auxiliaryCollection = checkboxRow.FindElements(By.ClassName("tlp_on"));
                     if (auxiliaryCollection.Count == 1) jobsName = auxiliaryCollection.ElementAt(0).Text;
