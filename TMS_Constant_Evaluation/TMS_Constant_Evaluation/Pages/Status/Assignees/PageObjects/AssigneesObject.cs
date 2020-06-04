@@ -42,6 +42,21 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public List<string> AssigneesJobNames
+        {
+            get
+            {
+                List<string> auxiliaryList = new List<string>();
+
+                foreach(AssigneesJobs job in assigneesJobsList)
+                {
+                    auxiliaryList.Add(job.JobsName);
+                }
+
+                return auxiliaryList;
+            }
+        }
+
         public bool IsParsedCorrectly
         {
             get
