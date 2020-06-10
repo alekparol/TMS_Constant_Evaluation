@@ -63,6 +63,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 {
                     Assert.AreEqual(true, job.IsParsedCorrectly);
                     Assert.AreNotEqual("", job.JobsName);
+                    Assert.AreNotEqual("", job.SourceLanguage);
+                    Assert.AreNotEqual("", job.TargetLanguage);
                 }
             }
 

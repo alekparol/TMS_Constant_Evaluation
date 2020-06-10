@@ -17,8 +17,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Fields */
 
-        private List<Assignees> assigneesList = new List<Assignees>();
-        private List<AssigneesJobs> assigneesJobsList = new List<AssigneesJobs>();
+        public List<Assignees> assigneesList = new List<Assignees>();
+        public List<AssigneesJobs> assigneesJobsList = new List<AssigneesJobs>();
 
         private PageBar assigneePageBar;
 

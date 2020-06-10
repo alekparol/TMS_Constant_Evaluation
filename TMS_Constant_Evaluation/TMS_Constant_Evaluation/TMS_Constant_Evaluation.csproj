@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Pages\Status\Assignees\AssigneesPage.cs" />
     <Compile Include="Pages\PagesObjects\ActivitiesObject.cs" />
+    <Compile Include="Pages\Status\Assignees\PageObjects\AssigneeElement.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\Assignees.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\AssigneesObject.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\AssigneesJobs.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Pages\Porsche Bal 2.0\ParticularProjectPage.cs" />
     <Compile Include="Pages\PagesObjects\StatusObject.cs" />
     <Compile Include="Pages\Starting TMS\ProjectsPage.cs" />
+    <Compile Include="Pages\Status\Assignees\PageObjects\OnClickJobsMenu.cs" />
     <Compile Include="Pages\Status\StatusPage2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -42,6 +42,23 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        public int AssingeeJobsInt
+        {
+            get
+            {
+                /*Regex regexNumber = new Regex("\\d*");
+                if(regexNumber.IsMatch(assigneeNumber.Text))
+                {
+                    return Int32.Parse(regexNumber.Match(assigneeNumber.Text).Value.Trim().Replace("(","").Replace(")",""));
+                }
+                else
+                {
+                    return 0;
+                }*/
+                return Int32.Parse(assigneeNumber.Text.Trim().Replace("(", "").Replace(")", ""));
+            }
+        }
+
         public IWebElement AssigneeNumber
         {
             get

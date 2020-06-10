@@ -63,7 +63,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                     Assert.AreEqual(true, assignee.IsParsedCorrectly);
                     Assert.AreNotEqual("", assignee.AssigneeName);
-                    Assert.AreNotEqual("0", assignee.AssigneeJobsNumber);
+                    Assert.AreNotEqual("", assignee.AssigneeJobsNumber);
+                    Assert.AreNotEqual(0, assignee.AssingeeJobsInt);
                 }
             }
         }

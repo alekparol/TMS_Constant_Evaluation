@@ -176,6 +176,19 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+
+        public void ActivitiesSubPageClick(IWebDriver driver)
+        {
+
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+            activitiesSubPage.Click();
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+        }
+
         public List<string> GetJobNames(IWebDriver driver)
         {
            
@@ -224,7 +237,7 @@ namespace TMS_Constant_Evaluation.Pages
                     {
 
                         auxiliaryCollection = viewBar.FindElements(By.Id("status"));
-                        if (auxiliaryCollection.Count > 0) activitiesSubPage = auxiliaryCollection.ElementAt(0);
+                        if (auxiliaryCollection.Count > 0) activitiesSubPage = auxiliaryCollection.Where(x => x.Text == "Activities").ElementAt(0);
 
                         auxiliaryCollection = viewBar.FindElements(By.Id("statusassignees"));
                         if (auxiliaryCollection.Count > 0) assigneesSubPage = auxiliaryCollection.ElementAt(0);

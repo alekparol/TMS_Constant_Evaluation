@@ -64,6 +64,7 @@
     <Compile Include="Pages_Tests\Status_Tests\PageObjects_Tests\AssigneesJobs_Tests.cs" />
     <Compile Include="Pages_Tests\Status_Tests\PageObjects_Tests\AssigneesObject_Tests.cs" />
     <Compile Include="Pages_Tests\Status_Tests\PageObjects_Tests\Assignees_Tests.cs" />
+    <Compile Include="Pages_Tests\Status_Tests\PageObjects_Tests\AssingeeElement_Tests.cs" />
     <Compile Include="Pages_Tests\Status_Tests\StatusPage2_Tests.cs" />
     <Compile Include="StatusPage_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
