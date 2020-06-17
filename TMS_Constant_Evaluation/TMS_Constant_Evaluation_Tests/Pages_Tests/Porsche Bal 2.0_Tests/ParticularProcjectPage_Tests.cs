@@ -145,6 +145,35 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 Assert.AreEqual("Parol Aleksander", porscheBalPage.LoggedUser);
                 Assert.IsNotNull(porscheBalPage.UserActivities);
+                Assert.IsFalse(porscheBalPage.UserActivities.Displayed);
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ParticularProjectPage_LoggedUserClick_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                porscheBalPage.LoggedUserClick(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(porscheBalPage.UserActivities.Displayed);
 
             }
 

@@ -60,6 +60,21 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        public bool UserActivitiesClicked
+        {
+            get
+            {
+                if (userActivitiesMenu.Displayed)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public IWebElement JobsSection
         {
             get
@@ -93,6 +108,15 @@ namespace TMS_Constant_Evaluation.Pages
         }
     
         /* Methods */ 
+
+        public void LoggedUserClick(IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            loggedUser.Click();
+            
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("usr_act")));
+
+        }
             
         public void JobsClick(IWebDriver driver)
         {
@@ -156,6 +180,9 @@ namespace TMS_Constant_Evaluation.Pages
 
                     auxiliaryCollection = driver.FindElements(By.Id("usr_act"));
                     if (auxiliaryCollection.Count == 1) userActivitiesMenu = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = userActivitiesMenu.FindElements(By.TagName("li"));
+                    if (auxiliaryCollection.Count > 0) userActivitiesList = auxiliaryCollection;
 
                     auxiliaryCollection = driver.FindElements(By.Id("jobsdashboard"));
                     if (auxiliaryCollection.Count == 0) jobsSection = auxiliaryCollection.ElementAt(0);
