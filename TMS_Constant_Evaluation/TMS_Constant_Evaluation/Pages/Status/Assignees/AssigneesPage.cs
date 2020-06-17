@@ -182,7 +182,11 @@ namespace TMS_Constant_Evaluation.Pages
 
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            activitiesSubPage.Click();
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("status")));
+            //activitiesSubPage.Click();
+
+            IWebElement statusPageClick = driver.FindElements(By.Id("status")).Where(x => x.Text == "Activities").First();
+            statusPageClick.Click();
 
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
@@ -237,7 +241,7 @@ namespace TMS_Constant_Evaluation.Pages
                     {
 
                         auxiliaryCollection = viewBar.FindElements(By.Id("status"));
-                        if (auxiliaryCollection.Count > 0) activitiesSubPage = auxiliaryCollection.Where(x => x.Text == "Activities").ElementAt(0);
+                        if (auxiliaryCollection.Count > 0) activitiesSubPage = auxiliaryCollection.Where(x => x.Text == "Activities").First();
 
                         auxiliaryCollection = viewBar.FindElements(By.Id("statusassignees"));
                         if (auxiliaryCollection.Count > 0) assigneesSubPage = auxiliaryCollection.ElementAt(0);

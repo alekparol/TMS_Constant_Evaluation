@@ -24,6 +24,12 @@ namespace TMS_Constant_Evaluation.Pages
         private IWebElement assigneesSubPage;
 
         private IWebElement filtersButton;
+        private bool isFilterClicked;
+
+        private IWebElement activityFilter;
+        public IReadOnlyCollection<IWebElement> activitiesList;
+
+        private IWebElement languageFilter;
 
         private bool isParsedCorrectly;
 
@@ -89,6 +95,36 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        public string ActivityFilterSelection
+        {
+            get
+            {
+                IReadOnlyCollection<IWebElement> auxiliaryColection;
+
+                if (activityFilter != null)
+                {
+                    auxiliaryColection = activityFilter.FindElements(By.Id("cup_fpName_titletext"));
+                    if (auxiliaryColection.Count == 1) return auxiliaryColection.ElementAt(0).Text;
+                    else return null;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public IReadOnlyCollection<IWebElement> ActivityFilterOptions
+        {
+            get
+            {
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                Regex activityListRegex = new Regex("cup_fpStepActivityName_msa_\\d+");
+
+                return activitiesList;
+            }
+        }
+
         /* Methods */
 
         public void AssigneesClick(IWebDriver driver)
@@ -103,7 +139,33 @@ namespace TMS_Constant_Evaluation.Pages
             wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
 
         }
-                
+
+        public void ActivityFilterClick()
+        {
+            if (activityFilter != null)
+            {
+                activityFilter.Click();
+
+            }
+        }
+
+        public void ChosenActivityClick(string chosenActivityName, IWebDriver driver)
+        {
+
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            IWebElement chosenElement;
+
+            if (this.ActivityFilterOptions.Where(x => x.Text == chosenActivityName).Count() > 0)
+            {
+                chosenElement = this.ActivityFilterOptions.Where(x => x.Text == chosenActivityName).ElementAt(0);
+                chosenElement.Click();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+            }
+        }
+
         /* Constructors */
 
         public StatusPage2(IWebDriver driver)
@@ -114,10 +176,30 @@ namespace TMS_Constant_Evaluation.Pages
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
-                if(wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn"))) != null)
+                string auxiliaryString;
+
+                if (wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn"))) != null)
                 {
 
                     isParsedCorrectly = true;
+
+                    auxiliaryCollection = driver.FindElements(By.Id("cup_fp_btn"));
+                    if (auxiliaryCollection.Count > 0) filtersButton = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryString = filtersButton.GetAttribute("class");
+                    if (auxiliaryString.Contains("icn_flt_on")) isFilterClicked = true;
+
+
+                    if (isFilterClicked == false && driver.FindElements(By.Id("jnotify-item-msg")).Count == 0 && filtersButton != null)
+                    {
+
+                        filtersButton.Click();
+                        wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fpStepActivityName_titletext")));
+
+                        auxiliaryCollection = driver.FindElements(By.Id("cup_fpStepActivityName_titletext"));
+                        if (auxiliaryCollection.Count == 1) activityFilter = auxiliaryCollection.ElementAt(0);
+
+                    }
 
                     auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
                     if (auxiliaryCollection.Count > 0) pageName = auxiliaryCollection.ElementAt(0);
@@ -136,8 +218,21 @@ namespace TMS_Constant_Evaluation.Pages
 
                     }
 
-                    auxiliaryCollection = driver.FindElements(By.Id("cup_fp_btn"));
-                    if (auxiliaryCollection.Count > 0) filtersButton = auxiliaryCollection.ElementAt(0);
+                    if (activityFilter != null)
+                    {
+                        auxiliaryCollection = driver.FindElements(By.Id("cup_fpStepActivityName_child"));
+                        if (auxiliaryCollection.Count == 1)
+                        {
+                            auxiliaryCollection = auxiliaryCollection.ElementAt(0).FindElements(By.XPath(".//a"));
+                            activitiesList = auxiliaryCollection;
+
+                        }
+                    }
+
+                    /*IWebElement errorMessage;
+
+                    auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
+                    if (auxiliaryCollection.Count != 0) errorMessage = auxiliaryCollection.ElementAt(0);*/
 
                 }
             }

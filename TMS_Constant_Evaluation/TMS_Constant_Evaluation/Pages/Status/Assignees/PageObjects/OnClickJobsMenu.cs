@@ -35,7 +35,7 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
         public OnClickJobsMenu(IWebDriver driver)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='m1 lay_flt']")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='m1 lay_flt']")));
 
             IReadOnlyCollection<IWebElement> auxiliaryCollection;
             IEnumerable<IWebElement> auxiliaryEnumerable;

@@ -149,9 +149,16 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 OnClickJobsMenu menu = new OnClickJobsMenu(driver);
                 menu.ClickTagJobsButton(driver);
 
-                IWebElement statusPageClick = driver.FindElements(By.Id("status")).Where(x => x.Text == "Activities").First();
-                statusPageClick.Click();
+                AssigneesPage afterTagging = new AssigneesPage(driver);
+                afterTagging.ActivitiesSubPageClick(driver);
 
+                StatusPage2 statusPageAfterTagging = new StatusPage2(driver);
+
+                statusPageAfterTagging.ActivityFilterClick();
+                Thread.Sleep(1000);
+
+                statusPageAfterTagging.ChosenActivityClick("Translation", driver);
+                Thread.Sleep(10000);
                 /* Set of assertions */
 
             }

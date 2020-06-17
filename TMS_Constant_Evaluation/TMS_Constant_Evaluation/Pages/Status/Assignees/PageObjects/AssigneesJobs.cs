@@ -83,7 +83,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
             if (r_LObject.GetAttribute("class") == "r_L")
             {
-                jobsIWebElement = r_LObject;
                 isParsedCorrectly = true;
 
                 string rowID = r_LObject.GetAttribute("rowid");
@@ -91,11 +90,12 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                 if (auxiliarayEnumerable.Count() == 1)
                 {
-                    
+                   
                     IWebElement checkboxRow = auxiliarayEnumerable.ElementAt(0);
 
                     auxiliaryCollection = checkboxRow.FindElements(By.ClassName("tlp_on"));
                     if (auxiliaryCollection.Count == 1) jobsName = auxiliaryCollection.ElementAt(0).Text;
+
 
                 }
 
@@ -104,7 +104,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 if (auxiliarayEnumerable.Count() == 1)
                 {
 
-
+                    jobsIWebElement = auxiliarayEnumerable.ElementAt(0);
                     languages = auxiliarayEnumerable.ElementAt(0).Text;
 
                     sourceLanguage = languagesRegex.Match(languages).Groups[1].Value;
