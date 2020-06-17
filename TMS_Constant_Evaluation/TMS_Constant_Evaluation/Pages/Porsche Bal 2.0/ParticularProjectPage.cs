@@ -24,6 +24,8 @@ namespace TMS_Constant_Evaluation.Pages
         
         private IWebElement selectedProject;
 
+        private IWebElement loggedUser; 
+
         private IWebElement jobsSection;
         private IWebElement planningSection;
         private IWebElement statusSection;
@@ -37,6 +39,14 @@ namespace TMS_Constant_Evaluation.Pages
             get
             {
                 return selectedProject.Text.ToLower().Trim();
+            }
+        }
+
+        public string LoggedUser
+        {
+            get
+            {
+                return loggedUser.Text;
             }
         }
 
@@ -131,14 +141,17 @@ namespace TMS_Constant_Evaluation.Pages
                     auxiliaryCollection = driver.FindElements(By.ClassName("menuSelectedItem"));
                     if (auxiliaryCollection.Count > 0) selectedProject = auxiliaryCollection.ElementAt(0);
 
+                    auxiliaryCollection = driver.FindElements(By.Id("log_usr"));
+                    if (auxiliaryCollection.Count == 1) loggedUser = auxiliaryCollection.ElementAt(0);
+
                     auxiliaryCollection = driver.FindElements(By.Id("jobsdashboard"));
-                    if (auxiliaryCollection.Count > 0) jobsSection = auxiliaryCollection.ElementAt(0);
+                    if (auxiliaryCollection.Count == 0) jobsSection = auxiliaryCollection.ElementAt(0);
 
                     auxiliaryCollection = driver.FindElements(By.Id("planning"));
-                    if (auxiliaryCollection.Count > 0) planningSection = auxiliaryCollection.ElementAt(0);
+                    if (auxiliaryCollection.Count == 0) planningSection = auxiliaryCollection.ElementAt(0);
 
                     auxiliaryCollection = driver.FindElements(By.Id("status"));
-                    if (auxiliaryCollection.Count > 0) statusSection = auxiliaryCollection.ElementAt(0);
+                    if (auxiliaryCollection.Count == 0) statusSection = auxiliaryCollection.ElementAt(0);
 
 
                 }
