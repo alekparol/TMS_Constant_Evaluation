@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using TMS_Constant_Evaluation.Pages.PagesObjects;
 
 /* TODO: Make a new class for sections which would contain: 
  * 1. IWebElement section;
@@ -27,6 +28,8 @@ namespace TMS_Constant_Evaluation.Pages
         private IWebElement loggedUser;
         private IWebElement userActivitiesMenu;
         private IReadOnlyCollection<IWebElement> userActivitiesList;
+
+        private MyProfile myProfileInstance;
 
         private IWebElement jobsSection;
         private IWebElement planningSection;
@@ -49,14 +52,6 @@ namespace TMS_Constant_Evaluation.Pages
             get
             {
                 return loggedUser.Text;
-            }
-        }
-
-        public IWebElement UserActivities
-        {
-            get
-            {
-                return userActivitiesMenu;
             }
         }
 
@@ -115,6 +110,20 @@ namespace TMS_Constant_Evaluation.Pages
             loggedUser.Click();
             
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("usr_act")));
+
+        }
+
+        public void ProfileClick(IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            LoggedUserClick(driver);
+
+            userActivitiesList.Where(x => x.Text == "Profile").ElementAt(0).Click();
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
 
         }
             
