@@ -123,6 +123,34 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
         }
 
         [TestMethod]
+        public void ParticularProjectPage_LoggedUser_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual("Parol Aleksander", porscheBalPage.LoggedUser);
+                Assert.IsNotNull(porscheBalPage.UserActivities);
+
+            }
+
+        }
+
+        [TestMethod]
         public void ParticularProjectPage_JobsClick_Test_1()
         {
 

@@ -24,7 +24,9 @@ namespace TMS_Constant_Evaluation.Pages
         
         private IWebElement selectedProject;
 
-        private IWebElement loggedUser; 
+        private IWebElement loggedUser;
+        private IWebElement userActivitiesMenu;
+        private IReadOnlyCollection<IWebElement> userActivitiesList;
 
         private IWebElement jobsSection;
         private IWebElement planningSection;
@@ -47,6 +49,14 @@ namespace TMS_Constant_Evaluation.Pages
             get
             {
                 return loggedUser.Text;
+            }
+        }
+
+        public IWebElement UserActivities
+        {
+            get
+            {
+                return userActivitiesMenu;
             }
         }
 
@@ -143,6 +153,9 @@ namespace TMS_Constant_Evaluation.Pages
 
                     auxiliaryCollection = driver.FindElements(By.Id("log_usr"));
                     if (auxiliaryCollection.Count == 1) loggedUser = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = driver.FindElements(By.Id("usr_act"));
+                    if (auxiliaryCollection.Count == 1) userActivitiesMenu = auxiliaryCollection.ElementAt(0);
 
                     auxiliaryCollection = driver.FindElements(By.Id("jobsdashboard"));
                     if (auxiliaryCollection.Count == 0) jobsSection = auxiliaryCollection.ElementAt(0);
