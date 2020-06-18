@@ -22,7 +22,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         private IWebElement itemsPerPage;
 
-        private string itemsPerPageSelected;
+        private IWebElement itemsPerPageChild;
+        private IWebElement itemsPerPageSelected;
         private IReadOnlyCollection<IWebElement> itemsPerPageOptions;
 
         private IWebElement pageContainer;
@@ -155,7 +156,16 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        /* Methods */ 
+        /* Methods */
+
+        public void ItemsPerPageClick(IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+            itemsPerPage.Click();
+            wait.Until(ExpectedConditions.ElementExists(By.ClassName("ddChild borderTop")));
+
+        }
 
         public void SetMaximalItems(IWebDriver driver)
         {
@@ -163,7 +173,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
             if (itemsPerPage != null)
             {
-                itemsPerPageOptions.ElementAt(itemsPerPageOptions.Count - 1);
+                itemsPerPage.Click();
+                itemsPerPageOptions.ElementAt(itemsPerPageOptions.Count - 1).Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
@@ -214,8 +225,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
                 string auxiliaryString;
 
-                Regex itemsPerPageRegexID = new Regex("msdrpdd\\d+_msdd");
-
                 auxiliaryCollection = driver.FindElements(By.Id("cup_pgp"));
                 if (auxiliaryCollection.Count == 1)
                 {
@@ -223,23 +232,20 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     isParsedCorrectly = true;
 
                     pageBarContainer = auxiliaryCollection.ElementAt(0);
-                    auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("dd ddSelected"));
+                    auxiliaryCollection = pageBarContainer.FindElements(By.XPath("//*[@class='dd ddSelected']"));
 
                     if (auxiliaryCollection.Count > 0)
                     {
 
-                        itemsPerPage = auxiliaryCollection.First(x => itemsPerPageRegexID.IsMatch(x.GetAttribute("id")));
+                        itemsPerPage = auxiliaryCollection.Where(x => x.GetAttribute("id").Contains("msdrpdd")).ElementAt(0);
 
-                        string itemsPerPageActualID = itemsPerPage.GetAttribute("id");
-                        string itemsPerPageTitleTextID = itemsPerPageActualID.Replace("msdd", "titletext");
+                        auxiliaryCollection = itemsPerPage.FindElements(By.ClassName("ddChild"));
+                        if (auxiliaryCollection.Count == 1) itemsPerPageChild = auxiliaryCollection.ElementAt(0);
 
-                        auxiliaryCollection = itemsPerPage.FindElements(By.Id(itemsPerPageTitleTextID));
-                        if (auxiliaryCollection.Count == 1) itemsPerPageSelected = auxiliaryCollection.ElementAt(0).Text;
+                        auxiliaryCollection = itemsPerPageChild.FindElements(By.TagName("a"));
+                        if (auxiliaryCollection.Count > 0) itemsPerPageOptions = auxiliaryCollection;
 
-                        string itemsPerPageChildID = itemsPerPageActualID.Replace("msdd", "child");
-
-                        auxiliaryCollection = itemsPerPage.FindElements(By.Id(itemsPerPageChildID));
-                        if (auxiliaryCollection.Count == 1) itemsPerPageOptions = auxiliaryCollection.ElementAt(0).FindElements(By.XPath("//a"));
+                        itemsPerPageSelected = itemsPerPageOptions.Where(x => x.GetAttribute("class").Contains("selected")).ElementAt(0);
 
                     }
 

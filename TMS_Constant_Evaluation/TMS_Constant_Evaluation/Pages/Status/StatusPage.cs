@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace TMS_Constant_Evaluation.Pages
 {
-    public class StatusPage2
+    public class StatusPage
     {
 
         /* Fields */
@@ -168,7 +168,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Constructors */
 
-        public StatusPage2(IWebDriver driver)
+        public StatusPage(IWebDriver driver)
         {
             if (driver.Url == "https://tms.lionbridge.com/")
             {

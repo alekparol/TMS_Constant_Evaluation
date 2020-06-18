@@ -427,7 +427,7 @@ namespace TMS_Constant_Evaluation_Tests
                 Assert.AreEqual(projectTitle.ToLower().Trim(), porscheBalPage.SelectedProjectName);
                 porscheBalPage.StatusClick(driver);
 
-                StatusPage2 stp2 = new StatusPage2(driver);
+                StatusPage stp2 = new StatusPage(driver);
                 Assert.AreEqual("status", stp2.PageName);
 
                 stp2.AssigneesClick(driver);

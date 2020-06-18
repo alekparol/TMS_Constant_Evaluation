@@ -50,11 +50,30 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
 
                 PageBar pageBar = new PageBar(driver);
+                pageBar.SetMaximalItems(driver);
+                //pageBar.SetMaximalItems(driver);
+
+
+                /*IWebElement auxiliaryElement = null;
+                IWebElement auxiliaryElement2 = null;
+                IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.XPath("//*[@class='dd ddSelected']"));
+                if (auxiliaryCollection.Count > 0) auxiliaryElement = auxiliaryCollection.Where(x => x.GetAttribute("id").Contains("msdrpdd")).ElementAt(0);
+
+                auxiliaryCollection = auxiliaryElement.FindElements(By.ClassName("ddChild"));
+                if (auxiliaryCollection.Count == 1) auxiliaryElement2 = auxiliaryCollection.ElementAt(0);
+
+                auxiliaryCollection = auxiliaryElement2.FindElements(By.TagName("a"));
+
+                auxiliaryElement.Click();
+                Thread.Sleep(4000);
+                auxiliaryCollection.ElementAt(5).Click();
+                Thread.Sleep(5000);*/
+
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
                 IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_H"));
-                IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id(""));
+                
 
-                while (true)
+                /*while (true)
                 {
                     if (wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH"))) != null)
                     {
@@ -84,7 +103,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                         pageBar = new PageBar(driver);
 
                     }
-                }
+                }*/
 
                     /*IReadOnlyCollection<IWebElement> r_LHObjects2 = driver.FindElements(By.ClassName("r_LH"));
                     List<Assignees> assignees = new List<Assignees>();

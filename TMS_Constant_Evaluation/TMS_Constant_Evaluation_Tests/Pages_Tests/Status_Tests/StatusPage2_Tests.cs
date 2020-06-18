@@ -13,7 +13,7 @@ using TMS_Constant_Evaluation.Pages;
 namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
 {
     [TestClass]
-    public class StatusPage2_Tests
+    public class StatusPage_Tests
     {
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
                 porscheBalPage.StatusClick(driver);
-                StatusPage2 porscheStatusPage = new StatusPage2(driver);
+                StatusPage porscheStatusPage = new StatusPage(driver);
 
                 /* Set of assertions */
 
@@ -66,7 +66,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
                 porscheBalPage.StatusClick(driver);
-                StatusPage2 porscheStatusPage = new StatusPage2(driver);
+                StatusPage porscheStatusPage = new StatusPage(driver);
 
                 string pageName = "status";
 
@@ -98,7 +98,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
                 porscheBalPage.StatusClick(driver);
-                StatusPage2 porscheStatusPage = new StatusPage2(driver);
+                StatusPage porscheStatusPage = new StatusPage(driver);
 
                 /* Set of assertions */
 
@@ -129,7 +129,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
                 porscheBalPage.StatusClick(driver);
-                StatusPage2 porscheStatusPage = new StatusPage2(driver);
+                StatusPage porscheStatusPage = new StatusPage(driver);
 
                 porscheStatusPage.AssigneesClick(driver);
                 IReadOnlyCollection<IWebElement> assigneesSelected = driver.FindElements(By.Id("statusassignees"));
