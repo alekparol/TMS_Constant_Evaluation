@@ -238,7 +238,7 @@ namespace TMS_Constant_Evaluation.Pages
                     if (auxiliaryCollection.Count == 0) planningSection = auxiliaryCollection.ElementAt(0);
 
                     auxiliaryCollection = driver.FindElements(By.Id("status"));
-                    if (auxiliaryCollection.Count == 0) statusSection = auxiliaryCollection.ElementAt(0);
+                    if (auxiliaryCollection.Count > 0) statusSection = auxiliaryCollection.ElementAt(0);
 
 
                 }

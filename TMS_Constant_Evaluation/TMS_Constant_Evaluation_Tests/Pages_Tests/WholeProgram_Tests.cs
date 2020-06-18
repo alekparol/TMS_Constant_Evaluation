@@ -37,6 +37,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
+                porscheBalPage.ProfileClick(driver);
+                porscheBalPage.ChangeItemsPerPage(driver);
+
                 porscheBalPage.StatusClick(driver);
                 StatusPage2 porscheStatusPage = new StatusPage2(driver);
 
@@ -46,37 +49,77 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 porscheAssigneesPage.ActivityFilterClick();
                 porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
 
+                PageBar pageBar = new PageBar(driver);
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
-                List<Assignees> assignees = new List<Assignees>();
+                IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_H"));
+                IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id(""));
 
-                Assignees auxiliaryAssignee;
-
-                foreach (IWebElement r_LH in r_LHObjects)
+                while (true)
                 {
+                    if (wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH"))) != null)
+                    {
 
-                    auxiliaryAssignee = new Assignees(r_LH);
-                    assignees.Add(auxiliaryAssignee);
+                        auxiliaryCollection = driver.FindElements(By.ClassName("r_LH"));
+                        if (auxiliaryCollection.Count > 0)
+                        {
+                            r_LHObjects.Union(auxiliaryCollection);
+                        }
 
+                        auxiliaryCollection = driver.FindElements(By.ClassName("r_L"));
+                        if (auxiliaryCollection.Count > 0)
+                        {
+                            r_LObjects.Union(auxiliaryCollection);
+                        }
+
+                        if (pageBar.IfNextPageExists == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            pageBar.GoToNextPage(driver);
+                        }
+
+
+                        pageBar = new PageBar(driver);
+
+                    }
                 }
 
-                IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_L"));
-                List<AssigneesJobs> assigneesJobs = new List<AssigneesJobs>();
+                    /*IReadOnlyCollection<IWebElement> r_LHObjects2 = driver.FindElements(By.ClassName("r_LH"));
+                    List<Assignees> assignees = new List<Assignees>();
 
-                AssigneesJobs auxiliaryAssigneeJobs;
+                    Assignees auxiliaryAssignee;
 
-                foreach (IWebElement r_L in r_LObjects)
-                {
+                    foreach (IWebElement r_LH in r_LHObjects)
+                    {
 
-                    auxiliaryAssigneeJobs = new AssigneesJobs(r_L);
-                    assigneesJobs.Add(auxiliaryAssigneeJobs);
+                        auxiliaryAssignee = new Assignees(r_LH);
+                        assignees.Add(auxiliaryAssignee);
 
-                }
+                    }
 
-                /* Set of assertions */
+                    IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_L"));
+                    List<AssigneesJobs> assigneesJobs = new List<AssigneesJobs>();
 
-                AssigneeElement el = new AssigneeElement(assignees[0], assigneesJobs);
-                Assert.AreEqual("bg-bg", el.AssigneeLanguage);
-                Assert.AreEqual(el.AssigneeJobsNumber, el.AssigneesJobsList.Count);
+                    AssigneesJobs auxiliaryAssigneeJobs;
+
+                    foreach (IWebElement r_L in r_LObjects)
+                    {
+
+                        auxiliaryAssigneeJobs = new AssigneesJobs(r_L);
+                        assigneesJobs.Add(auxiliaryAssigneeJobs);
+
+                    }*/
+
+                    /* Set of assertions */
+
+                    /*AssigneeElement el = new AssigneeElement(assignees[0], assigneesJobs);
+                    Assert.AreEqual("bg-bg", el.AssigneeLanguage);
+                    Assert.AreEqual(el.AssigneeJobsNumber, el.AssigneesJobsList.Count);*/
+
+                    Assert.AreEqual(0, r_LHObjects.Count);
+                    Assert.AreEqual(0, r_LObjects.Count);
 
             }
 

@@ -157,6 +157,21 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Methods */ 
 
+        public void SetMaximalItems(IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+            if (itemsPerPage != null)
+            {
+                itemsPerPageOptions.ElementAt(itemsPerPageOptions.Count - 1);
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+            }
+
+        }
+
         public void GoToNextPage(IWebDriver driver)
         {
 

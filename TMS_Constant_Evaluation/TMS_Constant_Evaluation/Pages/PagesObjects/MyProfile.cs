@@ -214,12 +214,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             auxiliaryCollection = driver.FindElements(By.XPath("//*[@title='Changing the number of items displayed per page may impact application response times. The default is 250.']"));
             if (auxiliaryCollection.Count > 0) itemsPerPageBody = auxiliaryCollection.Where(x => x.GetAttribute("style").Contains("width")).ElementAt(0);
 
-            /*auxiliaryCollection = driver.FindElements(By.XPath("//*[@title='Changing the number of items displayed per page may impact application response times. The default is 250.']"));
-            if (auxiliaryCollection.Count > 0) auxiliaryElement = auxiliaryCollection.Where(x => x.GetAttribute("id").Contains("pup")).ElementAt(0);
-
-            auxiliaryCollection = auxiliaryElement.FindElements(By.TagName("option"));
-            if (auxiliaryCollection.Count > 0) optionList = auxiliaryCollection;*/
-
             auxiliaryCollection = itemsPerPageBody.FindElements(By.ClassName("chosen-results"));
             if (auxiliaryCollection.Count > 0) optionListParent = auxiliaryCollection.ElementAt(0);
 
