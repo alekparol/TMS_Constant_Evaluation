@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -200,7 +201,71 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(porscheBalPage.UserActivitiesClicked);
+                Assert.IsFalse(porscheBalPage.MyProfileInstance.BodyIsNull);
+                Assert.IsFalse(porscheBalPage.MyProfileInstance.ItemsBodyIsNull);
+                Assert.AreEqual(6, porscheBalPage.MyProfileInstance.ItemsCount);
+                Assert.AreEqual(250, porscheBalPage.MyProfileInstance.ItemsChosen);
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ParticularProjectPage_MyProfileInstance_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                porscheBalPage.ProfileClick(driver);
+
+                porscheBalPage.MyProfileInstance.ItemsDropDownClick(driver);
+
+                /* Set of assertions */
+
+                Assert.IsFalse(porscheBalPage.MyProfileInstance.ItemsBodyIsNull);
+                Assert.AreEqual(6, porscheBalPage.MyProfileInstance.ItemsCount);
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ParticularProjectPage_ChangingItemsPerPage_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                porscheBalPage.ProfileClick(driver);
+
+                porscheBalPage.ChangeItemsPerPage(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual("Your Profile has been saved successfully!", porscheBalPage.InfoMessage);
 
             }
 

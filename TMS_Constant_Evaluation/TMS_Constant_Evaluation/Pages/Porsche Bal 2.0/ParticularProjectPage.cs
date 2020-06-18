@@ -35,6 +35,8 @@ namespace TMS_Constant_Evaluation.Pages
         private IWebElement planningSection;
         private IWebElement statusSection;
 
+        private IWebElement infoMessage;
+
         private bool isParsedCorrectly;
 
         /* Properties */
@@ -70,6 +72,14 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        public MyProfile MyProfileInstance
+        {
+            get
+            {
+                return myProfileInstance;
+            }
+        }
+
         public IWebElement JobsSection
         {
             get
@@ -91,6 +101,21 @@ namespace TMS_Constant_Evaluation.Pages
             get
             {
                 return statusSection;
+            }
+        }
+
+        public string InfoMessage
+        {
+            get
+            {
+                if (infoMessage != null)
+                {
+                    return infoMessage.Text;
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
 
@@ -120,11 +145,24 @@ namespace TMS_Constant_Evaluation.Pages
 
             userActivitiesList.Where(x => x.Text == "Profile").ElementAt(0).Click();
 
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup")));
+            myProfileInstance = new MyProfile(driver);
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
+        }
 
+        public void ChangeItemsPerPage(IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+            if (myProfileInstance != null)
+            {
+                myProfileInstance.ChangeNumberOfItemsDisplayed(driver);
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("jnotify-item-msg")));
+
+                auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
+                if (auxiliaryCollection.Count == 1) infoMessage = auxiliaryCollection.ElementAt(0);
+            }
         }
             
         public void JobsClick(IWebDriver driver)
