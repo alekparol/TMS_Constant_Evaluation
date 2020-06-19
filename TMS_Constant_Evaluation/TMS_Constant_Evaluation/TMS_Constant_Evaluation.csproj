@@ -63,11 +63,12 @@
     <Compile Include="Pages\Porsche Bal 2.0\ParticularProjectPage.cs" />
     <Compile Include="Pages\PagesObjects\StatusObject.cs" />
     <Compile Include="Pages\Starting TMS\ProjectsPage.cs" />
+    <Compile Include="Pages\Status\Assignees\PageObjects\AssigneeAndHisJob.cs" />
+    <Compile Include="Pages\Status\Assignees\PageObjects\AssigneesAndTheirJobs.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\OnClickJobsMenu.cs" />
-    <Compile Include="Pages\Status\StatusPage2.cs" />
+    <Compile Include="Pages\Status\StatusPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pages\StatusPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

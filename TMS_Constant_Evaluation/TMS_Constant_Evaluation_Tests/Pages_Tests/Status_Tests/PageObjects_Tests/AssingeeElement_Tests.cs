@@ -38,7 +38,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
                 porscheBalPage.StatusClick(driver);
-                StatusPage2 porscheStatusPage = new StatusPage2(driver);
+                StatusPage porscheStatusPage = new StatusPage(driver);
 
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
@@ -102,7 +102,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
                 porscheBalPage.StatusClick(driver);
-                StatusPage2 porscheStatusPage = new StatusPage2(driver);
+                StatusPage porscheStatusPage = new StatusPage(driver);
 
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
@@ -152,7 +152,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 AssigneesPage afterTagging = new AssigneesPage(driver);
                 afterTagging.ActivitiesSubPageClick(driver);
 
-                StatusPage2 statusPageAfterTagging = new StatusPage2(driver);
+                StatusPage statusPageAfterTagging = new StatusPage(driver);
 
                 statusPageAfterTagging.ActivityFilterClick();
                 Thread.Sleep(1000);

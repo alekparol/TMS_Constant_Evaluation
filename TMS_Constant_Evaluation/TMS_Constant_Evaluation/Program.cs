@@ -42,7 +42,7 @@ namespace TMS_Constant_Evaluation
             planningPage.Click();
             Thread.Sleep(35000);
 
-            StatusPage st = new StatusPage(driver);
+/*StatusPage st = new StatusPage(driver);
             Console.WriteLine(st.pageTitle.Text);
             Console.WriteLine(st.filtersButton.Text);
             Console.WriteLine(st.jobsFilter.Text);
@@ -59,7 +59,7 @@ namespace TMS_Constant_Evaluation
             bool ifTheJobIsOnPMExcel;
 
             driver.Quit();
-            Thread.Sleep(2000);
+            Thread.Sleep(2000);*/
 
         }
     }
