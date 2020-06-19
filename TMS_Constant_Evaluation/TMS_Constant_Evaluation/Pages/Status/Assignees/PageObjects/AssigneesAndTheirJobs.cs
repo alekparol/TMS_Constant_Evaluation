@@ -19,9 +19,10 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
 
         /* Fields */
 
-        private List<AssigneeAndHisJob> assigneesAngTheirJobsList;
+        public List<AssigneeAndHisJob> assigneesAngTheirJobsList = new List<AssigneeAndHisJob>();
+        public int count;
 
-        private bool isParsedCorrectly;
+        public bool isParsedCorrectly;
 
         /* Properties */
 
@@ -35,6 +36,7 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
             AssigneeAndHisJob auxiliaryObject = new AssigneeAndHisJob();
 
             int jobNumber;
+            //int count = 0;
 
             if (assigneesList.Count > 0 && assigneesList.ElementAt(0).GetAttribute("class") == "r_LH" &&
                 jobsList.Count > 0 && jobsList.ElementAt(0).GetAttribute("class") == "r_L")
@@ -49,11 +51,13 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
                     {
                         jobNumber = Int32.Parse(auxiliaryCollection.ElementAt(0).Text.Trim().Replace("(", "").Replace(")", ""));
 
-                        for (int i = 0; i <= jobNumber; i++)
+                        for (int i = count; i < count + jobNumber; i++)
                         {
                             auxiliaryObject = new AssigneeAndHisJob(assignee, jobsList.ElementAt(i));
                             assigneesAngTheirJobsList.Add(auxiliaryObject);
                         }
+
+                        count += jobNumber;
 
                     }
 

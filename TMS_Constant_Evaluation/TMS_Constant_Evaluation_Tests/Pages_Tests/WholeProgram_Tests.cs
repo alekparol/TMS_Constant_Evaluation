@@ -62,6 +62,10 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 Assert.AreNotEqual("", firstAssingee.assigneeName);
                 Assert.AreNotEqual("", firstAssingee.sourceLanguage);
 
+                AssigneesAndTheirJobs aTJ = new AssigneesAndTheirJobs(r_LHObjects, r_LObjects);
+                Assert.AreEqual(4, aTJ.assigneesAngTheirJobsList.Count);
+                Assert.AreEqual(0, aTJ.count);
+
                 Assert.AreEqual(0, Int32.Parse(r_LHObjects.ElementAt(0).FindElement(By.ClassName("r_LCount")).Text.Trim().Replace("(", "").Replace(")", "")));
 
                 /* Set of assertions */

@@ -19,6 +19,8 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
 
         /* Fields */
 
+        public IWebElement webElement;
+
         public string assigneeName;
         public string jobName;
 
@@ -62,7 +64,7 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
             auxiliaryEnumerable = jobElement.FindElements(By.XPath("child::*")).Where(x => languagesRegex.IsMatch(x.Text));
             if (auxiliaryEnumerable.Count() == 1)
             {
-
+                webElement = auxiliaryCollection.ElementAt(0);
                 auxiliaryString = auxiliaryEnumerable.ElementAt(0).Text;
 
                 sourceLanguage = languagesRegex.Match(auxiliaryString).Groups[1].Value;
