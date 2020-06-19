@@ -154,7 +154,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 StatusPage statusPageAfterTagging = new StatusPage(driver);
 
-                statusPageAfterTagging.ActivityFilterClick();
+                statusPageAfterTagging.ActivityFilterClick(driver);
                 Thread.Sleep(1000);
 
                 statusPageAfterTagging.ChosenActivityClick("Translation", driver);

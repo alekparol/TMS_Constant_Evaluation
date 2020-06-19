@@ -59,12 +59,15 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
                 auxiliaryCollection = auxiliaryEnumerable.ElementAt(0).FindElements(By.ClassName("tlp_on"));
                 if (auxiliaryCollection.Count == 1) jobName = auxiliaryCollection.ElementAt(0).Text;
 
+                
+
             }
 
             auxiliaryEnumerable = jobElement.FindElements(By.XPath("child::*")).Where(x => languagesRegex.IsMatch(x.Text));
             if (auxiliaryEnumerable.Count() == 1)
             {
-                webElement = auxiliaryCollection.ElementAt(0);
+
+                webElement = auxiliaryEnumerable.ElementAt(0);
                 auxiliaryString = auxiliaryEnumerable.ElementAt(0).Text;
 
                 sourceLanguage = languagesRegex.Match(auxiliaryString).Groups[1].Value;

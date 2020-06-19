@@ -63,10 +63,54 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 Assert.AreNotEqual("", firstAssingee.sourceLanguage);
 
                 AssigneesAndTheirJobs aTJ = new AssigneesAndTheirJobs(r_LHObjects, r_LObjects);
-                Assert.AreEqual(4, aTJ.assigneesAngTheirJobsList.Count);
-                Assert.AreEqual(0, aTJ.count);
+                //Assert.AreEqual(4, aTJ.assigneesAngTheirJobsList.Count);
+                //Assert.AreEqual(0, aTJ.count);
 
-                Assert.AreEqual(0, Int32.Parse(r_LHObjects.ElementAt(0).FindElement(By.ClassName("r_LCount")).Text.Trim().Replace("(", "").Replace(")", "")));
+                IOrderedEnumerable<AssigneeAndHisJob> aTJOrdered = aTJ.assigneesAngTheirJobsList.OrderBy(x => x.targetLanguage);
+
+                IEnumerable<AssigneeAndHisJob> auxiliaryEnumerable;
+                List<string> differentLanguages = new List<string>();
+                
+                string auxiliaryString;
+                int auxiliaryInt = 0;
+
+                while(auxiliaryInt < aTJ.count)
+                {
+                    auxiliaryString = aTJOrdered.ElementAt(auxiliaryInt).targetLanguage;
+                    differentLanguages.Add(auxiliaryString);
+
+                    auxiliaryEnumerable = aTJ.assigneesAngTheirJobsList.Where(x => x.targetLanguage == auxiliaryString);              
+                    auxiliaryInt += auxiliaryEnumerable.Count();
+                }
+
+                //Assert.AreEqual(0, differentLanguages.Count);
+
+                Actions a = new Actions(driver);
+
+                a.Click(aTJ.assigneesAngTheirJobsList.ElementAt(0).webElement)
+                 .KeyDown(Keys.Shift)
+                 .MoveToElement(r_LObjects.ElementAt(2))
+                 .Click(aTJ.assigneesAngTheirJobsList.ElementAt(aTJ.count - 1).webElement)
+                 .Build()
+                 .Perform();
+
+                OnClickJobsMenu menu = new OnClickJobsMenu(driver);
+                menu.ClickTagJobsButton(driver);
+
+                AssigneesPage afterTagging = new AssigneesPage(driver);
+                afterTagging.ActivitiesSubPageClick(driver);
+
+                StatusPage statusPageAfterTagging = new StatusPage(driver);
+                statusPageAfterTagging.ClickAll(driver);
+
+                Thread.Sleep(10000);
+                StatusPage statusPageAll = new StatusPage(driver);
+                Thread.Sleep(1000);
+                statusPageAll.ActivityFilterClick();
+                Thread.Sleep(1000);
+
+                statusPageAll.ChosenActivityClick("Translation", driver);
+                Thread.Sleep(10000);
 
                 /* Set of assertions */
 

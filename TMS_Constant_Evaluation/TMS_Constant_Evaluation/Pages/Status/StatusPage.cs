@@ -30,6 +30,7 @@ namespace TMS_Constant_Evaluation.Pages
         public IReadOnlyCollection<IWebElement> activitiesList;
 
         private IWebElement languageFilter;
+        private IReadOnlyCollection<IWebElement> languageList;
 
         private bool isParsedCorrectly;
 
@@ -166,6 +167,45 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        public void LanguageFilterClick()
+        {
+            if (languageFilter != null)
+            {
+                languageFilter.Click();
+
+            }
+        }
+
+        public void ChosenTargetLanguageClick(string chosenLanguageCode, IWebDriver driver)
+        {
+
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            IWebElement chosenElement;
+
+            if (this.ActivityFilterOptions.Where(x => x.Text == chosenActivityName).Count() > 0)
+            {
+                chosenElement = this.ActivityFilterOptions.Where(x => x.Text == chosenActivityName).ElementAt(0);
+                chosenElement.Click();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+            }
+        }
+
+        public void ClickAll(IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+            auxiliaryCollection = driver.FindElements(By.Id("cup_cupavNull"));
+            if (auxiliaryCollection.Count == 1) auxiliaryCollection.ElementAt(0).Click();
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+        }
+
         /* Constructors */
 
         public StatusPage(IWebDriver driver)
@@ -199,6 +239,9 @@ namespace TMS_Constant_Evaluation.Pages
                         auxiliaryCollection = driver.FindElements(By.Id("cup_fpStepActivityName_titletext"));
                         if (auxiliaryCollection.Count == 1) activityFilter = auxiliaryCollection.ElementAt(0);
 
+                        auxiliaryCollection = driver.FindElements(By.Id("cup_fpTargetLanguage_titletext"));
+                        if (auxiliaryCollection.Count == 1) languageFilter = auxiliaryCollection.ElementAt(0);
+
                     }
 
                     auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
@@ -227,7 +270,16 @@ namespace TMS_Constant_Evaluation.Pages
                             activitiesList = auxiliaryCollection;
 
                         }
+
+                        auxiliaryCollection = driver.FindElements(By.Id("cup_fpTargetLanguage_child"));
+                        if (auxiliaryCollection.Count == 1)
+                        {
+                            auxiliaryCollection = auxiliaryCollection.ElementAt(0).FindElements(By.XPath(".//a"));
+                            languageList = auxiliaryCollection;
+                        }
+
                     }
+
 
                     /*IWebElement errorMessage;
 
