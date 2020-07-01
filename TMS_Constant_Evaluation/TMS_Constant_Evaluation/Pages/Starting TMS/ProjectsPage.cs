@@ -38,13 +38,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Properties */
 
-        public IReadOnlyCollection<IWebElement> ProjectsList
-        {
-            get
-            {
-                return projectsList;
-            }
-        }
+        /* Projects List Properties*/
 
         public bool ProjectListIsNull
         {
@@ -76,13 +70,61 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
-        public IWebElement ChosenProject
+        /* Chosen Project Properties*/
+        
+        public bool ChosenProjectIsNull
         {
             get
             {
-                return chosenProject;
+                if (chosenProject != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
+
+        public string ChosenProjectName
+        {
+            get
+            {
+                if (chosenProject != null)
+                {
+                    return chosenProject.Text;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        public int ChosenProjectDisplayed
+        {
+            get
+            {
+                if (chosenProject != null)
+                {
+                    if (chosenProject.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        /* Constructor Properties */
 
         public bool IsParsedCorrectly
         {

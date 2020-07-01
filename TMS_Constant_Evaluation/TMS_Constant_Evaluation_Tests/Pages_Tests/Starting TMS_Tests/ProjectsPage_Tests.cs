@@ -35,7 +35,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
                 /* Set of assertions */
 
                 Assert.IsTrue(testPage.IsParsedCorrectly);
-                Assert.IsNotNull(testPage.ChosenProject);
+                Assert.IsFalse(testPage.ChosenProjectIsNull);
 
             }
         }
@@ -58,7 +58,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
                 /* Set of assertions */
 
                 Assert.IsTrue(testPage.IsParsedCorrectly);
-                Assert.IsNotNull(testPage.ChosenProject);
+                Assert.IsFalse(testPage.ChosenProjectIsNull);
 
             }
         }
@@ -81,7 +81,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
                 /* Set of assertions */
 
                 Assert.IsTrue(testPage.IsParsedCorrectly);
-                Assert.IsNotNull(testPage.ChosenProject);
+                Assert.IsFalse(testPage.ChosenProjectIsNull);
 
             }
         }
@@ -125,7 +125,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
                 /* Set of assertions */
 
                 Assert.IsFalse(testPage.IsParsedCorrectly);
-                Assert.IsNull(testPage.ChosenProject);
+                Assert.IsTrue(testPage.ChosenProjectIsNull);
 
             }
         }
@@ -218,7 +218,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(testPage.ChosenProject.Displayed);
+                Assert.IsFalse(testPage.ChosenProjectIsNull);
+                Assert.AreEqual("Porsche BAL 2.0", testPage.ChosenProjectName);
+                Assert.AreEqual(1, testPage.ChosenProjectDisplayed);
 
             }
         }
@@ -240,7 +242,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsNull(testPage.ChosenProject);
+                Assert.IsTrue(testPage.ChosenProjectIsNull);
+                Assert.AreEqual("", testPage.ChosenProjectName);
+                Assert.AreEqual(-1, testPage.ChosenProjectDisplayed);
 
             }
         }
