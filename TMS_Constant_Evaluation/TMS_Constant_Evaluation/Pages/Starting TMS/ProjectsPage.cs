@@ -110,6 +110,34 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        /* This method is used to chose and click chosenProject and it uses above methods. It returns:
+         * 1 in case of proper initialization of chosenProject field with non-null value and clicking on it;
+         * 0 in case of proper initialization of chosenProject fields with non-null value and not clicking on it; 
+         * -1 in any other case when chosenProject wasn't initialized correctly and therefore ClickingChosensProject() wasn't even called. 
+         */
+
+        public int ChoseAndClickProject(string chosenProjectName)
+        {
+            int choseOperationResult = ChoseProject(chosenProjectName);
+
+            if (choseOperationResult == 1)
+            {
+                if (ClickChosenProject())
+                {
+                    return 1; 
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return -1;
+            }
+
+        }
+
         /* Constructors */
 
         public ProjectsPage(IWebDriver driver)
