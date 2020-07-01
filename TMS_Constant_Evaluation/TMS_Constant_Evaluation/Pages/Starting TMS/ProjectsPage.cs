@@ -64,9 +64,50 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Methods */
 
-        public void ClickChosenProject()
+        public bool ClickChosenProject()
         {
-            chosenProject.Click();
+            if (chosenProject != null)
+            {
+                chosenProject.Click();
+                return true; 
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        /* This method is used to initialize chosenProject field with a value. It returns:
+         * 1 in case of success;
+         * 0 in case of success but with a null value;
+         * -1 in case when chosenProject field is initialized already. 
+         */
+
+        public int ChoseProject(string chosenProjectName)
+        {
+
+            IEnumerable<IWebElement> auxiliaryEnumerable;
+
+            if (chosenProject == null)
+            {
+                auxiliaryEnumerable = projectsList.Where(x => x.Text.ToLower() == chosenProjectName.ToLower());
+                if (auxiliaryEnumerable.Count() > 0) chosenProject = auxiliaryEnumerable.ElementAt(0);
+
+                if (chosenProject == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         /* Constructors */
