@@ -46,6 +46,36 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        public bool ProjectListIsNull
+        {
+            get
+            {
+                if (projectsList != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public int ProjectListCount
+        {
+            get
+            {
+                if (projectsList != null)
+                {
+                    return projectsList.Count;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
         public IWebElement ChosenProject
         {
             get

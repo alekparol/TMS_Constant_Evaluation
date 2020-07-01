@@ -15,6 +15,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
     public class ProjectsPage_Tests
     {
 
+        /* Constructors tests */
 
         [TestMethod]
         public void ProjectsPage_ParsingCorrectly_Test_1()
@@ -150,6 +151,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
             }
         }
 
+        /* Project List Tests */
+
         [TestMethod]
         public void ProjectsPage_ProjectsList_Test_1()
         {
@@ -167,7 +170,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(testPage.ProjectsList.Count > 0);
+                Assert.IsFalse(testPage.ProjectListIsNull);
+                Assert.IsTrue(testPage.ProjectListCount > 0);
 
             }
         }
@@ -189,10 +193,13 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsNull(testPage.ProjectsList);
+                Assert.IsTrue(testPage.ProjectListIsNull);
+                Assert.AreEqual(-1, testPage.ProjectListCount);
 
             }
         }
+
+        /* Chosen Project Tests */
 
         [TestMethod]
         public void ProjectsPage_ChoseProjects_Test_1()
