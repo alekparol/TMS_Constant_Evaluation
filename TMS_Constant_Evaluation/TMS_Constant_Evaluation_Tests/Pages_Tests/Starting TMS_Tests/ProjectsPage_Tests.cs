@@ -219,7 +219,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
                 /* Set of assertions */
 
                 Assert.IsFalse(testPage.ChosenProjectIsNull);
-                Assert.AreEqual("Porsche BAL 2.0", testPage.ChosenProjectName);
+                Assert.AreEqual("PORSCHE BAL 2.0", testPage.ChosenProjectName);
                 Assert.AreEqual(1, testPage.ChosenProjectDisplayed);
 
             }
