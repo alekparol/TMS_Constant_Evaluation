@@ -182,9 +182,9 @@ namespace TMS_Constant_Evaluation.Pages
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
             IWebElement chosenElement;
 
-            if (this.ActivityFilterOptions.Where(x => x.Text == chosenActivityName).Count() > 0)
+            if (this.languageList.Where(x => x.Text == chosenLanguageCode).Count() > 0)
             {
-                chosenElement = this.ActivityFilterOptions.Where(x => x.Text == chosenActivityName).ElementAt(0);
+                chosenElement = this.languageList.Where(x => x.Text == chosenLanguageCode).ElementAt(0);
                 chosenElement.Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
@@ -234,6 +234,19 @@ namespace TMS_Constant_Evaluation.Pages
                     {
 
                         filtersButton.Click();
+                        wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fpStepActivityName_titletext")));
+
+                        auxiliaryCollection = driver.FindElements(By.Id("cup_fpStepActivityName_titletext"));
+                        if (auxiliaryCollection.Count == 1) activityFilter = auxiliaryCollection.ElementAt(0);
+
+                        auxiliaryCollection = driver.FindElements(By.Id("cup_fpTargetLanguage_titletext"));
+                        if (auxiliaryCollection.Count == 1) languageFilter = auxiliaryCollection.ElementAt(0);
+
+                    }
+
+                    else if (isFilterClicked == true && driver.FindElements(By.Id("jnotify-item-msg")).Count == 0 && filtersButton != null)
+                    {
+
                         wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fpStepActivityName_titletext")));
 
                         auxiliaryCollection = driver.FindElements(By.Id("cup_fpStepActivityName_titletext"));

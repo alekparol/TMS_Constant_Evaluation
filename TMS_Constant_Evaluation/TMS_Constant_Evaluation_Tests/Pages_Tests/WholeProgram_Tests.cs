@@ -77,8 +77,11 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 while(auxiliaryInt < aTJ.count)
                 {
                     auxiliaryString = aTJOrdered.ElementAt(auxiliaryInt).targetLanguage;
-                    differentLanguages.Add(auxiliaryString);
-
+                    if (auxiliaryString != "" && auxiliaryString != null)
+                    {
+                        differentLanguages.Add(auxiliaryString);
+                    }
+                   
                     auxiliaryEnumerable = aTJ.assigneesAngTheirJobsList.Where(x => x.targetLanguage == auxiliaryString);              
                     auxiliaryInt += auxiliaryEnumerable.Count();
                 }
@@ -111,6 +114,34 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 
                 statusPageAll.ChosenActivityClick("Translation", driver);
                 Thread.Sleep(10000);
+
+                StatusPage translationPage = new StatusPage(driver);
+
+                translationPage.LanguageFilterClick();
+                Thread.Sleep(1000);
+
+                translationPage.ChosenTargetLanguageClick(differentLanguages.ElementAt(1), driver);
+
+                Thread.Sleep(5000);
+
+                pageBar = new PageBar(driver);
+                pageBar.SetMaximalItems(driver);
+
+                Thread.Sleep(5000);
+
+                IReadOnlyCollection<IWebElement> r_LHTranslationJobs = driver.FindElements(By.ClassName("r_LH"));
+                List<string> translationJobNames = new List<string>();
+
+                IWebElement auxiliaryElement;
+
+                foreach(IWebElement el in r_LHTranslationJobs)
+                {
+                    auxiliaryElement = el.FindElement(By.ClassName("grp_ttl"));
+                    translationJobNames.Add(auxiliaryElement.Text);
+                }
+
+                Assert.AreEqual("", differentLanguages.ElementAt(0));
+                Assert.AreEqual("", translationJobNames.ElementAt(0));
 
                 /* Set of assertions */
 

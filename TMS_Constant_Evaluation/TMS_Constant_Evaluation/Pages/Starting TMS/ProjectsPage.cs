@@ -10,6 +10,20 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
+/*
+ * This class mean to model TMS starting page right after logging in. 
+ * 
+ * Preassumptions: 
+ * 1. User is registered Lionbridge worker. 
+ * 2. User turned on VPN correctly. 
+ * 
+ * TODO: 
+ * 1. Check what kind of information we do need to get from three fields. 
+ * 2. 
+ * 
+ */
+
+
 namespace TMS_Constant_Evaluation.Pages
 {
     public class ProjectsPage
@@ -62,9 +76,9 @@ namespace TMS_Constant_Evaluation.Pages
             if (driver.Url == "https://tms.lionbridge.com/")
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName("dsh_tds_ttl")));
-
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName("dsh_tds_ttl")));
 
                 projectsList = driver.FindElements(By.ClassName("dsh_tds_ttl"));
                 if (projectsList.Count > 0)
@@ -79,15 +93,18 @@ namespace TMS_Constant_Evaluation.Pages
             if (driver.Url == "https://tms.lionbridge.com/")
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName("dsh_tds_ttl")));
-
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                IEnumerable<IWebElement> auxiliaryEnumerable;
+
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName("dsh_tds_ttl")));
 
                 projectsList = driver.FindElements(By.ClassName("dsh_tds_ttl"));
                 if (projectsList.Count > 0)
                 {
                     isParsedCorrectly = true;
-                    chosenProject = projectsList.Where(x => x.Text.ToLower() == chosenProjectName.ToLower()).ElementAt(0);
+
+                    auxiliaryEnumerable = projectsList.Where(x => x.Text.ToLower() == chosenProjectName.ToLower());
+                    if (auxiliaryEnumerable.Count() > 0) chosenProject = auxiliaryEnumerable.ElementAt(0);
                 }
             }
            
