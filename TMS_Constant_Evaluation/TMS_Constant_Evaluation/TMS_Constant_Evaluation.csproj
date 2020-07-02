@@ -52,7 +52,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AbstractPages\AbstractPage1.cs" />
+    <Compile Include="Pages\AbstractPages\AbstractPage2.cs" />
     <Compile Include="Pages\PagesObjects\MyProfile.cs" />
+    <Compile Include="Pages\PagesObjects\ViewsMenu.cs" />
     <Compile Include="Pages\Status\Assignees\AssigneesPage.cs" />
     <Compile Include="Pages\PagesObjects\ActivitiesObject.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\AssigneeElement.cs" />

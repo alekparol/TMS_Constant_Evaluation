@@ -232,10 +232,10 @@ namespace TMS_Constant_Evaluation.Pages
                     if (auxiliaryCollection.Count > 0) userActivitiesList = auxiliaryCollection;
 
                     auxiliaryCollection = driver.FindElements(By.Id("jobsdashboard"));
-                    if (auxiliaryCollection.Count == 0) jobsSection = auxiliaryCollection.ElementAt(0);
+                    if (auxiliaryCollection.Count == 1) jobsSection = auxiliaryCollection.ElementAt(0);
 
                     auxiliaryCollection = driver.FindElements(By.Id("planning"));
-                    if (auxiliaryCollection.Count == 0) planningSection = auxiliaryCollection.ElementAt(0);
+                    if (auxiliaryCollection.Count == 1) planningSection = auxiliaryCollection.ElementAt(0);
 
                     auxiliaryCollection = driver.FindElements(By.Id("status"));
                     if (auxiliaryCollection.Count > 0) statusSection = auxiliaryCollection.ElementAt(0);
