@@ -11,6 +11,15 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
+/*
+ * This class mean to model TMS Views Menu which is displayed on most of the pages after clicking on particular project, on the left side of the screen. 
+ * 
+ * Preassumptions: 
+ * 
+ * TODO: 
+ * 
+ */
+
 namespace TMS_Constant_Evaluation.Pages.PagesObjects
 {
     public class ViewsMenu
@@ -314,12 +323,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                             }
 
                         }
-
                        
                     }
-
-                    
-
 
                 }
 
