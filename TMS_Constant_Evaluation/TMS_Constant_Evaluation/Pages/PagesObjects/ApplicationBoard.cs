@@ -107,31 +107,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int IsUserActivitiesListFull
-        {
-            get
-            {
-                if (userActivitiesMenu != null)
-                {
-                    IReadOnlyCollection<IWebElement> auxiliaryCollection = userActivitiesMenu.FindElements(By.TagName("li"));
-
-                    if (auxiliaryCollection.Count == 6)
-                    {
-                        return 1;
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-        }
-
-
         public int UserActivitiesClicked
         {
             get
@@ -152,6 +127,45 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     return -1;
                 }
                 
+            }
+        }
+
+        public int IsUserActivitiesListFull
+        {
+            get
+            {
+                if (userActivitiesMenu != null)
+                {
+                    IReadOnlyCollection<IWebElement> auxiliaryCollection = userActivitiesMenu.FindElements(By.TagName("li"));
+
+                    if (auxiliaryCollection.Count == 4)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public bool IsParsingCorrect
+        {
+            get
+            {
+                if (LoggedUserIsNull == 0 && UserActivitiesMenuIsNull == 0 && IsUserActivitiesListFull == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
