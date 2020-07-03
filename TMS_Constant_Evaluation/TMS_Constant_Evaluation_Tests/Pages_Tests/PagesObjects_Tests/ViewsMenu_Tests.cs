@@ -42,6 +42,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(viewsMenu.ViewsPanelIsNull);
                 Assert.AreEqual(1, viewsMenu.IsViewsListFull);
+                Assert.IsTrue(viewsMenu.IsParsingCorrect);
 
             }
 

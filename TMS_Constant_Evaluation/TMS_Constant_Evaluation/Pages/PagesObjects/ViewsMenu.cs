@@ -25,7 +25,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         private IWebElement planningView;
         private IWebElement statusView;
 
-
         /* Properties */
 
         public bool ViewsPanelIsNull
@@ -135,11 +134,18 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public IWebElement JobsView
+        public bool IsParsingCorrect
         {
             get
             {
-                return jobsView;
+                if (IsJobsViewNull == 0 && IsPlanningViewNull == 0 && IsStatusViewNull == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -147,40 +153,50 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         public void JobsClick(IWebDriver driver)
         {
+            if (jobsView != null)
+            {
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            jobsView.Click();
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                jobsView.Click();
 
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
+
+            }
 
         }
 
         public void PlanningClick(IWebDriver driver)
         {
+            if (planningView != null)
+            {
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            planningView.Click();
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                planningView.Click();
 
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
 
+            }
+            
         }
         public void StatusClick(IWebDriver driver)
         {
+            if (statusView != null)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                statusView.Click();
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            statusView.Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
 
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
-
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
-
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
+            }
+            
         }
 
         /* Constructors */
