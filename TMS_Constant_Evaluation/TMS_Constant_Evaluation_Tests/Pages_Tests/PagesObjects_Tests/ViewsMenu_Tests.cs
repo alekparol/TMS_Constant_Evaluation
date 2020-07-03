@@ -47,5 +47,31 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
             }
 
         }
+
+        [TestMethod]
+        public void ViewsMenu_ParsingCorrectly_Test_2()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://lionbridge.com/");
+
+                ViewsMenu viewsMenu = new ViewsMenu(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(viewsMenu.ViewsPanelIsNull);
+                Assert.AreEqual(-1, viewsMenu.IsViewsListFull);
+                Assert.IsFalse(viewsMenu.IsParsingCorrect);
+
+            }
+
+        }
+
     }
 }

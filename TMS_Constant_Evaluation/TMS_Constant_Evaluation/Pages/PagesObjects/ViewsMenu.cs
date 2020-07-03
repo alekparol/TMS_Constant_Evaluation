@@ -90,6 +90,24 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public bool IsJobsViewClicked
+        {
+            get
+            {
+                string className = jobsView.GetAttribute("class");
+
+                if (className == "treeviewLISelected")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+
         public int IsPlanningViewNull
         {
             get
@@ -112,6 +130,24 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public bool IsPlanningViewClicked
+        {
+            get
+            {
+                string className = planningView.GetAttribute("class");
+
+                if (className == "treeviewLISelected")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+
         public int IsStatusViewNull
         {
             get
@@ -131,6 +167,24 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 {
                     return -1;
                 }
+            }
+        }
+
+        public bool IsStatusViewClicked
+        {
+            get
+            {
+                string className = statusView.GetAttribute("class");
+
+                if (className == "treeviewLISelected")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
         }
 
