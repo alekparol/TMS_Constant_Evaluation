@@ -90,21 +90,27 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public bool IsJobsViewClicked
+        public int IsJobsViewClicked
         {
             get
             {
-                string className = jobsView.GetAttribute("class");
-
-                if (className == "treeviewLISelected")
+                if (jobsView != null)
                 {
-                    return true;
+                    string className = jobsView.GetAttribute("class");
+
+                    if (className == "treeviewLISelected")
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
                 else
                 {
-                    return false;
-                }
-
+                    return -1;
+                }              
             }
         }
 
@@ -130,21 +136,27 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public bool IsPlanningViewClicked
+        public int IsPlanningViewClicked
         {
             get
             {
-                string className = planningView.GetAttribute("class");
-
-                if (className == "treeviewLISelected")
+                if (planningView != null)
                 {
-                    return true;
+                    string className = planningView.GetAttribute("class");
+
+                    if (className == "treeviewLISelected")
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
                 else
                 {
-                    return false;
+                    return -1;
                 }
-
             }
         }
 
@@ -170,21 +182,27 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public bool IsStatusViewClicked
+        public int IsStatusViewClicked
         {
             get
             {
-                string className = statusView.GetAttribute("class");
-
-                if (className == "treeviewLISelected")
+                if (statusView != null)
                 {
-                    return true;
+                    string className = statusView.GetAttribute("class");
+
+                    if (className == "treeviewLISelected")
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
                 else
                 {
-                    return false;
+                    return -1;
                 }
-
             }
         }
 
