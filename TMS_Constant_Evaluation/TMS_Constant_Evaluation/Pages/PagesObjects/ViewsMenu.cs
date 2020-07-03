@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace TMS_Constant_Evaluation.Pages.PagesObjects
 {
-    class ViewsMenu
+    public class ViewsMenu
     {
 
         /* Fields */
@@ -28,27 +28,118 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Properties */
 
+        public bool ViewsPanelIsNull
+        {
+            get
+            {
+                if (viewsPanel != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public int IsViewsListFull
+        {
+            get
+            {
+
+                if (viewsList != null)
+                {
+                    IReadOnlyCollection<IWebElement> auxiliaryCollection = viewsList.FindElements(By.TagName("li"));
+
+                    if (auxiliaryCollection.Count == 6)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+
+            }
+        }
+
+        public int IsJobsViewNull
+        {
+            get
+            {
+                if (viewsList != null)
+                {
+                    if (jobsView == null)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int IsPlanningViewNull
+        {
+            get
+            {
+                if (viewsList != null)
+                {
+                    if (planningView == null)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int IsStatusViewNull
+        {
+            get
+            {
+                if (viewsList != null)
+                {
+                    if (statusView == null)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
         public IWebElement JobsView
         {
             get
             {
                 return jobsView;
-            }
-        }
-
-        public IWebElement PlanningView
-        {
-            get
-            {
-                return planningView;
-            }
-        }
-
-        public IWebElement StatusView
-        {
-            get
-            {
-                return statusView;
             }
         }
 

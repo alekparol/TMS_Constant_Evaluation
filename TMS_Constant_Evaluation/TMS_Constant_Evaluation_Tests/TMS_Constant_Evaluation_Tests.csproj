@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages_Tests\PagesObjects_Tests\PageBar_Tests.cs" />
+    <Compile Include="Pages_Tests\PagesObjects_Tests\ViewsMenu_Tests.cs" />
     <Compile Include="Pages_Tests\Porsche Bal 2.0_Tests\ParticularProcjectPage_Tests.cs" />
     <Compile Include="Pages_Tests\Starting TMS_Tests\ProjectsPage_Tests.cs" />
     <Compile Include="Pages_Tests\Status_Tests\Assignees_Tests\AssigneesPage_Tests.cs" />

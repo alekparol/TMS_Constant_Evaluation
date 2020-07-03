@@ -30,6 +30,7 @@ namespace TMS_Constant_Evaluation.Pages
         private IReadOnlyCollection<IWebElement> userActivitiesList;
 
         private MyProfile myProfileInstance;
+        private ViewsMenu myViewsMenu;
 
         private IWebElement jobsSection;
         private IWebElement planningSection;
@@ -77,6 +78,14 @@ namespace TMS_Constant_Evaluation.Pages
             get
             {
                 return myProfileInstance;
+            }
+        }
+
+        public ViewsMenu MyViewsMenu
+        {
+            get
+            {
+                return myViewsMenu;
             }
         }
 
