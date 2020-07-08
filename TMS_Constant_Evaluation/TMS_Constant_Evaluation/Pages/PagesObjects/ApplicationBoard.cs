@@ -154,6 +154,47 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public int ProfileWindowIsDisplayed
+        {
+            get
+            {
+
+                if (UserActivitiesListIsFull == 1)
+                {
+                    IReadOnlyCollection<IWebElement> auxiliaryCollection = userActivitiesMenu.FindElements(By.XPath("//*[@id=\"pup\"]"));
+                    if (auxiliaryCollection.Count > 0)
+                    {
+                        
+                        if (auxiliaryCollection.Count == 1)
+                        {
+                            if (auxiliaryCollection.ElementAt(0).Displayed)
+                            {
+                                return 1;
+                            }
+                            else
+                            {
+                                return 0;
+                            }
+                        }
+                        else
+                        {
+                            return 2;
+                        }
+
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+
+                }
+                else
+                {
+                    return -2;
+                }
+            }
+        }
+
         public bool IsParsingCorrect
         {
             get
