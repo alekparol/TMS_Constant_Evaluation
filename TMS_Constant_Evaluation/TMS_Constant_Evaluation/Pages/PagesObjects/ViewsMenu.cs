@@ -51,7 +51,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int IsViewsListFull
+        public int ViewsListIsFull
         {
             get
             {
@@ -77,7 +77,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int IsJobsViewNull
+        public int JobsViewIsNull
         {
             get
             {
@@ -99,7 +99,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int IsJobsViewClicked
+        public int JobsViewIsClicked
         {
             get
             {
@@ -123,7 +123,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int IsPlanningViewNull
+        public int PlanningViewIsNull
         {
             get
             {
@@ -145,7 +145,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int IsPlanningViewClicked
+        public int PlanningViewIsClicked
         {
             get
             {
@@ -169,7 +169,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int IsStatusViewNull
+        public int StatusViewIsNull
         {
             get
             {
@@ -191,7 +191,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int IsStatusViewClicked
+        public int StatusViewIsClicked
         {
             get
             {
@@ -219,7 +219,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             get
             {
-                if (IsJobsViewNull == 0 && IsPlanningViewNull == 0 && IsStatusViewNull == 0)
+                if (JobsViewIsNull == 0 && PlanningViewIsNull == 0 && StatusViewIsNull == 0)
                 {
                     return true;
                 }

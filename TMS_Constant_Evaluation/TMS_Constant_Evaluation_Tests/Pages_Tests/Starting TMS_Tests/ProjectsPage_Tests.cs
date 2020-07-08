@@ -220,7 +220,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 Assert.IsFalse(testPage.ChosenProjectIsNull);
                 Assert.AreEqual("PORSCHE BAL 2.0", testPage.ChosenProjectName);
-                Assert.AreEqual(1, testPage.ChosenProjectDisplayed);
+                Assert.AreEqual(1, testPage.ChosenProjectIsDisplayed);
 
             }
         }
@@ -244,7 +244,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 Assert.IsTrue(testPage.ChosenProjectIsNull);
                 Assert.AreEqual("", testPage.ChosenProjectName);
-                Assert.AreEqual(-1, testPage.ChosenProjectDisplayed);
+                Assert.AreEqual(-1, testPage.ChosenProjectIsDisplayed);
 
             }
         }

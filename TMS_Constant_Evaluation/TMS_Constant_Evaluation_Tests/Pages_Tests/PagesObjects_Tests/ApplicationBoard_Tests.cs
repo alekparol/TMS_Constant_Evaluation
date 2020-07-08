@@ -14,7 +14,7 @@ using TMS_Constant_Evaluation.Pages.PagesObjects;
 namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 {
     [TestClass]
-    public class ViewsMenu_Tests
+    public class ApplicationBoard_Tests
     {
 
         /* Parsing Correctly Tests */
@@ -37,13 +37,13 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
-                ViewsMenu viewsMenu = new ViewsMenu(driver);
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
 
                 /* Set of assertions */
 
-                Assert.IsFalse(viewsMenu.ViewsPanelIsNull);
-                Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
-                Assert.IsTrue(viewsMenu.IsParsingCorrect);
+                Assert.IsFalse(applicationBoard.AppBoardPanelIsNull);
+                Assert.AreEqual(1, applicationBoard.UserActivitiesListIsFull);
+                Assert.IsTrue(applicationBoard.IsParsingCorrect);
 
             }
 
@@ -62,22 +62,22 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://lionbridge.com/");
 
-                ViewsMenu viewsMenu = new ViewsMenu(driver);
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(viewsMenu.ViewsPanelIsNull);
-                Assert.AreEqual(-1, viewsMenu.ViewsListIsFull);
-                Assert.IsFalse(viewsMenu.IsParsingCorrect);
+                Assert.IsTrue(applicationBoard.AppBoardPanelIsNull);
+                Assert.AreEqual(-1, applicationBoard.UserActivitiesListIsFull);
+                Assert.IsFalse(applicationBoard.IsParsingCorrect);
 
             }
 
         }
 
-        /* Tests of ViewClicked Properties */
+        /* Logged User Tests */
 
         [TestMethod]
-        public void ViewsMenu_ViewClicked_Test_1()
+        public void ViewsMenu_LoggedUser_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -95,19 +95,19 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
-                ViewsMenu viewsMenu = new ViewsMenu(driver);
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
 
                 /* Set of assertions */
 
-                Assert.AreEqual(0, viewsMenu.JobsViewIsClicked);
-                Assert.AreEqual(0, viewsMenu.PlanningViewIsClicked);
-                Assert.AreEqual(0, viewsMenu.StatusViewIsClicked);
+                Assert.AreEqual(0, applicationBoard.LoggedUserIsNull);
+                Assert.AreEqual("Parol Aleksander", applicationBoard.GetUserName);
 
             }
+
         }
 
         [TestMethod]
-        public void ViewsMenu_ViewClicked_Test_2()
+        public void ViewsMenu_LoggedUser_Test_2()
         {
 
             using (var driver = new ChromeDriver())
@@ -119,22 +119,21 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://lionbridge.com/");
 
-                ViewsMenu viewsMenu = new ViewsMenu(driver);
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
 
                 /* Set of assertions */
 
-                Assert.AreEqual(-1, viewsMenu.JobsViewIsClicked);
-                Assert.AreEqual(-1, viewsMenu.PlanningViewIsClicked);
-                Assert.AreEqual(-1, viewsMenu.StatusViewIsClicked);
+                Assert.AreEqual(-1, applicationBoard.LoggedUserIsNull);
+                Assert.AreEqual("", applicationBoard.GetUserName);
 
             }
 
         }
 
-        /* Tests of ViewClick Methods */
+        /* User Activities List Tests */
 
         [TestMethod]
-        public void ViewsMenu_ViewClick_Test_1()
+        public void ViewsMenu_UserActivitiesList_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -152,22 +151,20 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
-                ViewsMenu viewsMenu = new ViewsMenu(driver);
-                viewsMenu.JobsClick(driver);
-
-                viewsMenu = new ViewsMenu(driver);
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(viewsMenu.IsParsingCorrect);
-                Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
-                Assert.AreEqual(1, viewsMenu.JobsViewIsClicked);
+                Assert.AreEqual(0, applicationBoard.UserActivitiesMenuIsNull);
+                Assert.AreEqual(0, applicationBoard.UserActivitiesIsClicked);
+                Assert.AreEqual(1, applicationBoard.UserActivitiesListIsFull);
 
             }
+
         }
 
         [TestMethod]
-        public void ViewsMenu_ViewClick_Test_2()
+        public void ViewsMenu_UserActivitiesList_Test_2()
         {
 
             using (var driver = new ChromeDriver())
@@ -185,51 +182,17 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
 
-                ViewsMenu viewsMenu = new ViewsMenu(driver);
-                viewsMenu.PlanningClick(driver);
-
-                viewsMenu = new ViewsMenu(driver);
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
+                applicationBoard.LoggedUserClick(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(viewsMenu.IsParsingCorrect);
-                Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
-                Assert.AreEqual(1, viewsMenu.PlanningViewIsClicked);
+                Assert.AreEqual(0, applicationBoard.UserActivitiesMenuIsNull);
+                Assert.AreEqual(1, applicationBoard.UserActivitiesIsClicked);
+                Assert.AreEqual(1, applicationBoard.UserActivitiesListIsFull);
 
             }
-        }
 
-        [TestMethod]
-        public void ViewsMenu_ViewClick_Test_3()
-        {
-
-            using (var driver = new ChromeDriver())
-            {
-
-                /* Initialization */
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-                driver.Manage().Window.Maximize();
-                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
-
-                string projectTitle = "Porsche BAL 2.0";
-                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
-
-                testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
-
-                ViewsMenu viewsMenu = new ViewsMenu(driver);
-                viewsMenu.StatusClick(driver);
-
-                viewsMenu = new ViewsMenu(driver);
-
-                /* Set of assertions */
-
-                Assert.IsTrue(viewsMenu.IsParsingCorrect);
-                Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
-                Assert.AreEqual(1, viewsMenu.StatusViewIsClicked);
-
-            }
         }
 
     }

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text.RegularExpressions;
-using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using TMS_Constant_Evaluation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
 using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
@@ -70,19 +67,19 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 
                 IEnumerable<AssigneeAndHisJob> auxiliaryEnumerable;
                 List<string> differentLanguages = new List<string>();
-                
+
                 string auxiliaryString;
                 int auxiliaryInt = 0;
 
-                while(auxiliaryInt < aTJ.count)
+                while (auxiliaryInt < aTJ.count)
                 {
                     auxiliaryString = aTJOrdered.ElementAt(auxiliaryInt).targetLanguage;
                     if (auxiliaryString != "" && auxiliaryString != null)
                     {
                         differentLanguages.Add(auxiliaryString);
                     }
-                   
-                    auxiliaryEnumerable = aTJ.assigneesAngTheirJobsList.Where(x => x.targetLanguage == auxiliaryString);              
+
+                    auxiliaryEnumerable = aTJ.assigneesAngTheirJobsList.Where(x => x.targetLanguage == auxiliaryString);
                     auxiliaryInt += auxiliaryEnumerable.Count();
                 }
 
@@ -134,7 +131,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 
                 IWebElement auxiliaryElement;
 
-                foreach(IWebElement el in r_LHTranslationJobs)
+                foreach (IWebElement el in r_LHTranslationJobs)
                 {
                     auxiliaryElement = el.FindElement(By.ClassName("grp_ttl"));
                     translationJobNames.Add(auxiliaryElement.Text);

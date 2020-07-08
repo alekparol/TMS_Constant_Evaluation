@@ -102,7 +102,7 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
-        public int ChosenProjectDisplayed
+        public int ChosenProjectIsDisplayed
         {
             get
             {

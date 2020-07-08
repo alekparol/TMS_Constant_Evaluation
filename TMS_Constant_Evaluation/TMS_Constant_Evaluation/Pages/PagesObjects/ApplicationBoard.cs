@@ -107,7 +107,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int UserActivitiesClicked
+        public int UserActivitiesIsClicked
         {
             get
             {
@@ -130,7 +130,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int IsUserActivitiesListFull
+        public int UserActivitiesListIsFull
         {
             get
             {
@@ -138,7 +138,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 {
                     IReadOnlyCollection<IWebElement> auxiliaryCollection = userActivitiesMenu.FindElements(By.TagName("li"));
 
-                    if (auxiliaryCollection.Count == 4)
+                    if (auxiliaryCollection.Count == 5)
                     {
                         return 1;
                     }
@@ -158,7 +158,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             get
             {
-                if (LoggedUserIsNull == 0 && UserActivitiesMenuIsNull == 0 && IsUserActivitiesListFull == 1)
+                if (LoggedUserIsNull == 0 && UserActivitiesMenuIsNull == 0 && UserActivitiesListIsFull == 1)
                 {
                     return true;
                 }
