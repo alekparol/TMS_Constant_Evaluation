@@ -115,9 +115,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                Assert.AreEqual("Jobs", porscheBalPage.JobsSection.FindElements(By.ClassName("act_ttl")).ElementAt(0).Text);
-                Assert.AreEqual("Planning", porscheBalPage.PlanningSection.FindElements(By.ClassName("act_ttl")).ElementAt(0).Text);
-                Assert.AreEqual("Status", porscheBalPage.StatusSection.FindElements(By.ClassName("act_ttl")).ElementAt(0).Text);
+                //Assert.AreEqual("Jobs", porscheBalPage.JobsSection.FindElements(By.ClassName("act_ttl")).ElementAt(0).Text);
+                //Assert.AreEqual("Planning", porscheBalPage.PlanningSection.FindElements(By.ClassName("act_ttl")).ElementAt(0).Text);
+                //Assert.AreEqual("Status", porscheBalPage.StatusSection.FindElements(By.ClassName("act_ttl")).ElementAt(0).Text);
 
             }
 
