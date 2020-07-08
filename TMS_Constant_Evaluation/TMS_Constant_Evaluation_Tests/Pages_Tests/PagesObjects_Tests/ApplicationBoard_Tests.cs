@@ -245,9 +245,108 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 /* Set of assertions */
 
-                Assert.AreEqual(0, applicationBoard.UserActivitiesMenuIsNull);
-                Assert.AreEqual(0, applicationBoard.UserActivitiesIsClicked);
-                Assert.AreEqual(1, applicationBoard.UserActivitiesListIsFull);
+                Assert.AreEqual(1 , applicationBoard.ProfileActivityIsNull);
+                Assert.AreEqual(-1, applicationBoard.ProfileActivityIsDisplayed);
+                Assert.AreEqual(0, applicationBoard.ProfileWindowIsNull);
+                Assert.AreEqual(0, applicationBoard.ProfileWindowIsDisplayed);
+                
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ViewsMenu_UserProfile_Test_2()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
+                applicationBoard.LoggedUserClick(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(0, applicationBoard.ProfileActivityIsNull);
+                Assert.AreEqual(1, applicationBoard.ProfileActivityIsDisplayed);
+                Assert.AreEqual(0, applicationBoard.ProfileWindowIsNull);
+                Assert.AreEqual(0, applicationBoard.ProfileWindowIsDisplayed);
+
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ViewsMenu_UserProfile_Test_3()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
+                applicationBoard.LoggedUserClick(driver);
+
+                applicationBoard.ProfileClick(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(1, applicationBoard.ProfileActivityIsNull);
+                Assert.AreEqual(-1, applicationBoard.ProfileActivityIsDisplayed);
+                Assert.AreEqual(0, applicationBoard.ProfileWindowIsNull);
+                Assert.AreEqual(1, applicationBoard.ProfileWindowIsDisplayed);
+
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ViewsMenu_UserProfile_Test_4()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://lionbridge.com/");
+
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(-1, applicationBoard.ProfileActivityIsNull);
+                Assert.AreEqual(-1, applicationBoard.ProfileActivityIsDisplayed);
+                Assert.AreEqual(-1, applicationBoard.ProfileWindowIsNull);
+                Assert.AreEqual(-1, applicationBoard.ProfileWindowIsDisplayed);
+
 
             }
 

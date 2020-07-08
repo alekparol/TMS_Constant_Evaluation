@@ -164,13 +164,62 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                     if (auxiliaryIEnumerable.Count() == 1)
                     {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int ProfileActivityIsDisplayed
+        {
+            get
+            {
+                if (ProfileActivityIsNull == 0)
+                {
+
+                    IEnumerable<IWebElement> auxiliaryIEnumerable = userActivitiesList.Where(x => x.Text == "Profile");
+
+                    if (auxiliaryIEnumerable.ElementAt(0).Displayed)
+                    {
                         return 1;
                     }
                     else
                     {
                         return 0;
                     }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
 
+        public int ProfileWindowIsNull
+        {
+            get
+            {
+                if (UserActivitiesListIsFull == 1)
+                {
+                    IReadOnlyCollection<IWebElement> auxiliaryCollection = userActivitiesMenu.FindElements(By.XPath("//*[@id=\"pup\"]"));
+                    
+                    if (auxiliaryCollection.Count > 0)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
                 }
                 else
                 {
@@ -183,40 +232,26 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             get
             {
-
-                if (UserActivitiesListIsFull == 1)
+                
+                if (ProfileWindowIsNull == 0)
                 {
                     IReadOnlyCollection<IWebElement> auxiliaryCollection = userActivitiesMenu.FindElements(By.XPath("//*[@id=\"pup\"]"));
-                    if (auxiliaryCollection.Count > 0)
-                    {
-                        
-                        if (auxiliaryCollection.Count == 1)
-                        {
-                            if (auxiliaryCollection.ElementAt(0).Displayed)
-                            {
-                                return 1;
-                            }
-                            else
-                            {
-                                return 0;
-                            }
-                        }
-                        else
-                        {
-                            return 2;
-                        }
 
+                    if (auxiliaryCollection.Count == 1 && auxiliaryCollection.ElementAt(0).Displayed)
+                    {
+                        return 1;
                     }
                     else
                     {
-                        return -1;
+                        return 0;
                     }
 
                 }
                 else
                 {
-                    return -2;
+                    return -1;
                 }
+
             }
         }
 
