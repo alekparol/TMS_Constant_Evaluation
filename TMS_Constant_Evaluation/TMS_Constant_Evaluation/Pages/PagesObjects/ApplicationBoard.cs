@@ -154,6 +154,31 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public int ProfileActivityIsNull
+        {
+            get
+            {
+                if (UserActivitiesListIsFull == 1)
+                {
+                    IEnumerable<IWebElement> auxiliaryIEnumerable = userActivitiesList.Where(x => x.Text == "Profile");
+
+                    if (auxiliaryIEnumerable.Count() == 1)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
         public int ProfileWindowIsDisplayed
         {
             get
