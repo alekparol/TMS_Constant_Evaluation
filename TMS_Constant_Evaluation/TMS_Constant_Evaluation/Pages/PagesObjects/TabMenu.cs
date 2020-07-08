@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace TMS_Constant_Evaluation.Pages.PagesObjects
 {
-    class TabMenu
+    public class TabMenu
     {
 
         /* Fields */
@@ -30,7 +30,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         private IWebElement tabMenuPanel;
         private IWebElement tabMenuOptions;
 
-        private IEnumerable<IWebElement> tabMenuOptionList;
+        public IEnumerable<IWebElement> tabMenuOptionList;
         private IEnumerable<IWebElement> openedProjectsList;
         private IWebElement currentProject;
 
@@ -118,6 +118,21 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public bool IsParsingCorrect
+        {
+            get
+            {
+                if (TabMenuOptionsIsNull == 0 && TabMenuOptionListCount == 4 && OpenedProjectsListCount > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         /* Methods */
 
         /* Constructors */
@@ -145,7 +160,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                         auxiliaryCollection = tabMenuPanel.FindElements(By.Id("tab_m"));
                         if (auxiliaryCollection.Count == 1) tabMenuOptions = auxiliaryCollection.ElementAt(0);
 
-                        auxiliaryCollection = tabMenuPanel.FindElements(By.TagName("td"));
+                        auxiliaryCollection = tabMenuPanel.FindElements(By.ClassName("menuItem"));
                         if (auxiliaryCollection.Count > 0)
                         {
 
@@ -153,7 +168,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                             if (auxiliaryIEnumerable.Count() > 0) tabMenuOptionList = auxiliaryIEnumerable;
 
                             auxiliaryIEnumerable = auxiliaryCollection.Where(x => x.GetAttribute("title") == "");
-                            if (auxiliaryIEnumerable.Count() > 0)
+                            if (auxiliaryIEnumerable.Count() > 0) openedProjectsList = auxiliaryIEnumerable;
                             {
 
                                 openedProjectsList = auxiliaryIEnumerable;

@@ -59,6 +59,7 @@
     <Compile Include="Pages\AbstractPages\AbstractPage2.cs" />
     <Compile Include="Pages\PagesObjects\ApplicationBoard.cs" />
     <Compile Include="Pages\PagesObjects\MyProfile.cs" />
+    <Compile Include="Pages\PagesObjects\TabMenu.cs" />
     <Compile Include="Pages\PagesObjects\ViewsMenu.cs" />
     <Compile Include="Pages\Status\Assignees\AssigneesPage.cs" />
     <Compile Include="Pages\PagesObjects\ActivitiesObject.cs" />
