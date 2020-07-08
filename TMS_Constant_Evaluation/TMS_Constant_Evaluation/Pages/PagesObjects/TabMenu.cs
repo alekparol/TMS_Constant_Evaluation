@@ -118,6 +118,21 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public string CurrentProjectName
+        {
+            get
+            {
+                if (currentProject != null)
+                {
+                    return currentProject.Text.ToLower().Trim();
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
+
         public bool IsParsingCorrect
         {
             get

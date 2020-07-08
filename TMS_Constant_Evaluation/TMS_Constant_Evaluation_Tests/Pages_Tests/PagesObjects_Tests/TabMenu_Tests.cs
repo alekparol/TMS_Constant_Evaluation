@@ -62,6 +62,34 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://lionbridge.com/");
+
+                TabMenu tabMenu = new TabMenu(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(true, tabMenu.TabMenuPanelIsNull);
+                Assert.AreEqual(-1, tabMenu.TabMenuOptionsIsNull);
+                Assert.AreEqual(0, tabMenu.TabMenuOptionListCount);
+                Assert.AreEqual(0, tabMenu.OpenedProjectsListCount);
+                Assert.IsFalse(tabMenu.IsParsingCorrect);
+
+            }
+
+        }
+
+        /* Current Project Tests */
+        [TestMethod]
+        public void ViewsMenu_CurrentProject_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
                 string projectTitle = "Porsche BAL 2.0";
@@ -74,11 +102,32 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 /* Set of assertions */
 
-                Assert.AreEqual(false, tabMenu.TabMenuPanelIsNull);
-                Assert.AreEqual(0, tabMenu.TabMenuOptionsIsNull);
-                Assert.AreEqual(4, tabMenu.TabMenuOptionListCount);
-                Assert.AreEqual(1, tabMenu.OpenedProjectsListCount);
-                Assert.IsTrue(tabMenu.IsParsingCorrect);
+                Assert.IsFalse(tabMenu.CurrentProjectIsNull);
+                Assert.AreEqual("porsche bal 2.0", tabMenu.CurrentProjectName);
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ViewsMenu_CurrentProject_Test_2()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://lionbridge.com/");
+
+                TabMenu tabMenu = new TabMenu(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(tabMenu.CurrentProjectIsNull);
+                Assert.AreEqual("", tabMenu.CurrentProjectName);
 
             }
 
