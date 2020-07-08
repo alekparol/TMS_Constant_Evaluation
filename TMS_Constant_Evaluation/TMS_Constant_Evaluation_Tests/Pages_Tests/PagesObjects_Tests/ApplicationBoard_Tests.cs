@@ -195,5 +195,30 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
         }
 
+        [TestMethod]
+        public void ViewsMenu_UserActivitiesList_Test_3()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://lionbridge.com/");
+
+                ApplicationBoard applicationBoard = new ApplicationBoard(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(-1, applicationBoard.UserActivitiesMenuIsNull);
+                Assert.AreEqual(-1, applicationBoard.UserActivitiesIsClicked);
+                Assert.AreEqual(-1, applicationBoard.UserActivitiesListIsFull);
+
+            }
+
+        }
+
     }
 }
