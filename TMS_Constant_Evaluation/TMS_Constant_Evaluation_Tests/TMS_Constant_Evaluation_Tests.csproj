@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages_Tests\PagesObjects_Tests\ApplicationBoard_Tests.cs" />
+    <Compile Include="Pages_Tests\PagesObjects_Tests\MyProfile_Tests.cs" />
     <Compile Include="Pages_Tests\PagesObjects_Tests\PageBar_Tests.cs" />
     <Compile Include="Pages_Tests\PagesObjects_Tests\TabMenu_Tests.cs" />
     <Compile Include="Pages_Tests\PagesObjects_Tests\ViewsMenu_Tests.cs" />

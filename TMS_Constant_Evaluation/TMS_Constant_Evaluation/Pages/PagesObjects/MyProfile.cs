@@ -360,10 +360,26 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public bool IsParsingCorrect
+        {
+            get
+            {
+                if (MyProfileBodyIsDisplayed == 1 && CloseButtonIsDisplayed == 1 && ReduceButtonIsDisplayed == 1 && FullscreenButtonIsDisplayed == 1 &&
+                    SaveButtonIsDisplayed == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         /* Methods */
 
         //TODO: Change void to int to catch all results. 
-        public void ItemsDropDownListClick(IWebDriver driver)
+        public void ItemsDropDownButtonClick(IWebDriver driver)
         {           
 
             if (ItemsBodyIsNull == 0)
@@ -387,7 +403,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
-                ItemsDropDownClick(driver);
+                ItemsDropDownButtonClick(driver);
 
                 auxiliaryCollection = optionListParent.FindElements(By.TagName("li"));
                 if (auxiliaryCollection.Count > 0) optionList = auxiliaryCollection;
