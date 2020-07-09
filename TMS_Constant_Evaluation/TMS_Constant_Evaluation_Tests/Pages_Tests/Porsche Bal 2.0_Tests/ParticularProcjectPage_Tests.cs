@@ -16,6 +16,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
     public class ParticularProcjectPage_Tests
     {
 
+        /* Constructor Tests */
 
         [TestMethod]
         public void ParticularProjectPage_ParsingCorrectly_Test_1()
@@ -46,6 +47,29 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
         [TestMethod]
         public void ParticularProjectPage_ParsingCorrectly_Test_2()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+
+                /* Set of assertions */
+
+                Assert.IsFalse(porscheBalPage.IsParsedCorrectly);
+
+            }
+
+        }
+
+        [TestMethod]
+        public void ParticularProjectPage_ParsingCorrectly_Test_3()
         {
 
             using (var driver = new ChromeDriver())
@@ -201,7 +225,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                Assert.IsFalse(porscheBalPage.MyProfileInstance.BodyIsNull);
+                Assert.IsFalse(porscheBalPage.MyProfileInstance.MyProfileBodyIsNull);
                 Assert.IsFalse(porscheBalPage.MyProfileInstance.ItemsBodyIsNull);
                 Assert.AreEqual(6, porscheBalPage.MyProfileInstance.ItemsCount);
                 Assert.AreEqual(250, porscheBalPage.MyProfileInstance.ItemsChosen);

@@ -19,9 +19,9 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         private IWebElement myProfileBody;
 
-        private IWebElement close;
-        private IWebElement reduce;
-        private IWebElement fullscreen;
+        private IWebElement closeButton;
+        private IWebElement reduceButton;
+        private IWebElement fullscreenButton;
 
         private IWebElement itemsPerPageBody;
         private IWebElement optionListParent;
@@ -30,7 +30,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Properties */
 
-        public bool BodyIsNull
+        public bool MyProfileBodyIsNull
         {
             get
             {
@@ -45,62 +45,156 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public bool BodyIsVisibile
+        public int MyProfileBodyIsDisplayed
         {
             get
             {
-                if (myProfileBody.Displayed)
+                if (MyProfileBodyIsNull == false)
                 {
-                    return true;
+                    if (myProfileBody.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
                 else
                 {
-                    return false;
+                    return -1;
+                }
+                
+            }
+        }
+
+        public int CloseButtonIsNull
+        {
+            get
+            {
+                if (MyProfileBodyIsNull == false)
+                {
+                    if (closeButton != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }             
+            }
+        }
+
+        public int CloseButtonIsDisplayed
+        {
+            get
+            {
+                if (CloseButtonIsNull == 0)
+                {
+                    if (closeButton.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+        public int ReduceButtonIsNull
+        {
+            get
+            {
+                if (MyProfileBodyIsNull == false)
+                {
+                    if (reduceButton != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
                 }
             }
         }
 
-        public bool CloseButtonIsNull
+        public int ReduceButtonIsDisplayed
         {
             get
             {
-                if (close != null)
+                if (ReduceButtonIsNull == 0)
                 {
-                    return false;
+                    if (reduceButton.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
                 else
                 {
-                    return true;
+                    return -1;
                 }
             }
         }
 
-        public bool ReduceButtonIsNull
+        public int FullscreenButtonIsNull
         {
             get
             {
-                if (reduce != null)
+                if (MyProfileBodyIsNull == false)
                 {
-                    return false;
+                    if (fullscreenButton != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
                 }
                 else
                 {
-                    return true;
+                    return -1;
                 }
             }
         }
 
-        public bool FullscreenButtonIsNull
+        public int FullscreenButtonIsDisplayed
         {
             get
             {
-                if (fullscreen != null)
+                if (FullscreenButtonIsNull == 0)
                 {
-                    return false;
+                    if (fullscreenButton.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
                 else
                 {
-                    return true;
+                    return -1;
                 }
             }
         }
@@ -203,13 +297,13 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             if (auxiliaryCollection.Count == 1) myProfileBody = auxiliaryCollection.ElementAt(0);
 
             auxiliaryCollection = myProfileBody.FindElements(By.Id("pup_btn_c"));
-            if (auxiliaryCollection.Count == 1) close = auxiliaryCollection.ElementAt(0);
+            if (auxiliaryCollection.Count == 1) closeButton = auxiliaryCollection.ElementAt(0);
 
             auxiliaryCollection = myProfileBody.FindElements(By.Id("pup_btn_r"));
-            if (auxiliaryCollection.Count == 1) reduce = auxiliaryCollection.ElementAt(0);
+            if (auxiliaryCollection.Count == 1) reduceButton = auxiliaryCollection.ElementAt(0);
 
             auxiliaryCollection = myProfileBody.FindElements(By.Id("pup_btn_f"));
-            if (auxiliaryCollection.Count == 1) fullscreen = auxiliaryCollection.ElementAt(0);
+            if (auxiliaryCollection.Count == 1) fullscreenButton = auxiliaryCollection.ElementAt(0);
 
             auxiliaryCollection = driver.FindElements(By.XPath("//*[@title='Changing the number of items displayed per page may impact application response times. The default is 250.']"));
             if (auxiliaryCollection.Count > 0) itemsPerPageBody = auxiliaryCollection.Where(x => x.GetAttribute("style").Contains("width")).ElementAt(0);
