@@ -254,7 +254,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
                 porscheBalPage.ProfileClick(driver);
 
-                porscheBalPage.MyProfileInstance.ItemsDropDownClick(driver);
+                porscheBalPage.MyProfileInstance.DropDownInitialization(driver);
 
                 /* Set of assertions */
 

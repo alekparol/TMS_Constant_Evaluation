@@ -92,6 +92,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+
         public int CloseButtonIsDisplayed
         {
             get
@@ -394,7 +395,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         }
         //TODO: Change void to int to catch all results. 
-        public void ItemsDropDownClick(IWebDriver driver)
+        public void DropDownInitialization(IWebDriver driver)
         {
            
             if (ItemsDropDownListIsExpanded == 0)
@@ -418,15 +419,16 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 saveButton.Click();
 
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                //wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod_c")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("pup_btn_c")));
             }           
         }
 
         //TODO: Add variable dependency
-        public void ChangeNumberOfItemsDisplayed(IWebDriver driver, int chosenNumber = 25)
+        public void ChangeNumberOfItems(IWebDriver driver, int chosenNumber = 25)
         {
 
-            ItemsDropDownClick(driver);
+            DropDownInitialization(driver);
 
             optionList.ElementAt(0).Click();
             SaveButtonClick(driver);

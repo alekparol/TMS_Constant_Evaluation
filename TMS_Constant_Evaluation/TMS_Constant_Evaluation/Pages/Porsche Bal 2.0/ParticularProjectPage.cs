@@ -161,7 +161,7 @@ namespace TMS_Constant_Evaluation.Pages
 
             if (myProfileInstance != null)
             {
-                myProfileInstance.ChangeNumberOfItemsDisplayed(driver);
+                myProfileInstance.ChangeNumberOfItems(driver, 25);
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("jnotify-item-msg")));
 
                 auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
@@ -319,7 +319,7 @@ namespace TMS_Constant_Evaluation.Pages
 
             if (myProfileInstance != null)
             {
-                myProfileInstance.ChangeNumberOfItemsDisplayed(driver);
+                myProfileInstance.ChangeNumberOfItems(driver);
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("jnotify-item-msg")));
 
                 auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
