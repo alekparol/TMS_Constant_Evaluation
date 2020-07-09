@@ -42,8 +42,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 /* Set of assertions */
 
-                Assert.IsFalse(porscheBalPage.MyProfileInstance.ItemsBodyIsNull);
-                Assert.AreEqual(6, porscheBalPage.MyProfileInstance.ItemsCount);
 
             }
 

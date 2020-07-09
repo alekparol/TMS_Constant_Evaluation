@@ -226,9 +226,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
                 /* Set of assertions */
 
                 Assert.IsFalse(porscheBalPage.MyProfileInstance.MyProfileBodyIsNull);
-                Assert.IsFalse(porscheBalPage.MyProfileInstance.ItemsBodyIsNull);
-                Assert.AreEqual(6, porscheBalPage.MyProfileInstance.ItemsCount);
-                Assert.AreEqual(250, porscheBalPage.MyProfileInstance.ItemsChosen);
+                Assert.AreEqual(0, porscheBalPage.MyProfileInstance.ItemsBodyIsNull);
+                Assert.AreEqual(6, porscheBalPage.MyProfileInstance.ItemsDropDownIsFull);
+                Assert.AreEqual(250, porscheBalPage.MyProfileInstance.ChosenItemsPerPage);
 
             }
 
@@ -258,8 +258,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                Assert.IsFalse(porscheBalPage.MyProfileInstance.ItemsBodyIsNull);
-                Assert.AreEqual(6, porscheBalPage.MyProfileInstance.ItemsCount);
+                Assert.AreEqual(0, porscheBalPage.MyProfileInstance.ItemsBodyIsNull);
+                Assert.AreEqual(6, porscheBalPage.MyProfileInstance.ItemsDropDownIsFull);
 
             }
 

@@ -23,7 +23,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         private IWebElement reduceButton;
         private IWebElement fullscreenButton;
 
-        private IWebElement itemsPerPageBody;
+        private IWebElement itemsPerPageButton;
         private IWebElement optionListParent;
 
         /* Drop Down Menu*/
@@ -207,7 +207,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             {
                 if (MyProfileBodyIsDisplayed == 1)
                 {
-                    if (itemsPerPageBody != null)
+                    if (itemsPerPageButton != null)
                     {
                         return 0;
                     }
@@ -230,7 +230,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 if (ItemsBodyIsNull == 0)
                 {
 
-                    if (itemsPerPageBody.GetAttribute("class").Contains("chosen-container-active"))
+                    if (itemsPerPageButton.GetAttribute("class").Contains("chosen-container-active"))
                     {
                         return 1;
                     }
@@ -288,67 +288,132 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 {
                     return -1;
                 }
-                return optionList.Count;
             }
         }
 
-        public int ItemsChosen
+        public int ChosenItemsPerPage
         {
             get
             {
-                return Int32.Parse(optionList.Where(x => x.GetAttribute("class").Contains("result-selected")).ElementAt(0).Text);
-            }
-        }
-
-        public bool SaveIsNull
-        {
-            get
-            {
-                if (saveButton != null)
+                if (ItemsDropDownIsFull == 1)
                 {
-                    return false;
+
+                    IEnumerable<IWebElement> auxiliaryEnumerable = optionList.Where(x => x.GetAttribute("class").Contains("result-selected"));
+                    if (auxiliaryEnumerable.Count() == 1)
+                    {
+                        return Int32.Parse(auxiliaryEnumerable.ElementAt(0).Text);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
                 }
                 else
                 {
-                    return true;
+                    return -1;
+                }
+            }
+        }
+
+        public int SaveButtonIsNull
+        {
+            get
+            {
+                if (MyProfileBodyIsNull == false)
+                {
+                    if (saveButton != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int SaveButtonIsDisplayed
+        {
+            get
+            {
+                if (SaveButtonIsNull == 0)
+                {
+                    if (saveButton.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
                 }
             }
         }
 
         /* Methods */
 
+        //TODO: Change void to int to catch all results. 
+        public void ItemsDropDownListClick(IWebDriver driver)
+        {           
+
+            if (ItemsBodyIsNull == 0)
+            {
+
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                itemsPerPageButton.Click();
+                wait.Until(ExpectedConditions.ElementExists(By.ClassName("active-result")));
+
+            }
+
+        }
+        //TODO: Change void to int to catch all results. 
         public void ItemsDropDownClick(IWebDriver driver)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            IReadOnlyCollection<IWebElement> auxiliaryCollection;
+           
+            if (ItemsDropDownListIsExpanded == 0)
+            {
 
-            itemsPerPageBody.Click();
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
-            wait.Until(ExpectedConditions.ElementExists(By.ClassName("active-result")));            
-            
-            auxiliaryCollection = optionListParent.FindElements(By.TagName("li"));
-            if (auxiliaryCollection.Count > 0) optionList = auxiliaryCollection;
+                ItemsDropDownClick(driver);
 
+                auxiliaryCollection = optionListParent.FindElements(By.TagName("li"));
+                if (auxiliaryCollection.Count > 0) optionList = auxiliaryCollection;
+            }
         }
 
-        public void SaveClick(IWebDriver driver)
+        //TODO: Change void to int to catch all results. 
+        public void SaveButtonClick(IWebDriver driver)
         {
+            if (SaveButtonIsDisplayed == 1)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                saveButton.Click();
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            saveButton.Click();
-
-            //wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
-
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+            }           
         }
 
+        //TODO: Add variable dependency
         public void ChangeNumberOfItemsDisplayed(IWebDriver driver, int chosenNumber = 25)
         {
 
             ItemsDropDownClick(driver);
 
             optionList.ElementAt(0).Click();
-            SaveClick(driver);
+            SaveButtonClick(driver);
 
         }
 
@@ -356,34 +421,44 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         public MyProfile(IWebDriver driver)
         {
+            if (driver.Url == "https://tms.lionbridge.com/")
+            {
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            IReadOnlyCollection<IWebElement> auxiliaryCollection;
-            IWebElement auxiliaryElement = null;
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                IWebElement auxiliaryElement = null;
 
-            wait.Until(ExpectedConditions.ElementExists(By.Id("pup_bdp")));
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            auxiliaryCollection = driver.FindElements(By.Id("pup"));
-            if (auxiliaryCollection.Count == 1) myProfileBody = auxiliaryCollection.ElementAt(0);
+                if (wait.Until(ExpectedConditions.ElementExists(By.Id("pup_bdp"))) != null)
+                {
+                    auxiliaryCollection = driver.FindElements(By.Id("pup"));
+                    if (auxiliaryCollection.Count == 1)
+                    {
+                        myProfileBody = auxiliaryCollection.ElementAt(0);
 
-            auxiliaryCollection = myProfileBody.FindElements(By.Id("pup_btn_c"));
-            if (auxiliaryCollection.Count == 1) closeButton = auxiliaryCollection.ElementAt(0);
+                        auxiliaryCollection = myProfileBody.FindElements(By.Id("pup_btn_c"));
+                        if (auxiliaryCollection.Count == 1) closeButton = auxiliaryCollection.ElementAt(0);
 
-            auxiliaryCollection = myProfileBody.FindElements(By.Id("pup_btn_r"));
-            if (auxiliaryCollection.Count == 1) reduceButton = auxiliaryCollection.ElementAt(0);
+                        auxiliaryCollection = myProfileBody.FindElements(By.Id("pup_btn_r"));
+                        if (auxiliaryCollection.Count == 1) reduceButton = auxiliaryCollection.ElementAt(0);
 
-            auxiliaryCollection = myProfileBody.FindElements(By.Id("pup_btn_f"));
-            if (auxiliaryCollection.Count == 1) fullscreenButton = auxiliaryCollection.ElementAt(0);
+                        auxiliaryCollection = myProfileBody.FindElements(By.Id("pup_btn_f"));
+                        if (auxiliaryCollection.Count == 1) fullscreenButton = auxiliaryCollection.ElementAt(0);
 
-            auxiliaryCollection = driver.FindElements(By.XPath("//*[@title='Changing the number of items displayed per page may impact application response times. The default is 250.']"));
-            if (auxiliaryCollection.Count > 0) itemsPerPageBody = auxiliaryCollection.Where(x => x.GetAttribute("style").Contains("width")).ElementAt(0);
+                        auxiliaryCollection = driver.FindElements(By.XPath("//*[@title='Changing the number of items displayed per page may impact application response times. The default is 250.']"));
+                        if (auxiliaryCollection.Count > 0) itemsPerPageButton = auxiliaryCollection.Where(x => x.GetAttribute("style").Contains("width")).ElementAt(0);
 
-            auxiliaryCollection = itemsPerPageBody.FindElements(By.ClassName("chosen-results"));
-            if (auxiliaryCollection.Count > 0) optionListParent = auxiliaryCollection.ElementAt(0);
+                        auxiliaryCollection = itemsPerPageButton.FindElements(By.ClassName("chosen-results"));
+                        if (auxiliaryCollection.Count > 0) optionListParent = auxiliaryCollection.ElementAt(0);
 
-            auxiliaryCollection = driver.FindElements(By.Id("pup_actSave"));
-            if (auxiliaryCollection.Count == 1) saveButton = auxiliaryCollection.ElementAt(0);
+                        auxiliaryCollection = driver.FindElements(By.Id("pup_actSave"));
+                        if (auxiliaryCollection.Count == 1) saveButton = auxiliaryCollection.ElementAt(0);
 
+                    }                   
+                }            
+
+            }
+              
         }
 
     }
