@@ -25,8 +25,10 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         private IWebElement itemsPerPageBody;
         private IWebElement optionListParent;
+
+        /* Drop Down Menu*/
         private IReadOnlyCollection<IWebElement> optionList;
-        private IWebElement save;
+        private IWebElement saveButton;
 
         /* Properties */
 
@@ -199,25 +201,93 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public bool ItemsBodyIsNull
+        public int ItemsBodyIsNull
         {
             get
             {
-                if (itemsPerPageBody != null)
+                if (MyProfileBodyIsDisplayed == 1)
                 {
-                    return false;
+                    if (itemsPerPageBody != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
                 }
                 else
                 {
-                    return true;
+                    return -1;
+                }              
+            }
+        }
+
+        public int ItemsDropDownListIsExpanded
+        {
+            get
+            {
+                if (ItemsBodyIsNull == 0)
+                {
+
+                    if (itemsPerPageBody.GetAttribute("class").Contains("chosen-container-active"))
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
+                }
+                else
+                {
+                    return -1;
                 }
             }
         }
 
-        public int ItemsCount
+        public int ItemsDropDownIsNull
         {
             get
             {
+                if (ItemsDropDownListIsExpanded == 1)
+                {
+                    if (optionList != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int ItemsDropDownIsFull
+        {
+            get
+            {
+                if (ItemsDropDownIsNull == 0)
+                {
+                    if (optionList.Count == 6)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
                 return optionList.Count;
             }
         }
@@ -234,7 +304,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             get
             {
-                if (save != null)
+                if (saveButton != null)
                 {
                     return false;
                 }
@@ -265,7 +335,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
 
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            save.Click();
+            saveButton.Click();
 
             //wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
@@ -312,7 +382,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             if (auxiliaryCollection.Count > 0) optionListParent = auxiliaryCollection.ElementAt(0);
 
             auxiliaryCollection = driver.FindElements(By.Id("pup_actSave"));
-            if (auxiliaryCollection.Count == 1) save = auxiliaryCollection.ElementAt(0);
+            if (auxiliaryCollection.Count == 1) saveButton = auxiliaryCollection.ElementAt(0);
 
         }
 
