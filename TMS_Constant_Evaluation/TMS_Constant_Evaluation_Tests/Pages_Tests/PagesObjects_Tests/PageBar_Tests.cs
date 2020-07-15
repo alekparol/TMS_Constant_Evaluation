@@ -38,21 +38,68 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 porscheBalPage.StatusClick(driver);
                 StatusPage porscheStatusPage = new StatusPage(driver);
 
-                PageBar porscheAssigneesPageBar = new PageBar(driver);
+                PageBar testPageBar = new PageBar(driver);
 
                 /* Set of assertions */
 
-                Assert.IsFalse(porscheAssigneesPageBar.PageBarContainerIsNull);
-                Assert.AreEqual(1, porscheAssigneesPageBar.PageBarContainerIsDisplayed);
+                Assert.IsFalse(testPageBar.PageBarContainerIsNull);
+                Assert.AreEqual(1, testPageBar.PageBarContainerIsDisplayed);
 
-                Assert.IsTrue(porscheAssigneesPageBar.IsParsedCorrectly);
-                Assert.IsTrue(porscheAssigneesPageBar.PageBarIsNull);
+                Assert.AreEqual(0, testPageBar.NumberOfAllItemsIsNull);
+                Assert.AreEqual(1, testPageBar.NumberOfAllItemsIsDisplayed);
 
-                Assert.AreEqual(1, porscheAssigneesPageBar.IfFirstPage);
-                Assert.AreEqual(0, porscheAssigneesPageBar.IfLastPage);
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.GetNumberOfAllItems);
 
-                Assert.AreEqual(1, porscheAssigneesPageBar.IfNextPageExists);
-                Assert.AreEqual(0, porscheAssigneesPageBar.IfPreviousPageExists);
+                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
+
+                Assert.AreEqual(1, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(0, testPageBar.CurrentPageIsLast);
+
+                Assert.AreEqual(1, testPageBar.NextPageIsNull);
+                Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
+
+
+            }
+        }
+
+        [TestMethod]
+        public void PageBar_ParsingCorrectly_Test_01()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+
+                porscheBalPage.StatusClick(driver);
+                StatusPage porscheStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+                testPageBar.ItemsPerPageClick(driver);
+
+                /* Set of assertions */
+
+                Assert.IsFalse(testPageBar.PageBarContainerIsNull);
+                Assert.AreEqual(1, testPageBar.PageBarContainerIsDisplayed);
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
+
+                Assert.AreEqual(1, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(0, testPageBar.CurrentPageIsLast);
+
+                Assert.AreEqual(1, testPageBar.NextPageIsNull);
+                Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
 
 
             }
@@ -82,18 +129,18 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                PageBar porscheAssigneesPageBar = new PageBar(driver);
+                PageBar testPageBar = new PageBar(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(porscheAssigneesPageBar.IsParsedCorrectly);
-                Assert.IsTrue(porscheAssigneesPageBar.PageBarIsNull);
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
 
-                Assert.AreEqual(1, porscheAssigneesPageBar.IfFirstPage);
-                Assert.AreEqual(0, porscheAssigneesPageBar.IfLastPage);
+                Assert.AreEqual(1, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(0, testPageBar.CurrentPageIsLast);
 
-                Assert.AreEqual(1, porscheAssigneesPageBar.IfNextPageExists);
-                Assert.AreEqual(0, porscheAssigneesPageBar.IfPreviousPageExists);
+                Assert.AreEqual(1, testPageBar.NextPageIsNull);
+                Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
 
 
             }
@@ -123,23 +170,23 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                PageBar porscheAssigneesPageBar = new PageBar(driver);
+                PageBar testPageBar = new PageBar(driver);
 
-                Assert.IsTrue(porscheAssigneesPageBar.IsParsedCorrectly);
-                Assert.IsTrue(porscheAssigneesPageBar.PageBarIsNull);
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
 
-                Assert.AreEqual(1, porscheAssigneesPageBar.IfNextPageExists);
-                porscheAssigneesPageBar.GoToNextPage(driver);
+                Assert.AreEqual(1, testPageBar.NextPageIsNull);
+                testPageBar.GoToNextPage(driver);
 
                 PageBar secondPorscheAssigneesPageBar = new PageBar(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(secondPorscheAssigneesPageBar.IsParsedCorrectly);
-                Assert.IsTrue(secondPorscheAssigneesPageBar.PageBarIsNull);
+                Assert.IsTrue(secondPorscheAssigneesPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
 
-                Assert.AreEqual(0, secondPorscheAssigneesPageBar.IfFirstPage);
-                Assert.AreEqual(0, secondPorscheAssigneesPageBar.IfLastPage);
+                Assert.AreEqual(0, secondPorscheAssigneesPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(0, secondPorscheAssigneesPageBar.CurrentPageIsLast);
                 
 
             }
@@ -169,13 +216,14 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                PageBar porscheAssigneesPageBar = new PageBar(driver);
+                PageBar testPageBar = new PageBar(driver);
 
-                Assert.IsTrue(porscheAssigneesPageBar.IsParsedCorrectly);
-                Assert.IsTrue(porscheAssigneesPageBar.PageBarIsNull);
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
 
-                Assert.AreEqual(1, porscheAssigneesPageBar.IfNextPageExists);
-                porscheAssigneesPageBar.GoToNextPage(driver);
+
+                Assert.AreEqual(1, testPageBar.NextPageIsNull);
+                testPageBar.GoToNextPage(driver);
 
                 PageBar secondPorscheAssigneesPageBar = new PageBar(driver);
                 secondPorscheAssigneesPageBar.GoToPreviousPage(driver);
@@ -184,14 +232,14 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(thirdPorscheAssignePageBar.IsParsedCorrectly);
-                Assert.IsTrue(thirdPorscheAssignePageBar.PageBarIsNull);
+                Assert.IsTrue(thirdPorscheAssignePageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
 
-                Assert.AreEqual(1, thirdPorscheAssignePageBar.IfFirstPage);
-                Assert.AreEqual(0, thirdPorscheAssignePageBar.IfLastPage);
+                Assert.AreEqual(1, thirdPorscheAssignePageBar.CurrentPageIsFirst);
+                Assert.AreEqual(0, thirdPorscheAssignePageBar.CurrentPageIsLast);
 
-                Assert.AreEqual(1, thirdPorscheAssignePageBar.IfNextPageExists);
-                Assert.AreEqual(0, thirdPorscheAssignePageBar.IfPreviousPageExists);
+                Assert.AreEqual(1, thirdPorscheAssignePageBar.NextPageIsNull);
+                Assert.AreEqual(0, thirdPorscheAssignePageBar.PreviousPageIsNull);
 
 
             }

@@ -126,7 +126,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Constructor Properties */
 
-        public bool IsParsedCorrectly
+        public bool IsParsingCorrect
         {
             get
             {

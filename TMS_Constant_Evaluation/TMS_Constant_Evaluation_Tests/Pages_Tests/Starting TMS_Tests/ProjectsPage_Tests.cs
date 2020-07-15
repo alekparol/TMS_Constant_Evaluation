@@ -34,7 +34,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(testPage.IsParsingCorrect);
+                Assert.AreEqual(1, testPage.IsParsingCorrect);
                 Assert.IsFalse(testPage.ChosenProjectIsNull);
 
             }

@@ -577,6 +577,9 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                     pageBarContainer = auxiliaryCollection.ElementAt(0);
 
+                    auxiliaryCollection = pageBarContainer.FindElements(By.Id("cup_msg"));
+                    if (auxiliaryCollection.Count == 1) numberOfAllItems = auxiliaryCollection.ElementAt(0);
+
                     auxiliaryCollection = pageBarContainer.FindElements(By.XPath("//*[@class='dd ddSelected']"));
                     if (auxiliaryCollection.Count > 0)
                     {

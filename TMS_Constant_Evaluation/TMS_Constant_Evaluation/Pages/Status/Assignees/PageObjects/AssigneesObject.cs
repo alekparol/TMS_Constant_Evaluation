@@ -94,7 +94,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
 
                 assigneePageBar = new PageBar(driver);
-                if (assigneePageBar.IsParsingCorrect && assigneePageBar.PageNavigationContainerIsNull)
+                if (assigneePageBar.IsParsingCorrect && assigneePageBar.PageNavigationContainerIsNull == 0)
                 {
 
                     isParsedCorrectly = true;

@@ -39,7 +39,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(porscheBalPage.IsParsedCorrectly);
+                Assert.IsTrue(porscheBalPage.IsParsingCorrect);
 
             }
 
@@ -62,7 +62,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                Assert.IsFalse(porscheBalPage.IsParsedCorrectly);
+                Assert.IsFalse(porscheBalPage.IsParsingCorrect);
 
             }
 
@@ -85,7 +85,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                Assert.IsFalse(porscheBalPage.IsParsedCorrectly);
+                Assert.IsFalse(porscheBalPage.IsParsingCorrect);
 
             }
 
