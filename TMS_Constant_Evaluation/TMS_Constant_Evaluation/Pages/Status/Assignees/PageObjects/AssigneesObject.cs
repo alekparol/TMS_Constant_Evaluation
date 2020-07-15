@@ -57,7 +57,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public bool IsParsedCorrectly
+        public bool IsParsingCorrect
         {
             get
             {
@@ -94,7 +94,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
 
                 assigneePageBar = new PageBar(driver);
-                if (assigneePageBar.IsParsedCorrectly && assigneePageBar.PageBarIsNull)
+                if (assigneePageBar.IsParsingCorrect && assigneePageBar.PageNavigationContainerIsNull)
                 {
 
                     isParsedCorrectly = true;
@@ -110,7 +110,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                                 foreach (IWebElement element in auxiliaryCollection)
                                 {
                                     auxiliaryAssignee = new Assignees(element);
-                                    if (auxiliaryAssignee.IsParsedCorrectly) assigneesList.Add(auxiliaryAssignee);
+                                    if (auxiliaryAssignee.IsParsingCorrect) assigneesList.Add(auxiliaryAssignee);
                                 }
                             }
 
@@ -120,11 +120,11 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                                 foreach (IWebElement element in auxiliaryCollection)
                                 {
                                     auxiliaryAssigneesJobs = new AssigneesJobs(element);
-                                    if (auxiliaryAssigneesJobs.IsParsedCorrectly) assigneesJobsList.Add(auxiliaryAssigneesJobs);
+                                    if (auxiliaryAssigneesJobs.IsParsingCorrect) assigneesJobsList.Add(auxiliaryAssigneesJobs);
                                 }
                             }
 
-                            if(assigneePageBar.IfNextPageExists == 0)
+                            if(assigneePageBar.NextPageIsNull == 0)
                             {
                                 break;
                             }

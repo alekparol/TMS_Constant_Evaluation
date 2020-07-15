@@ -33,9 +33,11 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         private IWebElement previousPage;
         private IWebElement currentPage;
+        private IWebElement lastPage;
         private IWebElement nextPage;
 
-        private IWebElement lastPage;
+        /* Number of All Items */
+        private IWebElement numberOfAllItems;
 
         private bool isParsedCorrectly;
 
@@ -185,122 +187,320 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Page Bar */
 
-        public bool PageBarIsNull
+        public int PageNavigationContainerIsNull
         {
             get
             {
-                if (pageNavigationContainer != null)
+                if (PageBarContainerIsNull == false)
                 {
-                    return false;
+                    if (pageNavigationContainer != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
                 }
                 else
+                {
+                    return -1;
+                }            
+            }
+        }
+
+        public int PageNavigationContainerIsVisible
+        {
+            get
+            {
+                if (PageNavigationContainerIsNull == 0)
+                {
+                    if (pageNavigationContainer.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int PreviousPageIsNull
+        {
+            get
+            {
+                if (PageNavigationContainerIsNull == 0)
+                {
+                    if (previousPage != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int CurrentPageIsNull
+        {
+            get
+            {
+                if (PageNavigationContainerIsNull == 0)
+                {
+                    if (currentPage != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int CurrentPageIsFirst
+        {
+            get
+            {
+                if (CurrentPageIsNull == 0)
+                {
+                    if (PreviousPageIsNull == 1)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int CurrentPageIsLast
+        {
+            get
+            {
+                if (CurrentPageIsNull == 0)
+                {
+                    if (NextPageIsNull == 1)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int GetCurrentPageNumber
+        {
+            get
+            {
+                if (CurrentPageIsNull == 0)
+                {
+                    Regex number = new Regex("\\d*");
+                    string auxiliaryString;
+
+
+                    if (number.IsMatch(currentPage.Text))
+                    {
+                        auxiliaryString = number.Match(currentPage.Text).ToString();
+                        return Int32.Parse(auxiliaryString);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int LastPageIsNull
+        {
+            get
+            {
+                if (PageNavigationContainerIsNull == 0)
+                {
+                    if (lastPage != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int GetLastPageNumber
+        {
+            get
+            {
+                if (LastPageIsNull == 0)
+                {
+                    Regex number = new Regex("\\d*");
+                    string auxiliaryString;
+
+
+                    if (number.IsMatch(lastPage.Text))
+                    {
+                        auxiliaryString = number.Match(lastPage.Text).ToString();
+                        return Int32.Parse(auxiliaryString);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int NextPageIsNull
+        {
+            get
+            {
+                if (PageNavigationContainerIsNull == 0)
+                {
+                    if (nextPage != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int NumberOfAllItemsIsNull
+        {
+            get
+            {
+                if (PageBarContainerIsNull == false)
+                {
+                    if (numberOfAllItems != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int NumberOfAllItemsIsDisplayed
+        {
+            get
+            {
+                if (NumberOfAllItemsIsNull == 0)
+                {
+                    if (numberOfAllItems.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int GetNumberOfAllItems
+        {
+            get
+            {
+                if (NumberOfAllItemsIsNull == 0)
+                {
+                    Regex number = new Regex("\\d*");
+                    string auxiliaryString;
+
+                    if (number.IsMatch(numberOfAllItems.Text))
+                    {
+                        auxiliaryString = number.Match(numberOfAllItems.Text).ToString();
+                        return Int32.Parse(auxiliaryString);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public bool IsParsingCorrect
+        {
+            get
+            {
+                if (PageBarContainerIsDisplayed == 1 && NumberOfAllItemsIsDisplayed == 1)
                 {
                     return true;
                 }
-            }
-        }
-
-        public int IfPreviousPageExists
-        {
-            get
-            {
-                if (this.PageBarIsNull)
-                {
-                    if (previousPage == null)
-                    {
-                        return 0;
-                    }
-                    else
-                    {
-                        return 1;
-                    }
-                }
                 else
                 {
-                    return -1;
+                    return false;
                 }
-            }
-        }
-
-        public int IfNextPageExists
-        {
-            get
-            {
-                if (this.PageBarIsNull)
-                {
-                    if (nextPage == null)
-                    {
-                        return 0;
-                    }
-                    else
-                    {
-                        return 1;
-                    }
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-        }
-
-        public int IfFirstPage
-        {
-            get
-            {
-                if (this.PageBarIsNull)
-                {
-                    if (this.IfPreviousPageExists == 1)
-                    {
-                        return 0;
-                    }
-                    else
-                    {
-                        return 1;
-                    }
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-        }
-
-        public int IfLastPage
-        {
-            get
-            {
-                if (this.PageBarIsNull)
-                {
-                    if (this.IfNextPageExists == 1)
-                    {
-                        return 0;
-                    }
-                    else
-                    {
-                        return 1;
-                    }
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-        }
-
-        public IWebElement CurrentPage
-        {
-            get
-            {
-                return currentPage;
-            }
-        }
-
-        public bool IsParsedCorrectly
-        {
-            get
-            {
-                return isParsedCorrectly;
             }
         }
 
@@ -336,7 +536,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            if (this.IfNextPageExists == 1)
+            if (this.NextPageIsNull == 1)
             {
                 nextPage.Click();
 
@@ -350,7 +550,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            if (this.IfPreviousPageExists == 1)
+            if (this.PreviousPageIsNull == 1)
             {
                 previousPage.Click();
 
@@ -360,32 +560,28 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         }
 
         /* Constructors */
-
-        /* IWebDriver as a passed argument temporary. 
-         * Also, we assume that the page is fully loaded properly so we are not waiting until some element. */
         public PageBar(IWebDriver driver)
         {
             if (driver.Url == "https://tms.lionbridge.com/")
             {
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-                wait.Until(ExpectedConditions.ElementExists(By.ClassName("pgr_lst")));
 
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
                 string auxiliaryString;
 
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                wait.Until(ExpectedConditions.ElementExists(By.Id("cup_pgp")));
+                 
                 auxiliaryCollection = driver.FindElements(By.Id("cup_pgp"));
                 if (auxiliaryCollection.Count == 1)
                 {
 
-                    isParsedCorrectly = true;
-
                     pageBarContainer = auxiliaryCollection.ElementAt(0);
-                    auxiliaryCollection = pageBarContainer.FindElements(By.XPath("//*[@class='dd ddSelected']"));
 
+                    auxiliaryCollection = pageBarContainer.FindElements(By.XPath("//*[@class='dd ddSelected']"));
                     if (auxiliaryCollection.Count > 0)
                     {
 
-                        itemsPerPageContainer  = auxiliaryCollection.Where(x => x.GetAttribute("id").Contains("msdrpdd")).ElementAt(0);
+                        itemsPerPageContainer  = auxiliaryCollection.ElementAt(0);
 
                         auxiliaryCollection = itemsPerPageContainer.FindElements(By.ClassName("ddChild"));
                         if (auxiliaryCollection.Count == 1) itemsPerPageOptionsContainer = auxiliaryCollection.ElementAt(0);

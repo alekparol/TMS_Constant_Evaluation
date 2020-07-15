@@ -40,7 +40,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(porscheStatusPage.IsParsedCorrectly);
+                Assert.IsTrue(porscheStatusPage.IsParsingCorrect);
 
             }
 

@@ -45,7 +45,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 AssigneesObject asob = new AssigneesObject(driver);
 
                 /* Set of assertions */
-                Assert.AreEqual(true, asob.IsParsedCorrectly);
+                Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.AssigneesJobsListSize);
                 Assert.AreNotEqual(0, asob.AssigneesListSize);
 

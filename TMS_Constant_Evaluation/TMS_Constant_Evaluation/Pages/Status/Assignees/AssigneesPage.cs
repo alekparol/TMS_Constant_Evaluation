@@ -51,7 +51,7 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
-        public bool IsParsedCorrectly
+        public bool IsParsingCorrect
         {
             get
             {

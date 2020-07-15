@@ -34,7 +34,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(testPage.IsParsedCorrectly);
+                Assert.IsTrue(testPage.IsParsingCorrect);
                 Assert.IsFalse(testPage.ChosenProjectIsNull);
 
             }
@@ -57,7 +57,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(testPage.IsParsedCorrectly);
+                Assert.IsTrue(testPage.IsParsingCorrect);
                 Assert.IsFalse(testPage.ChosenProjectIsNull);
 
             }
@@ -80,7 +80,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(testPage.IsParsedCorrectly);
+                Assert.IsTrue(testPage.IsParsingCorrect);
                 Assert.IsFalse(testPage.ChosenProjectIsNull);
 
             }
@@ -102,7 +102,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsTrue(testPage.IsParsedCorrectly);
+                Assert.IsTrue(testPage.IsParsingCorrect);
 
             }
         }
@@ -124,7 +124,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsFalse(testPage.IsParsedCorrectly);
+                Assert.IsFalse(testPage.IsParsingCorrect);
                 Assert.IsTrue(testPage.ChosenProjectIsNull);
 
             }
@@ -146,7 +146,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Starting_TMS_Tests
 
                 /* Set of assertions */
 
-                Assert.IsFalse(testPage.IsParsedCorrectly);
+                Assert.IsFalse(testPage.IsParsingCorrect);
 
             }
         }

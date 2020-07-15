@@ -67,7 +67,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public bool IsParsedCorrectly
+        public bool IsParsingCorrect
         {
             get
             {
@@ -84,7 +84,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
             Regex jobsNumber = new Regex("\\d*");
 
-            if (assignee.IsParsedCorrectly)
+            if (assignee.IsParsingCorrect)
             {
                 assigneeName = assignee.AssigneeName;
                 assigneeJobsNumber = assignee.AssingeeJobsInt;

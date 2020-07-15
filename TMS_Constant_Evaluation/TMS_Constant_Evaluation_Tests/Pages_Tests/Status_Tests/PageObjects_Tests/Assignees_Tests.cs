@@ -61,7 +61,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 foreach (Assignees assignee in assignees)
                 {
 
-                    Assert.AreEqual(true, assignee.IsParsedCorrectly);
+                    Assert.AreEqual(true, assignee.IsParsingCorrect);
                     Assert.AreNotEqual("", assignee.AssigneeName);
                     Assert.AreNotEqual("", assignee.AssigneeJobsNumber);
                     Assert.AreNotEqual(0, assignee.AssingeeJobsInt);
