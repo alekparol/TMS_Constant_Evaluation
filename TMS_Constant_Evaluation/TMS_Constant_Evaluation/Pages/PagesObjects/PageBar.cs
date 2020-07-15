@@ -20,28 +20,176 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         private IWebElement pageBarContainer;
 
-        private IWebElement itemsPerPage;
+        /* Items Per Page Drop Down (Could be transited to a new class) */
+        private IWebElement itemsPerPageContainer;
 
-        private IWebElement itemsPerPageChild;
-        private IWebElement itemsPerPageSelected;
+        private IWebElement itemsPerPageOptionsContainer;
         private IReadOnlyCollection<IWebElement> itemsPerPageOptions;
+        
+        private IWebElement itemsPerPageSelected; // Might be useless - use property instead.
 
-        private IWebElement pageContainer;
+        /* Page Bar */
+        private IWebElement pageNavigationContainer;
 
         private IWebElement previousPage;
         private IWebElement currentPage;
-        private IWebElement lastPage;
         private IWebElement nextPage;
+
+        private IWebElement lastPage;
 
         private bool isParsedCorrectly;
 
         /* Properties */
 
-        public bool IfPageBarExists
+        public bool PageBarContainerIsNull
         {
             get
             {
-                if (pageContainer == null)
+                if (pageBarContainer != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public int PageBarContainerIsDisplayed
+        {
+            get
+            {
+                if (PageBarContainerIsNull == false)
+                {
+                    if (pageBarContainer.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1; 
+                }
+            }
+        }
+
+        /* Items Per Page Drop Down */
+
+        public int ItemsPerPageContainerIsNull
+        {
+            get
+            {
+                if (PageBarContainerIsNull == false)
+                {
+                    if (itemsPerPageContainer  != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int ItemsPerPageOptionsContainerIsNull
+        {
+            get
+            {
+                if (ItemsPerPageContainerIsNull == 0)
+                {
+                    if (itemsPerPageOptionsContainer != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1; 
+                }
+            }
+        }
+
+        public int ItemsPerPageOptionsContainerIsDisplayed
+        {
+            get
+            {
+                if (ItemsPerPageOptionsContainerIsNull == 0)
+                {
+                    if (itemsPerPageOptionsContainer.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1; 
+                }
+            }
+        }
+
+        public int ItemsPerPageOptionsIsNull
+        {
+            get
+            {
+                if (ItemsPerPageOptionsContainerIsNull == 0)
+                { 
+                    if (itemsPerPageOptions != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int ItemsPerPageOptionsCount
+        {
+            get
+            {
+                if (ItemsPerPageOptionsIsNull == 0)
+                {
+                    return itemsPerPageOptions.Count;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        /* Page Bar */
+
+        public bool PageBarIsNull
+        {
+            get
+            {
+                if (pageNavigationContainer != null)
                 {
                     return false;
                 }
@@ -56,7 +204,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             get
             {
-                if (this.IfPageBarExists)
+                if (this.PageBarIsNull)
                 {
                     if (previousPage == null)
                     {
@@ -78,7 +226,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             get
             {
-                if (this.IfPageBarExists)
+                if (this.PageBarIsNull)
                 {
                     if (nextPage == null)
                     {
@@ -100,7 +248,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             get
             {
-                if (this.IfPageBarExists)
+                if (this.PageBarIsNull)
                 {
                     if (this.IfPreviousPageExists == 1)
                     {
@@ -122,7 +270,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             get
             {
-                if (this.IfPageBarExists)
+                if (this.PageBarIsNull)
                 {
                     if (this.IfNextPageExists == 1)
                     {
@@ -162,7 +310,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            itemsPerPage.Click();
+            itemsPerPageContainer.Click();
             wait.Until(ExpectedConditions.ElementExists(By.ClassName("ddChild borderTop")));
 
         }
@@ -171,9 +319,9 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            if (itemsPerPage != null)
+            if (itemsPerPageContainer  != null)
             {
-                itemsPerPage.Click();
+                itemsPerPageContainer.Click();
                 itemsPerPageOptions.ElementAt(itemsPerPageOptions.Count - 1).Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
@@ -237,12 +385,12 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     if (auxiliaryCollection.Count > 0)
                     {
 
-                        itemsPerPage = auxiliaryCollection.Where(x => x.GetAttribute("id").Contains("msdrpdd")).ElementAt(0);
+                        itemsPerPageContainer  = auxiliaryCollection.Where(x => x.GetAttribute("id").Contains("msdrpdd")).ElementAt(0);
 
-                        auxiliaryCollection = itemsPerPage.FindElements(By.ClassName("ddChild"));
-                        if (auxiliaryCollection.Count == 1) itemsPerPageChild = auxiliaryCollection.ElementAt(0);
+                        auxiliaryCollection = itemsPerPageContainer.FindElements(By.ClassName("ddChild"));
+                        if (auxiliaryCollection.Count == 1) itemsPerPageOptionsContainer = auxiliaryCollection.ElementAt(0);
 
-                        auxiliaryCollection = itemsPerPageChild.FindElements(By.TagName("a"));
+                        auxiliaryCollection = itemsPerPageOptionsContainer.FindElements(By.TagName("a"));
                         if (auxiliaryCollection.Count > 0) itemsPerPageOptions = auxiliaryCollection;
 
                         itemsPerPageSelected = itemsPerPageOptions.Where(x => x.GetAttribute("class").Contains("selected")).ElementAt(0);
@@ -253,18 +401,18 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     if (auxiliaryCollection.Count > 0)
                     {
 
-                        pageContainer = auxiliaryCollection.ElementAt(0);
+                        pageNavigationContainer = auxiliaryCollection.ElementAt(0);
 
-                        auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_prv"));
+                        auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_prv"));
                         if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);
 
-                        auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_nxt"));
+                        auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_nxt"));
                         if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
 
-                        auxiliaryCollection = pageContainer.FindElements(By.TagName("li"));
+                        auxiliaryCollection = pageNavigationContainer.FindElements(By.TagName("li"));
                         if (auxiliaryCollection.Count > 0) lastPage = auxiliaryCollection.ElementAt(auxiliaryCollection.Count - 2);
 
-                        auxiliaryCollection = pageContainer.FindElements(By.ClassName("pgr_on"));
+                        auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_on"));
                         if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);
 
                     }
