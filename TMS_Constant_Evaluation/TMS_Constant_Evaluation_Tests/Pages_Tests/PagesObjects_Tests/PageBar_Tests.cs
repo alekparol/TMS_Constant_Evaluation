@@ -6,6 +6,7 @@ using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using TMS_Constant_Evaluation;
 using TMS_Constant_Evaluation.Pages;
@@ -17,8 +18,10 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
     public class PageBar_Tests
     {
 
+        /* Parsing Corretly Tests */
+
         [TestMethod]
-        public void PageBar_ParsingCorrectly_Test_0()
+        public void PageBar_ParsingCorrectly_Test_1()
         {
             using (var driver = new ChromeDriver())
             {
@@ -49,19 +52,145 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 Assert.AreEqual(1, testPageBar.NumberOfAllItemsIsDisplayed);
 
                 Assert.IsTrue(testPageBar.IsParsingCorrect);
-                Assert.AreEqual(0, testPageBar.GetNumberOfAllItems);
+                Assert.IsTrue(testPageBar.GetNumberOfAllItems > 0);
 
                 Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
 
                 Assert.AreEqual(1, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(1, testPageBar.GetCurrentPageNumber);
+
                 Assert.AreEqual(0, testPageBar.CurrentPageIsLast);
+                Assert.AreNotEqual(0, testPageBar.GetLastPageNumber);
 
-                Assert.AreEqual(1, testPageBar.NextPageIsNull);
-                Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
+                Assert.AreEqual(0, testPageBar.NextPageIsNull);
+                Assert.AreEqual(1, testPageBar.PreviousPageIsNull);
+            }
+        }
 
+        [TestMethod]
+        public void PageBar_ParsingCorrectly_Test_2()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                qlikStatusPage.ActivityFilterClick();
+                qlikStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
+                
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsFalse(testPageBar.PageBarContainerIsNull);
+                Assert.AreEqual(1, testPageBar.PageBarContainerIsDisplayed);
+
+                Assert.AreEqual(0, testPageBar.NumberOfAllItemsIsNull);
+                Assert.AreEqual(1, testPageBar.NumberOfAllItemsIsDisplayed);
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.IsTrue(testPageBar.GetNumberOfAllItems > 0);
+
+                Assert.AreEqual(1, testPageBar.PageNavigationContainerIsNull);
+
+                Assert.AreEqual(-1, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(-1, testPageBar.GetCurrentPageNumber);
+
+                Assert.AreEqual(-1, testPageBar.CurrentPageIsLast);
+                Assert.AreEqual(-1, testPageBar.GetLastPageNumber);
+
+                Assert.AreEqual(-1, testPageBar.NextPageIsNull);
+                Assert.AreEqual(-1, testPageBar.PreviousPageIsNull);
+            }
+        }
+
+        [TestMethod]
+        public void PageBar_ParsingCorrectly_Test_3()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://lionbridge.com/");
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(testPageBar.PageBarContainerIsNull);
+                Assert.AreEqual(-1, testPageBar.PageBarContainerIsDisplayed);
+
+                Assert.AreEqual(-1, testPageBar.NumberOfAllItemsIsNull);
+                Assert.AreEqual(-1, testPageBar.NumberOfAllItemsIsDisplayed);
+
+                Assert.IsFalse(testPageBar.IsParsingCorrect);
+                Assert.IsFalse(testPageBar.GetNumberOfAllItems > 0);
+
+                Assert.AreEqual(-1, testPageBar.PageNavigationContainerIsNull);
+
+                Assert.AreEqual(-1, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(-1, testPageBar.GetCurrentPageNumber);
+
+                Assert.AreEqual(-1, testPageBar.CurrentPageIsLast);
+                Assert.AreEqual(-1, testPageBar.GetLastPageNumber);
+
+                Assert.AreEqual(-1, testPageBar.NextPageIsNull);
+                Assert.AreEqual(-1, testPageBar.PreviousPageIsNull);
+            }
+        }
+
+        /* ItemsPerPageClick Tests */
+
+        [TestMethod]
+        public void PageBar_ItemsPerPageClick_Test_1()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                testPageBar.ItemsPerPageClick(driver);
+                Assert.AreEqual(1, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
 
             }
         }
+
 
         [TestMethod]
         public void PageBar_ParsingCorrectly_Test_01()
@@ -106,7 +235,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void PageBar_ParsingCorrectly_Test_1()
+        public void PageBar_ParsingCorrectly_Test_001()
         {
             using (var driver = new ChromeDriver())
             {
@@ -147,7 +276,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void PageBar_GoToNextPage_Test_1()
+        public void PageBar_GoToNextPage_Test_001()
         {
             using (var driver = new ChromeDriver())
             {
@@ -193,7 +322,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void PageBar_GoToPreviousPage_Test_1()
+        public void PageBar_GoToPreviousPage_Test_001()
         {
             using (var driver = new ChromeDriver())
             {

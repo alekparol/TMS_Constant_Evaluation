@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -511,7 +512,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
             itemsPerPageContainer.Click();
-            wait.Until(ExpectedConditions.ElementExists(By.ClassName("ddChild borderTop")));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='ddChild borderTop']")));
 
         }
 
@@ -580,45 +581,49 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     auxiliaryCollection = pageBarContainer.FindElements(By.Id("cup_msg"));
                     if (auxiliaryCollection.Count == 1) numberOfAllItems = auxiliaryCollection.ElementAt(0);
 
-                    auxiliaryCollection = pageBarContainer.FindElements(By.XPath("//*[@class='dd ddSelected']"));
-                    if (auxiliaryCollection.Count > 0)
+                    // Here we should have the number of items per page set in a profile window. 
+
+                    if (GetNumberOfAllItems > 25)
                     {
+                        auxiliaryCollection = pageBarContainer.FindElements(By.XPath("//*[@class='dd ddSelected']"));
+                        if (auxiliaryCollection.Count > 0)
+                        {
 
-                        itemsPerPageContainer  = auxiliaryCollection.ElementAt(0);
+                            itemsPerPageContainer = auxiliaryCollection.ElementAt(0);
 
-                        auxiliaryCollection = itemsPerPageContainer.FindElements(By.ClassName("ddChild"));
-                        if (auxiliaryCollection.Count == 1) itemsPerPageOptionsContainer = auxiliaryCollection.ElementAt(0);
+                            auxiliaryCollection = itemsPerPageContainer.FindElements(By.ClassName("ddChild"));
+                            if (auxiliaryCollection.Count == 1) itemsPerPageOptionsContainer = auxiliaryCollection.ElementAt(0);
 
-                        auxiliaryCollection = itemsPerPageOptionsContainer.FindElements(By.TagName("a"));
-                        if (auxiliaryCollection.Count > 0) itemsPerPageOptions = auxiliaryCollection;
+                            auxiliaryCollection = itemsPerPageOptionsContainer.FindElements(By.TagName("a"));
+                            if (auxiliaryCollection.Count > 0) itemsPerPageOptions = auxiliaryCollection;
 
-                        itemsPerPageSelected = itemsPerPageOptions.Where(x => x.GetAttribute("class").Contains("selected")).ElementAt(0);
+                            itemsPerPageSelected = itemsPerPageOptions.Where(x => x.GetAttribute("class").Contains("selected")).ElementAt(0);
+
+                        }
+
+                        auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("pgr_lst"));
+                        if (auxiliaryCollection.Count > 0)
+                        {
+
+                            pageNavigationContainer = auxiliaryCollection.ElementAt(0);
+
+                            auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_prv"));
+                            if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);
+
+                            auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_nxt"));
+                            if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
+
+                            auxiliaryCollection = pageNavigationContainer.FindElements(By.TagName("li"));
+                            if (auxiliaryCollection.Count > 0) lastPage = auxiliaryCollection.ElementAt(auxiliaryCollection.Count - 2);
+
+                            auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_on"));
+                            if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);
+
+                        }
 
                     }
-
-                    auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("pgr_lst"));
-                    if (auxiliaryCollection.Count > 0)
-                    {
-
-                        pageNavigationContainer = auxiliaryCollection.ElementAt(0);
-
-                        auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_prv"));
-                        if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);
-
-                        auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_nxt"));
-                        if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
-
-                        auxiliaryCollection = pageNavigationContainer.FindElements(By.TagName("li"));
-                        if (auxiliaryCollection.Count > 0) lastPage = auxiliaryCollection.ElementAt(auxiliaryCollection.Count - 2);
-
-                        auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_on"));
-                        if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);
-
-                    }
-
-
-                }  
-
+                }
+                
             }
 
         }
