@@ -191,6 +191,109 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
             }
         }
 
+        [TestMethod]
+        public void PageBar_ItemsPerPageClick_Test_2()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                qlikStatusPage.ActivityFilterClick();
+                qlikStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(-1, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                testPageBar.ItemsPerPageClick(driver);
+                Assert.AreEqual(-1, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+            }
+        }
+
+        [TestMethod]
+        public void PageBar_ItemsPerPageClick_Test_3()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://lionbridge.com/");
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsFalse(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(-1, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                testPageBar.ItemsPerPageClick(driver);
+                Assert.AreEqual(-1, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+            }
+        }
+
+        /* ItemsPerPageSetMaximalValues Tests */
+
+        [TestMethod]
+        public void PageBar_ItemsPerPageSetMaximalValue_Test_1()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                Assert.AreEqual(250, testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetMaximalValues(driver);
+
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+                Assert.AreEqual(1000, testPageBar.ItemsPerPageCurrentSelection);
+
+            }
+        }
+
 
         [TestMethod]
         public void PageBar_ParsingCorrectly_Test_01()

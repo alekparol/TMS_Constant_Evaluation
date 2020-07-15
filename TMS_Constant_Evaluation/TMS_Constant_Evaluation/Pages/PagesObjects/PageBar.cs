@@ -26,9 +26,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         private IWebElement itemsPerPageOptionsContainer;
         private IReadOnlyCollection<IWebElement> itemsPerPageOptions;
-        
-        private IWebElement itemsPerPageSelected; // Might be useless - use property instead.
-
+     
         /* Page Bar */
         private IWebElement pageNavigationContainer;
 
@@ -186,6 +184,35 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public int ItemsPerPageCurrentSelection
+        {
+            get
+            {
+                if (ItemsPerPageOptionsCount > 0)
+                {
+                    IEnumerable<IWebElement> auxiliaryIEnumerable;
+                    auxiliaryIEnumerable = itemsPerPageOptions.Where(x => x.GetAttribute("class").Contains("selected"));
+
+                    Regex number = new Regex("\\d*");
+                    string auxiliaryString;
+
+                    if (auxiliaryIEnumerable.Count() > 0)
+                    {
+                        auxiliaryString = number.Match(auxiliaryIEnumerable.ElementAt(0).FindElement(By.TagName("span")).GetAttribute("textContent")).ToString();
+                        return Int32.Parse(auxiliaryString);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
         /* Page Bar */
 
         public int PageNavigationContainerIsNull
@@ -328,7 +355,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 {
                     Regex number = new Regex("\\d*");
                     string auxiliaryString;
-
 
                     if (number.IsMatch(currentPage.Text))
                     {
@@ -507,21 +533,26 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Methods */
 
+        /* ItemsPerPage Methods */
+
         public void ItemsPerPageClick(IWebDriver driver)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            if (ItemsPerPageContainerIsNull == 0)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            itemsPerPageContainer.Click();
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='ddChild borderTop']")));
-
+                itemsPerPageContainer.Click();
+                wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='ddChild borderTop']")));
+            }         
         }
 
-        public void SetMaximalItems(IWebDriver driver)
+        public void ItemsPerPageSetMaximalValues(IWebDriver driver)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-            if (itemsPerPageContainer  != null)
+            if (ItemsPerPageContainerIsNull == 0)
             {
+
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
                 itemsPerPageContainer.Click();
                 itemsPerPageOptions.ElementAt(itemsPerPageOptions.Count - 1).Click();
 
@@ -529,7 +560,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
 
             }
-
         }
 
         public void GoToNextPage(IWebDriver driver)
@@ -596,8 +626,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                             auxiliaryCollection = itemsPerPageOptionsContainer.FindElements(By.TagName("a"));
                             if (auxiliaryCollection.Count > 0) itemsPerPageOptions = auxiliaryCollection;
-
-                            itemsPerPageSelected = itemsPerPageOptions.Where(x => x.GetAttribute("class").Contains("selected")).ElementAt(0);
 
                         }
 
