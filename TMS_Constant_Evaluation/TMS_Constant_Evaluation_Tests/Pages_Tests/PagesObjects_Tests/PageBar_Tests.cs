@@ -253,10 +253,10 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
             }
         }
 
-        /* ItemsPerPageSetMaximalValues Tests */
+        /* ItemsPerPageSetChosenValue Tests */
 
         [TestMethod]
-        public void PageBar_ItemsPerPageSetMaximalValue_Test_1()
+        public void PageBar_ItemsPerPageSetChosenValue_Test_1()
         {
             using (var driver = new ChromeDriver())
             {
@@ -283,19 +283,214 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 Assert.IsTrue(testPageBar.IsParsingCorrect);
                 Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
 
-                Assert.AreEqual(250, testPageBar.ItemsPerPageCurrentSelection);
-                testPageBar.ItemsPerPageSetMaximalValues(driver);
+                Assert.AreEqual("250", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetChosenValue(driver, "100");
 
                 testPageBar = new PageBar(driver);
 
                 Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
-                Assert.AreEqual(1000, testPageBar.ItemsPerPageCurrentSelection);
+                Assert.AreEqual("100", testPageBar.ItemsPerPageCurrentSelection);
 
             }
         }
 
         [TestMethod]
-        public void PageBar_ItemsPerPageSetMaximalValue_Test_2()
+        public void PageBar_ItemsPerPageSetChosenValue_Test_2()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                Assert.AreEqual("250", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetChosenValue(driver, "25");
+
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+                Assert.AreEqual("25", testPageBar.ItemsPerPageCurrentSelection);
+
+            }
+        }
+
+        [TestMethod]
+        public void PageBar_ItemsPerPageSetChosenValue_Test_3()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                Assert.AreEqual("250", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetChosenValue(driver, "50");
+
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+                Assert.AreEqual("50", testPageBar.ItemsPerPageCurrentSelection);
+
+            }
+        }
+
+        [TestMethod]
+        public void PageBar_ItemsPerPageSetChosenValue_Test_4()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                Assert.AreEqual("250", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetChosenValue(driver, "100");
+
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+                Assert.AreEqual("100", testPageBar.ItemsPerPageCurrentSelection);
+
+            }
+        }
+
+        [TestMethod]
+        public void PageBar_ItemsPerPageSetChosenValue_Test_5()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                Assert.AreEqual("250", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetChosenValue(driver, "500");
+
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+                Assert.AreEqual("500", testPageBar.ItemsPerPageCurrentSelection);
+
+            }
+        }
+
+        [TestMethod]
+        public void PageBar_ItemsPerPageSetChosenValue_Test_6()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                Assert.AreEqual("250", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetChosenValue(driver, "1000");
+
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+                Assert.AreEqual("1000", testPageBar.ItemsPerPageCurrentSelection);
+
+            }
+        }
+
+        [TestMethod]
+        public void PageBar_ItemsPerPageSetChosenValue_Test_7()
         {
             using (var driver = new ChromeDriver())
             {
@@ -325,19 +520,19 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 Assert.IsTrue(testPageBar.IsParsingCorrect);
                 Assert.AreEqual(-1, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
 
-                Assert.AreEqual(-1, testPageBar.ItemsPerPageCurrentSelection);
-                testPageBar.ItemsPerPageSetMaximalValues(driver);
+                Assert.AreEqual("-1", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetChosenValue(driver, "25");
 
                 testPageBar = new PageBar(driver);
 
                 Assert.AreEqual(-1, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
-                Assert.AreEqual(-1, testPageBar.ItemsPerPageCurrentSelection);
+                Assert.AreEqual("-1", testPageBar.ItemsPerPageCurrentSelection);
 
             }
         }
 
         [TestMethod]
-        public void PageBar_ItemsPerPageSetMaximalValue_Test_3()
+        public void PageBar_ItemsPerPageSetChosenValue_Test_8()
         {
             using (var driver = new ChromeDriver())
             {
@@ -355,20 +550,21 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 Assert.IsFalse(testPageBar.IsParsingCorrect);
                 Assert.AreEqual(-1, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
 
-                Assert.AreEqual(-1, testPageBar.ItemsPerPageCurrentSelection);
-                testPageBar.ItemsPerPageSetMaximalValues(driver);
+                Assert.AreEqual("-1", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetChosenValue(driver, "25");
 
                 testPageBar = new PageBar(driver);
 
                 Assert.AreEqual(-1, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
-                Assert.AreEqual(-1, testPageBar.ItemsPerPageCurrentSelection);
+                Assert.AreEqual("-1", testPageBar.ItemsPerPageCurrentSelection);
 
             }
         }
 
+        /* ItemsPerPageSetMaximalValue and MinimalValue Tests */
 
         [TestMethod]
-        public void PageBar_ParsingCorrectly_Test_01()
+        public void PageBar_ItemsPerPageSetMaxMinValue_Test_1()
         {
             using (var driver = new ChromeDriver())
             {
@@ -379,38 +575,115 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = "Qlik";
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
 
-                porscheBalPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
 
                 PageBar testPageBar = new PageBar(driver);
-                testPageBar.ItemsPerPageClick(driver);
 
                 /* Set of assertions */
 
-                Assert.IsFalse(testPageBar.PageBarContainerIsNull);
-                Assert.AreEqual(1, testPageBar.PageBarContainerIsDisplayed);
+                Assert.IsTrue(testPageBar.IsParsingCorrect);
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+
+                Assert.AreEqual("250", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetMaximalValue(driver);
+
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+                Assert.AreEqual("1000", testPageBar.ItemsPerPageCurrentSelection);
+
+            }
+        }
+
+        [TestMethod]
+        public void PageBar_ItemsPerPageSetMaxMinValue_Test_2()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
 
                 Assert.IsTrue(testPageBar.IsParsingCorrect);
-                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
 
+                Assert.AreEqual("250", testPageBar.ItemsPerPageCurrentSelection);
+                testPageBar.ItemsPerPageSetMinimalValue(driver);
+
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.ItemsPerPageOptionsContainerIsDisplayed);
+                Assert.AreEqual("25", testPageBar.ItemsPerPageCurrentSelection);
+
+            }
+        }
+
+        /* GoToNextPage Tests */
+
+        [TestMethod]
+        public void PageBar_GoToNextPage_Test_1()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.ProfileClick(driver);
+                qlikPage.ChangeItemsPerPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(0, testPageBar.CurrentPageIsNull);
                 Assert.AreEqual(1, testPageBar.CurrentPageIsFirst);
                 Assert.AreEqual(0, testPageBar.CurrentPageIsLast);
 
-                Assert.AreEqual(1, testPageBar.NextPageIsNull);
-                Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
-
+                Assert.AreEqual(1, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(1, testPageBar.PreviousPageIsNull);
+                Assert.AreEqual(0, testPageBar.NextPageIsNull);
 
             }
         }
 
         [TestMethod]
-        public void PageBar_ParsingCorrectly_Test_001()
+        public void PageBar_GoToNextPage_Test_2()
         {
             using (var driver = new ChromeDriver())
             {
@@ -421,37 +694,42 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = "Qlik";
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
 
-                porscheBalPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                qlikPage.ProfileClick(driver);
+                qlikPage.ChangeItemsPerPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
-                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
 
                 PageBar testPageBar = new PageBar(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(testPageBar.IsParsingCorrect);
-                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
+                Assert.AreEqual(1, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(1, testPageBar.PreviousPageIsNull);
+                Assert.AreEqual(0, testPageBar.NextPageIsNull);
 
-                Assert.AreEqual(1, testPageBar.CurrentPageIsFirst);
+                testPageBar.GoToNextPage(driver);
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.CurrentPageIsNull);
+                Assert.AreEqual(0, testPageBar.CurrentPageIsFirst);
                 Assert.AreEqual(0, testPageBar.CurrentPageIsLast);
 
-                Assert.AreEqual(1, testPageBar.NextPageIsNull);
+                Assert.AreEqual(2, testPageBar.GetCurrentPageNumber);
                 Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
-
+                Assert.AreEqual(0, testPageBar.NextPageIsNull);
 
             }
         }
 
         [TestMethod]
-        public void PageBar_GoToNextPage_Test_001()
+        public void PageBar_GoToNextPage_Test_3()
         {
             using (var driver = new ChromeDriver())
             {
@@ -462,92 +740,44 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = "Qlik";
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
 
-                porscheBalPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                qlikPage.ProfileClick(driver);
+                qlikPage.ChangeItemsPerPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
-                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
 
                 PageBar testPageBar = new PageBar(driver);
 
-                Assert.IsTrue(testPageBar.IsParsingCorrect);
-                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
-
-                Assert.AreEqual(1, testPageBar.NextPageIsNull);
-                testPageBar.GoToNextPage(driver);
-
-                PageBar secondPorscheAssigneesPageBar = new PageBar(driver);
-
                 /* Set of assertions */
 
-                Assert.IsTrue(secondPorscheAssigneesPageBar.IsParsingCorrect);
-                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
+                Assert.AreEqual(1, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(1, testPageBar.PreviousPageIsNull);
+                Assert.AreEqual(0, testPageBar.NextPageIsNull);
 
-                Assert.AreEqual(0, secondPorscheAssigneesPageBar.CurrentPageIsFirst);
-                Assert.AreEqual(0, secondPorscheAssigneesPageBar.CurrentPageIsLast);
-                
+                while(testPageBar.CurrentPageIsLast == 0)
+                {
+                    testPageBar.GoToNextPage(driver);
+                    testPageBar = new PageBar(driver);
+                }
+
+                Assert.AreEqual(0, testPageBar.CurrentPageIsNull);
+                Assert.AreEqual(0, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(1, testPageBar.CurrentPageIsLast);
+
+                Assert.AreEqual(0, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
+                Assert.AreEqual(1, testPageBar.NextPageIsNull);
 
             }
         }
 
-        [TestMethod]
-        public void PageBar_GoToPreviousPage_Test_001()
-        {
-            using (var driver = new ChromeDriver())
-            {
-
-                /* Initialization */
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-                driver.Manage().Window.Maximize();
-                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
-
-                string projectTitle = "Porsche BAL 2.0";
-                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
-
-                testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
-
-                porscheBalPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
-
-                porscheStatusPage.AssigneesClick(driver);
-                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
-
-                PageBar testPageBar = new PageBar(driver);
-
-                Assert.IsTrue(testPageBar.IsParsingCorrect);
-                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
-
-
-                Assert.AreEqual(1, testPageBar.NextPageIsNull);
-                testPageBar.GoToNextPage(driver);
-
-                PageBar secondPorscheAssigneesPageBar = new PageBar(driver);
-                secondPorscheAssigneesPageBar.GoToPreviousPage(driver);
-
-                PageBar thirdPorscheAssignePageBar = new PageBar(driver);
-
-                /* Set of assertions */
-
-                Assert.IsTrue(thirdPorscheAssignePageBar.IsParsingCorrect);
-                Assert.AreEqual(0, testPageBar.PageNavigationContainerIsNull);
-
-                Assert.AreEqual(1, thirdPorscheAssignePageBar.CurrentPageIsFirst);
-                Assert.AreEqual(0, thirdPorscheAssignePageBar.CurrentPageIsLast);
-
-                Assert.AreEqual(1, thirdPorscheAssignePageBar.NextPageIsNull);
-                Assert.AreEqual(0, thirdPorscheAssignePageBar.PreviousPageIsNull);
-
-
-            }
-        }
+        /* GoToPreviousPage Tests */
 
     }
 }

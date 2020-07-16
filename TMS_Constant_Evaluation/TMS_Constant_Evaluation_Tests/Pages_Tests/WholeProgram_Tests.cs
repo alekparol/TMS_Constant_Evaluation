@@ -48,7 +48,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
 
                 PageBar pageBar = new PageBar(driver);
-                pageBar.ItemsPerPageSetMaximalValues(driver);
+                pageBar.ItemsPerPageSetMaximalValue(driver);
 
                 Thread.Sleep(5000);
 
@@ -122,7 +122,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 Thread.Sleep(5000);
 
                 pageBar = new PageBar(driver);
-                pageBar.ItemsPerPageSetMaximalValues(driver);
+                pageBar.ItemsPerPageSetMaximalValue(driver);
 
                 Thread.Sleep(5000);
 

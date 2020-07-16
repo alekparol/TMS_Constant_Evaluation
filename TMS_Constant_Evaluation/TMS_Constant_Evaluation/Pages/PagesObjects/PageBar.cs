@@ -31,6 +31,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         private IWebElement pageNavigationContainer;
 
         private IWebElement previousPage;
+        private IWebElement firstPage;
         private IWebElement currentPage;
         private IWebElement lastPage;
         private IWebElement nextPage;
@@ -184,7 +185,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int ItemsPerPageCurrentSelection
+        public string ItemsPerPageCurrentSelection
         {
             get
             {
@@ -199,16 +200,16 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     if (auxiliaryIEnumerable.Count() > 0)
                     {
                         auxiliaryString = number.Match(auxiliaryIEnumerable.ElementAt(0).FindElement(By.TagName("span")).GetAttribute("textContent")).ToString();
-                        return Int32.Parse(auxiliaryString);
+                        return auxiliaryString;
                     }
                     else
                     {
-                        return 0;
+                        return "0";
                     }
                 }
                 else
                 {
-                    return -1;
+                    return "-1";
                 }
             }
         }
@@ -546,7 +547,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }         
         }
 
-        public void ItemsPerPageSetChosenValues(IWebDriver driver, int chosenValue)
+        public void ItemsPerPageSetChosenValue(IWebDriver driver, string chosenValue)
         {
             if (ItemsPerPageContainerIsNull == 0)
             {
@@ -554,7 +555,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 itemsPerPageContainer.Click();
-                itemsPerPageOptions.ElementAt(itemsPerPageOptions.Count - 1).Click();
+                itemsPerPageOptions.Where(x => x.Text.Contains(chosenValue)).ElementAt(0).Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
@@ -562,46 +563,59 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public void ItemsPerPageSetMaximalValues(IWebDriver driver)
+        public void ItemsPerPageSetMaximalValue(IWebDriver driver)
         {
             if (ItemsPerPageContainerIsNull == 0)
             {
-
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-                itemsPerPageContainer.Click();
-                itemsPerPageOptions.ElementAt(itemsPerPageOptions.Count - 1).Click();
-
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
-
+                ItemsPerPageSetChosenValue(driver, "1000");
             }
         }
 
-        public void ItemsPerPageSetMinimalValues(IWebDriver driver)
+        public void ItemsPerPageSetMinimalValue(IWebDriver driver)
         {
             if (ItemsPerPageContainerIsNull == 0)
             {
-
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-                itemsPerPageContainer.Click();
-                itemsPerPageOptions.ElementAt(1).Click();
-
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
-
+                ItemsPerPageSetChosenValue(driver, "25");
             }
         }
 
+        /* PageBar Methods */
+
+        public void GoToFirstPage(IWebDriver driver)
+        {
+            if (PageNavigationContainerIsNull == 0)
+            {
+                if (CurrentPageIsFirst == 0)
+                {
+                    var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                    firstPage.Click();
+
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                    wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                }
+            }
+        }
+
+        public void GoToLastPage(IWebDriver driver)
+        {
+            if (PageNavigationContainerIsNull == 0)
+            {
+                if (CurrentPageIsLast == 0)
+                {
+                    var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                    lastPage.Click();
+
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                    wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                }
+            }
+        }
 
         public void GoToNextPage(IWebDriver driver)
         {
-
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-            if (this.NextPageIsNull == 1)
+            if (NextPageIsNull == 0)
             {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 nextPage.Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
@@ -611,11 +625,9 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         public void GoToPreviousPage(IWebDriver driver)
         {
-
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-            if (this.PreviousPageIsNull == 1)
+            if (PreviousPageIsNull == 0)
             {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 previousPage.Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
@@ -670,16 +682,18 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                             auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_prv"));
                             if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);
-
-                            auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_nxt"));
-                            if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
-
+            
                             auxiliaryCollection = pageNavigationContainer.FindElements(By.TagName("li"));
-                            if (auxiliaryCollection.Count > 0) lastPage = auxiliaryCollection.ElementAt(auxiliaryCollection.Count - 2);
+                            if (auxiliaryCollection.Count == 1) firstPage = auxiliaryCollection.ElementAt(0);
 
                             auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_on"));
                             if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);
 
+                            auxiliaryCollection = pageNavigationContainer.FindElements(By.TagName("li"));
+                            if (auxiliaryCollection.Count > 0) lastPage = auxiliaryCollection.ElementAt(auxiliaryCollection.Count - 2);
+
+                            auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_nxt"));
+                            if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
                         }
 
                     }
