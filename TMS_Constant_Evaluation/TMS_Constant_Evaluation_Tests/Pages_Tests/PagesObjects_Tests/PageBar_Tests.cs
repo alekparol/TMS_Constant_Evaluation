@@ -816,7 +816,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 Assert.AreEqual(0, testPageBar.CurrentPageIsFirst);
                 Assert.AreEqual(1, testPageBar.CurrentPageIsLast);
 
-                Assert.AreEqual(18, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(testPageBar.GetLastPageNumber, testPageBar.GetCurrentPageNumber);
                 Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
                 Assert.AreEqual(1, testPageBar.NextPageIsNull);
 
@@ -827,7 +827,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 Assert.AreEqual(0, testPageBar.CurrentPageIsFirst);
                 Assert.AreEqual(1, testPageBar.CurrentPageIsLast);
 
-                Assert.AreEqual(18, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(testPageBar.GetLastPageNumber, testPageBar.GetCurrentPageNumber);
                 Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
                 Assert.AreEqual(1, testPageBar.NextPageIsNull);
 

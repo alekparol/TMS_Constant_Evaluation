@@ -31,10 +31,11 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         private IWebElement pageNavigationContainer;
 
         private IWebElement previousPage;
-        private IWebElement firstPage;
         private IWebElement currentPage;
-        private IWebElement lastPage;
         private IWebElement nextPage;
+
+        private IWebElement firstPage;
+        private IWebElement lastPage;
 
         /* Number of All Items */
         private IWebElement numberOfAllItems;
@@ -682,18 +683,34 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                             auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_prv"));
                             if (auxiliaryCollection.Count == 1) previousPage = auxiliaryCollection.ElementAt(0);
-            
-                            auxiliaryCollection = pageNavigationContainer.FindElements(By.TagName("li"));
-                            if (auxiliaryCollection.Count == 1) firstPage = auxiliaryCollection.ElementAt(0);
-
+          
                             auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_on"));
                             if (auxiliaryCollection.Count == 1) currentPage = auxiliaryCollection.ElementAt(0);
 
-                            auxiliaryCollection = pageNavigationContainer.FindElements(By.TagName("li"));
-                            if (auxiliaryCollection.Count > 0) lastPage = auxiliaryCollection.ElementAt(auxiliaryCollection.Count - 2);
-
                             auxiliaryCollection = pageNavigationContainer.FindElements(By.ClassName("pgr_nxt"));
                             if (auxiliaryCollection.Count == 1) nextPage = auxiliaryCollection.ElementAt(0);
+
+                            auxiliaryCollection = pageNavigationContainer.FindElements(By.TagName("li"));
+                            if (auxiliaryCollection.Count > 0)
+                            {
+                                if (previousPage == null)
+                                {
+                                    firstPage = auxiliaryCollection.ElementAt(0);
+                                }
+                                else
+                                {
+                                    firstPage = auxiliaryCollection.ElementAt(1);
+                                }
+
+                                if (nextPage == null)
+                                {
+                                    lastPage = auxiliaryCollection.ElementAt(auxiliaryCollection.Count - 1);
+                                }
+                                else
+                                {
+                                    lastPage = auxiliaryCollection.ElementAt(auxiliaryCollection.Count - 2);
+                                }
+                            }
                         }
 
                     }
