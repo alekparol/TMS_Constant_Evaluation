@@ -546,6 +546,22 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }         
         }
 
+        public void ItemsPerPageSetChosenValues(IWebDriver driver, int chosenValue)
+        {
+            if (ItemsPerPageContainerIsNull == 0)
+            {
+
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                itemsPerPageContainer.Click();
+                itemsPerPageOptions.ElementAt(itemsPerPageOptions.Count - 1).Click();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+            }
+        }
+
         public void ItemsPerPageSetMaximalValues(IWebDriver driver)
         {
             if (ItemsPerPageContainerIsNull == 0)
@@ -561,6 +577,23 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
             }
         }
+
+        public void ItemsPerPageSetMinimalValues(IWebDriver driver)
+        {
+            if (ItemsPerPageContainerIsNull == 0)
+            {
+
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                itemsPerPageContainer.Click();
+                itemsPerPageOptions.ElementAt(1).Click();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+            }
+        }
+
 
         public void GoToNextPage(IWebDriver driver)
         {
