@@ -777,6 +777,63 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
             }
         }
 
+        [TestMethod]
+        public void PageBar_GoToNextPage_Test_4()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Qlik";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage qlikPage = new ParticularProjectPage(driver);
+
+                qlikPage.ProfileClick(driver);
+                qlikPage.ChangeItemsPerPage(driver);
+
+                qlikPage.StatusClick(driver);
+                StatusPage qlikStatusPage = new StatusPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(1, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(1, testPageBar.PreviousPageIsNull);
+                Assert.AreEqual(0, testPageBar.NextPageIsNull);
+
+                testPageBar.GoToLastPage(driver);
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.CurrentPageIsNull);
+                Assert.AreEqual(0, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(1, testPageBar.CurrentPageIsLast);
+
+                Assert.AreEqual(18, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
+                Assert.AreEqual(1, testPageBar.NextPageIsNull);
+
+                testPageBar.GoToNextPage(driver);
+                testPageBar = new PageBar(driver);
+
+                Assert.AreEqual(0, testPageBar.CurrentPageIsNull);
+                Assert.AreEqual(0, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(1, testPageBar.CurrentPageIsLast);
+
+                Assert.AreEqual(18, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(0, testPageBar.PreviousPageIsNull);
+                Assert.AreEqual(1, testPageBar.NextPageIsNull);
+
+            }
+        }
+
         /* GoToPreviousPage Tests */
 
     }
