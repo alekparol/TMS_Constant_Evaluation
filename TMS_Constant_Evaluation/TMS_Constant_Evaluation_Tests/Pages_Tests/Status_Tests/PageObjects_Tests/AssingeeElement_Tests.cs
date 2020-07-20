@@ -35,9 +35,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                porscheBalPage.StatusClick(driver);
+                testProjectPage.StatusClick(driver);
                 StatusPage porscheStatusPage = new StatusPage(driver);
 
                 porscheStatusPage.AssigneesClick(driver);
@@ -99,9 +99,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                porscheBalPage.StatusClick(driver);
+                testProjectPage.StatusClick(driver);
                 StatusPage porscheStatusPage = new StatusPage(driver);
 
                 porscheStatusPage.AssigneesClick(driver);

@@ -35,7 +35,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 TabMenu tabMenu = new TabMenu(driver);
 
@@ -96,7 +96,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 TabMenu tabMenu = new TabMenu(driver);
 

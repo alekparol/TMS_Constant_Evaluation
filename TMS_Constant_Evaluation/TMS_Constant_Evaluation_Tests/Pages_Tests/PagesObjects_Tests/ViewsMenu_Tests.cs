@@ -35,7 +35,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ViewsMenu viewsMenu = new ViewsMenu(driver);
 
@@ -93,7 +93,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ViewsMenu viewsMenu = new ViewsMenu(driver);
 
@@ -150,7 +150,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ViewsMenu viewsMenu = new ViewsMenu(driver);
                 viewsMenu.JobsClick(driver);
@@ -183,7 +183,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ViewsMenu viewsMenu = new ViewsMenu(driver);
                 viewsMenu.PlanningClick(driver);
@@ -216,7 +216,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ViewsMenu viewsMenu = new ViewsMenu(driver);
                 viewsMenu.StatusClick(driver);

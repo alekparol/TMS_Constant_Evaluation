@@ -33,12 +33,12 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                porscheBalPage.ProfileClick(driver);
-                porscheBalPage.ChangeItemsPerPage(driver);
+                testProjectPage.ProfileClick(driver);
+                testProjectPage.ChangeItemsPerPage(driver);
 
-                porscheBalPage.StatusClick(driver);
+                testProjectPage.StatusClick(driver);
                 StatusPage porscheStatusPage = new StatusPage(driver);
 
                 porscheStatusPage.AssigneesClick(driver);

@@ -107,7 +107,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int UserActivitiesIsClicked
+        public int UserActivitiesAreClicked
         {
             get
             {

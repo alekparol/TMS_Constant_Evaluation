@@ -34,27 +34,41 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Properties */
 
-        public string SelectedProjectName
+        public string GetSelectedProjectName
         {
             get
             {
-                return myTabMenu.CurrentProjectName;
+                if (myTabMenu.IsParsingCorrect)
+                {
+                    return myTabMenu.CurrentProjectName;
+                }
+                else
+                {
+                    return "";
+                }          
             }
         }
 
-        public string LoggedUser
+        public string GetLoggedUserName
         {
             get
             {
-                return myApplicationBoard.GetUserName;
+                if (myApplicationBoard.IsParsingCorrect)
+                {
+                    return myApplicationBoard.GetUserName;
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
 
-        public bool UserActivitiesClicked
+        public bool UserActivitiesAreClicked
         {
             get
             {
-                if (myApplicationBoard.UserActivitiesIsClicked == 1)
+                if (myApplicationBoard.UserActivitiesAreClicked == 1)
                 {
                     return true;
                 }
@@ -65,7 +79,7 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
-        public string InfoMessage
+        public string GetInfoMessage
         {
             get
             {
@@ -77,6 +91,81 @@ namespace TMS_Constant_Evaluation.Pages
                 {
                     return "";
                 }
+            }
+        }
+
+        public int JobsViewIsClicked
+        {
+            get
+            {
+                if (myViewsMenu != null)
+                {
+                    return myViewsMenu.JobsViewIsClicked;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int PlanningViewIsClicked
+        {
+            get
+            {
+                if (myViewsMenu != null)
+                {
+                    return myViewsMenu.PlanningViewIsClicked;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int StatusViewIsClicked
+        {
+            get
+            {
+                if (myViewsMenu != null)
+                {
+                    return myViewsMenu.StatusViewIsClicked;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public string GetNameOfClickedView
+        {
+            get
+            {
+                if (myViewsMenu != null)
+                {
+                    if (JobsViewIsClicked == 1)
+                    {
+                        return "Jobs";
+                    }
+                    else if (PlanningViewIsClicked == 1)
+                    {
+                        return "Planning";
+                    }
+                    else if (StatusViewIsClicked == 1)
+                    {
+                        return "Status";
+                    }
+                    else
+                    {
+                        return "Unspecified";
+                    }
+                }
+                else
+                {
+                    return "";
+                }      
             }
         }
 

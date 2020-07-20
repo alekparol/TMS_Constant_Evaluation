@@ -35,8 +35,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
-                porscheBalPage.ProfileClick(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+                testProjectPage.ProfileClick(driver);
 
                 MyProfile myProfile = new MyProfile(driver);
 
@@ -99,8 +99,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
-                porscheBalPage.ProfileClick(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+                testProjectPage.ProfileClick(driver);
 
                 MyProfile myProfile = new MyProfile(driver);
 
@@ -159,8 +159,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
-                porscheBalPage.ProfileClick(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+                testProjectPage.ProfileClick(driver);
 
                 MyProfile myProfile = new MyProfile(driver);
 
@@ -229,8 +229,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
-                porscheBalPage.ProfileClick(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+                testProjectPage.ProfileClick(driver);
 
                 MyProfile myProfile = new MyProfile(driver);
 
@@ -307,9 +307,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                porscheBalPage.ProfileClick(driver);
+                testProjectPage.ProfileClick(driver);
                 MyProfile myProfile = new MyProfile(driver);
 
                 /* Set of assertions */
@@ -326,8 +326,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage = new ProjectsPage(driver, projectTitle);
                 testPage.ClickChosenProject();
                 
-                porscheBalPage = new ParticularProjectPage(driver);                
-                porscheBalPage.ProfileClick(driver);
+                testProjectPage = new ParticularProjectPage(driver);                
+                testProjectPage.ProfileClick(driver);
 
                 myProfile = new MyProfile(driver);
 

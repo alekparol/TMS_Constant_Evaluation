@@ -35,7 +35,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ApplicationBoard applicationBoard = new ApplicationBoard(driver);
 
@@ -93,7 +93,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ApplicationBoard applicationBoard = new ApplicationBoard(driver);
 
@@ -149,14 +149,14 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ApplicationBoard applicationBoard = new ApplicationBoard(driver);
 
                 /* Set of assertions */
 
                 Assert.AreEqual(0, applicationBoard.UserActivitiesMenuIsNull);
-                Assert.AreEqual(0, applicationBoard.UserActivitiesIsClicked);
+                Assert.AreEqual(0, applicationBoard.UserActivitiesAreClicked);
                 Assert.AreEqual(1, applicationBoard.UserActivitiesListIsFull);
 
             }
@@ -180,7 +180,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ApplicationBoard applicationBoard = new ApplicationBoard(driver);
                 applicationBoard.LoggedUserClick(driver);
@@ -188,7 +188,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 /* Set of assertions */
 
                 Assert.AreEqual(0, applicationBoard.UserActivitiesMenuIsNull);
-                Assert.AreEqual(1, applicationBoard.UserActivitiesIsClicked);
+                Assert.AreEqual(1, applicationBoard.UserActivitiesAreClicked);
                 Assert.AreEqual(1, applicationBoard.UserActivitiesListIsFull);
 
             }
@@ -213,7 +213,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 /* Set of assertions */
 
                 Assert.AreEqual(-1, applicationBoard.UserActivitiesMenuIsNull);
-                Assert.AreEqual(-1, applicationBoard.UserActivitiesIsClicked);
+                Assert.AreEqual(-1, applicationBoard.UserActivitiesAreClicked);
                 Assert.AreEqual(-1, applicationBoard.UserActivitiesListIsFull);
 
             }
@@ -239,7 +239,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ApplicationBoard applicationBoard = new ApplicationBoard(driver);
 
@@ -272,7 +272,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ApplicationBoard applicationBoard = new ApplicationBoard(driver);
                 applicationBoard.LoggedUserClick(driver);
@@ -306,7 +306,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
-                ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ApplicationBoard applicationBoard = new ApplicationBoard(driver);
                 applicationBoard.LoggedUserClick(driver);
