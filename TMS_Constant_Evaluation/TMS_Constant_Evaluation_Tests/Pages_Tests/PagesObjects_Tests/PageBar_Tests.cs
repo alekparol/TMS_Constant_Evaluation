@@ -32,7 +32,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = "Corteva";
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
@@ -285,9 +285,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
-
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
@@ -326,9 +323,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
-
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -369,9 +363,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
-
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
@@ -410,9 +401,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
-
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -453,9 +441,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
-
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
@@ -495,9 +480,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
-
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
@@ -536,9 +518,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
-
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -614,9 +593,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
-
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
@@ -655,9 +631,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
-
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -699,9 +672,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
-
-                testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
 
                 testProjectPage.ProfileClick(driver);
                 testProjectPage.ChangeItemsPerPage(driver);
@@ -1068,13 +1038,13 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testPageBar = new PageBar(driver);
                 /* Set of assertions */
 
-                Assert.AreEqual(-1, testPageBar.CurrentPageIsNull);
-                Assert.AreEqual(-1, testPageBar.CurrentPageIsFirst);
-                Assert.AreEqual(-1, testPageBar.CurrentPageIsLast);
+                Assert.AreEqual(0, testPageBar.CurrentPageIsNull);
+                Assert.AreEqual(1, testPageBar.CurrentPageIsFirst);
+                Assert.AreEqual(0, testPageBar.CurrentPageIsLast);
 
-                Assert.AreEqual(-1, testPageBar.GetCurrentPageNumber);
-                Assert.AreEqual(-1, testPageBar.PreviousPageIsNull);
-                Assert.AreEqual(-1, testPageBar.NextPageIsNull);
+                Assert.AreEqual(1, testPageBar.GetCurrentPageNumber);
+                Assert.AreEqual(1, testPageBar.PreviousPageIsNull);
+                Assert.AreEqual(0, testPageBar.NextPageIsNull);
             }
         }
 
