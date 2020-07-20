@@ -19,7 +19,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
         /* Parsing Correctly Tests */
         [TestMethod]
-        public void ViewsMenu_ParsingCorrectly_Test_1()
+        public void ApplicationBoard_ParsingCorrectly_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -50,7 +50,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void ViewsMenu_ParsingCorrectly_Test_2()
+        public void ApplicationBoard_ParsingCorrectly_Test_2()
         {
 
             using (var driver = new ChromeDriver())
@@ -77,7 +77,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         /* Logged User Tests */
 
         [TestMethod]
-        public void ViewsMenu_LoggedUser_Test_1()
+        public void ApplicationBoard_LoggedUser_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -107,7 +107,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void ViewsMenu_LoggedUser_Test_2()
+        public void ApplicationBoard_LoggedUser_Test_2()
         {
 
             using (var driver = new ChromeDriver())
@@ -133,7 +133,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         /* User Activities List Tests */
 
         [TestMethod]
-        public void ViewsMenu_UserActivitiesList_Test_1()
+        public void ApplicationBoard_UserActivitiesList_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -164,7 +164,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void ViewsMenu_UserActivitiesList_Test_2()
+        public void ApplicationBoard_UserActivitiesList_Test_2()
         {
 
             using (var driver = new ChromeDriver())
@@ -196,7 +196,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void ViewsMenu_UserActivitiesList_Test_3()
+        public void ApplicationBoard_UserActivitiesList_Test_3()
         {
 
             using (var driver = new ChromeDriver())
@@ -223,7 +223,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         /* User Profile Tests */
 
         [TestMethod]
-        public void ViewsMenu_UserProfile_Test_1()
+        public void ApplicationBoard_UserProfile_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -256,7 +256,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void ViewsMenu_UserProfile_Test_2()
+        public void ApplicationBoard_UserProfile_Test_2()
         {
 
             using (var driver = new ChromeDriver())
@@ -290,7 +290,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void ViewsMenu_UserProfile_Test_3()
+        public void ApplicationBoard_UserProfile_Test_3()
         {
 
             using (var driver = new ChromeDriver())
@@ -326,7 +326,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void ViewsMenu_UserProfile_Test_4()
+        public void ApplicationBoard_UserProfile_Test_4()
         {
 
             using (var driver = new ChromeDriver())

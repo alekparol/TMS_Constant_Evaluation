@@ -437,6 +437,11 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Constructors */
 
+        public MyProfile()
+        {
+
+        }
+
         public MyProfile(IWebDriver driver)
         {
             if (driver.Url == "https://tms.lionbridge.com/")

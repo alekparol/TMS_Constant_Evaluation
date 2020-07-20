@@ -280,7 +280,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 loggedUser.Click();
 
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("usr_act")));
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("UserStatus_WebHelpLink")));
             }
 
         }
@@ -298,6 +298,11 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         }
 
         /* Constructors */
+
+        public ApplicationBoard()
+        {
+
+        }
 
         public ApplicationBoard(IWebDriver driver)
         {

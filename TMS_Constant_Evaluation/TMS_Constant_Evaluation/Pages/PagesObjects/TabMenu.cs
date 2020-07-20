@@ -152,6 +152,11 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Constructors */
 
+        public TabMenu()
+        {
+
+        }
+
         public TabMenu(IWebDriver driver)
         {
 

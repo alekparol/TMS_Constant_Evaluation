@@ -282,6 +282,11 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Constructors */
 
+        public ViewsMenu()
+        {
+
+        }
+
         public ViewsMenu(IWebDriver driver)
         {
 

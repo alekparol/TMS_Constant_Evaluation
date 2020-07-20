@@ -308,8 +308,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 testPage.ClickChosenProject();
                 ParticularProjectPage porscheBalPage = new ParticularProjectPage(driver);
-                porscheBalPage.ProfileClick(driver);
 
+                porscheBalPage.ProfileClick(driver);
                 MyProfile myProfile = new MyProfile(driver);
 
                 /* Set of assertions */

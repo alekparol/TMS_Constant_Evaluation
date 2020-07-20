@@ -637,6 +637,12 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         }
 
         /* Constructors */
+        public PageBar()
+        {
+
+        }
+
+        
         public PageBar(IWebDriver driver)
         {
             if (driver.Url == "https://tms.lionbridge.com/")
