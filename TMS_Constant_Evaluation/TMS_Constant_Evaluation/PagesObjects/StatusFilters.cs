@@ -20,7 +20,7 @@ using System.Threading.Tasks;
  */
 namespace TMS_Constant_Evaluation.Pages.PagesObjects
 {
-    class StatusFilters
+    public class StatusFilters
     {
 
         /* Fields */
@@ -213,6 +213,21 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public string LanguageFilterSelection
+        {
+            get
+            {
+                if (LanguageFilterIsNull == 0)
+                {
+                    return languageFilter.Text;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
         public int ActivitiesFilterIsNull
         {
             get
@@ -279,6 +294,21 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public string ActivitiesFilterSelection
+        {
+            get
+            {
+                if (ActivitiesFilterIsNull == 0)
+                {
+                    return activitiesFilter.Text;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
         public bool ShowAllButtonIsNull
         {
             get
@@ -325,7 +355,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 filtersButton.Click();
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fpStepActivityName_titletext")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpStepActivityName_titletext")));
             }
         }
 
@@ -348,6 +378,9 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
                 DisplayFiltersPanel(driver);
+
+                auxiliaryCollection = driver.FindElements(By.Id("cup_fp"));
+                if (auxiliaryCollection.Count == 1) filtersPanel = auxiliaryCollection.ElementAt(0);
 
                 auxiliaryCollection = driver.FindElements(By.Id("cup_fpStepActivityName_titletext"));
                 if (auxiliaryCollection.Count == 1) activitiesFilter = auxiliaryCollection.ElementAt(0);
@@ -401,7 +434,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public void ActivityFilterClick(IWebDriver driver)
+        public void ActivitiesFilterClick(IWebDriver driver)
         {
             if (ActivitiesFilterIsDisplayed == 1)
             {
@@ -464,7 +497,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 if (auxiliaryCollection.Count == 1) infoMessage = auxiliaryCollection.ElementAt(0);
 
                 auxiliaryCollection = driver.FindElements(By.Id("cup_cupavNull"));
-                if (auxiliaryCollection.Count == 1) auxiliaryCollection.ElementAt(0).Click();
+                if (auxiliaryCollection.Count == 1) showAllButton = auxiliaryCollection.ElementAt(0);
             }
         }
 

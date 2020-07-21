@@ -44,7 +44,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                porscheAssigneesPage.ActivityFilterClick();
+                porscheAssigneesPage.ActivitiesFilterClick();
                 porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
 
                 PageBar pageBar = new PageBar(driver);
@@ -106,7 +106,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 Thread.Sleep(10000);
                 StatusPage statusPageAll = new StatusPage(driver);
                 Thread.Sleep(1000);
-                statusPageAll.ActivityFilterClick();
+                statusPageAll.ActivitiesFilterClick();
                 Thread.Sleep(1000);
 
                 statusPageAll.ChosenActivityClick("Translation", driver);

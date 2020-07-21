@@ -43,7 +43,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                porscheAssigneesPage.ActivityFilterClick();
+                porscheAssigneesPage.ActivitiesFilterClick();
                 porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
 
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
@@ -107,7 +107,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                porscheAssigneesPage.ActivityFilterClick();
+                porscheAssigneesPage.ActivitiesFilterClick();
                 porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
 
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
@@ -154,7 +154,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 StatusPage statusPageAfterTagging = new StatusPage(driver);
 
-                statusPageAfterTagging.ActivityFilterClick();
+                statusPageAfterTagging.ActivitiesFilterClick();
                 Thread.Sleep(1000);
 
                 statusPageAfterTagging.ChosenActivityClick("Translation", driver);

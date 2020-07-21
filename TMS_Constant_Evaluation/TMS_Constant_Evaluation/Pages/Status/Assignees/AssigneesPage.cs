@@ -103,7 +103,7 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
-        public string ActivityFilterSelection
+        public string ActivitiesFilterSelection
         {
             get
             {
@@ -150,7 +150,7 @@ namespace TMS_Constant_Evaluation.Pages
         }
         /* Methods */
 
-        public void ActivityFilterClick()
+        public void ActivitiesFilterClick()
         {
             if(activityFilter != null)
             {

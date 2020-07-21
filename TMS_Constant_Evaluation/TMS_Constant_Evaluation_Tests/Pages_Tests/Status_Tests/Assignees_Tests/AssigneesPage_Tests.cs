@@ -143,7 +143,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.Assignees_Tests
                 porscheStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
                 
-                porscheAssigneesPage.ActivityFilterClick();
+                porscheAssigneesPage.ActivitiesFilterClick();
                 porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
 
                 /* Set of assertions */
