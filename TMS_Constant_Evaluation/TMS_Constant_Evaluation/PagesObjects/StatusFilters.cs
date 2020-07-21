@@ -346,6 +346,29 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public int ShowAllButtonIsClicked
+        {
+            get
+            {
+                if (ShowAllButtonIsNull == false)
+                {
+                    string auxiliaryString = showAllButton.GetAttribute("class");
+                    if (auxiliaryString == "lnk_off")
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
         /* Methods */
 
         public void FiltersButtonClick(IWebDriver driver)
