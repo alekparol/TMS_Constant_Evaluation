@@ -24,8 +24,8 @@ namespace TMS_Constant_Evaluation.Pages
         private IWebElement pageName;
 
         private IWebElement viewBar;
-        private IWebElement activitiesSubPage;
-        private IWebElement assigneesSubPage;
+        private IWebElement activitiesSubpageButton;
+        private IWebElement assigneesSubpageButton;
 
         private IWebElement filtersButton;
         private bool isFilterClicked; // TODO; Add this element to every page which contains Filter button. 
@@ -43,7 +43,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Properties */
 
-        public string PageName
+        public string GetPageName
         {
             get
             {
@@ -63,9 +63,9 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                if (activitiesSubPage != null)
+                if (activitiesSubpageButton != null)
                 {
-                    if (activitiesSubPage.GetAttribute("class").Contains("hdr_sub_sel"))
+                    if (activitiesSubpageButton.GetAttribute("class").Contains("hdr_sub_sel"))
                     {
                         return 1;
                     }
@@ -85,9 +85,9 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                if (assigneesSubPage != null)
+                if (assigneesSubpageButton != null)
                 {
-                    if (assigneesSubPage.GetAttribute("class").Contains("hdr_sub_sel"))
+                    if (assigneesSubpageButton.GetAttribute("class").Contains("hdr_sub_sel"))
                     {
                         return 1;
                     }
@@ -183,7 +183,7 @@ namespace TMS_Constant_Evaluation.Pages
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
             wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("status")));
-            //activitiesSubPage.Click();
+            //activitiesSubpageButton.Click();
 
             IWebElement statusPageClick = driver.FindElements(By.Id("status")).Where(x => x.Text == "Activities").First();
             statusPageClick.Click();
@@ -241,10 +241,10 @@ namespace TMS_Constant_Evaluation.Pages
                     {
 
                         auxiliaryCollection = viewBar.FindElements(By.Id("status"));
-                        if (auxiliaryCollection.Count > 0) activitiesSubPage = auxiliaryCollection.Where(x => x.Text == "Activities").First();
+                        if (auxiliaryCollection.Count > 0) activitiesSubpageButton = auxiliaryCollection.Where(x => x.Text == "Activities").First();
 
                         auxiliaryCollection = viewBar.FindElements(By.Id("statusassignees"));
-                        if (auxiliaryCollection.Count > 0) assigneesSubPage = auxiliaryCollection.ElementAt(0);
+                        if (auxiliaryCollection.Count > 0) assigneesSubpageButton = auxiliaryCollection.ElementAt(0);
 
                     }
 

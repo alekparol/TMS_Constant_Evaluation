@@ -50,7 +50,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.Assignees_Tests
         }
 
         [TestMethod]
-        public void AssigneesPage_PageName_Test_1()
+        public void AssigneesPage_GetPageName_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -78,7 +78,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.Assignees_Tests
 
                 /* Set of assertions */
 
-                Assert.AreEqual(pageName.ToLower().Trim(), porscheAssigneesPage.PageName);
+                Assert.AreEqual(pageName.ToLower().Trim(), porscheAssigneesPage.GetPageName);
 
             }
 

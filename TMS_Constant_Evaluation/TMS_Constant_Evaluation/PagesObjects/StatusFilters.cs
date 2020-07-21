@@ -512,7 +512,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             if (driver.Url == "https://tms.lionbridge.com/")
             {
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
-                IEnumerable<IWebElement> auxiliaryIEnumerable;
 
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fp_btn")));
