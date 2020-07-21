@@ -115,6 +115,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -164,6 +165,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -203,6 +205,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsTrue(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(-1, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -256,6 +259,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsTrue(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(-1, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -296,6 +300,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsTrue(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(-1, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -349,6 +354,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -401,6 +407,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -454,6 +461,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -505,6 +513,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -556,6 +565,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -610,6 +620,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -666,6 +677,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -721,6 +733,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -775,6 +788,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -831,6 +845,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -886,6 +901,49 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
                 Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
+            }
+        }
+
+        /* Show All Button Tests */
+
+        [TestMethod]
+        public void StatusFilters_ShowAllButtonClick_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Corteva";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.ProfileClick(driver);
+                testProjectPage.ChangeItemsPerPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusFilters statusFiltersTest = new StatusFilters(driver);
+                statusFiltersTest.ClickAll(driver);
+
+                statusFiltersTest = new StatusFilters(driver);
+
+                /* Set of assertions */
+
+                Assert.IsFalse(statusFiltersTest.FiltersButtonIsNull);
+                Assert.AreEqual(1, statusFiltersTest.FiltersButtonIsDisplayed);
+                Assert.AreEqual(0, statusFiltersTest.FiltersButtonIsClicked);
+
+                Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
+                Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
