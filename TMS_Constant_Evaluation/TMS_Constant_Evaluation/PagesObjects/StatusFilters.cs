@@ -27,13 +27,19 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         private IWebElement filtersButton;
 
-        private IWebElement filtersBody;
+        private IWebElement filtersPanel;
 
         private IWebElement languageFilter;
+        private IWebElement languageFilterChild;
         private IReadOnlyCollection<IWebElement> languageList;
 
         private IWebElement activitiesFilter;
+        private IWebElement activitiesFilterChild;
         private IReadOnlyCollection<IWebElement> activitiesList;
+
+        private IWebElement showAllButton;
+
+        private IWebElement infoMessage;
 
         /* Properties */
 
@@ -74,9 +80,365 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
+        public int FiltersButtonIsClicked
+        {
+            get
+            {
+                if (FiltersButtonIsDisplayed == 1)
+                {
+                    string auxiliaryString = filtersButton.GetAttribute("class");
+                    if (auxiliaryString.Contains("icn_flt_on"))
+                    {
+                        return 1; 
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1; 
+                }
+            }
+        }
+
+        public int FiltersPanelIsNull
+        {
+            get
+            {
+                if (FiltersButtonIsNull == false)
+                {
+                    if (filtersPanel != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int FiltersPanelIsDisplayed
+        {
+            get
+            {
+                if (FiltersPanelIsNull == 0)
+                {
+                    if (filtersPanel.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int LanguageFilterIsNull
+        {
+            get
+            {
+                if (FiltersPanelIsNull == 0)
+                {
+                    if (languageFilter != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int LanguageFilterIsDisplayed
+        {
+            get
+            {
+                if (LanguageFilterIsNull == 0)
+                {
+                    if (languageFilter.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int LanguageFilterIsExpanded
+        {
+            get
+            {
+                if (LanguageFilterIsDisplayed == 1)
+                {
+                    if (activitiesFilterChild.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int ActivitiesFilterIsNull
+        {
+            get
+            {
+                if (FiltersPanelIsNull == 0)
+                {
+                    if (activitiesFilter != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int ActivitiesFilterIsDisplayed
+        {
+            get
+            {
+                if (ActivitiesFilterIsNull == 0)
+                {
+                    if (activitiesFilter.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int ActivitiesFilterIsExpanded
+        {
+            get
+            {
+                if (ActivitiesFilterIsDisplayed == 1)
+                {
+                    if (activitiesFilterChild.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public bool ShowAllButtonIsNull
+        {
+            get
+            {
+                if (showAllButton != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public int ShowAllButtonIsEnabled
+        {
+            get
+            {
+                if (ShowAllButtonIsNull == false)
+                {
+                    if (showAllButton.Enabled)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
         /* Methods */
 
+        public void FiltersButtonClick(IWebDriver driver)
+        {
+            if (FiltersButtonIsDisplayed == 1)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
+                filtersButton.Click();
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fpStepActivityName_titletext")));
+            }
+        }
+
+        public void DisplayFiltersPanel(IWebDriver driver)
+        {
+            if (FiltersButtonIsDisplayed == 1)
+            {
+                if (FiltersButtonIsClicked == 0)
+                {
+                    FiltersButtonClick(driver);
+                }
+            }
+        }
+
+        public void FiltersPanelInitialization(IWebDriver driver)
+        {
+            if (FiltersButtonIsDisplayed == 1)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+                DisplayFiltersPanel(driver);
+
+                auxiliaryCollection = driver.FindElements(By.Id("cup_fpStepActivityName_titletext"));
+                if (auxiliaryCollection.Count == 1) activitiesFilter = auxiliaryCollection.ElementAt(0);
+
+                auxiliaryCollection = driver.FindElements(By.Id("cup_fpStepActivityName_child"));
+                if (auxiliaryCollection.Count == 1)
+                {
+                    activitiesFilterChild = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = auxiliaryCollection.ElementAt(0).FindElements(By.XPath(".//a"));
+                    activitiesList = auxiliaryCollection;
+
+                }
+                auxiliaryCollection = driver.FindElements(By.Id("cup_fpTargetLanguage_titletext"));
+                if (auxiliaryCollection.Count == 1) languageFilter = auxiliaryCollection.ElementAt(0);
+
+                auxiliaryCollection = driver.FindElements(By.Id("cup_fpTargetLanguage_child"));
+                if(auxiliaryCollection.Count == 1)
+                {
+                    languageFilterChild = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = auxiliaryCollection.ElementAt(0).FindElements(By.XPath(".//a"));
+                    languageList = auxiliaryCollection;
+                }
+            }
+        }
+
+        public void LanguageFilterClick(IWebDriver driver)
+        {
+            if (LanguageFilterIsDisplayed == 1)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                languageFilter.Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpStepActivityName_child")));
+            }
+        }
+
+        public void ChosenTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
+        {
+            if (LanguageFilterIsExpanded == 1)
+            {
+                IWebElement chosenElement;
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                chosenElement = languageList.Where(x => x.Text == chosenLanguageCode).ElementAt(0);
+                chosenElement.Click();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+            }
+        }
+
+        public void ActivityFilterClick(IWebDriver driver)
+        {
+            if (ActivitiesFilterIsDisplayed == 1)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                
+                activitiesFilter.Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpStepActivityName_child")));
+            }
+        }
+
+        public void ChosenActivityClick(IWebDriver driver, string chosenActivityName)
+        {
+            if (ActivitiesFilterIsExpanded == 1)
+            {
+                IWebElement chosenElement;
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                chosenElement = activitiesList.Where(x => x.Text == chosenActivityName).ElementAt(0);
+                chosenElement.Click();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+            }
+        }
+
+        public void ClickAll(IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+            auxiliaryCollection = driver.FindElements(By.Id("cup_cupavNull"));
+            if (auxiliaryCollection.Count == 1) auxiliaryCollection.ElementAt(0).Click();
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+        }
 
         /* Constructors */
 
@@ -97,6 +459,12 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                 auxiliaryCollection = driver.FindElements(By.Id("cup_fp_btn"));
                 if (auxiliaryCollection.Count == 1) filtersButton = auxiliaryCollection.ElementAt(0);
+
+                auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
+                if (auxiliaryCollection.Count == 1) infoMessage = auxiliaryCollection.ElementAt(0);
+
+                auxiliaryCollection = driver.FindElements(By.Id("cup_cupavNull"));
+                if (auxiliaryCollection.Count == 1) auxiliaryCollection.ElementAt(0).Click();
             }
         }
 

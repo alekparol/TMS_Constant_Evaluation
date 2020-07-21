@@ -47,32 +47,10 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
             }
 
         }
+       
 
         [TestMethod]
         public void ParticularProjectPage_ParsingCorrectly_Test_2()
-        {
-
-            using (var driver = new ChromeDriver())
-            {
-
-                /* Initialization */
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-                driver.Manage().Window.Maximize();
-                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
-
-                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
-
-                /* Set of assertions */
-
-                Assert.IsFalse(testProjectPage.IsParsingCorrect);
-
-            }
-
-        }
-
-        [TestMethod]
-        public void ParticularProjectPage_ParsingCorrectly_Test_3()
         {
 
             using (var driver = new ChromeDriver())
@@ -134,29 +112,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 driver.Manage().Window.Maximize();
-                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
-
-                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
-
-                /* Set of assertions */
-                Assert.IsFalse(testProjectPage.UserActivitiesAreClicked);
-
-                testProjectPage.LoggedUserClick(driver);
-                Assert.IsFalse(testProjectPage.UserActivitiesAreClicked);
-            }
-        }
-
-        [TestMethod]
-        public void ParticularProjectPage_LoggedUserClick_Test_3()
-        {
-
-            using (var driver = new ChromeDriver())
-            {
-
-                /* Initialization */
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-                driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://lionbridge.com/");
 
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
@@ -204,33 +159,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
         [TestMethod]
         public void ParticularProjectPage_ProfileClick_Test_2()
-        {
-
-            using (var driver = new ChromeDriver())
-            {
-
-                /* Initialization */
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-                driver.Manage().Window.Maximize();
-                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
-
-                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
-
-                testProjectPage.ProfileClick(driver);
-                MyProfile testProfile = new MyProfile(driver);
-
-                /* Set of assertions */
-
-                Assert.IsTrue(testProfile.MyProfileBodyIsNull);
-                Assert.AreEqual(1, testProfile.ItemsBodyIsNull);
-                Assert.AreEqual(1, testProfile.ItemsDropDownIsFull);
-                Assert.AreEqual(-1, testProfile.ChosenItemsPerPage);
-            }
-        }
-
-        [TestMethod]
-        public void ParticularProjectPage_ProfileClick_Test_3()
         {
 
             using (var driver = new ChromeDriver())
@@ -310,17 +238,15 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
-                testProjectPage.JobsClick(driver);
-
                 /* Set of assertions */
 
-                Assert.AreEqual(1, testProjectPage.JobsViewIsClicked);
-                Assert.AreEqual(sectionName, testProjectPage.GetNameOfClickedView);
+                Assert.AreEqual(0, testProjectPage.JobsViewIsClicked);
+                Assert.AreNotEqual(sectionName, testProjectPage.GetNameOfClickedView);
 
                 IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
 
                 Assert.IsTrue(auxiliaryCollection.Count > 0);
-                Assert.AreEqual(sectionName.ToLower().Trim(), auxiliaryCollection.ElementAt(0).Text.ToLower().Trim());              
+                Assert.AreNotEqual(sectionName.ToLower().Trim(), auxiliaryCollection.ElementAt(0).Text.ToLower().Trim());              
             }
 
         }
@@ -502,6 +428,117 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
                 testProjectPage = new ParticularProjectPage(driver);
 
                 Assert.AreEqual(1, testProjectPage.PlanningViewIsClicked);
+                Assert.AreEqual(sectionName, testProjectPage.GetNameOfClickedView);
+
+                IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
+
+                Assert.IsTrue(auxiliaryCollection.Count > 0);
+                Assert.AreEqual(sectionName.ToLower().Trim(), auxiliaryCollection.ElementAt(0).Text.ToLower().Trim());
+            }
+        }
+
+        /* StatusClick Tests */
+
+        [TestMethod]
+        public void ParticularProjectPage_StatusClick_Test_1()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                string sectionName = "Status";
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(0, testProjectPage.StatusViewIsClicked);
+                Assert.AreNotEqual(sectionName, testProjectPage.GetNameOfClickedView);
+
+                IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
+
+                Assert.IsTrue(auxiliaryCollection.Count > 0);
+                Assert.AreNotEqual(sectionName.ToLower().Trim(), auxiliaryCollection.ElementAt(0).Text.ToLower().Trim());
+            }
+
+        }
+
+        [TestMethod]
+        public void ParticularProjectPage_StatusClick_Test_2()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                string sectionName = "Status";
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                /* Set of assertions */
+
+                testProjectPage.StatusClick(driver);
+                testProjectPage = new ParticularProjectPage(driver);
+
+                Assert.AreEqual(1, testProjectPage.StatusViewIsClicked);
+                Assert.AreEqual(sectionName, testProjectPage.GetNameOfClickedView);
+
+                IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
+
+                Assert.IsTrue(auxiliaryCollection.Count > 0);
+                Assert.AreEqual(sectionName.ToLower().Trim(), auxiliaryCollection.ElementAt(0).Text.ToLower().Trim());
+            }
+        }
+
+        [TestMethod]
+        public void ParticularProjectPage_StatusClick_Test_3()
+        {
+
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                string sectionName = "Status";
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                /* Set of assertions */
+
+                testProjectPage.PlanningClick(driver);
+                testProjectPage = new ParticularProjectPage(driver);
+
+                Assert.AreEqual(0, testProjectPage.StatusViewIsClicked);
+                Assert.AreNotEqual(sectionName, testProjectPage.GetNameOfClickedView);
+
+                testProjectPage.StatusClick(driver);
+                testProjectPage = new ParticularProjectPage(driver);
+
+                Assert.AreEqual(1, testProjectPage.StatusViewIsClicked);
                 Assert.AreEqual(sectionName, testProjectPage.GetNameOfClickedView);
 
                 IReadOnlyCollection<IWebElement> auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
