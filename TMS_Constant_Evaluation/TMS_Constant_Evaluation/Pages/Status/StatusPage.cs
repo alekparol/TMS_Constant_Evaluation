@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using TMS_Constant_Evaluation.Pages.PagesObjects;
 
 namespace TMS_Constant_Evaluation.Pages
 {
@@ -17,11 +18,15 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Fields */
 
+        private StatusNavigationBar statusNavigationBar;
+
+        private StatusFilters statusFilters;
+
         private IWebElement pageName;
 
         private IWebElement viewBar; 
-        private IWebElement activitiesSubPage;
-        private IWebElement assigneesSubPage;
+        private IWebElement activitiesSubpageButton;
+        private IWebElement assigneesSubpageButton;
 
         private IWebElement filtersButton;
         private bool isFilterClicked;
@@ -36,11 +41,159 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Properties */
     
-        public string PageName
+        public string GetPageName
         {
             get
             {
-                return pageName.Text.ToLower().Trim();
+                return statusNavigationBar.GetPageName;
+            }
+        }
+
+        public bool IsParsingCorrect
+        {
+            get
+            {
+                if (statusNavigationBar != null && statusFilters != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public int IsActivitiesSelected
+        {
+            get
+            {
+                return statusNavigationBar.ActivitiesSubpageIsClicked;
+            }
+        }
+
+        public int IsAssigneesSelected
+        {
+            get
+            {
+                return statusNavigationBar.AssigneesSubpageIsClicked;
+            }
+        }
+
+        public string ActivitiesFilterSelection
+        {
+            get
+            {
+                IReadOnlyCollection<IWebElement> auxiliaryColection;
+
+                if (activityFilter != null)
+                {
+                    auxiliaryColection = activityFilter.FindElements(By.Id("cup_fpName_titletext"));
+                    if (auxiliaryColection.Count == 1) return auxiliaryColection.ElementAt(0).Text;
+                    else return null;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public IReadOnlyCollection<IWebElement> ActivityFilterOptions
+        {
+            get
+            {
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                Regex activityListRegex = new Regex("cup_fpStepActivityName_msa_\\d+");
+
+                return activitiesList;
+            }
+        }
+
+        /* Methods */
+
+        public void AssigneesClick(IWebDriver driver)
+        {
+            statusNavigationBar.AssigneesClick(driver);
+        }
+
+        public void ActivitiesFilterClick()
+        {
+            if (activityFilter != null)
+            {
+                activityFilter.Click();
+
+            }
+        }
+
+        public void ChosenActivityClick(string chosenActivityName, IWebDriver driver)
+        {
+            statusFilters.FiltersPanelInitialization(driver);
+            statusFilters.ChosenActivityClick(driver, chosenActivityName);
+        }
+
+        public void LanguageFilterClick()
+        {
+            if (languageFilter != null)
+            {
+                languageFilter.Click();
+
+            }
+        }
+
+        public void ChosenTargetLanguageClick(string chosenLanguageCode, IWebDriver driver)
+        {
+            statusFilters.FiltersPanelInitialization(driver);
+            statusFilters.ChosenTargetLanguageClick(driver, chosenLanguageCode);
+        }
+
+        public void ClickAll(IWebDriver driver)
+        {
+            statusFilters.ClickAll(driver);
+        }
+
+        /* Constructors */
+
+        public StatusPage(IWebDriver driver)
+        {
+            if (driver.Url == "https://tms.lionbridge.com/")
+            {
+
+                statusNavigationBar = new StatusNavigationBar(driver);
+                statusFilters = new StatusFilters(driver);
+
+
+                    /*IWebElement errorMessage;
+
+                    auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
+                    if (auxiliaryCollection.Count != 0) errorMessage = auxiliaryCollection.ElementAt(0);*/
+            }
+
+        }
+
+        /*private IWebElement pageName;
+
+        private IWebElement viewBar; 
+        private IWebElement activitiesSubpageButton;
+        private IWebElement assigneesSubpageButton;
+
+        private IWebElement filtersButton;
+        private bool isFilterClicked;
+
+        private IWebElement activityFilter;
+        public IReadOnlyCollection<IWebElement> activitiesList;
+
+        private IWebElement languageFilter;
+        private IReadOnlyCollection<IWebElement> languageList;
+
+        private bool isParsedCorrectly;
+
+
+        public string GetPageName
+        {
+            get
+            {
+                return statusNavigationBar.GetPageName;
             }
         }
 
@@ -56,9 +209,9 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                if (activitiesSubPage != null)
+                if (activitiesSubpageButton != null)
                 {
-                    if (activitiesSubPage.GetAttribute("class").Contains("hdr_sub_sel"))
+                    if (activitiesSubpageButton.GetAttribute("class").Contains("hdr_sub_sel"))
                     {
                         return 1;
                     }
@@ -78,9 +231,9 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                if (assigneesSubPage != null)
+                if (assigneesSubpageButton != null)
                 {
-                    if (assigneesSubPage.GetAttribute("class").Contains("hdr_sub_sel"))
+                    if (assigneesSubpageButton.GetAttribute("class").Contains("hdr_sub_sel"))
                     {
                         return 1;
                     }
@@ -126,13 +279,11 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
-        /* Methods */
-
         public void AssigneesClick(IWebDriver driver)
         {
 
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            assigneesSubPage.Click();
+            assigneesSubpageButton.Click();
 
             wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
@@ -206,8 +357,6 @@ namespace TMS_Constant_Evaluation.Pages
 
         }
 
-        /* Constructors */
-
         public StatusPage(IWebDriver driver)
         {
             if (driver.Url == "https://tms.lionbridge.com/")
@@ -267,10 +416,10 @@ namespace TMS_Constant_Evaluation.Pages
                     {
 
                         auxiliaryCollection = viewBar.FindElements(By.Id("status"));
-                        if (auxiliaryCollection.Count > 0) activitiesSubPage = auxiliaryCollection.ElementAt(0);
+                        if (auxiliaryCollection.Count > 0) activitiesSubpageButton = auxiliaryCollection.ElementAt(0);
 
                         auxiliaryCollection = viewBar.FindElements(By.Id("statusassignees"));
-                        if (auxiliaryCollection.Count > 0) assigneesSubPage = auxiliaryCollection.ElementAt(0);
+                        if (auxiliaryCollection.Count > 0) assigneesSubpageButton = auxiliaryCollection.ElementAt(0);
 
                     }
 
@@ -294,15 +443,15 @@ namespace TMS_Constant_Evaluation.Pages
                     }
 
 
-                    /*IWebElement errorMessage;
+                    IWebElement errorMessage;
 
                     auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
-                    if (auxiliaryCollection.Count != 0) errorMessage = auxiliaryCollection.ElementAt(0);*/
+                    if (auxiliaryCollection.Count != 0) errorMessage = auxiliaryCollection.ElementAt(0);
 
                 }
             }
 
-        }
+        }*/
 
     }
 }
