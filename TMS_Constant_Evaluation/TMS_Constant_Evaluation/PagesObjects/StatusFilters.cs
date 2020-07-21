@@ -197,7 +197,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             {
                 if (LanguageFilterIsDisplayed == 1)
                 {
-                    if (activitiesFilterChild.Displayed)
+                    if (languageFilterChild.Displayed)
                     {
                         return 1;
                     }
@@ -415,12 +415,14 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 languageFilter.Click();
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpStepActivityName_child")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpTargetLanguage_child")));
             }
         }
 
         public void ChosenTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
+            LanguageFilterClick(driver);
+
             if (LanguageFilterIsExpanded == 1)
             {
                 IWebElement chosenElement;
@@ -447,6 +449,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         public void ChosenActivityClick(IWebDriver driver, string chosenActivityName)
         {
+            ActivitiesFilterClick(driver);
+
             if (ActivitiesFilterIsExpanded == 1)
             {
                 IWebElement chosenElement;
