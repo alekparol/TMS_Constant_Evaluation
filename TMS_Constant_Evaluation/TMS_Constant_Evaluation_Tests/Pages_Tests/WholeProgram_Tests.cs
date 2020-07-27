@@ -106,7 +106,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 Thread.Sleep(10000);
                 StatusPage statusPageAll = new StatusPage(driver);
                 Thread.Sleep(1000);
-                statusPageAll.ActivitiesFilterClick();
+                statusPageAll.ActivitiesFilterClick(driver);
                 Thread.Sleep(1000);
 
                 statusPageAll.ChosenActivityClick("Translation", driver);
@@ -114,7 +114,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 
                 StatusPage translationPage = new StatusPage(driver);
 
-                translationPage.LanguageFilterClick();
+                translationPage.LanguageFilterClick(driver);
                 Thread.Sleep(1000);
 
                 translationPage.ChosenTargetLanguageClick(differentLanguages.ElementAt(1), driver);

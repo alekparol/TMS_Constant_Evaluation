@@ -110,33 +110,47 @@ namespace TMS_Constant_Evaluation.Pages
             statusNavigationBar.AssigneesClick(driver);
         }
 
-        public void ActivitiesFilterClick()
+        public void ActivitiesFilterClick(IWebDriver driver)
         {
-            if (activityFilter != null)
+            if (statusFilters.ActivitiesFilterIsNull != -1)
             {
-                activityFilter.Click();
-
+                if (statusFilters.ActivitiesFilterIsNull == 1)
+                {
+                    statusFilters.FiltersPanelInitialization(driver);
+                    statusFilters.ActivitiesFilterClick(driver);
+                }
+                else
+                {
+                    statusFilters.ActivitiesFilterClick(driver);
+                }
             }
         }
 
         public void ChosenActivityClick(string chosenActivityName, IWebDriver driver)
         {
-            statusFilters.FiltersPanelInitialization(driver);
+            ActivitiesFilterClick(driver);
             statusFilters.ChosenActivityClick(driver, chosenActivityName);
         }
 
-        public void LanguageFilterClick()
+        public void LanguageFilterClick(IWebDriver driver)
         {
-            if (languageFilter != null)
+            if (statusFilters.LanguageFilterIsNull != -1)
             {
-                languageFilter.Click();
-
+                if (statusFilters.LanguageFilterIsNull == 1)
+                {
+                    statusFilters.FiltersPanelInitialization(driver);
+                    statusFilters.LanguageFilterClick(driver);
+                }
+                else
+                {
+                    statusFilters.LanguageFilterClick(driver);
+                }
             }
         }
 
         public void ChosenTargetLanguageClick(string chosenLanguageCode, IWebDriver driver)
         {
-            statusFilters.FiltersPanelInitialization(driver);
+            LanguageFilterClick(driver);
             statusFilters.ChosenTargetLanguageClick(driver, chosenLanguageCode);
         }
 

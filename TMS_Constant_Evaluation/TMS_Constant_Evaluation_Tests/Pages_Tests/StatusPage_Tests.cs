@@ -15,6 +15,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
     [TestClass]
     public class StatusPage_Tests
     {
+        /* Parsing Correct Tests */
 
         [TestMethod]
         public void StatusPage_ParsingCorrectly_Test_1()

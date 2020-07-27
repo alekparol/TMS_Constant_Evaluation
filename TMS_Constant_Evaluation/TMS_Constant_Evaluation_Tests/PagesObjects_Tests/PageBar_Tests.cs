@@ -94,7 +94,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
-                testStatusPage.ActivitiesFilterClick();
+                testStatusPage.ActivitiesFilterClick(driver);
                 testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
                 
                 PageBar testPageBar = new PageBar(driver);
@@ -224,7 +224,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
-                testStatusPage.ActivitiesFilterClick();
+                testStatusPage.ActivitiesFilterClick(driver);
                 testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
 
                 PageBar testPageBar = new PageBar(driver);
@@ -522,7 +522,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
-                testStatusPage.ActivitiesFilterClick();
+                testStatusPage.ActivitiesFilterClick(driver);
                 testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
 
                 PageBar testPageBar = new PageBar(driver);
@@ -719,7 +719,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
-                testStatusPage.ActivitiesFilterClick();
+                testStatusPage.ActivitiesFilterClick(driver);
                 testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
 
                 PageBar testPageBar = new PageBar(driver);
@@ -1026,7 +1026,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
-                testStatusPage.ActivitiesFilterClick();
+                testStatusPage.ActivitiesFilterClick(driver);
                 testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
 
                 PageBar testPageBar = new PageBar(driver);
