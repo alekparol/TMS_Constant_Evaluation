@@ -63,20 +63,20 @@
     <Compile Include="PagesObjects\StatusNavigationBar.cs" />
     <Compile Include="PagesObjects\TabMenu.cs" />
     <Compile Include="PagesObjects\ViewsMenu.cs" />
-    <Compile Include="Pages\Status\Assignees\AssigneesPage.cs" />
+    <Compile Include="Pages\AssigneesPage.cs" />
     <Compile Include="PagesObjects\ActivitiesObject.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\AssigneeElement.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\Assignees.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\AssigneesObject.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\AssigneesJobs.cs" />
     <Compile Include="PagesObjects\PageBar.cs" />
-    <Compile Include="Pages\Porsche Bal 2.0\ParticularProjectPage.cs" />
+    <Compile Include="Pages\ParticularProjectPage.cs" />
     <Compile Include="PagesObjects\StatusObject.cs" />
-    <Compile Include="Pages\Starting TMS\ProjectsPage.cs" />
+    <Compile Include="Pages\ProjectsPage.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\AssigneeAndHisJob.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\AssigneesAndTheirJobs.cs" />
     <Compile Include="Pages\Status\Assignees\PageObjects\OnClickJobsMenu.cs" />
-    <Compile Include="Pages\Status\StatusPage.cs" />
+    <Compile Include="Pages\StatusPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -132,7 +132,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche Bal 2.0";
+                string projectTitle = "Corteva";
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
@@ -257,9 +257,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.ActivitiesFilterSelection);
 
-                Assert.IsTrue(statusFiltersTest.ShowAllButtonIsNull);
-                Assert.AreEqual(-1, statusFiltersTest.ShowAllButtonIsEnabled);
-                Assert.AreEqual(-1, statusFiltersTest.ShowAllButtonIsClicked);
+                Assert.IsFalse(statusFiltersTest.ShowAllButtonIsNull);
+                Assert.AreEqual(1, statusFiltersTest.ShowAllButtonIsEnabled);
+                Assert.AreEqual(0, statusFiltersTest.ShowAllButtonIsClicked);
             }
         }
 
@@ -530,7 +530,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche Bal 2.0";
+                string projectTitle = "Corteva";
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();

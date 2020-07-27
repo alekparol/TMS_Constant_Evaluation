@@ -22,15 +22,6 @@ namespace TMS_Constant_Evaluation.Pages
 
         private StatusFilters statusFilters;
 
-        private IWebElement pageName;
-
-        private IWebElement viewBar; 
-        private IWebElement activitiesSubpageButton;
-        private IWebElement assigneesSubpageButton;
-
-        private IWebElement filtersButton;
-        private bool isFilterClicked;
-
         private IWebElement activityFilter;
         public IReadOnlyCollection<IWebElement> activitiesList;
 
@@ -46,21 +37,6 @@ namespace TMS_Constant_Evaluation.Pages
             get
             {
                 return statusNavigationBar.GetPageName;
-            }
-        }
-
-        public bool IsParsingCorrect
-        {
-            get
-            {
-                if (statusNavigationBar != null && statusFilters != null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
             }
         }
 
@@ -84,18 +60,7 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                IReadOnlyCollection<IWebElement> auxiliaryColection;
-
-                if (activityFilter != null)
-                {
-                    auxiliaryColection = activityFilter.FindElements(By.Id("cup_fpName_titletext"));
-                    if (auxiliaryColection.Count == 1) return auxiliaryColection.ElementAt(0).Text;
-                    else return null;
-                }
-                else
-                {
-                    return null;
-                }
+                return statusFilters.ActivitiesFilterSelection;
             }
         }
 
@@ -110,7 +75,35 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        public string LanguagesFilterSelection
+        {
+            get
+            {
+                return statusFilters.LanguageFilterSelection;
+            }
+        }
+
+        public bool IsParsingCorrect
+        {
+            get
+            {
+                if (statusNavigationBar != null && statusFilters != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+      
         /* Methods */
+
+        public void ActivitiesClick(IWebDriver driver)
+        {
+            statusNavigationBar.ActivitiesClick(driver);
+        }
 
         public void AssigneesClick(IWebDriver driver)
         {
