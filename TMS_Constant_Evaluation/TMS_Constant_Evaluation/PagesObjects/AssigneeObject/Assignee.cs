@@ -127,14 +127,6 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
-        public IWebElement AssigneeNumber
-        {
-            get
-            {
-                return assigneeJobsNumber;
-            }
-        }
-
         public bool IsParsingCorrect
         {
             get
