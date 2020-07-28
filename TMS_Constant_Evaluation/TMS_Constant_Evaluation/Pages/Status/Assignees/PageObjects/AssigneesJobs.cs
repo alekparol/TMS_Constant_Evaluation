@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace TMS_Constant_Evaluation.Pages.PagesObjects
 {
-    public class AssigneesJobs
+    public class AssigneeJobs
     {
 
         /* Fields */
@@ -72,7 +72,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Constructors */
 
-        public AssigneesJobs(IWebElement r_LObject)
+        public AssigneeJobs(IWebElement r_LObject)
         {
             IReadOnlyCollection<IWebElement> auxiliaryCollection;
             IEnumerable<IWebElement> auxiliarayEnumerable;

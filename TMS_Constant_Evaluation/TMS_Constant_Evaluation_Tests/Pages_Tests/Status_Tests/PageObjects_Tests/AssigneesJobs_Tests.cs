@@ -14,11 +14,11 @@ using TMS_Constant_Evaluation.Pages.PagesObjects;
 namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tests
 {
     [TestClass]
-    public class AssigneesJobs_Tests
+    public class AssigneeJobs_Tests
     {
 
         [TestMethod]
-        public void AssigneesJobs_ParsingCorrectly_Test_1()
+        public void AssigneeJobs_ParsingCorrectly_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -43,14 +43,14 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
                 IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_L"));
-                List<AssigneesJobs> assigneesJobs = new List<AssigneesJobs>();
+                List<AssigneeJobs> assigneesJobs = new List<AssigneeJobs>();
 
-                AssigneesJobs auxiliaryAssigneesJob;
+                AssigneeJobs auxiliaryAssigneesJob;
 
                 foreach(IWebElement r_L in r_LObjects)
                 {
 
-                    auxiliaryAssigneesJob = new AssigneesJobs(r_L);
+                    auxiliaryAssigneesJob = new AssigneeJobs(r_L);
                     assigneesJobs.Add(auxiliaryAssigneesJob);
 
                 }
@@ -59,7 +59,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 Assert.AreEqual(250, assigneesJobs.Count);
                 
-                foreach(AssigneesJobs job in assigneesJobs)
+                foreach(AssigneeJobs job in assigneesJobs)
                 {
                     Assert.AreEqual(true, job.IsParsingCorrect);
                     Assert.AreNotEqual("", job.JobsName);

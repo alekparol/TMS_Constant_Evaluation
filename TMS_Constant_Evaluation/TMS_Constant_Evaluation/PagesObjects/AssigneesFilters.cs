@@ -378,7 +378,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 filtersButton.Click();
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpStepActivityName_titletext")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpName_titletext")));
             }
         }
 
@@ -405,10 +405,10 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 auxiliaryCollection = driver.FindElements(By.Id("cup_fp"));
                 if (auxiliaryCollection.Count == 1) filtersPanel = auxiliaryCollection.ElementAt(0);
 
-                auxiliaryCollection = driver.FindElements(By.Id("cup_fpStepActivityName_titletext"));
+                auxiliaryCollection = driver.FindElements(By.Id("cup_fpName_titletext"));
                 if (auxiliaryCollection.Count == 1) activitiesFilter = auxiliaryCollection.ElementAt(0);
 
-                auxiliaryCollection = driver.FindElements(By.Id("cup_fpName_titletext"));
+                auxiliaryCollection = driver.FindElements(By.Id("cup_fpName_child"));
                 if (auxiliaryCollection.Count == 1)
                 {
                     activitiesFilterChild = auxiliaryCollection.ElementAt(0);
@@ -466,7 +466,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 activitiesFilter.Click();
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpName_titletext")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpName_child")));
             }
         }
 

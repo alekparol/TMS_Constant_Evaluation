@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PagesObjects\AssigneesFilters.cs" />
     <Compile Include="PagesObjects\SearchEngine.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage1.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage2.cs" />

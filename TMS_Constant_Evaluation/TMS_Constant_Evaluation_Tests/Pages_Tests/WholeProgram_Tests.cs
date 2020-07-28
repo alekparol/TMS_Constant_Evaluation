@@ -144,7 +144,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 
                 /*AssigneeElement el = new AssigneeElement(assignees[0], assigneesJobs);
                 Assert.AreEqual("bg-bg", el.AssigneeLanguage);
-                Assert.AreEqual(el.AssigneeJobsNumber, el.AssigneesJobsList.Count);*/
+                Assert.AreEqual(el.GetAssigneeJobsNumberString, el.AssigneeJobsList.Count);*/
 
                 Assert.AreEqual(0, r_LHObjects.Count);
                 Assert.AreEqual(0, r_LObjects.Count);

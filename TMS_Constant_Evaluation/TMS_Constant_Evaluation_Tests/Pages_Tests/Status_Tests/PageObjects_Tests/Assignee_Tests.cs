@@ -42,14 +42,14 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
-                List<Assignees> assignees = new List<Assignees>();
+                List<Assignee> assignees = new List<Assignee>();
                 
-                Assignees auxiliaryAssignee;
+                Assignee auxiliaryAssignee;
 
                 foreach (IWebElement r_LH in r_LHObjects)
                 {
 
-                    auxiliaryAssignee = new Assignees(r_LH);
+                    auxiliaryAssignee = new Assignee(r_LH);
                     assignees.Add(auxiliaryAssignee);
 
                 }
@@ -58,13 +58,13 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 Assert.AreEqual(7, assignees.Count);
 
-                foreach (Assignees assignee in assignees)
+                foreach (Assignee assignee in assignees)
                 {
 
                     Assert.AreEqual(true, assignee.IsParsingCorrect);
-                    Assert.AreNotEqual("", assignee.AssigneeName);
-                    Assert.AreNotEqual("", assignee.AssigneeJobsNumber);
-                    Assert.AreNotEqual(0, assignee.AssingeeJobsInt);
+                    Assert.AreNotEqual("", assignee.GetAssigneeName);
+                    Assert.AreNotEqual("", assignee.GetAssigneeJobsNumberString);
+                    Assert.AreNotEqual(0, assignee.GetAssingeeJobsNumberInt);
                 }
             }
         }

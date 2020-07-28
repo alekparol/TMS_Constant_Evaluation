@@ -47,27 +47,27 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
 
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
-                List<Assignees> assignees = new List<Assignees>();
+                List<Assignee> assignees = new List<Assignee>();
 
-                Assignees auxiliaryAssignee;
+                Assignee auxiliaryAssignee;
 
                 foreach (IWebElement r_LH in r_LHObjects)
                 {
 
-                    auxiliaryAssignee = new Assignees(r_LH);
+                    auxiliaryAssignee = new Assignee(r_LH);
                     assignees.Add(auxiliaryAssignee);
 
                 }
 
                 IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_L"));
-                List<AssigneesJobs> assigneesJobs = new List<AssigneesJobs>();
+                List<AssigneeJobs> assigneesJobs = new List<AssigneeJobs>();
 
-                AssigneesJobs auxiliaryAssigneeJobs;
+                AssigneeJobs auxiliaryAssigneeJobs;
 
                 foreach (IWebElement r_L in r_LObjects)
                 {
 
-                    auxiliaryAssigneeJobs = new AssigneesJobs(r_L);
+                    auxiliaryAssigneeJobs = new AssigneeJobs(r_L);
                     assigneesJobs.Add(auxiliaryAssigneeJobs);
 
                 }
@@ -76,7 +76,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 AssigneeElement el = new AssigneeElement(assignees[0], assigneesJobs);
                 Assert.AreEqual("bg-bg", el.AssigneeLanguage);
-                Assert.AreEqual(el.AssigneeJobsNumber, el.AssigneesJobsList.Count);
+                Assert.AreEqual(el.GetAssigneeJobsNumberString, el.AssigneeJobsList.Count);
 
             }
 
@@ -111,27 +111,27 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
 
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
-                List<Assignees> assignees = new List<Assignees>();
+                List<Assignee> assignees = new List<Assignee>();
 
-                Assignees auxiliaryAssignee;
+                Assignee auxiliaryAssignee;
 
                 foreach (IWebElement r_LH in r_LHObjects)
                 {
 
-                    auxiliaryAssignee = new Assignees(r_LH);
+                    auxiliaryAssignee = new Assignee(r_LH);
                     assignees.Add(auxiliaryAssignee);
 
                 }
 
                 IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_L"));
-                List<AssigneesJobs> assigneesJobs = new List<AssigneesJobs>();
+                List<AssigneeJobs> assigneesJobs = new List<AssigneeJobs>();
 
-                AssigneesJobs auxiliaryAssigneeJobs;
+                AssigneeJobs auxiliaryAssigneeJobs;
 
                 foreach (IWebElement r_L in r_LObjects)
                 {
 
-                    auxiliaryAssigneeJobs = new AssigneesJobs(r_L);
+                    auxiliaryAssigneeJobs = new AssigneeJobs(r_L);
                     assigneesJobs.Add(auxiliaryAssigneeJobs);
 
                 }
@@ -140,9 +140,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 Actions a = new Actions(driver);
 
-                a.Click(el.AssigneesJobsList[0].JobsIWebElement)
+                a.Click(el.AssigneeJobsList[0].JobsIWebElement)
                  .KeyDown(Keys.Shift)
-                 .Click(el.AssigneesJobsList[el.AssigneesJobsList.Count - 1].JobsIWebElement)
+                 .Click(el.AssigneeJobsList[el.AssigneeJobsList.Count - 1].JobsIWebElement)
                  .Build()
                  .Perform();
 

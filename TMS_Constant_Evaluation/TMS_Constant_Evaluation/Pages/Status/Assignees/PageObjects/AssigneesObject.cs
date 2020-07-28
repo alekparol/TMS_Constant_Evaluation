@@ -17,8 +17,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Fields */
 
-        public List<Assignees> assigneesList = new List<Assignees>();
-        public List<AssigneesJobs> assigneesJobsList = new List<AssigneesJobs>();
+        public List<Assignee> assigneesList = new List<Assignee>();
+        public List<AssigneeJobs> assigneesJobsList = new List<AssigneeJobs>();
 
         private PageBar assigneePageBar;
 
@@ -34,7 +34,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int AssigneesJobsListSize
+        public int AssigneeJobsListSize
         {
             get
             {
@@ -48,7 +48,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             {
                 List<string> auxiliaryList = new List<string>();
 
-                foreach(AssigneesJobs job in assigneesJobsList)
+                foreach(AssigneeJobs job in assigneesJobsList)
                 {
                     auxiliaryList.Add(job.JobsName);
                 }
@@ -88,8 +88,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
-                Assignees auxiliaryAssignee;
-                AssigneesJobs auxiliaryAssigneesJobs;
+                Assignee auxiliaryAssignee;
+                AssigneeJobs auxiliaryAssigneeJobs;
 
                 wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
 
@@ -109,7 +109,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                             {
                                 foreach (IWebElement element in auxiliaryCollection)
                                 {
-                                    auxiliaryAssignee = new Assignees(element);
+                                    auxiliaryAssignee = new Assignee(element);
                                     if (auxiliaryAssignee.IsParsingCorrect) assigneesList.Add(auxiliaryAssignee);
                                 }
                             }
@@ -119,8 +119,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                             {
                                 foreach (IWebElement element in auxiliaryCollection)
                                 {
-                                    auxiliaryAssigneesJobs = new AssigneesJobs(element);
-                                    if (auxiliaryAssigneesJobs.IsParsingCorrect) assigneesJobsList.Add(auxiliaryAssigneesJobs);
+                                    auxiliaryAssigneeJobs = new AssigneeJobs(element);
+                                    if (auxiliaryAssigneeJobs.IsParsingCorrect) assigneesJobsList.Add(auxiliaryAssigneeJobs);
                                 }
                             }
 

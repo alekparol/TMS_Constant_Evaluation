@@ -20,14 +20,14 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         private int assigneeJobsNumber;
         private string assigneeLanguage;
 
-        private List<AssigneesJobs> assigneesJobList;
+        private List<AssigneeJobs> assigneesJobList;
         private IReadOnlyCollection<IWebElement> jobList;
 
         private bool isParsedCorrectly;
 
         /* Properties */
 
-        public string AssigneeName
+        public string GetAssigneeName
         {
             get
             {
@@ -35,7 +35,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int AssigneeJobsNumber
+        public int GetAssigneeJobsNumberString
         {
             get
             {
@@ -51,7 +51,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public List<AssigneesJobs> AssigneesJobsList
+        public List<AssigneeJobs> AssigneeJobsList
         {
             get
             {
@@ -79,15 +79,15 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Constructors */
 
-        public AssigneeElement(Assignees assignee, List<AssigneesJobs> assigneeJobs)
+        public AssigneeElement(Assignee assignee, List<AssigneeJobs> assigneeJobs)
         {
 
             Regex jobsNumber = new Regex("\\d*");
 
             if (assignee.IsParsingCorrect)
             {
-                assigneeName = assignee.AssigneeName;
-                assigneeJobsNumber = assignee.AssingeeJobsInt;
+                assigneeName = assignee.GetAssigneeName;
+                assigneeJobsNumber = assignee.GetAssingeeJobsNumberInt;
             }
 
             if (assigneeJobs.Count > assigneeJobsNumber)
@@ -98,7 +98,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 assigneesJobList = assigneeJobs.GetRange(0, assigneeJobsNumber);
                 auxiliaryTargetLanguage = assigneesJobList[0].TargetLanguage;
 
-                foreach(AssigneesJobs el in assigneesJobList)
+                foreach(AssigneeJobs el in assigneesJobList)
                 {
                     //jobList.Append(el.JobsIWebElement);
                     if (el.TargetLanguage != auxiliaryTargetLanguage)

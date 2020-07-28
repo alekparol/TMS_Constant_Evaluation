@@ -27,7 +27,7 @@ namespace TMS_Constant_Evaluation.Pages
         /* Fields */
 
         private StatusNavigationBar assigneeNavigationBar;
-        private StatusFilters assigneeFilters;
+        private AssigneesFilters assigneeFilters;
 
         private IWebElement pageName;
 
@@ -152,7 +152,7 @@ namespace TMS_Constant_Evaluation.Pages
             assigneeFilters.ChosenActivityClick(driver, chosenActivityName);
 
             assigneeNavigationBar = new StatusNavigationBar(driver);
-            assigneeFilters = new StatusFilters(driver);
+            assigneeFilters = new AssigneesFilters(driver);
         }
 
         public void LanguageFilterClick(IWebDriver driver)
@@ -169,7 +169,7 @@ namespace TMS_Constant_Evaluation.Pages
             assigneeFilters.ChosenTargetLanguageClick(driver, chosenLanguageCode);
 
             assigneeNavigationBar = new StatusNavigationBar(driver);
-            assigneeFilters = new StatusFilters(driver);
+            assigneeFilters = new AssigneesFilters(driver);
         }
 
         public void ClickAll(IWebDriver driver)
@@ -177,7 +177,7 @@ namespace TMS_Constant_Evaluation.Pages
             assigneeFilters.ClickAll(driver);
 
             assigneeNavigationBar = new StatusNavigationBar(driver);
-            assigneeFilters = new StatusFilters(driver);
+            assigneeFilters = new AssigneesFilters(driver);
         }
 
         public List<string> GetJobNames(IWebDriver driver)
@@ -200,7 +200,7 @@ namespace TMS_Constant_Evaluation.Pages
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
                 assigneeNavigationBar = new StatusNavigationBar(driver);
-                assigneeFilters = new StatusFilters(driver);
+                assigneeFilters = new AssigneesFilters(driver);
                 
                 string auxiliaryString;
 
