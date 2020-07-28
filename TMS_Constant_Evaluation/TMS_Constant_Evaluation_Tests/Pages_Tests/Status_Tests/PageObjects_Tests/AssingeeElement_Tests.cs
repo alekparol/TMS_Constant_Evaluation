@@ -43,8 +43,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                porscheAssigneesPage.ActivitiesFilterClick();
-                porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
+                porscheAssigneesPage.ActivitiesFilterClick(driver);
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
 
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
                 List<Assignees> assignees = new List<Assignees>();
@@ -107,8 +107,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                porscheAssigneesPage.ActivitiesFilterClick();
-                porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
+                porscheAssigneesPage.ActivitiesFilterClick(driver);
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
 
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
                 List<Assignees> assignees = new List<Assignees>();
@@ -150,7 +150,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 menu.ClickTagJobsButton(driver);
 
                 AssigneesPage afterTagging = new AssigneesPage(driver);
-                afterTagging.ActivitiesSubPageClick(driver);
+                afterTagging.ActivitiesClick(driver);
 
                 StatusPage statusPageAfterTagging = new StatusPage(driver);
 

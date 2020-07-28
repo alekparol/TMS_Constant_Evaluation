@@ -40,10 +40,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         private IWebElement activityFilter; // TODO: Create a class for modelling every dropdown menu in the filter bar.
 
-        /* Those two elements are displayed on every page after particular project page. 
-         * TODO: Add them to some class which from they could be inherited.*/
-        private IWebElement searchField;
-        private IWebElement searchButton;
+        
 
         private AssigneesObject assigneesObjects;
         private bool isParsedCorrectly;
@@ -191,19 +188,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         }
 
-        public void SearchJobByName(string jobName, IWebDriver driver)
-        {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-            searchField.SendKeys(jobName);
-            searchButton.Click();
-
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
-
-        }
-
-
+      
         /* Constructors */
 
         public AssigneesPage(IWebDriver driver)
@@ -214,9 +199,12 @@ namespace TMS_Constant_Evaluation.Pages
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
+                assigneeNavigationBar = new StatusNavigationBar(driver);
+                assigneeFilters = new StatusFilters(driver);
+                
                 string auxiliaryString;
 
-                if (wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn"))) != null)
+                /*if (wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn"))) != null)
                 {
 
                     isParsedCorrectly = true;
@@ -254,14 +242,7 @@ namespace TMS_Constant_Evaluation.Pages
                         if (auxiliaryCollection.Count == 1) activityFilter = auxiliaryCollection.ElementAt(0);
 
                     }
-
-                    auxiliaryCollection = driver.FindElements(By.Id("sjid"));
-                    if (auxiliaryCollection.Count == 1) searchField = auxiliaryCollection.ElementAt(0);
-
-                    auxiliaryCollection = driver.FindElements(By.Id("sjib"));
-                    if (auxiliaryCollection.Count == 1) searchButton = auxiliaryCollection.ElementAt(0);
-
-                }
+                }*/
             }
         }
         

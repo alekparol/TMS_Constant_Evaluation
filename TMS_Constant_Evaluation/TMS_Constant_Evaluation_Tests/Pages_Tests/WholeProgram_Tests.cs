@@ -44,8 +44,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                porscheAssigneesPage.ActivitiesFilterClick();
-                porscheAssigneesPage.ChosenActivityClick("InternalReview", driver);
+                porscheAssigneesPage.ActivitiesFilterClick(driver);
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
 
                 PageBar pageBar = new PageBar(driver);
                 pageBar.ItemsPerPageSetMaximalValue(driver);
@@ -98,7 +98,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 menu.ClickTagJobsButton(driver);
 
                 AssigneesPage afterTagging = new AssigneesPage(driver);
-                afterTagging.ActivitiesSubPageClick(driver);
+                afterTagging.ActivitiesClick(driver);
 
                 StatusPage statusPageAfterTagging = new StatusPage(driver);
                 statusPageAfterTagging.ClickAll(driver);
