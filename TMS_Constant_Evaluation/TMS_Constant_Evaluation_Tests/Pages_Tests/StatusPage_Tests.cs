@@ -219,7 +219,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 /* Set of assertions */
 
                 Assert.IsTrue(testStatusPage.IsParsingCorrect);
-                Assert.AreEqual("Assignees", testStatusPage.GetPageName);
+                Assert.AreEqual("status", testStatusPage.GetPageName);
 
                 Assert.AreEqual(0, testStatusPage.IsActivitiesSelected);
                 Assert.AreEqual(1, testStatusPage.IsAssigneesSelected);
@@ -263,7 +263,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 /* Set of assertions */
 
                 Assert.IsTrue(testStatusPage.IsParsingCorrect);
-                Assert.AreEqual("Assignees", testStatusPage.GetPageName);
+                Assert.AreEqual("status", testStatusPage.GetPageName);
 
                 Assert.AreEqual(0, testStatusPage.IsActivitiesSelected);
                 Assert.AreEqual(1, testStatusPage.IsAssigneesSelected);
@@ -506,7 +506,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
-                testStatusPage.ChosenTargetLanguageClick(driver, "bg-bg");
+                testStatusPage.ChosenTargetLanguageClick(driver, "de-de");
+                testStatusPage.LanguageFilterClick(driver);
 
                 /* Set of assertions */
 
@@ -517,7 +518,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 Assert.AreEqual(0, testStatusPage.IsAssigneesSelected);
 
                 Assert.AreEqual("Activity", testStatusPage.ActivitiesFilterSelection);
-                Assert.AreEqual("bg-bg", testStatusPage.LanguagesFilterSelection);
+                Assert.AreEqual("de-de", testStatusPage.LanguagesFilterSelection);
 
                 Assert.AreEqual(0, testStatusPage.ActivitiesFilterIsExpanded);
                 Assert.AreEqual(1, testStatusPage.LanguagesFilterIsExpanded);
