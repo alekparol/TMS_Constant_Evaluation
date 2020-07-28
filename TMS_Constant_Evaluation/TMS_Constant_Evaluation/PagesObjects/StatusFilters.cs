@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 /*
- * This class mean to model TMS Application Board which is displayed on all of the pages on the top of the screen. 
+ * This class mean to model Filters Panel which is displayed on all of the pages on the top of the screen. 
  * 
  * Preassumptions: 
  * 

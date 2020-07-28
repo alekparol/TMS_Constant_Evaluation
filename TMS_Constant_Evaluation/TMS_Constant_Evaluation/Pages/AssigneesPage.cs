@@ -3,7 +3,6 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,14 +11,23 @@ using System.Threading;
 using System.Threading.Tasks;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
 
-/* TODO: Make this class inherit from StatusPage class. */
-
+/*
+ * This class mean to model TMS Assignees Page which is displayed on all of the pages on the top of the screen. 
+ * 
+ * Preassumptions: 
+ * 
+ * TODO: 
+ * 
+ */
 namespace TMS_Constant_Evaluation.Pages
 {
     public class AssigneesPage
     {
 
         /* Fields */
+
+        private StatusNavigationBar assigneeNavigationBar;
+        private StatusFilters assigneeFilters;
 
         private IWebElement pageName;
 
@@ -42,6 +50,241 @@ namespace TMS_Constant_Evaluation.Pages
 
 
         /* Properties */
+
+        public string GetPageName
+        {
+            get
+            {
+                return assigneeNavigationBar.GetPageName;
+            }
+        }
+
+        public int IsActivitiesSelected
+        {
+            get
+            {
+                return assigneeNavigationBar.ActivitiesSubpageIsClicked;
+            }
+        }
+
+        public int IsAssigneesSelected
+        {
+            get
+            {
+                return assigneeNavigationBar.AssigneesSubpageIsClicked;
+            }
+        }
+
+        public int ActivitiesFilterIsExpanded
+        {
+            get
+            {
+                return assigneeFilters.ActivitiesFilterIsExpanded;
+            }
+        }
+
+        public string ActivitiesFilterSelection
+        {
+            get
+            {
+                return assigneeFilters.ActivitiesFilterSelection;
+            }
+        }
+
+        public int LanguagesFilterIsExpanded
+        {
+            get
+            {
+                return assigneeFilters.LanguagesFilterIsExpanded;
+            }
+        }
+
+        public string LanguagesFilterSelection
+        {
+            get
+            {
+                return assigneeFilters.LanguageFilterSelection;
+            }
+        }
+
+        public int AllButtonIsClicked
+        {
+            get
+            {
+                return assigneeFilters.ShowAllButtonIsClicked;
+            }
+        }
+
+        public bool IsParsingCorrect
+        {
+            get
+            {
+                if (assigneeNavigationBar != null && assigneeFilters != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        /* Methods */
+
+        public void ActivitiesClick(IWebDriver driver)
+        {
+            assigneeNavigationBar.ActivitiesClick(driver);
+        }
+
+        public void AssigneesClick(IWebDriver driver)
+        {
+            assigneeNavigationBar.AssigneesClick(driver);
+        }
+
+        public void ActivitiesFilterClick(IWebDriver driver)
+        {
+            assigneeFilters.FiltersPanelInitialization(driver);
+            assigneeFilters.ActivitiesFilterClick(driver);
+
+            assigneeNavigationBar = new StatusNavigationBar(driver);
+        }
+
+        public void ChosenActivityClick(IWebDriver driver, string chosenActivityName)
+        {
+            ActivitiesFilterClick(driver);
+            assigneeFilters.ChosenActivityClick(driver, chosenActivityName);
+
+            assigneeNavigationBar = new StatusNavigationBar(driver);
+            assigneeFilters = new StatusFilters(driver);
+        }
+
+        public void LanguageFilterClick(IWebDriver driver)
+        {
+            assigneeFilters.FiltersPanelInitialization(driver);
+            assigneeFilters.LanguageFilterClick(driver);
+
+            assigneeNavigationBar = new StatusNavigationBar(driver);
+        }
+
+        public void ChosenTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
+        {
+            LanguageFilterClick(driver);
+            assigneeFilters.ChosenTargetLanguageClick(driver, chosenLanguageCode);
+
+            assigneeNavigationBar = new StatusNavigationBar(driver);
+            assigneeFilters = new StatusFilters(driver);
+        }
+
+        public void ClickAll(IWebDriver driver)
+        {
+            assigneeFilters.ClickAll(driver);
+
+            assigneeNavigationBar = new StatusNavigationBar(driver);
+            assigneeFilters = new StatusFilters(driver);
+        }
+
+        public List<string> GetJobNames(IWebDriver driver)
+        {
+           
+            assigneesObjects = new AssigneesObject(driver);
+            return assigneesObjects.AssigneesJobNames;
+
+        }
+
+        public void SearchJobByName(string jobName, IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+            searchField.SendKeys(jobName);
+            searchButton.Click();
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+        }
+
+
+        /* Constructors */
+
+        public AssigneesPage(IWebDriver driver)
+        {
+            if (driver.Url == "https://tms.lionbridge.com/")
+            {
+
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+                string auxiliaryString;
+
+                if (wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn"))) != null)
+                {
+
+                    isParsedCorrectly = true;
+
+                    auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_itm"));
+                    if (auxiliaryCollection.Count > 0) pageName = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = driver.FindElements(By.Id("sel_mnu_vws"));
+                    if (auxiliaryCollection.Count > 0) viewBar = auxiliaryCollection.ElementAt(0);
+
+                    if (viewBar != null)
+                    {
+
+                        auxiliaryCollection = viewBar.FindElements(By.Id("status"));
+                        if (auxiliaryCollection.Count > 0) activitiesSubpageButton = auxiliaryCollection.Where(x => x.Text == "Activities").First();
+
+                        auxiliaryCollection = viewBar.FindElements(By.Id("statusassignees"));
+                        if (auxiliaryCollection.Count > 0) assigneesSubpageButton = auxiliaryCollection.ElementAt(0);
+
+                    }
+
+                    auxiliaryCollection = driver.FindElements(By.Id("cup_fp_btn"));
+                    if (auxiliaryCollection.Count > 0) filtersButton = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryString = filtersButton.GetAttribute("class");
+                    if (auxiliaryString.Contains("icn_flt_on")) isFilterClicked = true;
+
+                    if (isFilterClicked == false)
+                    {
+
+                        filtersButton.Click();
+                        wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fpName_msdd")));
+
+                        auxiliaryCollection = driver.FindElements(By.Id("cup_fpName_msdd"));
+                        if (auxiliaryCollection.Count == 1) activityFilter = auxiliaryCollection.ElementAt(0);
+
+                    }
+
+                    auxiliaryCollection = driver.FindElements(By.Id("sjid"));
+                    if (auxiliaryCollection.Count == 1) searchField = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = driver.FindElements(By.Id("sjib"));
+                    if (auxiliaryCollection.Count == 1) searchButton = auxiliaryCollection.ElementAt(0);
+
+                }
+            }
+        }
+        
+        /*
+        private IWebElement pageName;
+
+        private IWebElement viewBar;
+        private IWebElement activitiesSubpageButton;
+        private IWebElement assigneesSubpageButton;
+
+        private IWebElement filtersButton;
+        private bool isFilterClicked; // TODO; Add this element to every page which contains Filter button. 
+
+        private IWebElement activityFilter; // TODO: Create a class for modelling every dropdown menu in the filter bar.
+
+       
+        private IWebElement searchField;
+        private IWebElement searchButton;
+
+        private AssigneesObject assigneesObjects;
+        private bool isParsedCorrectly;
+
+
 
         public string GetPageName
         {
@@ -146,13 +389,12 @@ namespace TMS_Constant_Evaluation.Pages
                 {
                     return null;
                 }
-            } 
+            }
         }
-        /* Methods */
 
         public void ActivitiesFilterClick()
         {
-            if(activityFilter != null)
+            if (activityFilter != null)
             {
                 activityFilter.Click();
 
@@ -195,7 +437,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         public List<string> GetJobNames(IWebDriver driver)
         {
-           
+
             assigneesObjects = new AssigneesObject(driver);
             return assigneesObjects.AssigneesJobNames;
 
@@ -213,8 +455,6 @@ namespace TMS_Constant_Evaluation.Pages
 
         }
 
-
-        /* Constructors */
 
         public AssigneesPage(IWebDriver driver)
         {
@@ -273,6 +513,6 @@ namespace TMS_Constant_Evaluation.Pages
 
                 }
             }
-        }
+        }*/
     }
 }
