@@ -56,7 +56,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -105,7 +105,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -155,7 +155,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -195,7 +195,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -249,7 +249,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -290,7 +290,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -344,7 +344,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -397,7 +397,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -451,7 +451,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(0, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("Target Language", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(0, statusFiltersTest.ActivitiesFilterIsNull);
@@ -503,7 +503,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(0, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("Target Language", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(0, statusFiltersTest.ActivitiesFilterIsNull);
@@ -555,7 +555,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(0, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("Target Language", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(0, statusFiltersTest.ActivitiesFilterIsNull);
@@ -610,7 +610,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("Target Language", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(0, statusFiltersTest.ActivitiesFilterIsNull);
@@ -667,7 +667,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -723,7 +723,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(0, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("ar-xm", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(0, statusFiltersTest.ActivitiesFilterIsNull);
@@ -778,7 +778,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(0, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("Target Language", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(0, statusFiltersTest.ActivitiesFilterIsNull);
@@ -835,7 +835,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(-1, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(-1, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(-1, statusFiltersTest.ActivitiesFilterIsNull);
@@ -891,7 +891,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsNull);
                 Assert.AreEqual(1, statusFiltersTest.LanguageFilterIsDisplayed);
-                Assert.AreEqual(0, statusFiltersTest.LanguageFilterIsExpanded);
+                Assert.AreEqual(0, statusFiltersTest.LanguagesFilterIsExpanded);
                 Assert.AreEqual("Target Language", statusFiltersTest.LanguageFilterSelection);
 
                 Assert.AreEqual(0, statusFiltersTest.ActivitiesFilterIsNull);

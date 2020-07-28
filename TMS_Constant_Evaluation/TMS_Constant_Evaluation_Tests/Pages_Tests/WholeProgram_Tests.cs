@@ -39,9 +39,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 testProjectPage.ChangeItemsPerPage(driver);
 
                 testProjectPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
+                testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
                 porscheAssigneesPage.ActivitiesFilterClick();
@@ -109,7 +109,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 statusPageAll.ActivitiesFilterClick(driver);
                 Thread.Sleep(1000);
 
-                statusPageAll.ChosenActivityClick("Translation", driver);
+                statusPageAll.ChosenActivityClick(driver, "Translation");
                 Thread.Sleep(10000);
 
                 StatusPage translationPage = new StatusPage(driver);
@@ -117,7 +117,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 translationPage.LanguageFilterClick(driver);
                 Thread.Sleep(1000);
 
-                translationPage.ChosenTargetLanguageClick(differentLanguages.ElementAt(1), driver);
+                translationPage.ChosenTargetLanguageClick(driver, differentLanguages.ElementAt(1));
 
                 Thread.Sleep(5000);
 

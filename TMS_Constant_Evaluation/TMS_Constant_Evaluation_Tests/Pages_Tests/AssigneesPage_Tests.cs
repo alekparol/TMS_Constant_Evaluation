@@ -36,14 +36,14 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.Assignees_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
+                testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(porscheStatusPage.IsParsingCorrect);
+                Assert.IsTrue(testStatusPage.IsParsingCorrect);
 
             }
 
@@ -69,9 +69,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.Assignees_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
+                testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
                 string pageName = "status";
@@ -104,9 +104,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.Assignees_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
+                testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
                 /* Set of assertions */
@@ -138,9 +138,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.Assignees_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
+                testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
                 
                 porscheAssigneesPage.ActivitiesFilterClick();

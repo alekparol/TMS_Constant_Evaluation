@@ -36,9 +36,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
+                testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));

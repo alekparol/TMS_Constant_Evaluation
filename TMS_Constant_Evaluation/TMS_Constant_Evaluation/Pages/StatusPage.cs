@@ -22,13 +22,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         private StatusFilters statusFilters;
 
-        private IWebElement activityFilter;
         public IReadOnlyCollection<IWebElement> activitiesList;
-
-        private IWebElement languageFilter;
-        private IReadOnlyCollection<IWebElement> languageList;
-
-        private bool isParsedCorrectly;
 
         /* Properties */
     
@@ -56,6 +50,14 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        public int ActivitiesFilterIsExpanded
+        {
+            get
+            {
+                return statusFilters.ActivitiesFilterIsExpanded;
+            }
+        }
+
         public string ActivitiesFilterSelection
         {
             get
@@ -75,11 +77,27 @@ namespace TMS_Constant_Evaluation.Pages
             }
         }
 
+        public int LanguagesFilterIsExpanded
+        {
+            get
+            {
+                return statusFilters.LanguagesFilterIsExpanded;
+            }
+        }
+
         public string LanguagesFilterSelection
         {
             get
             {
                 return statusFilters.LanguageFilterSelection;
+            }
+        }
+
+        public int AllButtonIsClicked
+        {
+            get
+            {
+                return statusFilters.ShowAllButtonIsClicked;
             }
         }
 
@@ -112,51 +130,44 @@ namespace TMS_Constant_Evaluation.Pages
 
         public void ActivitiesFilterClick(IWebDriver driver)
         {
-            if (statusFilters.ActivitiesFilterIsNull != -1)
-            {
-                if (statusFilters.ActivitiesFilterIsNull == 1)
-                {
-                    statusFilters.FiltersPanelInitialization(driver);
-                    statusFilters.ActivitiesFilterClick(driver);
-                }
-                else
-                {
-                    statusFilters.ActivitiesFilterClick(driver);
-                }
-            }
+            statusFilters.FiltersPanelInitialization(driver);
+            statusFilters.ActivitiesFilterClick(driver);
+
+            statusNavigationBar = new StatusNavigationBar(driver);
         }
 
-        public void ChosenActivityClick(string chosenActivityName, IWebDriver driver)
+        public void ChosenActivityClick(IWebDriver driver, string chosenActivityName)
         {
             ActivitiesFilterClick(driver);
             statusFilters.ChosenActivityClick(driver, chosenActivityName);
+
+            statusNavigationBar = new StatusNavigationBar(driver);
+            statusFilters = new StatusFilters(driver);
         }
 
         public void LanguageFilterClick(IWebDriver driver)
         {
-            if (statusFilters.LanguageFilterIsNull != -1)
-            {
-                if (statusFilters.LanguageFilterIsNull == 1)
-                {
-                    statusFilters.FiltersPanelInitialization(driver);
-                    statusFilters.LanguageFilterClick(driver);
-                }
-                else
-                {
-                    statusFilters.LanguageFilterClick(driver);
-                }
-            }
+            statusFilters.FiltersPanelInitialization(driver);
+            statusFilters.LanguageFilterClick(driver);
+
+            statusNavigationBar = new StatusNavigationBar(driver);
         }
 
-        public void ChosenTargetLanguageClick(string chosenLanguageCode, IWebDriver driver)
+        public void ChosenTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
             LanguageFilterClick(driver);
             statusFilters.ChosenTargetLanguageClick(driver, chosenLanguageCode);
+
+            statusNavigationBar = new StatusNavigationBar(driver);
+            statusFilters = new StatusFilters(driver);
         }
 
         public void ClickAll(IWebDriver driver)
         {
             statusFilters.ClickAll(driver);
+
+            statusNavigationBar = new StatusNavigationBar(driver);
+            statusFilters = new StatusFilters(driver);
         }
 
         /* Constructors */
@@ -175,7 +186,6 @@ namespace TMS_Constant_Evaluation.Pages
                     auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
                     if (auxiliaryCollection.Count != 0) errorMessage = auxiliaryCollection.ElementAt(0);*/
             }
-
         }
 
         /*private IWebElement pageName;

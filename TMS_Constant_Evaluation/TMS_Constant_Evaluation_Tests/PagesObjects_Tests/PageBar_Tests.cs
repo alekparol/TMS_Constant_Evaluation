@@ -42,7 +42,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 testProjectPage.ChangeItemsPerPage(driver);
 
                 testProjectPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
 
                 PageBar testPageBar = new PageBar(driver);
 
@@ -95,7 +95,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 StatusPage testStatusPage = new StatusPage(driver);
 
                 testStatusPage.ActivitiesFilterClick(driver);
-                testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
+                testStatusPage.ChosenActivityClick(driver, "Buffer_for_FreewayReview_H");
                 
                 PageBar testPageBar = new PageBar(driver);
 
@@ -225,7 +225,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 StatusPage testStatusPage = new StatusPage(driver);
 
                 testStatusPage.ActivitiesFilterClick(driver);
-                testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
+                testStatusPage.ChosenActivityClick(driver, "Buffer_for_FreewayReview_H");
 
                 PageBar testPageBar = new PageBar(driver);
 
@@ -523,7 +523,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 StatusPage testStatusPage = new StatusPage(driver);
 
                 testStatusPage.ActivitiesFilterClick(driver);
-                testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
+                testStatusPage.ChosenActivityClick(driver, "Buffer_for_FreewayReview_H");
 
                 PageBar testPageBar = new PageBar(driver);
 
@@ -720,7 +720,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 StatusPage testStatusPage = new StatusPage(driver);
 
                 testStatusPage.ActivitiesFilterClick(driver);
-                testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
+                testStatusPage.ChosenActivityClick(driver, "Buffer_for_FreewayReview_H");
 
                 PageBar testPageBar = new PageBar(driver);
                 testPageBar.GoToLastPage(driver);
@@ -1027,7 +1027,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 StatusPage testStatusPage = new StatusPage(driver);
 
                 testStatusPage.ActivitiesFilterClick(driver);
-                testStatusPage.ChosenActivityClick("Buffer_for_FreewayReview_H", driver);
+                testStatusPage.ChosenActivityClick(driver, "Buffer_for_FreewayReview_H");
 
                 PageBar testPageBar = new PageBar(driver);
                 testPageBar.GoToLastPage(driver);

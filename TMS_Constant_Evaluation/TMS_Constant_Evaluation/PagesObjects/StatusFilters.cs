@@ -191,7 +191,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int LanguageFilterIsExpanded
+        public int LanguagesFilterIsExpanded
         {
             get
             {
@@ -446,12 +446,12 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             LanguageFilterClick(driver);
 
-            if (LanguageFilterIsExpanded == 1)
+            if (LanguagesFilterIsExpanded == 1)
             {
                 IWebElement chosenElement;
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-                chosenElement = languageList.Where(x => x.Text == chosenLanguageCode).ElementAt(0);
+                chosenElement = languageList.Where(x => x.Text.Contains(chosenLanguageCode)).ElementAt(0);
                 chosenElement.Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));

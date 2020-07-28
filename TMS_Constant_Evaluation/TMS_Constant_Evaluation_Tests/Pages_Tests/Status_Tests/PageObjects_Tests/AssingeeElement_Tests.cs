@@ -38,9 +38,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
+                testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
                 porscheAssigneesPage.ActivitiesFilterClick();
@@ -102,9 +102,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.StatusClick(driver);
-                StatusPage porscheStatusPage = new StatusPage(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
 
-                porscheStatusPage.AssigneesClick(driver);
+                testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
                 porscheAssigneesPage.ActivitiesFilterClick();
@@ -157,7 +157,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 statusPageAfterTagging.ActivitiesFilterClick(driver);
                 Thread.Sleep(1000);
 
-                statusPageAfterTagging.ChosenActivityClick("Translation", driver);
+                statusPageAfterTagging.ChosenActivityClick(driver, "Translation");
                 Thread.Sleep(10000);
                 /* Set of assertions */
 
