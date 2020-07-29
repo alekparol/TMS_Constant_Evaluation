@@ -13,7 +13,6 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
         /* Fields */
      
         private IWebElement menuContainer;
-
         private IWebElement tagJobButton;
 
         /* Properties */
@@ -102,35 +101,36 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
 
         public void ClickTagJobsButton(IWebDriver driver)
         {
+            if (TagJobButtonIsEnabled == 1)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                tagJobButton.Click();
 
-            tagJobButton.Click();
-
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+            }
         }
 
         /* Constructors */
         public OnClickJobsMenu(IWebDriver driver)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='m1 lay_flt']")));
 
             IReadOnlyCollection<IWebElement> auxiliaryCollection;
             IEnumerable<IWebElement> auxiliaryEnumerable;
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='m1 lay_flt']")));
 
             auxiliaryCollection = driver.FindElements(By.XPath("//*[@class='m1 lay_flt']"));
             if (auxiliaryCollection.Count == 1) menuContainer = auxiliaryCollection.ElementAt(0);
 
             if (menuContainer != null)
             {
-
                 auxiliaryCollection = menuContainer.FindElements(By.TagName("li"));
+             
                 auxiliaryEnumerable = auxiliaryCollection.Where(x => x.Text == "Tag Job");
-
                 if (auxiliaryEnumerable.Count() == 1) tagJobButton = auxiliaryEnumerable.ElementAt(0);
-
             }
 
         }
