@@ -13,7 +13,7 @@ namespace TMS_Constant_Evaluation
 
         public string jobName;
 
-        public string sourceTargetLanguages;
+        public string sourceGetTargetLanguages;
         public string jobStatus;
 
         public IWebElement moreInfo;
@@ -30,7 +30,7 @@ namespace TMS_Constant_Evaluation
 
         /*
          * jobName = class="grp_ttl"
-         * sourceTargetLanguages = class="grp_lg"
+         * sourceGetTargetLanguages = class="grp_lg"
          * jobStatus = class="grp_aty_501 tlp_on title="
          **/
 

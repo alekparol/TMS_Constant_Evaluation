@@ -163,10 +163,10 @@ namespace TMS_Constant_Evaluation.Pages
             assigneeNavigationBar = new StatusNavigationBar(driver);
         }
 
-        public void ChosenTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
+        public void ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
             LanguageFilterClick(driver);
-            assigneeFilters.ChosenTargetLanguageClick(driver, chosenLanguageCode);
+            assigneeFilters.ChosenGetTargetLanguageClick(driver, chosenLanguageCode);
 
             assigneeNavigationBar = new StatusNavigationBar(driver);
             assigneeFilters = new AssigneesFilters(driver);

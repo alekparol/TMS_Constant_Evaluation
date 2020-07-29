@@ -13,7 +13,7 @@ namespace TMS_Constant_Evaluation
 
         public string jobName;
 
-        public string sourceTargetLanguages;
+        public string sourceGetTargetLanguages;
         public string jobStatus;
 
         public int stepsCount;
@@ -29,7 +29,7 @@ namespace TMS_Constant_Evaluation
 
         /*
          * jobName = class="grp_ttl"
-         * sourceTargetLanguages = class="grp_lg"
+         * sourceGetTargetLanguages = class="grp_lg"
          * jobStatus = class="grp_aty_501 tlp_on title="
          **/
 
@@ -37,7 +37,7 @@ namespace TMS_Constant_Evaluation
         {
             jobName = string.Empty;
 
-            sourceTargetLanguages = string.Empty;
+            sourceGetTargetLanguages = string.Empty;
             jobStatus = string.Empty;
 
             stepsCount = 0;
@@ -51,7 +51,7 @@ namespace TMS_Constant_Evaluation
 
             jobName = statusObjectTitle.Text;
 
-            sourceTargetLanguages = statusObjectTitle.FindElement(By.XPath("..")).FindElement(By.ClassName("grp_lg")).Text;
+            sourceGetTargetLanguages = statusObjectTitle.FindElement(By.XPath("..")).FindElement(By.ClassName("grp_lg")).Text;
             jobStatus = statusObjectTitle.FindElement(By.XPath("..")).FindElement(By.XPath("//*[contains(@class, 'tlp_on title')]")).Text;
 
             Int32.TryParse(statusObjectTitle.FindElement(By.XPath("../../..")).FindElement(By.ClassName("r_LCount")).Text,out stepsCount);

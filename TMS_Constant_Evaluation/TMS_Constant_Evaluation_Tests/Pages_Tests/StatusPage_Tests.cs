@@ -465,7 +465,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
-                testStatusPage.ChosenTargetLanguageClick(driver, "da-dk");
+                testStatusPage.ChosenGetTargetLanguageClick(driver, "da-dk");
                 testStatusPage.LanguageFilterClick(driver);
 
                 /* Set of assertions */
@@ -506,7 +506,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
-                testStatusPage.ChosenTargetLanguageClick(driver, "de-de");
+                testStatusPage.ChosenGetTargetLanguageClick(driver, "de-de");
                 testStatusPage.LanguageFilterClick(driver);
 
                 /* Set of assertions */

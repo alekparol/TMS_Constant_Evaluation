@@ -142,10 +142,10 @@ namespace TMS_Constant_Evaluation.Pages
             statusNavigationBar = new StatusNavigationBar(driver);
         }
 
-        public void ChosenTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
+        public void ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
             LanguageFilterClick(driver);
-            statusFilters.ChosenTargetLanguageClick(driver, chosenLanguageCode);
+            statusFilters.ChosenGetTargetLanguageClick(driver, chosenLanguageCode);
 
             statusNavigationBar = new StatusNavigationBar(driver);
             statusFilters = new StatusFilters(driver);

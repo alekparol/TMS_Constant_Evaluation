@@ -417,10 +417,10 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     activitiesList = auxiliaryCollection;
 
                 }
-                auxiliaryCollection = driver.FindElements(By.Id("cup_fpTargetLanguage_titletext"));
+                auxiliaryCollection = driver.FindElements(By.Id("cup_fpGetTargetLanguage_titletext"));
                 if (auxiliaryCollection.Count == 1) languageFilter = auxiliaryCollection.ElementAt(0);
 
-                auxiliaryCollection = driver.FindElements(By.Id("cup_fpTargetLanguage_child"));
+                auxiliaryCollection = driver.FindElements(By.Id("cup_fpGetTargetLanguage_child"));
                 if (auxiliaryCollection.Count == 1)
                 {
                     languageFilterChild = auxiliaryCollection.ElementAt(0);
@@ -438,11 +438,11 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 languageFilter.Click();
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpTargetLanguage_child")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fpGetTargetLanguage_child")));
             }
         }
 
-        public void ChosenTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
+        public void ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
             LanguageFilterClick(driver);
 

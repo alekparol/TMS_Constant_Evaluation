@@ -50,7 +50,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                 foreach(AssigneeJobs job in assigneesJobsList)
                 {
-                    auxiliaryList.Add(job.JobsName);
+                    auxiliaryList.Add(job.GetJobsName );
                 }
 
                 return auxiliaryList;

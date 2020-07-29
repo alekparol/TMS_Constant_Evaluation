@@ -17,54 +17,158 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Fields */
 
-        private IWebElement jobsIWebElement;
-        private string jobsName;
+        private IWebElement jobsButton;
 
         private string languages;
         private string sourceLanguage;
         private string targetLanguage;
 
-        private bool isParsedCorrectly;
+        private IWebElement jobsName;
 
         /* Properties */
+
+        public bool JobsButtonIsNull
+        {
+            get
+            {
+                if (jobsButton != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public int JobsButtonIsEnabled
+        {
+            get
+            {
+                if (JobsButtonIsNull == false)
+                {
+                    if (jobsButton.Enabled)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int LanguagesIsNull
+        {
+            get
+            {
+                if (JobsButtonIsNull == false)
+                {
+                    if (languages != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public string GetSourceLanguage
+        {
+            get
+            {
+                if (LanguagesIsNull == 0)
+                {
+                    return sourceLanguage;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        public string GetTargetLanguage
+        {
+            get
+            {
+                if (LanguagesIsNull == 0)
+                {
+                    return targetLanguage;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
 
         public IWebElement JobsIWebElement
         {
             get
             {
-                return jobsIWebElement;
+                return jobsButton;
             }
         }
 
-        public string JobsName
+        public bool JobsNameIsNull
         {
             get
             {
-                return jobsName;
+                if (jobsName != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
 
-        public string SourceLanguage
+        public string GetJobsName 
         {
             get
             {
-                return sourceLanguage;
+                if (JobsNameIsNull == false)
+                {
+                    return jobsName.Text;
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
 
-        public string TargetLanguage
-        {
-            get
-            {
-                return targetLanguage;
-            }
-        }
+        
        
         public bool IsParsingCorrect
         {
             get
             {
-                return isParsedCorrectly;
+                if (JobsButtonIsNull == false && JobsNameIsNull == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -77,44 +181,24 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             IReadOnlyCollection<IWebElement> auxiliaryCollection;
             IEnumerable<IWebElement> auxiliarayEnumerable;
 
-            Regex languagesRegex = new Regex("(\\w{2}\\-\\w{2})\\s{1}→\\s{1}(\\w{2}\\-\\w{2})");
-
-            string auxiliaryString;
+            Regex languagesRegex = new Regex("(\\w{2,3}\\-\\w{2,3})\\s{1}→\\s{1}(\\w{2,3}\\-\\w{2,3})");
 
             if (r_LObject.GetAttribute("class") == "r_L")
             {
-                isParsedCorrectly = true;
 
-                string rowID = r_LObject.GetAttribute("rowid");
-                auxiliarayEnumerable = r_LObject.FindElements(By.XPath("child::*")).Where(x => x.GetAttribute("id") == rowID);
-
-                if (auxiliarayEnumerable.Count() == 1)
-                {
-                   
-                    IWebElement checkboxRow = auxiliarayEnumerable.ElementAt(0);
-
-                    auxiliaryCollection = checkboxRow.FindElements(By.ClassName("tlp_on"));
-                    if (auxiliaryCollection.Count == 1) jobsName = auxiliaryCollection.ElementAt(0).Text;
-
-
-                }
+                auxiliaryCollection = r_LObject.FindElements(By.ClassName("firstColumn"));
+                if (auxiliaryCollection.Count > 0) jobsName = auxiliaryCollection.ElementAt(0);
 
                 auxiliarayEnumerable = r_LObject.FindElements(By.XPath("child::*")).Where(x => languagesRegex.IsMatch(x.Text));
-
                 if (auxiliarayEnumerable.Count() == 1)
                 {
-
-                    jobsIWebElement = auxiliarayEnumerable.ElementAt(0);
+                    jobsButton = auxiliarayEnumerable.ElementAt(0);
                     languages = auxiliarayEnumerable.ElementAt(0).Text;
 
                     sourceLanguage = languagesRegex.Match(languages).Groups[1].Value;
                     targetLanguage = languagesRegex.Match(languages).Groups[2].Value;
-
-                }
-                
-
+                }               
             }
         }
-
     }
 }

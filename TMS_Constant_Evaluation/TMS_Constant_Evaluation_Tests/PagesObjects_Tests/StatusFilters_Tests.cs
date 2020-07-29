@@ -627,7 +627,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         /* Chosen Target Language Click */
 
         [TestMethod]
-        public void StatusFilters_ChosenTargetLanguageClick_Test_1()
+        public void StatusFilters_ChosenGetTargetLanguageClick_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -652,7 +652,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 StatusFilters statusFiltersTest = new StatusFilters(driver);
 
                 statusFiltersTest.FiltersPanelInitialization(driver);
-                statusFiltersTest.ChosenTargetLanguageClick(driver, "ar-xm");
+                statusFiltersTest.ChosenGetTargetLanguageClick(driver, "ar-xm");
 
                 statusFiltersTest = new StatusFilters(driver);
 
@@ -682,7 +682,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void StatusFilters_ChosenTargetLanguageClick_Test_2()
+        public void StatusFilters_ChosenGetTargetLanguageClick_Test_2()
         {
 
             using (var driver = new ChromeDriver())
@@ -707,7 +707,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 StatusFilters statusFiltersTest = new StatusFilters(driver);
 
                 statusFiltersTest.FiltersPanelInitialization(driver);
-                statusFiltersTest.ChosenTargetLanguageClick(driver, "ar-xm");
+                statusFiltersTest.ChosenGetTargetLanguageClick(driver, "ar-xm");
 
                 statusFiltersTest = new StatusFilters(driver);
                 statusFiltersTest.FiltersPanelInitialization(driver);

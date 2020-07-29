@@ -117,7 +117,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 translationPage.LanguageFilterClick(driver);
                 Thread.Sleep(1000);
 
-                translationPage.ChosenTargetLanguageClick(driver, differentLanguages.ElementAt(1));
+                translationPage.ChosenGetTargetLanguageClick(driver, differentLanguages.ElementAt(1));
 
                 Thread.Sleep(5000);
 
