@@ -9,10 +9,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
-namespace TMS_Constant_Evaluation.Pages.PagesObjects
+namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 {
-    public class AssigneesObject
+    public class AssigneesAndJobs
     {
 
         /* Fields */
@@ -21,8 +23,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         public List<AssigneeJobs> assigneesJobsList = new List<AssigneeJobs>();
 
         private PageBar assigneePageBar;
-
-        private bool isParsedCorrectly;
 
         /* Properties */
 
@@ -61,7 +61,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         {
             get
             {
-                return isParsedCorrectly;
+                return true;
+                //return isParsedCorrectly;
             }
         }
 
@@ -72,7 +73,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         /* I think the process should be like that: 
          * 1. We get the whole list of assignees on the internal review page. 
          * 2. We get the whole list of the assignees jobs on the internal review page. 
-         * 3. We go through the assignees list and create an AssigneesObject for each element - passing jobs numbers we get the list of the assignees 
+         * 3. We go through the assignees list and create an AssigneesAndJobs for each element - passing jobs numbers we get the list of the assignees 
          * jobs containing the jobs from the whole list of jobs from 0 to number of jobs for this assignee - 1. 
          * 4. We delete the jobs assigneed for the assignee from the list. 
          * 5. We do it until the list of assignees is on the end and list of jobs.count == 0. 
@@ -80,7 +81,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
          * 
          * 
          **/
-        public AssigneesObject(IWebDriver driver)
+        public AssigneesAndJobs(IWebDriver driver)
         {
             if (driver.Url == "https://tms.lionbridge.com/")
             {
@@ -97,7 +98,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 if (assigneePageBar.IsParsingCorrect && assigneePageBar.PageNavigationContainerIsNull == 0)
                 {
 
-                    isParsedCorrectly = true;
+                    //isParsedCorrectly = true;
 
                     while (true)
                     {

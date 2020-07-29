@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TMS_Constant_Evaluation.Pages.PagesObjects
+namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 {
     public class AssigneeJobs
     {
@@ -173,6 +173,14 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         }
 
         /* Methods */
+
+        public void AssigneeJobButtonClick(IWebDriver driver)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+            jobsButton.Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"m1 lay_flt\"]")));
+        }
 
         /* Constructors */
 

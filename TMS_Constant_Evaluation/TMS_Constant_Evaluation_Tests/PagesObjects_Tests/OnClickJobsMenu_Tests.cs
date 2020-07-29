@@ -10,16 +10,16 @@ using OpenQA.Selenium.Support.UI;
 using TMS_Constant_Evaluation;
 using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
-namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tests
+namespace TMS_Constant_Evaluation_Tests.PagesObjects_Tests
 {
     [TestClass]
-    public class AssigneesObject_Tests
+    class OnClickJobsMenu_Tests
     {
 
-
         [TestMethod]
-        public void AssigneesObject_ParsingCorrectly_Test_1()
+        public void OnClickJobsMenu_ParsingCorrectly_Test_1()
         {
             using (var driver = new ChromeDriver())
             {
@@ -42,16 +42,23 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                AssigneesObject asob = new AssigneesObject(driver);
+                IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_L"));
+                List<AssigneeJobs> assigneesJobs = new List<AssigneeJobs>();
+
+                AssigneeJobs auxiliaryAssigneesJob = new AssigneeJobs(r_LObjects.ElementAt(0));
+                assigneesJobs.Add(auxiliaryAssigneesJob);
+
 
                 /* Set of assertions */
-                Assert.AreEqual(true, asob.IsParsingCorrect);
-                Assert.AreNotEqual(0, asob.AssigneeJobsListSize);
-                Assert.AreNotEqual(0, asob.AssigneesListSize);
+
+                Assert.IsFalse(auxiliaryAssigneesJob.JobsButtonIsNull);
+                Assert.IsFalse(auxiliaryAssigneesJob.JobsNameIsNull);
+                Assert.IsTrue(auxiliaryAssigneesJob.IsParsingCorrect);
+                Assert.AreNotEqual("", auxiliaryAssigneesJob.GetJobsName);
+                Assert.AreNotEqual("", auxiliaryAssigneesJob.GetSourceLanguage);
+                Assert.AreNotEqual("", auxiliaryAssigneesJob.GetTargetLanguage);
 
             }
         }
-
-
     }
 }

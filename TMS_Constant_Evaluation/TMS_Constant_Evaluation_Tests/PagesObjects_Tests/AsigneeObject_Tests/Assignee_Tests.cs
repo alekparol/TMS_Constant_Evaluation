@@ -10,8 +10,9 @@ using OpenQA.Selenium.Support.UI;
 using TMS_Constant_Evaluation;
 using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
-namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PageObjects_Tests
+namespace TMS_Constant_Evaluation_Tests.PagesObjects_Tests.AsigneeObject_Tests
 {
     [TestClass]
     public class Assignee_Tests

@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TMS_Constant_Evaluation.Pages
+namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 {
     public class Assignee
     {

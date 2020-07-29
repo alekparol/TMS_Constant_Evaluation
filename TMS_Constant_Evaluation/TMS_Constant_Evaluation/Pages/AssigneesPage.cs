@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
 /*
  * This class mean to model TMS Assignees Page which is displayed on all of the pages on the top of the screen. 
@@ -42,7 +43,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         
 
-        private AssigneesObject assigneesObjects;
+        private AssigneesAndJobs assigneesObjects;
         private bool isParsedCorrectly;
 
 
@@ -183,7 +184,7 @@ namespace TMS_Constant_Evaluation.Pages
         public List<string> GetJobNames(IWebDriver driver)
         {
            
-            assigneesObjects = new AssigneesObject(driver);
+            assigneesObjects = new AssigneesAndJobs(driver);
             return assigneesObjects.AssigneesJobNames;
 
         }
@@ -262,7 +263,7 @@ namespace TMS_Constant_Evaluation.Pages
         private IWebElement searchField;
         private IWebElement searchButton;
 
-        private AssigneesObject assigneesObjects;
+        private AssigneesAndJobs assigneesObjects;
         private bool isParsedCorrectly;
 
 
@@ -419,7 +420,7 @@ namespace TMS_Constant_Evaluation.Pages
         public List<string> GetJobNames(IWebDriver driver)
         {
 
-            assigneesObjects = new AssigneesObject(driver);
+            assigneesObjects = new AssigneesAndJobs(driver);
             return assigneesObjects.AssigneesJobNames;
 
         }
