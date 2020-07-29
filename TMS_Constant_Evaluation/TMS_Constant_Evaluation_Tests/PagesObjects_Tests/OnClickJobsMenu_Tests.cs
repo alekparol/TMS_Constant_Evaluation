@@ -10,12 +10,13 @@ using OpenQA.Selenium.Support.UI;
 using TMS_Constant_Evaluation;
 using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
 using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
 namespace TMS_Constant_Evaluation_Tests.PagesObjects_Tests
 {
     [TestClass]
-    class OnClickJobsMenu_Tests
+    public class OnClickJobsMenu_Tests
     {
 
         [TestMethod]
@@ -48,15 +49,15 @@ namespace TMS_Constant_Evaluation_Tests.PagesObjects_Tests
                 AssigneeJobs auxiliaryAssigneesJob = new AssigneeJobs(r_LObjects.ElementAt(0));
                 assigneesJobs.Add(auxiliaryAssigneesJob);
 
+                auxiliaryAssigneesJob.AssigneeJobButtonClick(driver);
+                OnClickJobsMenu testJobMenu = new OnClickJobsMenu(driver);
 
                 /* Set of assertions */
 
-                Assert.IsFalse(auxiliaryAssigneesJob.JobsButtonIsNull);
-                Assert.IsFalse(auxiliaryAssigneesJob.JobsNameIsNull);
-                Assert.IsTrue(auxiliaryAssigneesJob.IsParsingCorrect);
-                Assert.AreNotEqual("", auxiliaryAssigneesJob.GetJobsName);
-                Assert.AreNotEqual("", auxiliaryAssigneesJob.GetSourceLanguage);
-                Assert.AreNotEqual("", auxiliaryAssigneesJob.GetTargetLanguage);
+                Assert.IsFalse(testJobMenu.MenuContainerIsNull);
+                Assert.AreEqual(1, testJobMenu.MenuContainerIsDisplayed);
+                Assert.AreEqual(0, testJobMenu.TagJobButtonIsNull);
+                Assert.AreEqual(1, testJobMenu.TagJobButtonIsEnabled);
 
             }
         }
