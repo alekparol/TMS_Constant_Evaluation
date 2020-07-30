@@ -12,6 +12,18 @@ using System.Threading.Tasks;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
 using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
+
+/* I think the process should be like that: 
+ * 1. We get the whole list of assignees on the internal review page. 
+ * 2. We get the whole list of the assignees jobs on the internal review page. 
+ * 3. We go through the assignees list and create an AssigneesAndJobs for each element - passing jobs numbers we get the list of the assignees 
+ * jobs containing the jobs from the whole list of jobs from 0 to number of jobs for this assignee - 1. 
+ * 4. We delete the jobs assigneed for the assignee from the list. 
+ * 5. We do it until the list of assignees is on the end and list of jobs.count == 0. 
+ * 
+ * 
+ * 
+ **/
 namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 {
     public class AssigneesAndJobs
@@ -23,14 +35,52 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
         public List<AssigneeJobs> assigneesJobsList = new List<AssigneeJobs>();
 
         private PageBar assigneePageBar;
+        private int numberOfPages;
 
         /* Properties */
 
-        public int AssigneesListSize
+        public bool AssigneesListIsEmpty
         {
             get
             {
-                return assigneesList.Count;
+                if (assigneesList.Count != 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public int GetAssigneesListSize
+        {
+            get
+            {
+                if (AssigneesListIsEmpty == false)
+                {
+                    return assigneesList.Count;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public bool AssigneesJobsListIsEmpty
+        {
+            get
+            {
+                if (assigneesJobsList.Count != 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
 
@@ -38,11 +88,102 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
         {
             get
             {
-                return assigneesJobsList.Count;
+                if (AssigneesJobsListIsEmpty == false)
+                {
+                    return assigneesJobsList.Count;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+        public List<string> GetListOfJobsSourceLanguages
+        {
+            get
+            {
+                List<string> differentLanguagesList = new List<string>();
+
+                if (AssigneesJobsListIsEmpty == false)
+                {
+                    IOrderedEnumerable<AssigneeJobs> assigneesJobsOrdered = assigneesJobsList.OrderBy(x => x.GetSourceLanguage);
+                    IEnumerable<AssigneeJobs> auxiliaryEnumerable;
+
+                    string auxiliaryString;
+                    int auxiliaryInt = 0;
+
+                    while (auxiliaryInt < GetAssigneesListSize)
+                    {
+                        auxiliaryString = assigneesJobsOrdered.ElementAt(auxiliaryInt).GetSourceLanguage;
+                        if (auxiliaryString != "" && auxiliaryString != null)
+                        {
+                            differentLanguagesList.Add(auxiliaryString);
+                        }
+
+                        auxiliaryEnumerable = assigneesJobsList.Where(x => x.GetSourceLanguage == auxiliaryString);
+                        auxiliaryInt += auxiliaryEnumerable.Count();
+                    }
+
+                    return differentLanguagesList;
+                }
+                else
+                {
+                    return differentLanguagesList;
+                }
             }
         }
 
-        public List<string> AssigneesJobNames
+        public List<string> GetListOfJobsTargetLanguages
+        {
+            get
+            {
+                List<string> differentLanguagesList = new List<string>();
+
+                if (AssigneesJobsListIsEmpty == false)
+                {
+                    IOrderedEnumerable<AssigneeJobs> assigneesJobsOrdered = assigneesJobsList.OrderBy(x => x.GetTargetLanguage);
+                    IEnumerable<AssigneeJobs> auxiliaryEnumerable;
+
+                    string auxiliaryString;
+                    int auxiliaryInt = 0;
+
+                    while (auxiliaryInt < GetAssigneesListSize)
+                    {
+                        auxiliaryString = assigneesJobsOrdered.ElementAt(auxiliaryInt).GetTargetLanguage;
+                        if (auxiliaryString != "" && auxiliaryString != null)
+                        {
+                            differentLanguagesList.Add(auxiliaryString);
+                        }
+
+                        auxiliaryEnumerable = assigneesJobsList.Where(x => x.GetTargetLanguage == auxiliaryString);
+                        auxiliaryInt += auxiliaryEnumerable.Count();
+                    }
+
+                    return differentLanguagesList;
+                }
+                else
+                {
+                    return differentLanguagesList;
+                }
+            }
+        }
+
+        public bool PageBarIsNull
+        {
+            get
+            {
+                if (assigneePageBar.PageBarContainerIsNull == false)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public List<string> GetAssigneesJobNames
         {
             get
             {
@@ -57,6 +198,8 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
             }
         }
 
+      
+
         public bool IsParsingCorrect
         {
             get
@@ -70,17 +213,6 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
         /* Constructors */
 
-        /* I think the process should be like that: 
-         * 1. We get the whole list of assignees on the internal review page. 
-         * 2. We get the whole list of the assignees jobs on the internal review page. 
-         * 3. We go through the assignees list and create an AssigneesAndJobs for each element - passing jobs numbers we get the list of the assignees 
-         * jobs containing the jobs from the whole list of jobs from 0 to number of jobs for this assignee - 1. 
-         * 4. We delete the jobs assigneed for the assignee from the list. 
-         * 5. We do it until the list of assignees is on the end and list of jobs.count == 0. 
-         * 
-         * 
-         * 
-         **/
         public AssigneesAndJobs(IWebDriver driver)
         {
             if (driver.Url == "https://tms.lionbridge.com/")
@@ -92,52 +224,45 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                 Assignee auxiliaryAssignee;
                 AssigneeJobs auxiliaryAssigneeJobs;
 
-                wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
-
-                assigneePageBar = new PageBar(driver);
-                if (assigneePageBar.IsParsingCorrect && assigneePageBar.PageNavigationContainerIsNull == 0)
+                while (true)
                 {
+                    numberOfPages++;
 
-                    //isParsedCorrectly = true;
+                    wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
+                    assigneePageBar = new PageBar(driver);
 
-                    while (true)
+                    if (assigneePageBar.CurrentPageIsFirst == 1)
                     {
-                        if (wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH"))) != null)
+                        assigneePageBar.ItemsPerPageSetMaximalValue(driver);
+                    }
+
+                    auxiliaryCollection = driver.FindElements(By.ClassName("r_LH"));
+                    if (auxiliaryCollection.Count > 0)
+                    {
+                        foreach (IWebElement element in auxiliaryCollection)
                         {
-
-                            auxiliaryCollection = driver.FindElements(By.ClassName("r_LH"));
-                            if (auxiliaryCollection.Count > 0)
-                            {
-                                foreach (IWebElement element in auxiliaryCollection)
-                                {
-                                    auxiliaryAssignee = new Assignee(element);
-                                    if (auxiliaryAssignee.IsParsingCorrect) assigneesList.Add(auxiliaryAssignee);
-                                }
-                            }
-
-                            auxiliaryCollection = driver.FindElements(By.ClassName("r_L"));
-                            if (auxiliaryCollection.Count > 0)
-                            {
-                                foreach (IWebElement element in auxiliaryCollection)
-                                {
-                                    auxiliaryAssigneeJobs = new AssigneeJobs(element);
-                                    if (auxiliaryAssigneeJobs.IsParsingCorrect) assigneesJobsList.Add(auxiliaryAssigneeJobs);
-                                }
-                            }
-
-                            if(assigneePageBar.NextPageIsNull == 0)
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                assigneePageBar.GoToNextPage(driver);
-                            }
-                            
-
-                            assigneePageBar = new PageBar(driver);
-
+                            auxiliaryAssignee = new Assignee(element);
+                            if (auxiliaryAssignee.IsParsingCorrect) assigneesList.Add(auxiliaryAssignee);
                         }
+                    }
+
+                    auxiliaryCollection = driver.FindElements(By.ClassName("r_L"));
+                    if (auxiliaryCollection.Count > 0)
+                    {
+                        foreach (IWebElement element in auxiliaryCollection)
+                        {
+                            auxiliaryAssigneeJobs = new AssigneeJobs(element);
+                            if (auxiliaryAssigneeJobs.IsParsingCorrect) assigneesJobsList.Add(auxiliaryAssigneeJobs);
+                        }
+                    }
+
+                    if (assigneePageBar.NextPageIsNull == 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        assigneePageBar.GoToNextPage(driver);
                     }
                 }
             }

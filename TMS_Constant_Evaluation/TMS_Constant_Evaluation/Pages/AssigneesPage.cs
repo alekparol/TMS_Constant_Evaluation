@@ -185,7 +185,7 @@ namespace TMS_Constant_Evaluation.Pages
         {
            
             assigneesObjects = new AssigneesAndJobs(driver);
-            return assigneesObjects.AssigneesJobNames;
+            return assigneesObjects.GetAssigneesJobNames;
 
         }
 
@@ -421,7 +421,7 @@ namespace TMS_Constant_Evaluation.Pages
         {
 
             assigneesObjects = new AssigneesAndJobs(driver);
-            return assigneesObjects.AssigneesJobNames;
+            return assigneesObjects.GetAssigneesJobNames;
 
         }
 
