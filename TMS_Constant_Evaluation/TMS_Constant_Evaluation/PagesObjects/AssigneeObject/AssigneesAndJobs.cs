@@ -88,7 +88,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
             }
         }
 
-        public int AssigneeJobsListSize
+        public int GetAssigneeJobsListSize
         {
             get
             {
@@ -102,6 +102,29 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                 }
             }
         }
+
+        public List<string> GetListOfAssigneeNames
+        {
+            get
+            {
+                List<string> assigneeNames = new List<string>();
+
+                if (AssigneesListIsEmpty == false)
+                {
+                    foreach(Assignee assignee in assigneesList)
+                    {
+                        assigneeNames.Add(assignee.GetAssigneeName);
+                    }
+
+                    return assigneeNames;
+                }
+                else
+                {
+                    return assigneeNames;
+                }
+            }
+        }
+
         public List<string> GetListOfJobsSourceLanguages
         {
             get
@@ -217,26 +240,26 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
         public void SelectSingleJob(IWebDriver driver, int jobNumber)
         {
-            if (AssigneesJobsListIsEmpty == false)
-            {
-                if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
-                {
+            //if (AssigneesJobsListIsEmpty == false)
+            //{
+                //if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                //{
                     assigneesJobsList.ElementAt(jobNumber).AssigneeJobButtonClick(driver);
                     assigneeJobMenu = new OnClickJobsMenu(driver);
-                }
-            }
+                //}
+            //}
         }
 
         public void TagSingleJob(IWebDriver driver, int jobNumber)
         {
-            if (AssigneesJobsListIsEmpty == false)
-            {
-                if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
-                {
+            //if (AssigneesJobsListIsEmpty == false)
+            //{
+               // if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                //{
                     SelectSingleJob(driver, jobNumber);
                     assigneeJobMenu.ClickTagJobsButton(driver);
-                }
-            }
+                //}
+            //}
         }
 
         public void SelectMultipleJobs(IWebDriver driver, int rangeStart, int rangeEnd)
@@ -285,17 +308,17 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                 Assignee auxiliaryAssignee;
                 AssigneeJobs auxiliaryAssigneeJobs;
 
-                while (true)
-                {
-                    numberOfPages++;
+                //while (true)
+                //{
+                   // numberOfPages++;
 
-                    wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
-                    assigneePageBar = new PageBar(driver);
+                    //wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
+                    //assigneePageBar = new PageBar(driver);
 
-                    if (assigneePageBar.CurrentPageIsFirst == 1)
-                    {
-                        assigneePageBar.ItemsPerPageSetMaximalValue(driver);
-                    }
+                    //if (assigneePageBar.CurrentPageIsFirst == 1)
+                   // {
+                    //    assigneePageBar.ItemsPerPageSetMaximalValue(driver);
+                   // }
 
                     auxiliaryCollection = driver.FindElements(By.ClassName("r_LH"));
                     if (auxiliaryCollection.Count > 0)
@@ -317,15 +340,15 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                         }
                     }
 
-                    if (assigneePageBar.NextPageIsNull == 0)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        assigneePageBar.GoToNextPage(driver);
-                    }
-                }
+                    //if (assigneePageBar.NextPageIsNull == 0)
+                    //{
+                    //    break;
+                    //}
+                    //else
+                   // {
+                   ///     assigneePageBar.GoToNextPage(driver);
+                   //// }
+               // }
             }
         }
     }
