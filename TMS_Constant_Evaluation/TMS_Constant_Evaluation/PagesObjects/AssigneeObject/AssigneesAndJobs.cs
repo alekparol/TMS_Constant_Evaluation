@@ -240,26 +240,27 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
         public void SelectSingleJob(IWebDriver driver, int jobNumber)
         {
-            //if (AssigneesJobsListIsEmpty == false)
-            //{
-                //if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
-                //{
+            if (AssigneesJobsListIsEmpty == false)
+            {
+                if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                {
+                    assigneePageBar = null;
                     assigneesJobsList.ElementAt(jobNumber).AssigneeJobButtonClick(driver);
                     assigneeJobMenu = new OnClickJobsMenu(driver);
-                //}
-            //}
+                }
+            }
         }
 
         public void TagSingleJob(IWebDriver driver, int jobNumber)
         {
-            //if (AssigneesJobsListIsEmpty == false)
-            //{
-               // if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
-                //{
+            if (AssigneesJobsListIsEmpty == false)
+            {
+                if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                {
                     SelectSingleJob(driver, jobNumber);
                     assigneeJobMenu.ClickTagJobsButton(driver);
-                //}
-            //}
+                }
+            }
         }
 
         public void SelectMultipleJobs(IWebDriver driver, int rangeStart, int rangeEnd)
@@ -310,15 +311,17 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
                 //while (true)
                 //{
-                   // numberOfPages++;
+                 //   numberOfPages++;
 
-                    //wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
-                    //assigneePageBar = new PageBar(driver);
+                 //   wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
+                    assigneePageBar = new PageBar(driver);
+                
+                //if (assigneePageBar.ItemsPerPageCurrentSelection != "1000")
+                //{
+                //    assigneePageBar.ItemsPerPageSetMaximalValue(driver);
+                //}
+                    
 
-                    //if (assigneePageBar.CurrentPageIsFirst == 1)
-                   // {
-                    //    assigneePageBar.ItemsPerPageSetMaximalValue(driver);
-                   // }
 
                     auxiliaryCollection = driver.FindElements(By.ClassName("r_LH"));
                     if (auxiliaryCollection.Count > 0)
@@ -340,15 +343,15 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                         }
                     }
 
-                    //if (assigneePageBar.NextPageIsNull == 0)
-                    //{
-                    //    break;
-                    //}
-                    //else
-                   // {
-                   ///     assigneePageBar.GoToNextPage(driver);
-                   //// }
-               // }
+                    /*if (assigneePageBar.NextPageIsNull != 0 )
+                    {
+                        break;
+                    }
+                    else
+                    {
+                       assigneePageBar.GoToNextPage(driver);
+                    }*/
+                 //}
             }
         }
     }

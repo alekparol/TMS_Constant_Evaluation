@@ -501,9 +501,9 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     Regex number = new Regex("\\d*");
                     string auxiliaryString;
 
-                    if (number.IsMatch(numberOfAllItems.Text))
-                    {
-                        auxiliaryString = number.Match(numberOfAllItems.Text).ToString();
+                    if (number.Matches(numberOfAllItems.Text).Count == 1)
+                    {       
+                        auxiliaryString = number.Match(numberOfAllItems.Text).Value;
                         return Int32.Parse(auxiliaryString);
                     }
                     else
