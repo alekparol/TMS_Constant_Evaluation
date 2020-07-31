@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
 using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
 
@@ -36,6 +38,8 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
         private PageBar assigneePageBar;
         private int numberOfPages;
+
+        private OnClickJobsMenu assigneeJobMenu;
 
         /* Properties */
 
@@ -210,6 +214,63 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
         }
 
         /* Methods */
+
+        public void SelectSingleJob(IWebDriver driver, int jobNumber)
+        {
+            if (AssigneesJobsListIsEmpty == false)
+            {
+                if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                {
+                    assigneesJobsList.ElementAt(jobNumber).AssigneeJobButtonClick(driver);
+                    assigneeJobMenu = new OnClickJobsMenu(driver);
+                }
+            }
+        }
+
+        public void TagSingleJob(IWebDriver driver, int jobNumber)
+        {
+            if (AssigneesJobsListIsEmpty == false)
+            {
+                if (assigneesJobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                {
+                    SelectSingleJob(driver, jobNumber);
+                    assigneeJobMenu.ClickTagJobsButton(driver);
+                }
+            }
+        }
+
+        public void SelectMultipleJobs(IWebDriver driver, int rangeStart, int rangeEnd)
+        {
+            if (AssigneesJobsListIsEmpty == false && rangeEnd <= assigneesJobsList.Count)
+            {
+                if (assigneesJobsList.ElementAt(rangeStart).JobsButtonIsEnabled == 1 && assigneesJobsList.ElementAt(rangeEnd).JobsButtonIsEnabled == 1)
+                {
+                    Actions selectingMultipleItems = new Actions(driver);
+
+                    selectingMultipleItems.Click(assigneesJobsList.ElementAt(rangeStart).GetJobButton)
+                    .KeyDown(Keys.Shift)
+                    .MoveToElement(assigneesJobsList.ElementAt(rangeEnd).GetJobButton)
+                    .Click(assigneesJobsList.ElementAt(rangeEnd).GetJobButton)
+                    .Build()
+                    .Perform();
+
+                    assigneeJobMenu = new OnClickJobsMenu(driver);
+                }
+            }
+        }
+
+        public void TagMultipleJobs(IWebDriver driver, int rangeStart, int rangeEnd)
+        {
+            if (AssigneesJobsListIsEmpty == false && rangeEnd <= assigneesJobsList.Count)
+            {
+                if (assigneesJobsList.ElementAt(rangeStart).JobsButtonIsEnabled == 1 && assigneesJobsList.ElementAt(rangeEnd).JobsButtonIsEnabled == 1)
+                {
+                    SelectMultipleJobs(driver, rangeStart, rangeEnd);
+                    assigneeJobMenu.ClickTagJobsButton(driver);
+                }
+            }
+        }
+
 
         /* Constructors */
 

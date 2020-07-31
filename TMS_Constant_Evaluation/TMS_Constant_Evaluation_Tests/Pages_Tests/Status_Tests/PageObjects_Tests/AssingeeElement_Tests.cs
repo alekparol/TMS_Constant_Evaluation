@@ -141,9 +141,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 Actions a = new Actions(driver);
 
-                a.Click(el.AssigneeJobsList[0].JobsIWebElement)
+                a.Click(el.AssigneeJobsList[0].GetJobButton)
                  .KeyDown(Keys.Shift)
-                 .Click(el.AssigneeJobsList[el.AssigneeJobsList.Count - 1].JobsIWebElement)
+                 .Click(el.AssigneeJobsList[el.AssigneeJobsList.Count - 1].GetJobButton)
                  .Build()
                  .Perform();
 

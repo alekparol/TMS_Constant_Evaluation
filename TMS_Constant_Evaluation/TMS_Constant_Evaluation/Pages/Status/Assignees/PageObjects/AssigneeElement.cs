@@ -101,7 +101,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                 foreach(AssigneeJobs el in assigneesJobList)
                 {
-                    //jobList.Append(el.JobsIWebElement);
+                    //jobList.Append(el.GetJobButton);
                     if (el.GetTargetLanguage != auxiliaryTargetLanguage)
                     {
                         auxiliaryTargetLanguage = null;

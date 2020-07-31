@@ -64,6 +64,21 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
             }
         }
 
+        public IWebElement GetJobButton
+        {
+            get
+            {
+                if (JobsButtonIsNull == false)
+                {
+                    return jobsButton;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public int LanguagesIsNull
         {
             get
@@ -113,15 +128,6 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                 {
                     return "";
                 }
-            }
-        }
-
-
-        public IWebElement JobsIWebElement
-        {
-            get
-            {
-                return jobsButton;
             }
         }
 
