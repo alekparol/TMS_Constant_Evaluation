@@ -270,6 +270,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
                     selectingMultipleItems.Click(assigneesJobsList.ElementAt(rangeStart).GetJobButton)
                     .KeyDown(Keys.Shift)
+                    .Click(driver.FindElement(By.ClassName("r_GH")))
                     .MoveToElement(assigneesJobsList.ElementAt(rangeEnd).GetJobButton)
                     .Click(assigneesJobsList.ElementAt(rangeEnd).GetJobButton)
                     .Build()

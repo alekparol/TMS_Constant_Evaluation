@@ -549,5 +549,194 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 Assert.AreNotEqual(0, asob.GetAssigneesListSize);
             }
         }
+
+        /* Tagging Multiple Jobs Tests */
+        [TestMethod]
+        public void AssigneesAndJobs_TaggingMultipleJobs_Test_1()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+                List<string> jobNames = asob.GetListOfAssigneesJobNames.GetRange(0, 10);
+
+                /* Set of assertions */
+
+                asob.TagMultipleJobs(driver, 0, 9);
+                porscheAssigneesPage = new AssigneesPage(driver);
+                asob = new AssigneesAndJobs(driver);
+
+                Assert.AreEqual(true, asob.IsParsingCorrect);
+                Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
+                Assert.AreNotEqual(0, asob.GetAssigneesListSize);
+
+                foreach (string searchJobName in asob.GetListOfAssigneesJobNames)
+                {
+                    Assert.IsTrue(jobNames.Contains(searchJobName), "{0}", searchJobName);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void AssigneesAndJobs_TaggingMultipleJobs_Test_2()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+                List<string> jobNames = asob.GetListOfAssigneesJobNames.GetRange(0, 2);
+
+                /* Set of assertions */
+
+                asob.TagMultipleJobs(driver, 1, 4);
+                porscheAssigneesPage = new AssigneesPage(driver);
+                asob = new AssigneesAndJobs(driver);
+
+                Assert.AreEqual(true, asob.IsParsingCorrect);
+                Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
+                Assert.AreNotEqual(0, asob.GetAssigneesListSize);
+
+                foreach (string searchJobName in asob.GetListOfAssigneesJobNames)
+                {
+                    Assert.IsTrue(jobNames.Contains(searchJobName), "{0}", searchJobName);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void AssigneesAndJobs_TaggingMultipleJobs_Test_3()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+                List<string> jobNames = asob.GetListOfAssigneesJobNames.GetRange(0, asob.GetAssigneeJobsListSize);
+
+                /* Set of assertions */
+
+                asob.TagMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
+                porscheAssigneesPage = new AssigneesPage(driver);
+                asob = new AssigneesAndJobs(driver);
+
+                Assert.AreEqual(true, asob.IsParsingCorrect);
+                Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
+                Assert.AreNotEqual(0, asob.GetAssigneesListSize);
+
+                foreach (string searchJobName in asob.GetListOfAssigneesJobNames)
+                {
+                    Assert.IsTrue(jobNames.Contains(searchJobName), "{0}", searchJobName);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void AssigneesAndJobs_TaggingMultipleJobs_Test_4()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+                List<string> jobNames = asob.GetListOfAssigneesJobNames.GetRange(asob.GetAssigneeJobsListSize - 1, 1);
+
+                /* Set of assertions */
+
+                asob.TagMultipleJobs(driver, asob.GetAssigneeJobsListSize - 1, asob.GetAssigneeJobsListSize - 1);
+                porscheAssigneesPage = new AssigneesPage(driver);
+                asob = new AssigneesAndJobs(driver);
+
+                Assert.AreEqual(true, asob.IsParsingCorrect);
+                Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
+                Assert.AreNotEqual(0, asob.GetAssigneesListSize);
+
+                foreach (string searchJobName in asob.GetListOfAssigneesJobNames)
+                {
+                    Assert.IsTrue(jobNames.Contains(searchJobName), "{0}", searchJobName);
+                }
+            }
+        }
     }
 }
