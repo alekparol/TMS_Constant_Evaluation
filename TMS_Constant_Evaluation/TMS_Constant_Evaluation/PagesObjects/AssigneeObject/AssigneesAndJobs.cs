@@ -119,9 +119,9 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
                 if (AssigneesJobsListIsEmpty == false)
                 {
-                    foreach (Assignee assignee in assigneesList)
+                    foreach (AssigneeJobs assigneeJob in assigneesJobsList)
                     {
-                        assingeesJobNames.Add(assignee.GetAssigneeName);
+                        assingeesJobNames.Add(assigneeJob.GetJobsName);
                     }
 
                     return assingeesJobNames;
