@@ -17,6 +17,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
         /* Fields */
 
+        private IWebElement jobsContainer;
         private IWebElement jobsButton;
 
         private string languages;
@@ -27,11 +28,11 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
         /* Properties */
 
-        public bool JobsButtonIsNull
+        public bool JobsContainerIsNull
         {
             get
             {
-                if (jobsButton != null)
+                if (jobsContainer != null)
                 {
                     return false;
                 }
@@ -42,11 +43,55 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
             }
         }
 
+        public int JobIsSelected
+        {
+            get
+            {
+                if (JobsContainerIsNull == false)
+                {
+                    if (jobsContainer.GetAttribute("class").Contains("row_slt"))
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int JobsButtonIsNull
+        {
+            get
+            {
+                if (JobsContainerIsNull == false)
+                {
+                    if (jobsButton != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
         public int JobsButtonIsEnabled
         {
             get
             {
-                if (JobsButtonIsNull == false)
+                if (JobsButtonIsNull == 0)
                 {
                     if (jobsButton.Enabled)
                     {
@@ -68,7 +113,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
         {
             get
             {
-                if (JobsButtonIsNull == false)
+                if (JobsButtonIsNull == 0)
                 {
                     return jobsButton;
                 }
@@ -83,7 +128,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
         {
             get
             {
-                if (JobsButtonIsNull == false)
+                if (JobsButtonIsNull == 0)
                 {
                     if (languages != null)
                     {
@@ -159,15 +204,12 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                     return "";
                 }
             }
-        }
-
-        
-       
+        }       
         public bool IsParsingCorrect
         {
             get
             {
-                if (JobsButtonIsNull == false && JobsNameIsNull == false)
+                if (JobsButtonIsNull == 0 && JobsNameIsNull == false)
                 {
                     return true;
                 }
@@ -199,6 +241,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
             if (r_LObject.GetAttribute("class") == "r_L")
             {
+                jobsContainer = r_LObject;
 
                 auxiliaryCollection = r_LObject.FindElements(By.ClassName("firstColumn"));
                 if (auxiliaryCollection.Count > 0) jobsName = auxiliaryCollection.ElementAt(0);
