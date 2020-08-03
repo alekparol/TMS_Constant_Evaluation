@@ -381,9 +381,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
             }
         }
 
-        /* Tagging Multiple Jobs Tests */
+        /* Selecting Multiple Jobs Tests */
         [TestMethod]
-        public void AssigneesAndJobs_TaggingMultipleJobs_Test_1()
+        public void AssigneesAndJobs_SelectingMultipleJobs_Test_1()
         {
             using (var driver = new ChromeDriver())
             {
@@ -413,9 +413,10 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 /* Set of assertions */
 
-                asob.TagSingleJob(driver, 1);
-                porscheAssigneesPage = new AssigneesPage(driver);
-                asob = new AssigneesAndJobs(driver);
+                asob.SelectMultipleJobs(driver, 0, 10);
+
+                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
@@ -424,7 +425,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
         }
 
         [TestMethod]
-        public void AssigneesAndJobs_TaggingMultipleJobs_Test_2()
+        public void AssigneesAndJobs_SelectingMultipleJobs_Test_2()
         {
             using (var driver = new ChromeDriver())
             {
@@ -454,10 +455,10 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 /* Set of assertions */
 
-                asob.TagSingleJob(driver, asob.GetAssigneeJobsListSize - 1);
+                asob.SelectMultipleJobs(driver, 0, 1);
 
-                porscheAssigneesPage = new AssigneesPage(driver);
-                asob = new AssigneesAndJobs(driver);
+                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
@@ -466,7 +467,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
         }
 
         [TestMethod]
-        public void AssigneesAndJobs_TaggingMultipleJobs_Test_3()
+        public void AssigneesAndJobs_SelectingMultipleJobs_Test_3()
         {
             using (var driver = new ChromeDriver())
             {
@@ -496,10 +497,10 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 /* Set of assertions */
 
-                asob.SelectSingleJob(driver, 0);
+                asob.SelectMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
 
-                porscheAssigneesPage = new AssigneesPage(driver);
-                asob = new AssigneesAndJobs(driver);
+                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
@@ -507,5 +508,46 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
             }
         }
 
+        [TestMethod]
+        public void AssigneesAndJobs_SelectingMultipleJobs_Test_4()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+
+                /* Set of assertions */
+
+                asob.SelectMultipleJobs(driver, asob.GetAssigneeJobsListSize - 2, asob.GetAssigneeJobsListSize - 1);
+
+                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
+
+                Assert.AreEqual(true, asob.IsParsingCorrect);
+                Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
+                Assert.AreNotEqual(0, asob.GetAssigneesListSize);
+            }
+        }
     }
 }
