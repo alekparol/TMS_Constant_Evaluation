@@ -185,7 +185,7 @@ namespace TMS_Constant_Evaluation.Pages
         {
            
             assigneesObjects = new AssigneesAndJobs(driver);
-            return assigneesObjects.GetAssigneesJobNames;
+            return assigneesObjects.GetListOfAssigneesJobNames;
 
         }
 

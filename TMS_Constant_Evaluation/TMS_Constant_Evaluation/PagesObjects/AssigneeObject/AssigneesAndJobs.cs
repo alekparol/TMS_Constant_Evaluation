@@ -14,18 +14,6 @@ using TMS_Constant_Evaluation.Pages.PagesObjects;
 using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
 using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
-
-/* I think the process should be like that: 
- * 1. We get the whole list of assignees on the internal review page. 
- * 2. We get the whole list of the assignees jobs on the internal review page. 
- * 3. We go through the assignees list and create an AssigneesAndJobs for each element - passing jobs numbers we get the list of the assignees 
- * jobs containing the jobs from the whole list of jobs from 0 to number of jobs for this assignee - 1. 
- * 4. We delete the jobs assigneed for the assignee from the list. 
- * 5. We do it until the list of assignees is on the end and list of jobs.count == 0. 
- * 
- * 
- * 
- **/
 namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 {
     public class AssigneesAndJobs
@@ -37,8 +25,6 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
         public List<AssigneeJobs> assigneesJobsList = new List<AssigneeJobs>();
 
         private PageBar assigneePageBar;
-        private int numberOfPages;
-
         private OnClickJobsMenu assigneeJobMenu;
 
         /* Properties */
@@ -121,6 +107,28 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                 else
                 {
                     return assigneeNames;
+                }
+            }
+        }
+
+        public List<string> GetListOfAssigneesJobNames
+        {
+            get
+            {
+                List<string> assingeesJobNames = new List<string>();
+
+                if (AssigneesJobsListIsEmpty == false)
+                {
+                    foreach (Assignee assignee in assigneesList)
+                    {
+                        assingeesJobNames.Add(assignee.GetAssigneeName);
+                    }
+
+                    return assingeesJobNames;
+                }
+                else
+                {
+                    return assingeesJobNames;
                 }
             }
         }
@@ -208,31 +216,20 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                     return true;
                 }
             }
-        }
-
-        public List<string> GetAssigneesJobNames
-        {
-            get
-            {
-                List<string> auxiliaryList = new List<string>();
-
-                foreach(AssigneeJobs job in assigneesJobsList)
-                {
-                    auxiliaryList.Add(job.GetJobsName );
-                }
-
-                return auxiliaryList;
-            }
-        }
-
-      
+        }   
 
         public bool IsParsingCorrect
         {
             get
             {
-                return true;
-                //return isParsedCorrectly;
+                if (AssigneesListIsEmpty == false && AssigneesJobsListIsEmpty == false)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 

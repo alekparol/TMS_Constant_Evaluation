@@ -11,6 +11,7 @@ using OpenQA.Selenium.Support.UI;
 using TMS_Constant_Evaluation;
 using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
 using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
 namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tests
@@ -55,8 +56,11 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
 
                 Assert.AreNotEqual(0, asob.GetListOfAssigneeNames.Count);
+                Assert.AreNotEqual(0, asob.GetListOfAssigneesJobNames.Count);
                 Assert.AreNotEqual(0, asob.GetListOfJobsSourceLanguages.Count);
                 Assert.AreNotEqual(0, asob.GetListOfJobsTargetLanguages.Count);
+
+                Assert.IsTrue(asob.IsParsingCorrect);
             }
         }
 
@@ -98,9 +102,11 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
 
                 Assert.AreNotEqual(0, asob.GetListOfAssigneeNames.Count);
+                Assert.AreNotEqual(0, asob.GetListOfAssigneesJobNames.Count);
                 Assert.AreNotEqual(0, asob.GetListOfJobsSourceLanguages.Count);
                 Assert.AreNotEqual(0, asob.GetListOfJobsTargetLanguages.Count);
 
+                Assert.IsTrue(asob.IsParsingCorrect);
             }
         }
 
@@ -134,19 +140,100 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 AssigneesAndJobs asob = new AssigneesAndJobs(driver);
                 
-
                 /* Set of assertions */
 
-
                 asob.SelectSingleJob(driver, 1);
+
+                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
                 Assert.AreNotEqual(0, asob.GetAssigneesListSize);
+            }
+        }
 
-                PageBar pagebar = new PageBar(driver);
+        [TestMethod]
+        public void AssigneesAndJobs_TaggingJobs_Test_2()
+        {
+            using (var driver = new ChromeDriver())
+            {
 
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+
+                /* Set of assertions */
+
+                asob.SelectSingleJob(driver, asob.GetAssigneeJobsListSize - 1);
+
+                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
+
+                Assert.AreEqual(true, asob.IsParsingCorrect);
+                Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
+                Assert.AreNotEqual(0, asob.GetAssigneesListSize);
+            }
+        }
+
+        [TestMethod]
+        public void AssigneesAndJobs_TaggingJobs_Test_3()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+
+                /* Set of assertions */
+
+                asob.SelectSingleJob(driver, 0);
+
+                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
+
+                Assert.AreEqual(true, asob.IsParsingCorrect);
+                Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
+                Assert.AreNotEqual(0, asob.GetAssigneesListSize);
             }
         }
 
