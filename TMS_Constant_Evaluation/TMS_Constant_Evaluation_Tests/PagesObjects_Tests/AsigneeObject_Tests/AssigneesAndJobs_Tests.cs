@@ -630,7 +630,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 /* Set of assertions */
 
-                asob.TagMultipleJobs(driver, 1, 4);
+                asob.TagMultipleJobs(driver, 0, 1);
                 porscheAssigneesPage = new AssigneesPage(driver);
                 asob = new AssigneesAndJobs(driver);
 
@@ -720,11 +720,11 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 porscheAssigneesPage = new AssigneesPage(driver);
 
                 AssigneesAndJobs asob = new AssigneesAndJobs(driver);
-                List<string> jobNames = asob.GetListOfAssigneesJobNames.GetRange(asob.GetAssigneeJobsListSize - 1, 1);
+                List<string> jobNames = asob.GetListOfAssigneesJobNames.GetRange(asob.GetAssigneeJobsListSize - 2, 2);
 
                 /* Set of assertions */
 
-                asob.TagMultipleJobs(driver, asob.GetAssigneeJobsListSize - 1, asob.GetAssigneeJobsListSize - 1);
+                asob.TagMultipleJobs(driver, asob.GetAssigneeJobsListSize - 2, asob.GetAssigneeJobsListSize - 1);
                 porscheAssigneesPage = new AssigneesPage(driver);
                 asob = new AssigneesAndJobs(driver);
 
