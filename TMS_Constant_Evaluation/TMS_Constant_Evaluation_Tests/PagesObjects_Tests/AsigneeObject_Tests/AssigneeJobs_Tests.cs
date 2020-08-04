@@ -53,7 +53,7 @@ namespace TMS_Constant_Evaluation_Tests.PagesObjects_Tests.AsigneeObject_Tests
 
                 /* Set of assertions */
 
-                Assert.IsFalse(auxiliaryAssigneesJob.JobsButtonIsNull);
+                Assert.AreEqual(0, auxiliaryAssigneesJob.JobsButtonIsNull);
                 Assert.IsFalse(auxiliaryAssigneesJob.JobsNameIsNull);
                 Assert.IsTrue(auxiliaryAssigneesJob.IsParsingCorrect);
                 Assert.AreNotEqual("", auxiliaryAssigneesJob.GetJobsName);
@@ -101,7 +101,7 @@ namespace TMS_Constant_Evaluation_Tests.PagesObjects_Tests.AsigneeObject_Tests
                     auxiliaryAssigneesJob = new AssigneeJobs(r_L);
                     assigneesJobs.Add(auxiliaryAssigneesJob);
 
-                    Assert.IsFalse(auxiliaryAssigneesJob.JobsButtonIsNull, "{0}", assigneesJobs.Count);
+                    Assert.AreEqual(0, auxiliaryAssigneesJob.JobsButtonIsNull);
                     Assert.IsFalse(auxiliaryAssigneesJob.JobsNameIsNull);
                     Assert.IsTrue(auxiliaryAssigneesJob.IsParsingCorrect);
                     Assert.AreNotEqual("", auxiliaryAssigneesJob.GetJobsName);
@@ -154,7 +154,7 @@ namespace TMS_Constant_Evaluation_Tests.PagesObjects_Tests.AsigneeObject_Tests
                     auxiliaryAssigneesJob = new AssigneeJobs(r_L);
                     assigneesJobs.Add(auxiliaryAssigneesJob);
 
-                    Assert.IsFalse(auxiliaryAssigneesJob.JobsButtonIsNull, "{0}", assigneesJobs.Count);
+                    Assert.AreEqual(0, auxiliaryAssigneesJob.JobsButtonIsNull);
                     Assert.IsFalse(auxiliaryAssigneesJob.JobsNameIsNull);
                     Assert.IsTrue(auxiliaryAssigneesJob.IsParsingCorrect);
                     Assert.AreNotEqual("", auxiliaryAssigneesJob.GetJobsName);

@@ -21,6 +21,8 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
         /* Fields */
 
+        private IWebElement assigneeResultsContainer; 
+
         public List<Assignee> assigneesList = new List<Assignee>();
         public List<AssigneeJobs> assigneesJobsList = new List<AssigneeJobs>();
 
@@ -307,19 +309,12 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                 Assignee auxiliaryAssignee;
                 AssigneeJobs auxiliaryAssigneeJobs;
 
-                //while (true)
-                //{
-                 //   numberOfPages++;
-
-                 //   wait.Until(ExpectedConditions.ElementExists(By.ClassName("r_LH")));
-                    assigneePageBar = new PageBar(driver);
-                
-                //if (assigneePageBar.ItemsPerPageCurrentSelection != "1000")
-                //{
-                //    assigneePageBar.ItemsPerPageSetMaximalValue(driver);
-                //}
+                auxiliaryCollection = driver.FindElements(By.ClassName("r_GH"));
+                if (auxiliaryCollection.Count == 1)
+                {
+                    assigneeResultsContainer = auxiliaryCollection.ElementAt(0);
                     
-
+                    assigneePageBar = new PageBar(driver);
 
                     auxiliaryCollection = driver.FindElements(By.ClassName("r_LH"));
                     if (auxiliaryCollection.Count > 0)
@@ -341,15 +336,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                         }
                     }
 
-                    /*if (assigneePageBar.NextPageIsNull != 0 )
-                    {
-                        break;
-                    }
-                    else
-                    {
-                       assigneePageBar.GoToNextPage(driver);
-                    }*/
-                 //}
+                }
             }
         }
     }

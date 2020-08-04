@@ -147,6 +147,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
+                Assert.AreEqual(1, asob.assigneesJobsList.ElementAt(1).JobIsSelected);
+
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
                 Assert.AreNotEqual(0, asob.GetAssigneesListSize);
@@ -189,6 +191,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
+                Assert.AreEqual(1, asob.assigneesJobsList.ElementAt(asob.GetAssigneeJobsListSize - 1).JobIsSelected);
+
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
                 Assert.AreNotEqual(0, asob.GetAssigneesListSize);
@@ -230,6 +234,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
+
+                Assert.AreEqual(1, asob.assigneesJobsList.ElementAt(0).JobIsSelected);
 
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
@@ -313,7 +319,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 porscheAssigneesPage = new AssigneesPage(driver);
 
                 AssigneesAndJobs asob = new AssigneesAndJobs(driver);
-                string jobName = asob.GetListOfAssigneesJobNames.ElementAt(1);
+                string jobName = asob.GetListOfAssigneesJobNames.ElementAt(asob.GetAssigneeJobsListSize - 1);
 
                 /* Set of assertions */
 
@@ -361,7 +367,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 porscheAssigneesPage = new AssigneesPage(driver);
 
                 AssigneesAndJobs asob = new AssigneesAndJobs(driver);
-                string jobName = asob.GetListOfAssigneesJobNames.ElementAt(1);
+                string jobName = asob.GetListOfAssigneesJobNames.ElementAt(0);
 
                 /* Set of assertions */
 
@@ -413,10 +419,15 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 /* Set of assertions */
 
-                asob.SelectMultipleJobs(driver, 0, 10);
+                asob.SelectMultipleJobs(driver, 0, 9);
 
                 OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
+
+                foreach(AssigneeJobs assigneeJob in asob.assigneesJobsList.GetRange(0, 10))
+                {
+                    Assert.AreEqual(1, assigneeJob.JobIsSelected);
+                }
 
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
@@ -460,6 +471,11 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
+                foreach (AssigneeJobs assigneeJob in asob.assigneesJobsList.GetRange(0, 2))
+                {
+                    Assert.AreEqual(1, assigneeJob.JobIsSelected);
+                }
+
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
                 Assert.AreNotEqual(0, asob.GetAssigneesListSize);
@@ -502,6 +518,11 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
+                foreach (AssigneeJobs assigneeJob in asob.assigneesJobsList)
+                {
+                    Assert.AreEqual(1, assigneeJob.JobIsSelected);
+                }
+
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
                 Assert.AreNotEqual(0, asob.GetAssigneesListSize);
@@ -543,6 +564,11 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
+
+                foreach (AssigneeJobs assigneeJob in asob.assigneesJobsList.GetRange(asob.GetAssigneeJobsListSize - 2, 2))
+                {
+                    Assert.AreEqual(1, assigneeJob.JobIsSelected);
+                }
 
                 Assert.AreEqual(true, asob.IsParsingCorrect);
                 Assert.AreNotEqual(0, asob.GetAssigneeJobsListSize);
