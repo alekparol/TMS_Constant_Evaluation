@@ -245,7 +245,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
         /* Tagging Jobs Tests */
         [TestMethod]
-        public void AssigneesAndJobs_TaggingJobs_Test_1()
+        public void AssigneesAndJobs_TaggingSingleJob_Test_1()
         {
             using (var driver = new ChromeDriver())
             {
@@ -292,7 +292,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
         }
 
         [TestMethod]
-        public void AssigneesAndJobs_TaggingJobs_Test_2()
+        public void AssigneesAndJobs_TaggingSingleJob_Test_2()
         {
             using (var driver = new ChromeDriver())
             {
@@ -340,7 +340,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
         }
 
         [TestMethod]
-        public void AssigneesAndJobs_TaggingJobs_Test_3()
+        public void AssigneesAndJobs_TaggingSingleJob_Test_3()
         {
             using (var driver = new ChromeDriver())
             {
@@ -371,8 +371,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 /* Set of assertions */
 
-                asob.SelectSingleJob(driver, 0);
-
+                asob.TagSingleJob(driver, 0);
                 porscheAssigneesPage = new AssigneesPage(driver);
                 asob = new AssigneesAndJobs(driver);
 
