@@ -71,7 +71,6 @@
     <Compile Include="PagesObjects_Tests\AsigneeObject_Tests\AssigneeJobs_Tests.cs" />
     <Compile Include="PagesObjects_Tests\AsigneeObject_Tests\AssigneesAndJobs_Tests.cs" />
     <Compile Include="PagesObjects_Tests\AsigneeObject_Tests\Assignee_Tests.cs" />
-    <Compile Include="Pages_Tests\Status_Tests\PageObjects_Tests\AssingeeElement_Tests.cs" />
     <Compile Include="Pages_Tests\StatusPage_Tests.cs" />
     <Compile Include="Pages_Tests\WholeProgram_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

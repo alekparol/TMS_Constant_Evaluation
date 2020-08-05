@@ -10,11 +10,74 @@ using System.Threading;
 using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
 using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
+using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
+
 namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 {
     [TestClass]
     public class WholeProgram_Tests
     {
+
+        [TestMethod]
+        public void WholeProgram_NewParsingCorrectly_Test_1()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.ProfileClick(driver);
+                testProjectPage.ChangeItemsPerPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+                testPageBar.ItemsPerPageSetMaximalValue(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+                asob.TagMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
+
+                porscheAssigneesPage = new AssigneesPage(driver);
+                porscheAssigneesPage.ActivitiesClick(driver);
+
+                testStatusPage = new StatusPage(driver);
+                testStatusPage.ChosenActivityClick(driver, "Translation");
+
+                testStatusPage = new StatusPage(driver);
+                testStatusPage.ClickAll(driver);
+
+                testStatusPage = new StatusPage(driver);
+
+                Thread.Sleep(5000);
+                testPageBar = new PageBar(driver);
+                testPageBar.ItemsPerPageClick(driver);
+                testPageBar.ItemsPerPageSetMaximalValue(driver);
+
+                Thread.Sleep(5000);
+
+                /* Set of assertions */
+
+
+
+            }
+        }
 
         [TestMethod]
         public void AssigneesElement_ParsingCorrectly_Test_1()
