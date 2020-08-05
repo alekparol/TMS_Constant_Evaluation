@@ -151,7 +151,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                         auxiliaryString = assigneesJobsList.ElementAt(auxiliaryInt).GetSourceLanguage;
                         languagesList.Add(auxiliaryString);
 
-                        auxiliaryInt += languagesList.Count();
+                        auxiliaryInt ++;
                     }
 
                     return languagesList;
@@ -214,7 +214,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                         auxiliaryString = assigneesJobsList.ElementAt(auxiliaryInt).GetTargetLanguage;
                         languagesList.Add(auxiliaryString);
 
-                        auxiliaryInt += languagesList.Count();
+                        auxiliaryInt ++;
                     }
 
                     return languagesList;
