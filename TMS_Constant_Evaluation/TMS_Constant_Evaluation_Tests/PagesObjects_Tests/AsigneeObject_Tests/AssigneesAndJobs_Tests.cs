@@ -796,6 +796,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 /* Set of assertions */
 
+                Assert.AreEqual(asob.GetListOfAssigneesJobNames.Count, asob.GetListOfJobsAllSourceLanguages.Count);
+                Assert.AreEqual(asob.GetListOfAssigneesJobNames.Count, asob.GetListOfJobsAllTargetLanguages.Count);
+
                 Assert.AreEqual(2, asob.GetListOfJobsSourceLanguages.Count);
                 Assert.AreEqual(8, asob.GetListOfJobsTargetLanguages.Count);
             }
@@ -831,6 +834,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 AssigneesAndJobs asob = new AssigneesAndJobs(driver);
 
                 /* Set of assertions */
+
+                Assert.AreEqual(asob.GetListOfAssigneesJobNames.Count, asob.GetListOfJobsAllSourceLanguages.Count);
+                Assert.AreEqual(asob.GetListOfAssigneesJobNames.Count, asob.GetListOfJobsAllTargetLanguages.Count);
 
                 Assert.AreEqual(2, asob.GetListOfJobsSourceLanguages.Count);
                 Assert.AreEqual(15, asob.GetListOfJobsTargetLanguages.Count);
