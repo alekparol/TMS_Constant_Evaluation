@@ -665,8 +665,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                     // Here we should have the number of items per page set in a profile window. 
 
-                    if (GetNumberOfAllItems > 25)
-                    {
+                    //if (GetNumberOfAllItems > 25)
+                    //{
                         auxiliaryCollection = pageBarContainer.FindElements(By.XPath("//*[@class='dd ddSelected']"));
                         if (auxiliaryCollection.Count > 0)
                         {
@@ -719,7 +719,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                             }
                         }
 
-                    }
+                    //}
                 }
                 
             }

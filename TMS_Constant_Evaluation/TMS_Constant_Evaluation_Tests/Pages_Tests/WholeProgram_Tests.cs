@@ -65,12 +65,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 
                 testStatusPage = new StatusPage(driver);
 
-                Thread.Sleep(5000);
                 testPageBar = new PageBar(driver);
-                testPageBar.ItemsPerPageClick(driver);
                 testPageBar.ItemsPerPageSetMaximalValue(driver);
-
-                Thread.Sleep(5000);
 
                 /* Set of assertions */
 
