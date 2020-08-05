@@ -38,7 +38,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         private IWebElement lastPage;
 
         /* Number of All Items */
-        private IWebElement numberOfAllItems;
+        public IWebElement numberOfAllItems;
 
         private bool isParsedCorrectly;
 
@@ -501,7 +501,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                     Regex number = new Regex("\\d*");
                     string auxiliaryString;
 
-                    if (number.Matches(numberOfAllItems.Text).Count == 1)
+                    if (number.IsMatch(numberOfAllItems.Text))
                     {       
                         auxiliaryString = number.Match(numberOfAllItems.Text).Value;
                         return Int32.Parse(auxiliaryString);
@@ -652,7 +652,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 string auxiliaryString;
 
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-                wait.Until(ExpectedConditions.ElementExists(By.Id("cup_pgp")));
+                wait.Until(ExpectedConditions.ElementExists(By.Id("cup_msg")));
                  
                 auxiliaryCollection = driver.FindElements(By.Id("cup_pgp"));
                 if (auxiliaryCollection.Count == 1)
@@ -665,9 +665,9 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                     // Here we should have the number of items per page set in a profile window. 
 
-                    //if (GetNumberOfAllItems > 25)
-                    //{
-                        auxiliaryCollection = pageBarContainer.FindElements(By.XPath("//*[@class='dd ddSelected']"));
+                    if (GetNumberOfAllItems > 25)
+                    {
+                        auxiliaryCollection = pageBarContainer.FindElements(By.Id("msdrpdd24_msdd"));
                         if (auxiliaryCollection.Count > 0)
                         {
 
@@ -719,7 +719,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                             }
                         }
 
-                    //}
+                    }
                 }
                 
             }
