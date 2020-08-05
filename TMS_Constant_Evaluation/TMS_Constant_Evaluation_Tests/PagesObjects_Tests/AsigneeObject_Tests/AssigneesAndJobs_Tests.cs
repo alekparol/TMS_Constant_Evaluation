@@ -763,5 +763,78 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
                 }
             }
         }
+
+        /* List Of Different Languages Tests */
+        [TestMethod]
+        public void AssigneesAndJobs_ListOfDifferentLanguages_Test_1()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(2, asob.GetListOfJobsSourceLanguages.Count);
+                Assert.AreEqual(8, asob.GetListOfJobsTargetLanguages.Count);
+            }
+        }
+
+        [TestMethod]
+        public void AssigneesAndJobs_ListOfDifferentLanguages_Test_2()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "Agency_NoReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+
+                /* Set of assertions */
+
+                Assert.AreEqual(2, asob.GetListOfJobsSourceLanguages.Count);
+                Assert.AreEqual(15, asob.GetListOfJobsTargetLanguages.Count);
+            }
+        }
     }
 }

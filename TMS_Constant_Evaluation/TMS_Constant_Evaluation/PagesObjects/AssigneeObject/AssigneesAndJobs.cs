@@ -135,6 +135,34 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
             }
         }
 
+        public List<string> GetListOfJobsAllSourceLanguages
+        {
+            get
+            {
+                List<string> languagesList = new List<string>();
+
+                if (AssigneesJobsListIsEmpty == false)
+                {
+                    string auxiliaryString;
+                    int auxiliaryInt = 0;
+
+                    while (auxiliaryInt < GetAssigneeJobsListSize)
+                    {
+                        auxiliaryString = assigneesJobsList.ElementAt(auxiliaryInt).GetSourceLanguage;
+                        languagesList.Add(auxiliaryString);
+
+                        auxiliaryInt += languagesList.Count();
+                    }
+
+                    return languagesList;
+                }
+                else
+                {
+                    return languagesList;
+                }
+            }
+        }
+
         public List<string> GetListOfJobsSourceLanguages
         {
             get
@@ -149,7 +177,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                     string auxiliaryString;
                     int auxiliaryInt = 0;
 
-                    while (auxiliaryInt < GetAssigneesListSize)
+                    while (auxiliaryInt < GetAssigneeJobsListSize)
                     {
                         auxiliaryString = assigneesJobsOrdered.ElementAt(auxiliaryInt).GetSourceLanguage;
                         if (auxiliaryString != "" && auxiliaryString != null)
@@ -170,6 +198,34 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
             }
         }
 
+        public List<string> GetListOfJobsAllTargetLanguages
+        {
+            get
+            {
+                List<string> languagesList = new List<string>();
+
+                if (AssigneesJobsListIsEmpty == false)
+                {
+                    string auxiliaryString;
+                    int auxiliaryInt = 0;
+
+                    while (auxiliaryInt < GetAssigneeJobsListSize)
+                    {
+                        auxiliaryString = assigneesJobsList.ElementAt(auxiliaryInt).GetTargetLanguage;
+                        languagesList.Add(auxiliaryString);
+
+                        auxiliaryInt += languagesList.Count();
+                    }
+
+                    return languagesList;
+                }
+                else
+                {
+                    return languagesList;
+                }
+            }
+        }
+
         public List<string> GetListOfJobsTargetLanguages
         {
             get
@@ -184,7 +240,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                     string auxiliaryString;
                     int auxiliaryInt = 0;
 
-                    while (auxiliaryInt < GetAssigneesListSize)
+                    while (auxiliaryInt < GetAssigneeJobsListSize)
                     {
                         auxiliaryString = assigneesJobsOrdered.ElementAt(auxiliaryInt).GetTargetLanguage;
                         if (auxiliaryString != "" && auxiliaryString != null)
