@@ -667,7 +667,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                     if (GetNumberOfAllItems > 25)
                     {
-                        auxiliaryCollection = pageBarContainer.FindElements(By.Id("msdrpdd24_msdd"));
+                        auxiliaryCollection = pageBarContainer.FindElements(By.ClassName("pgr_rsl"));
                         if (auxiliaryCollection.Count > 0)
                         {
 
