@@ -57,6 +57,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 porscheAssigneesPage = new AssigneesPage(driver);
                 porscheAssigneesPage.ActivitiesClick(driver);
 
+                wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+
                 testStatusPage = new StatusPage(driver);
                 testStatusPage.ChosenActivityClick(driver, "Translation");
 

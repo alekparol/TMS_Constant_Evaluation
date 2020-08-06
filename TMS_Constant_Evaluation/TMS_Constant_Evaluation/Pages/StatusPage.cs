@@ -18,14 +18,14 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Fields */
 
+        private ViewsMenu statusViewsMenu;
         private StatusNavigationBar statusNavigationBar;
-
         private StatusFilters statusFilters;
 
-        public IReadOnlyCollection<IWebElement> activitiesList;
+        public IWebElement errorMessage;
 
         /* Properties */
-    
+
         public string GetPageName
         {
             get
@@ -165,16 +165,44 @@ namespace TMS_Constant_Evaluation.Pages
         {
             if (driver.Url == "https://tms.lionbridge.com/")
             {
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                string auxiliaryString;
+
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+
+                statusViewsMenu = new ViewsMenu(driver);
+
+                auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
+                if (auxiliaryCollection.Count != 0)
+                {
+
+                    errorMessage = auxiliaryCollection.ElementAt(0);
+
+                    while (errorMessage != null)
+                    {
+                        statusViewsMenu.StatusClick(driver);
+                        wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+
+                        statusViewsMenu = new ViewsMenu(driver);
+
+                        auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
+                        if (auxiliaryCollection.Count != 0)
+                        {
+                            errorMessage = auxiliaryCollection.ElementAt(0);
+                        }
+                        else
+                        {
+                            errorMessage = null;
+                        }
+                    }
+                }
+               
 
                 statusNavigationBar = new StatusNavigationBar(driver);
                 statusFilters = new StatusFilters(driver);
 
-
-                    /*IWebElement errorMessage;
-
-                    auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
-                    if (auxiliaryCollection.Count != 0) errorMessage = auxiliaryCollection.ElementAt(0);*/
-            }
+            }   
         }
     }
 }
