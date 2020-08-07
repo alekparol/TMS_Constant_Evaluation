@@ -57,13 +57,40 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 porscheAssigneesPage = new AssigneesPage(driver);
                 porscheAssigneesPage.ActivitiesClick(driver);
 
-                wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
-
                 testStatusPage = new StatusPage(driver);
                 testStatusPage.ChosenActivityClick(driver, "Translation");
 
                 testStatusPage = new StatusPage(driver);
                 testStatusPage.ClickAll(driver);
+
+                IWebElement errorMessage;
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+                auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
+                if (auxiliaryCollection.Count != 0)
+                {      
+                    errorMessage = auxiliaryCollection.ElementAt(0);
+                
+                    while (errorMessage != null)
+                    {
+                        testStatusPage = new StatusPage(driver);
+                        testStatusPage.ChosenActivityClick(driver, "Translation");
+
+                        testStatusPage = new StatusPage(driver);
+                        testStatusPage.ClickAll(driver);
+
+                        auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
+                        if (auxiliaryCollection.Count != 0)
+                        {
+                            errorMessage = auxiliaryCollection.ElementAt(0);
+                        }
+                        else
+                        {
+                            errorMessage = null;
+                        }
+                    }
+                
+                }
 
                 testStatusPage = new StatusPage(driver);
 

@@ -516,6 +516,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_fp_btn")));
 
+                wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+
                 auxiliaryCollection = driver.FindElements(By.Id("cup_fp_btn"));
                 if (auxiliaryCollection.Count == 1) filtersButton = auxiliaryCollection.ElementAt(0);
 
