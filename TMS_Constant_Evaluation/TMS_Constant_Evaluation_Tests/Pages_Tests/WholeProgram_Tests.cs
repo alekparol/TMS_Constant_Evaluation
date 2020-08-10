@@ -177,7 +177,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                  .Build()
                  .Perform();
 
-                OnClickJobsMenu menu = new OnClickJobsMenu(driver);
+                AssingeesOnClickJobsMenu menu = new AssingeesOnClickJobsMenu(driver);
                 menu.ClickTagJobsButton(driver);
 
                 AssigneesPage afterTagging = new AssigneesPage(driver);

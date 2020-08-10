@@ -56,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PagesObjects\AssigneesFilters.cs" />
+    <Compile Include="PagesObjects\JobObject\Jobs.cs" />
+    <Compile Include="PagesObjects\JobObject\JobsSectionJobs.cs" />
+    <Compile Include="PagesObjects\JobsNavigationBar.cs" />
     <Compile Include="PagesObjects\SearchEngine.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage1.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage2.cs" />
@@ -73,7 +76,7 @@
     <Compile Include="PagesObjects\PageBar.cs" />
     <Compile Include="Pages\ParticularProjectPage.cs" />
     <Compile Include="Pages\ProjectsPage.cs" />
-    <Compile Include="PagesObjects\OnClickJobsMenu.cs" />
+    <Compile Include="PagesObjects\AssigneeObject\AssingeesOnClickJobsMenu.cs" />
     <Compile Include="Pages\StatusPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

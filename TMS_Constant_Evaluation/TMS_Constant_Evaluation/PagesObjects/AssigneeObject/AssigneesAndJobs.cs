@@ -27,7 +27,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
         public List<AssigneeJobs> assigneesJobsList = new List<AssigneeJobs>();
 
         private PageBar assigneePageBar;
-        private OnClickJobsMenu assigneeJobMenu;
+        private AssingeesOnClickJobsMenu assigneeJobMenu;
 
         /* Properties */
 
@@ -301,7 +301,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                 {
                     assigneePageBar = null;
                     assigneesJobsList.ElementAt(jobNumber).AssigneeJobButtonClick(driver);
-                    assigneeJobMenu = new OnClickJobsMenu(driver);
+                    assigneeJobMenu = new AssingeesOnClickJobsMenu(driver);
                 }
             }
         }
@@ -334,7 +334,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                     .Build()
                     .Perform();
 
-                    assigneeJobMenu = new OnClickJobsMenu(driver);
+                    assigneeJobMenu = new AssingeesOnClickJobsMenu(driver);
                 }
             }
         }

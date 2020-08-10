@@ -59,7 +59,7 @@
   <ItemGroup>
     <Compile Include="PagesObjects_Tests\ApplicationBoard_Tests.cs" />
     <Compile Include="PagesObjects_Tests\MyProfile_Tests.cs" />
-    <Compile Include="PagesObjects_Tests\OnClickJobsMenu_Tests.cs" />
+    <Compile Include="PagesObjects_Tests\AsigneeObject_Tests\AssigneesOnClickJobsMenu_Tests.cs" />
     <Compile Include="PagesObjects_Tests\PageBar_Tests.cs" />
     <Compile Include="PagesObjects_Tests\StatusFilters_Tests.cs" />
     <Compile Include="PagesObjects_Tests\StatusNavigationBar_Tests.cs" />
