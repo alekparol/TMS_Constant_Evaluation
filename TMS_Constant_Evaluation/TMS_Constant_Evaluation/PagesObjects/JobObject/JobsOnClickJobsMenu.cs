@@ -14,7 +14,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
         /* Fields */
 
         private IWebElement menuContainer;
-        private IWebElement tagJobButton;
+        private IWebElement showHistoryButton;
 
         /* Properties */
 
@@ -54,13 +54,13 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
             }
         }
 
-        public int TagJobButtonIsNull
+        public int ShowHistoryButtonIsNull
         {
             get
             {
                 if (MenuContainerIsNull == false)
                 {
-                    if (tagJobButton != null)
+                    if (showHistoryButton != null)
                     {
                         return 0;
                     }
@@ -76,13 +76,13 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
             }
         }
 
-        public int TagJobButtonIsEnabled
+        public int ShowHistoryButtonIsEnabled
         {
             get
             {
-                if (TagJobButtonIsNull == 0)
+                if (ShowHistoryButtonIsNull == 0)
                 {
-                    if (tagJobButton.Enabled)
+                    if (showHistoryButton.Enabled)
                     {
                         return 1;
                     }
@@ -100,13 +100,13 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
 
         /* Methods */
 
-        public void ClickTagJobsButton(IWebDriver driver)
+        public void ClickShowHistoryButton(IWebDriver driver)
         {
-            if (TagJobButtonIsEnabled == 1)
+            if (ShowHistoryButtonIsEnabled == 1)
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-                tagJobButton.Click();
+                showHistoryButton.Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
@@ -114,7 +114,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
         }
 
         /* Constructors */
-        public AssingeesOnClickJobsMenu(IWebDriver driver)
+        public JobsOnClickJobsMenu(IWebDriver driver)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
@@ -130,8 +130,8 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
             {
                 auxiliaryCollection = menuContainer.FindElements(By.TagName("li"));
 
-                auxiliaryEnumerable = auxiliaryCollection.Where(x => x.Text == "Tag Job");
-                if (auxiliaryEnumerable.Count() == 1) tagJobButton = auxiliaryEnumerable.ElementAt(0);
+                auxiliaryEnumerable = auxiliaryCollection.Where(x => x.Text == "Show History");
+                if (auxiliaryEnumerable.Count() == 1) showHistoryButton = auxiliaryEnumerable.ElementAt(0);
             }
 
         }
