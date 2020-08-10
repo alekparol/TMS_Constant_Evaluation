@@ -18,7 +18,6 @@ namespace TMS_Constant_Evaluation.Pages
 
         /* Fields */
 
-        private ViewsMenu statusViewsMenu;
         private StatusNavigationBar statusNavigationBar;
         private StatusFilters statusFilters;
 
@@ -87,6 +86,36 @@ namespace TMS_Constant_Evaluation.Pages
             get
             {
                 return statusFilters.ShowAllButtonIsClicked;
+            }
+        }
+
+        public bool ErrorMessageIsNull
+        {
+            get
+            {
+                if (errorMessage != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public string GetErrorMessage
+        {
+            get
+            {
+                if (ErrorMessageIsNull == false)
+                {
+                    return errorMessage.Text;
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
 
@@ -171,34 +200,9 @@ namespace TMS_Constant_Evaluation.Pages
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
 
-                statusViewsMenu = new ViewsMenu(driver);
-
                 auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
-                if (auxiliaryCollection.Count != 0)
-                {
-
-                    errorMessage = auxiliaryCollection.ElementAt(0);
-
-                    while (errorMessage != null)
-                    {
-                        statusViewsMenu.StatusClick(driver);
-                        wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
-
-                        statusViewsMenu = new ViewsMenu(driver);
-
-                        auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
-                        if (auxiliaryCollection.Count != 0)
-                        {
-                            errorMessage = auxiliaryCollection.ElementAt(0);
-                        }
-                        else
-                        {
-                            errorMessage = null;
-                        }
-                    }
-                }
-               
-
+                if (auxiliaryCollection.Count != 0) errorMessage = auxiliaryCollection.ElementAt(0);
+             
                 statusNavigationBar = new StatusNavigationBar(driver);
                 statusFilters = new StatusFilters(driver);
 

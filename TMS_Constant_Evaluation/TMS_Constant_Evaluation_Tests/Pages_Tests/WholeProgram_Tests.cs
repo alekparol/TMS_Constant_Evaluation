@@ -54,10 +54,10 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 AssigneesAndJobs asob = new AssigneesAndJobs(driver);
                 asob.TagMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
 
-                porscheAssigneesPage = new AssigneesPage(driver);
-                porscheAssigneesPage.ActivitiesClick(driver);
+                ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
+                assigneesViewsMenu.JobsClick(driver);
 
-                testStatusPage = new StatusPage(driver);
+                /*testStatusPage = new StatusPage(driver);
                 testStatusPage.ChosenActivityClick(driver, "Translation");
 
                 testStatusPage = new StatusPage(driver);
@@ -90,12 +90,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                         }
                     }
                 
-                }
-
-                testStatusPage = new StatusPage(driver);
-
-                testPageBar = new PageBar(driver);
-                testPageBar.ItemsPerPageSetMaximalValue(driver);
+                }*/
 
                 /* Set of assertions */
 
@@ -143,17 +138,17 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 IReadOnlyCollection<IWebElement> r_LHObjects = driver.FindElements(By.ClassName("r_LH"));
                 IReadOnlyCollection<IWebElement> r_LObjects = driver.FindElements(By.ClassName("r_L"));
 
-                AssigneeAndHisJob firstAssingee = new AssigneeAndHisJob(r_LHObjects.ElementAt(0), r_LObjects.ElementAt(0));
-                Assert.AreNotEqual("", firstAssingee.assigneeName);
-                Assert.AreNotEqual("", firstAssingee.sourceLanguage);
+                //AssigneeAndHisJob firstAssingee = new AssigneeAndHisJob(r_LHObjects.ElementAt(0), r_LObjects.ElementAt(0));
+                //Assert.AreNotEqual("", firstAssingee.assigneeName);
+                //Assert.AreNotEqual("", firstAssingee.sourceLanguage);
 
-                AssigneesAndTheirJobs aTJ = new AssigneesAndTheirJobs(r_LHObjects, r_LObjects);
+                //AssigneesAndTheirJobs aTJ = new AssigneesAndTheirJobs(r_LHObjects, r_LObjects);
                 //Assert.AreEqual(4, aTJ.assigneesAngTheirJobsList.Count);
                 //Assert.AreEqual(0, aTJ.count);
 
-                IOrderedEnumerable<AssigneeAndHisJob> aTJOrdered = aTJ.assigneesAngTheirJobsList.OrderBy(x => x.targetLanguage);
+                //IOrderedEnumerable<AssigneeAndHisJob> aTJOrdered = aTJ.assigneesAngTheirJobsList.OrderBy(x => x.targetLanguage);
 
-                IEnumerable<AssigneeAndHisJob> auxiliaryEnumerable;
+                /*IEnumerable<AssigneeAndHisJob> auxiliaryEnumerable;
                 List<string> differentLanguages = new List<string>();
 
                 string auxiliaryString;
@@ -186,7 +181,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 menu.ClickTagJobsButton(driver);
 
                 AssigneesPage afterTagging = new AssigneesPage(driver);
-                afterTagging.ActivitiesClick(driver);
+                afterTagging.ActivitiesClick(driver);*/
 
                 StatusPage statusPageAfterTagging = new StatusPage(driver);
                 statusPageAfterTagging.ClickAll(driver);
@@ -205,7 +200,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 translationPage.LanguageFilterClick(driver);
                 Thread.Sleep(1000);
 
-                translationPage.ChosenGetTargetLanguageClick(driver, differentLanguages.ElementAt(1));
+                //translationPage.ChosenGetTargetLanguageClick(driver, differentLanguages.ElementAt(1));
 
                 Thread.Sleep(5000);
 
@@ -225,7 +220,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                     translationJobNames.Add(auxiliaryElement.Text);
                 }
 
-                Assert.AreEqual("", differentLanguages.ElementAt(0));
+                //Assert.AreEqual("", differentLanguages.ElementAt(0));
                 Assert.AreEqual("", translationJobNames.ElementAt(0));
 
                 /* Set of assertions */
