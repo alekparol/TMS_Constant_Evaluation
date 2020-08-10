@@ -113,64 +113,30 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
 
         /* Methods */
 
-        public void SelectSingleJob(IWebDriver driver, int jobNumber)
+        public void SelectJob(IWebDriver driver, int jobNumber)
         {
-            if (AssigneesJobsListIsEmpty == false)
+            if (JobsListIsEmpty == false)
             {
                 if (jobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
                 {
                     jobsPageBar = null;
-                    jobsList.ElementAt(jobNumber).AssigneeJobButtonClick(driver);
+                    jobsList.ElementAt(jobNumber).JobButtonClick(driver);
                     jobMenu = new JobsOnClickJobsMenu(driver);
                 }
             }
         }
 
-        public void TagSingleJob(IWebDriver driver, int jobNumber)
+        public void ShowHistoryOfJob(IWebDriver driver, int jobNumber)
         {
-            if (AssigneesJobsListIsEmpty == false)
+            if (JobsListIsEmpty == false)
             {
                 if (jobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
                 {
-                    SelectSingleJob(driver, jobNumber);
-                    jobMenu.ClickTagJobsButton(driver);
+                    SelectJob(driver, jobNumber);
+                    jobMenu.ClickShowHistoryButton(driver);
                 }
             }
         }
-
-        public void SelectMultipleJobs(IWebDriver driver, int rangeStart, int rangeEnd)
-        {
-            if (AssigneesJobsListIsEmpty == false && rangeEnd <= jobsList.Count)
-            {
-                if (jobsList.ElementAt(rangeStart).JobsButtonIsEnabled == 1 && jobsList.ElementAt(rangeEnd).JobsButtonIsEnabled == 1)
-                {
-                    Actions selectingMultipleItems = new Actions(driver);
-
-                    selectingMultipleItems.Click(jobsList.ElementAt(rangeStart).GetJobButton)
-                    .KeyDown(Keys.Shift)
-                    .Click(driver.FindElement(By.ClassName("r_GH")))
-                    .MoveToElement(jobsList.ElementAt(rangeEnd).GetJobButton)
-                    .Click(jobsList.ElementAt(rangeEnd).GetJobButton)
-                    .Build()
-                    .Perform();
-
-                    jobMenu = new JobsOnClickJobsMenu(driver);
-                }
-            }
-        }
-
-        public void TagMultipleJobs(IWebDriver driver, int rangeStart, int rangeEnd)
-        {
-            if (AssigneesJobsListIsEmpty == false && rangeEnd <= jobsList.Count)
-            {
-                if (jobsList.ElementAt(rangeStart).JobsButtonIsEnabled == 1 && jobsList.ElementAt(rangeEnd).JobsButtonIsEnabled == 1)
-                {
-                    SelectMultipleJobs(driver, rangeStart, rangeEnd);
-                    jobMenu.ClickTagJobsButton(driver);
-                }
-            }
-        }
-
 
         /* Constructors */
 
