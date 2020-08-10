@@ -16,11 +16,11 @@ using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 namespace TMS_Constant_Evaluation_Tests.PagesObjects_Tests
 {
     [TestClass]
-    public class OnClickJobsMenu_Tests
+    public class AssingeesOnClickJobsMenu_Tests
     {
 
         [TestMethod]
-        public void OnClickJobsMenu_ParsingCorrectly_Test_1()
+        public void AssingeesOnClickJobsMenu_ParsingCorrectly_Test_1()
         {
             using (var driver = new ChromeDriver())
             {
@@ -50,7 +50,7 @@ namespace TMS_Constant_Evaluation_Tests.PagesObjects_Tests
                 assigneesJobs.Add(auxiliaryAssigneesJob);
 
                 auxiliaryAssigneesJob.AssigneeJobButtonClick(driver);
-                OnClickJobsMenu testJobMenu = new OnClickJobsMenu(driver);
+                AssingeesOnClickJobsMenu testJobMenu = new AssingeesOnClickJobsMenu(driver);
 
                 /* Set of assertions */
 

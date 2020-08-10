@@ -144,7 +144,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 asob.SelectSingleJob(driver, 1);
 
-                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                AssingeesOnClickJobsMenu testMenu = new AssingeesOnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 Assert.AreEqual(1, asob.assigneesJobsList.ElementAt(1).JobIsSelected);
@@ -188,7 +188,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 asob.SelectSingleJob(driver, asob.GetAssigneeJobsListSize - 1);
 
-                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                AssingeesOnClickJobsMenu testMenu = new AssingeesOnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 Assert.AreEqual(1, asob.assigneesJobsList.ElementAt(asob.GetAssigneeJobsListSize - 1).JobIsSelected);
@@ -232,7 +232,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 asob.SelectSingleJob(driver, 0);
 
-                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                AssingeesOnClickJobsMenu testMenu = new AssingeesOnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 Assert.AreEqual(1, asob.assigneesJobsList.ElementAt(0).JobIsSelected);
@@ -420,7 +420,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 asob.SelectMultipleJobs(driver, 0, 9);
 
-                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                AssingeesOnClickJobsMenu testMenu = new AssingeesOnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 foreach(AssigneeJobs assigneeJob in asob.assigneesJobsList.GetRange(0, 10))
@@ -467,7 +467,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 asob.SelectMultipleJobs(driver, 0, 1);
 
-                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                AssingeesOnClickJobsMenu testMenu = new AssingeesOnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 foreach (AssigneeJobs assigneeJob in asob.assigneesJobsList.GetRange(0, 2))
@@ -514,7 +514,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 asob.SelectMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
 
-                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                AssingeesOnClickJobsMenu testMenu = new AssingeesOnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 foreach (AssigneeJobs assigneeJob in asob.assigneesJobsList)
@@ -561,7 +561,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.PageObjects_Tes
 
                 asob.SelectMultipleJobs(driver, asob.GetAssigneeJobsListSize - 2, asob.GetAssigneeJobsListSize - 1);
 
-                OnClickJobsMenu testMenu = new OnClickJobsMenu(driver);
+                AssingeesOnClickJobsMenu testMenu = new AssingeesOnClickJobsMenu(driver);
                 Assert.AreEqual(1, testMenu.MenuContainerIsDisplayed);
 
                 foreach (AssigneeJobs assigneeJob in asob.assigneesJobsList.GetRange(asob.GetAssigneeJobsListSize - 2, 2))

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
 {
-    public class OnClickJobsMenu
+    public class AssingeesOnClickJobsMenu
     {
         /* Fields */
      
@@ -113,7 +113,7 @@ namespace TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects
         }
 
         /* Constructors */
-        public OnClickJobsMenu(IWebDriver driver)
+        public AssingeesOnClickJobsMenu(IWebDriver driver)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
