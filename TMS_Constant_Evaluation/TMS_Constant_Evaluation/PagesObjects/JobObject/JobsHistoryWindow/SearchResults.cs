@@ -8,5 +8,15 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
 {
     public class SearchResults
     {
+
+
+        /* Fields */
+
+        /* Properties */
+
+        /* Methods */
+
+        /* Constructors */
+
     }
 }

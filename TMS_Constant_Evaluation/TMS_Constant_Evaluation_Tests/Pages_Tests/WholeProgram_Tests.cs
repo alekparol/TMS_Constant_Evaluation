@@ -58,33 +58,10 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
                 assigneesViewsMenu.JobsClick(driver);
 
-                Thread.Sleep(5000);
-                //Jobs job = new Jobs(driver.FindElement(By.ClassName("r_L")));
-                //job.JobButtonClick(driver);
                 JobsSectionJobs jsj = new JobsSectionJobs(driver);            
-
                 jsj.ShowHistoryOfJob(driver, 0);
-                Thread.Sleep(5000);
-
-                /*Thread.Sleep(5000);
-
 
                 Thread.Sleep(5000);
-
-
-                IWebElement auxiliaryJob = driver.FindElements(By.ClassName("r_L")).ElementAt(0);
-                IReadOnlyCollection<IWebElement> childNodes = auxiliaryJob.FindElements(By.TagName("td"));
-
-                String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject){ arguments[0].fireEvent('onmouseover');}";
-                String onClickScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('click',true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject){ arguments[0].fireEvent('onclick');}";
-
-                ((IJavaScriptExecutor)driver).ExecuteScript(mouseOverScript, auxiliaryJob);
-                Thread.Sleep(4000);
-                ((IJavaScriptExecutor)driver).ExecuteScript(onClickScript, auxiliaryJob);
-                Thread.Sleep(4000);*/
-
-
-
 
             }
         }

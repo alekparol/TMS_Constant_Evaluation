@@ -16,7 +16,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
 
         private IWebElement jobHistoryContainer; 
 
-        //private TitleBar 
+        //private PopUpBody 
 
         /* Properties */
 
