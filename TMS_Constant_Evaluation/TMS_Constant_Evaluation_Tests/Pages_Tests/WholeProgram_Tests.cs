@@ -11,6 +11,7 @@ using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
 using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
 using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
+using TMS_Constant_Evaluation.PagesObjects.JobObject;
 
 namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 {
@@ -57,45 +58,93 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
                 assigneesViewsMenu.JobsClick(driver);
 
-                /*testStatusPage = new StatusPage(driver);
-                testStatusPage.ChosenActivityClick(driver, "Translation");
+                Thread.Sleep(5000);
+                //Jobs job = new Jobs(driver.FindElement(By.ClassName("r_L")));
+                //job.JobButtonClick(driver);
+                JobsSectionJobs jsj = new JobsSectionJobs(driver);            
 
-                testStatusPage = new StatusPage(driver);
-                testStatusPage.ClickAll(driver);
+                jsj.ShowHistoryOfJob(driver, 0);
+                Thread.Sleep(5000);
 
-                IWebElement errorMessage;
-                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                /*Thread.Sleep(5000);
 
-                auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
-                if (auxiliaryCollection.Count != 0)
-                {      
-                    errorMessage = auxiliaryCollection.ElementAt(0);
-                
-                    while (errorMessage != null)
-                    {
-                        testStatusPage = new StatusPage(driver);
-                        testStatusPage.ChosenActivityClick(driver, "Translation");
 
-                        testStatusPage = new StatusPage(driver);
-                        testStatusPage.ClickAll(driver);
+                Thread.Sleep(5000);
 
-                        auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
-                        if (auxiliaryCollection.Count != 0)
-                        {
-                            errorMessage = auxiliaryCollection.ElementAt(0);
-                        }
-                        else
-                        {
-                            errorMessage = null;
-                        }
-                    }
-                
-                }*/
 
-                /* Set of assertions */
+                IWebElement auxiliaryJob = driver.FindElements(By.ClassName("r_L")).ElementAt(0);
+                IReadOnlyCollection<IWebElement> childNodes = auxiliaryJob.FindElements(By.TagName("td"));
+
+                String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject){ arguments[0].fireEvent('onmouseover');}";
+                String onClickScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('click',true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject){ arguments[0].fireEvent('onclick');}";
+
+                ((IJavaScriptExecutor)driver).ExecuteScript(mouseOverScript, auxiliaryJob);
+                Thread.Sleep(4000);
+                ((IJavaScriptExecutor)driver).ExecuteScript(onClickScript, auxiliaryJob);
+                Thread.Sleep(4000);*/
 
 
 
+
+            }
+        }
+
+        [TestMethod]
+        public void WholeProgram_NewParsingCorrectly_Test_2()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.ProfileClick(driver);
+                testProjectPage.ChangeItemsPerPage(driver);
+
+                ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
+                assigneesViewsMenu.JobsClick(driver);
+
+                Thread.Sleep(5000);
+
+
+                //IWebElement auxiliaryJob2 = driver.FindElements(By.ClassName("r_L")).ElementAt(2);
+
+
+
+
+
+                //driver.FindElement(By.Id("jobsactivity")).Click();
+                //Thread.Sleep(7000);
+                //driver.FindElement(By.Id("SelectDeselectAll")).Click();
+                //Thread.Sleep(7000);
+
+                //auxiliaryJob.FindElement(By.TagName("div")).Click();
+                //Thread.Sleep(7000);
+
+                IWebElement auxiliaryJob = driver.FindElements(By.ClassName("r_L")).ElementAt(0);
+                IReadOnlyCollection<IWebElement> childNodes = auxiliaryJob.FindElements(By.TagName("td"));
+
+                ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].dispatchEvent(new Event('rowSelected'))", auxiliaryJob);
+
+                Actions Action = new Actions(driver);
+
+                for (int i = 0; i < 100; i++)
+                {
+                    Action.MoveToElement(auxiliaryJob).MoveByOffset(-100 - 1, 14).Click().Build().Perform();
+                    Thread.Sleep(7000);
+
+                }
+                childNodes.ElementAt(0).Click();
+                Thread.Sleep(7000);
             }
         }
 

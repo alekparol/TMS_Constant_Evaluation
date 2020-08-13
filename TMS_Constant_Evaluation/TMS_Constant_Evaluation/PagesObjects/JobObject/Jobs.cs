@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -169,12 +170,20 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            jobsButton.Click();
+            String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject){ arguments[0].fireEvent('onmouseover');}";
+            String onClickScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('click',true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject){ arguments[0].fireEvent('onclick');}";
+
+            ((IJavaScriptExecutor)driver).ExecuteScript(mouseOverScript, jobsContainer);
+            ((IJavaScriptExecutor)driver).ExecuteScript(onClickScript, jobsContainer);
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"m1 lay_flt\"]")));
         }
 
         /* Constructors */
 
+        public Jobs()
+        {
+
+        }
         public Jobs(IWebElement r_LObject)
         {
             IReadOnlyCollection<IWebElement> auxiliaryCollection;
@@ -184,16 +193,11 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
 
             if (r_LObject.GetAttribute("class") == "r_L")
             {
-                jobsContainer = r_LObject;
+                jobsContainer = r_LObject;              
 
                 auxiliaryCollection = r_LObject.FindElements(By.ClassName("firstColumn"));
                 if (auxiliaryCollection.Count > 0) jobsName = auxiliaryCollection.ElementAt(0);
 
-                auxiliarayEnumerable = r_LObject.FindElements(By.XPath("child::*")).Where(x => languagesRegex.IsMatch(x.Text));
-                if (auxiliarayEnumerable.Count() == 1)
-                {
-                    jobsButton = auxiliarayEnumerable.ElementAt(0);
-                }
             }
         }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow;
 
 namespace TMS_Constant_Evaluation.PagesObjects.JobObject
 {
@@ -12,6 +13,10 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
     {
 
         /* Fields */
+
+        private IWebElement jobHistoryContainer; 
+
+        //private TitleBar 
 
         /* Properties */
 

@@ -117,12 +117,12 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
         {
             if (JobsListIsEmpty == false)
             {
-                if (jobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
-                {
+                //if (jobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                //{
                     jobsPageBar = null;
                     jobsList.ElementAt(jobNumber).JobButtonClick(driver);
                     jobMenu = new JobsOnClickJobsMenu(driver);
-                }
+                //}
             }
         }
 
@@ -130,11 +130,11 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
         {
             if (JobsListIsEmpty == false)
             {
-                if (jobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
-                {
+                //if (jobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                //{
                     SelectJob(driver, jobNumber);
                     jobMenu.ClickShowHistoryButton(driver);
-                }
+                //}
             }
         }
 
@@ -148,7 +148,8 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
-                Jobs auxiliaryJobs;
+                Jobs auxiliaryJobs = new Jobs();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("r_L")));
 
                 auxiliaryCollection = driver.FindElements(By.ClassName("r_GH"));
                 if (auxiliaryCollection.Count == 1)
@@ -163,7 +164,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
                         foreach (IWebElement element in auxiliaryCollection)
                         {
                             auxiliaryJobs = new Jobs(element);
-                            if (auxiliaryJobs.IsParsingCorrect) jobsList.Add(auxiliaryJobs);
+                            jobsList.Add(auxiliaryJobs);
                         }
                     }
 
