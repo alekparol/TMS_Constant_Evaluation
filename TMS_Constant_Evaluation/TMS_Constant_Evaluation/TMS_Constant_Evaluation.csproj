@@ -60,7 +60,7 @@
     <Compile Include="PagesObjects\JobObject\Jobs.cs" />
     <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\JobHistoryFilter.cs" />
     <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\SearchResults.cs" />
-    <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\TitleBar.cs" />
+    <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\PopUpBody.cs" />
     <Compile Include="PagesObjects\JobObject\JobsOnClickJobsMenu.cs" />
     <Compile Include="PagesObjects\JobObject\JobsSectionJobs.cs" />
     <Compile Include="PagesObjects\JobsNavigationBar.cs" />

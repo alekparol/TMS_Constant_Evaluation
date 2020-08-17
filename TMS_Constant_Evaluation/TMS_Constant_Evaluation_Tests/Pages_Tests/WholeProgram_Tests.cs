@@ -12,6 +12,7 @@ using TMS_Constant_Evaluation.Pages.PagesObjects;
 using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
 using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 using TMS_Constant_Evaluation.PagesObjects.JobObject;
+using TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow;
 
 namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 {
@@ -60,6 +61,12 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 
                 JobsSectionJobs jsj = new JobsSectionJobs(driver);            
                 jsj.ShowHistoryOfJob(driver, 0);
+
+                PopUpBody body = new PopUpBody(driver);
+                JobHistoryFilter filter = new JobHistoryFilter(driver);
+
+                filter.FiltersPanelInitialization(driver);
+                filter.ChosenActivityClick(driver, "Translation");
 
                 Thread.Sleep(5000);
 

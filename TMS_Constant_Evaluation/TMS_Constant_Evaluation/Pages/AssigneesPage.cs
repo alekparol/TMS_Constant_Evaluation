@@ -156,17 +156,17 @@ namespace TMS_Constant_Evaluation.Pages
             assigneeFilters = new AssigneesFilters(driver);
         }
 
-        public void LanguageFilterClick(IWebDriver driver)
+        public void TargetLanguageFilterClick(IWebDriver driver)
         {
             assigneeFilters.FiltersPanelInitialization(driver);
-            assigneeFilters.LanguageFilterClick(driver);
+            assigneeFilters.TargetLanguageFilterClick(driver);
 
             assigneeNavigationBar = new StatusNavigationBar(driver);
         }
 
         public void ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
-            LanguageFilterClick(driver);
+            TargetLanguageFilterClick(driver);
             assigneeFilters.ChosenGetTargetLanguageClick(driver, chosenLanguageCode);
 
             assigneeNavigationBar = new StatusNavigationBar(driver);

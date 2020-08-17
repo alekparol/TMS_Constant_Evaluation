@@ -108,8 +108,8 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
 
                 showHistoryButton.Click();
 
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                //wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                //wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup_cnt")));
             }

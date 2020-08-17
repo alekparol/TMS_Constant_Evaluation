@@ -402,7 +402,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
         /* Language Filter Click */
 
         [TestMethod]
-        public void StatusPage_LanguageFilterClick_Test_1()
+        public void StatusPage_TargetLanguageFilterClick_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -423,7 +423,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
 
-                testStatusPage.LanguageFilterClick(driver);
+                testStatusPage.TargetLanguageFilterClick(driver);
 
                 /* Set of assertions */
 
@@ -466,7 +466,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 StatusPage testStatusPage = new StatusPage(driver);
 
                 testStatusPage.ChosenGetTargetLanguageClick(driver, "da-dk");
-                testStatusPage.LanguageFilterClick(driver);
+                testStatusPage.TargetLanguageFilterClick(driver);
 
                 /* Set of assertions */
 
@@ -507,7 +507,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests
                 StatusPage testStatusPage = new StatusPage(driver);
 
                 testStatusPage.ChosenGetTargetLanguageClick(driver, "de-de");
-                testStatusPage.LanguageFilterClick(driver);
+                testStatusPage.TargetLanguageFilterClick(driver);
 
                 /* Set of assertions */
 

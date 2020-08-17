@@ -572,7 +572,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         /* Language Filter Click */
 
         [TestMethod]
-        public void StatusFilters_LanguageFilterClick_Test_1()
+        public void StatusFilters_TargetLanguageFilterClick_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -597,7 +597,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 StatusFilters statusFiltersTest = new StatusFilters(driver);
 
                 statusFiltersTest.FiltersPanelInitialization(driver);
-                statusFiltersTest.LanguageFilterClick(driver);
+                statusFiltersTest.TargetLanguageFilterClick(driver);
 
                 /* Set of assertions */
 

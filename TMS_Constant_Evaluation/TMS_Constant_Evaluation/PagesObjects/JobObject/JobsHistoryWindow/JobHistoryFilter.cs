@@ -24,9 +24,13 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
 
         private IWebElement filtersPanel;
 
-        private IWebElement languageFilter;
-        private IWebElement languageFilterChild;
-        private IReadOnlyCollection<IWebElement> languageList;
+        private IWebElement sourceLanguageFilter;
+        private IWebElement sourceLanguageFilterChild;
+        private IReadOnlyCollection<IWebElement> sourceLanguageList;
+
+        private IWebElement targetLanguageFilter;
+        private IWebElement targetLanguageFilterChild;
+        private IReadOnlyCollection<IWebElement> targetLanguageList;
 
         private IWebElement activitiesFilter;
         private IWebElement activitiesFilterChild;
@@ -140,13 +144,13 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
             }
         }
 
-        public int LanguageFilterIsNull
+        public int SourceLanguageFilterIsNull
         {
             get
             {
                 if (FiltersPanelIsNull == 0)
                 {
-                    if (languageFilter != null)
+                    if (sourceLanguageFilter != null)
                     {
                         return 0;
                     }
@@ -162,13 +166,13 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
             }
         }
 
-        public int LanguageFilterIsDisplayed
+        public int SourceLanguageFilterIsDisplayed
         {
             get
             {
-                if (LanguageFilterIsNull == 0)
+                if (SourceLanguageFilterIsNull == 0)
                 {
-                    if (languageFilter.Displayed)
+                    if (sourceLanguageFilter.Displayed)
                     {
                         return 1;
                     }
@@ -184,13 +188,13 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
             }
         }
 
-        public int LanguagesFilterIsExpanded
+        public int SourceLanguagesFilterIsExpanded
         {
             get
             {
-                if (LanguageFilterIsDisplayed == 1)
+                if (SourceLanguageFilterIsDisplayed == 1)
                 {
-                    if (languageFilterChild.Displayed)
+                    if (sourceLanguageFilterChild.Displayed)
                     {
                         return 1;
                     }
@@ -206,13 +210,94 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
             }
         }
 
-        public string LanguageFilterSelection
+        public string SourceLanguageFilterSelection
         {
             get
             {
-                if (LanguageFilterIsNull == 0)
+                if (SourceLanguageFilterIsNull == 0)
                 {
-                    return languageFilter.Text;
+                    return sourceLanguageFilter.Text;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        public int TargetLanguageFilterIsNull
+        {
+            get
+            {
+                if (FiltersPanelIsNull == 0)
+                {
+                    if (targetLanguageFilter != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int TargetLanguageFilterIsDisplayed
+        {
+            get
+            {
+                if (TargetLanguageFilterIsNull == 0)
+                {
+                    if (targetLanguageFilter.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int TargetLanguagesFilterIsExpanded
+        {
+            get
+            {
+                if (TargetLanguageFilterIsDisplayed == 1)
+                {
+                    if (targetLanguageFilterChild.Displayed)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public string TargetLanguageFilterSelection
+        {
+            get
+            {
+                if (TargetLanguageFilterIsNull == 0)
+                {
+                    return targetLanguageFilter.Text;
                 }
                 else
                 {
@@ -334,6 +419,9 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
 
                 DisplayFiltersPanel(driver);
+                wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup_fpName_titletext")));
 
                 auxiliaryCollection = driver.FindElements(By.Id("pup_fp"));
                 if (auxiliaryCollection.Count == 1) filtersPanel = auxiliaryCollection.ElementAt(0);
@@ -350,41 +438,82 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
                     activitiesList = auxiliaryCollection;
 
                 }
+
+                auxiliaryCollection = driver.FindElements(By.Id("pup_fpSourceLanguage_titletext"));
+                if (auxiliaryCollection.Count == 1) sourceLanguageFilter = auxiliaryCollection.ElementAt(0);
+
+                auxiliaryCollection = driver.FindElements(By.Id("pup_fpSourceLanguage_child"));
+                if (auxiliaryCollection.Count == 1)
+                {
+                    sourceLanguageFilterChild = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = auxiliaryCollection.ElementAt(0).FindElements(By.XPath(".//a"));
+                    sourceLanguageList = auxiliaryCollection;
+                }
+
                 auxiliaryCollection = driver.FindElements(By.Id("pup_fpTargetLanguage_titletext"));
-                if (auxiliaryCollection.Count == 1) languageFilter = auxiliaryCollection.ElementAt(0);
+                if (auxiliaryCollection.Count == 1) targetLanguageFilter = auxiliaryCollection.ElementAt(0);
 
                 auxiliaryCollection = driver.FindElements(By.Id("pup_fpTargetLanguage_child"));
                 if (auxiliaryCollection.Count == 1)
                 {
-                    languageFilterChild = auxiliaryCollection.ElementAt(0);
+                    targetLanguageFilterChild = auxiliaryCollection.ElementAt(0);
 
                     auxiliaryCollection = auxiliaryCollection.ElementAt(0).FindElements(By.XPath(".//a"));
-                    languageList = auxiliaryCollection;
+                    targetLanguageList = auxiliaryCollection;
                 }
             }
         }
 
-        public void LanguageFilterClick(IWebDriver driver)
+        public void SourceLanguageFilterClick(IWebDriver driver)
         {
-            if (LanguageFilterIsDisplayed == 1)
+            if (SourceLanguageFilterIsDisplayed == 1)
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-                languageFilter.Click();
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup_fpTargetLanguage_child")));
+                sourceLanguageFilter.Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup_fpSourceLanguage_child")));
             }
         }
 
-        public void ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
+        public void ChosenSourceLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
-            LanguageFilterClick(driver);
+            SourceLanguageFilterClick(driver);
 
-            if (LanguagesFilterIsExpanded == 1)
+            if (SourceLanguagesFilterIsExpanded == 1)
             {
                 IWebElement chosenElement;
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-                chosenElement = languageList.Where(x => x.Text.Contains(chosenLanguageCode)).ElementAt(0);
+                chosenElement = sourceLanguageList.Where(x => x.Text.Contains(chosenLanguageCode)).ElementAt(0);
+                chosenElement.Click();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+            }
+        }
+
+        public void TargetLanguageFilterClick(IWebDriver driver)
+        {
+            if (TargetLanguageFilterIsDisplayed == 1)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                targetLanguageFilter.Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup_fpTargetLanguage_child")));
+            }
+        }
+
+        public void ChosenTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
+        {
+            TargetLanguageFilterClick(driver);
+
+            if (TargetLanguagesFilterIsExpanded == 1)
+            {
+                IWebElement chosenElement;
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                chosenElement = targetLanguageList.Where(x => x.Text.Contains(chosenLanguageCode)).ElementAt(0);
                 chosenElement.Click();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
@@ -394,13 +523,13 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
 
         public void ActivitiesFilterClick(IWebDriver driver)
         {
-            if (ActivitiesFilterIsDisplayed == 1)
-            {
+            //if (ActivitiesFilterIsDisplayed == 1)
+            //{
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 activitiesFilter.Click();
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup_fpName_child")));
-            }
+            //}
         }
 
         public void ChosenActivityClick(IWebDriver driver, string chosenActivityName)
