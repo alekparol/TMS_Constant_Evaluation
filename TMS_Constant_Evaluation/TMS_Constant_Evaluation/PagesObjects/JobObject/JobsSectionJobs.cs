@@ -113,6 +113,19 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
 
         /* Methods */
 
+        public void SelectJob(IWebDriver driver, string jobName)
+        {
+            if (JobsListIsEmpty == false)
+            {
+                //if (jobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                //{
+                jobsPageBar = null;
+                jobsList.Find(x => x.GetJobsName.Equals(jobName)).JobButtonClick(driver);
+                jobMenu = new JobsOnClickJobsMenu(driver);
+                //}
+            }
+        }
+
         public void SelectJob(IWebDriver driver, int jobNumber)
         {
             if (JobsListIsEmpty == false)
@@ -122,6 +135,18 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
                     jobsPageBar = null;
                     jobsList.ElementAt(jobNumber).JobButtonClick(driver);
                     jobMenu = new JobsOnClickJobsMenu(driver);
+                //}
+            }
+        }
+
+        public void ShowHistoryOfJob(IWebDriver driver, string jobName)
+        {
+            if (JobsListIsEmpty == false)
+            {
+                //if (jobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                //{
+                SelectJob(driver, jobName);
+                jobMenu.ClickShowHistoryButton(driver);
                 //}
             }
         }
@@ -171,6 +196,5 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
                 }
             }
         }
-
     }
 }

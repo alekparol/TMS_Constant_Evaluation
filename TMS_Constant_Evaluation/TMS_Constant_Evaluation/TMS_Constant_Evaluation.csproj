@@ -55,10 +55,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFormats\StatusAssgineeInfo.cs" />
     <Compile Include="PagesObjects\AssigneesFilters.cs" />
     <Compile Include="PagesObjects\JobObject\JobHistoryWindow.cs" />
     <Compile Include="PagesObjects\JobObject\Jobs.cs" />
     <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\JobHistoryFilter.cs" />
+    <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\ResultJob.cs" />
     <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\SearchResults.cs" />
     <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\PopUpBody.cs" />
     <Compile Include="PagesObjects\JobObject\JobsOnClickJobsMenu.cs" />

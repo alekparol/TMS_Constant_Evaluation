@@ -6,7 +6,9 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Threading;
+using TMS_Constant_Evaluation.DataFormats;
 using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
 using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
@@ -54,19 +56,69 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 testPageBar.ItemsPerPageSetMaximalValue(driver);
 
                 AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+
+                List<StatusAssgineeInfo> listOfStatusAssgineeInfo = new List<StatusAssgineeInfo>();
+                StatusAssgineeInfo auxiliary;
+
+                foreach (Assignee ass in asob.assigneesList)
+                {
+                    for(int i = 0; i < ass.GetAssingeeJobsNumberInt; i++)
+                    {
+                        auxiliary = new StatusAssgineeInfo(ass, asob.assigneesJobsList.ElementAt(i));
+                        listOfStatusAssgineeInfo.Add(auxiliary);
+                    }
+                    asob.assigneesJobsList.RemoveRange(0, ass.GetAssingeeJobsNumberInt - 1);
+                }
+
+                asob = new AssigneesAndJobs(driver);
                 asob.TagMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
 
                 ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
                 assigneesViewsMenu.JobsClick(driver);
 
-                JobsSectionJobs jsj = new JobsSectionJobs(driver);            
-                jsj.ShowHistoryOfJob(driver, 0);
+                JobsSectionJobs jsj = new JobsSectionJobs(driver);
+                jsj.ShowHistoryOfJob(driver, listOfStatusAssgineeInfo.ElementAt(0).jobName.Trim());
+
+                JobHistoryFilter filter = new JobHistoryFilter(driver);
+
+                filter.FiltersPanelInitialization(driver);
+                filter.ChosenActivityClick(driver, "Translation");
+
+                filter = new JobHistoryFilter(driver);
+                filter.FiltersPanelInitialization(driver);
+
+                filter.SourceLanguageFilterClick(driver);
+                filter.ChosenSourceLanguageClick(driver, listOfStatusAssgineeInfo.ElementAt(0).sourceLanguage);
+
+                filter = new JobHistoryFilter(driver);
+                filter.FiltersPanelInitialization(driver);
+
+                filter.TargetLanguageFilterClick(driver);
+                filter.ChosenTargetLanguageClick(driver, listOfStatusAssgineeInfo.ElementAt(0).targetLanguage);
+
+                /*IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                ResultJob auxiliaryJobs = new ResultJob();
+
+                wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("r_L")));
+                auxiliaryCollection = driver.FindElements(By.Id("pup_avw"));
+
+                IWebElement jobsResultsContainer = auxiliaryCollection.ElementAt(0);
+
+                auxiliaryCollection = jobsResultsContainer.FindElements(By.ClassName("r_L"));
+                auxiliaryJobs = new ResultJob(auxiliaryCollection.ElementAt(0));*/
+
+                SearchResults sr = new SearchResults(driver);
+                Assert.AreEqual("", sr.GetListOfTranslatorNames.ElementAt(0));
+
+                /*jsj.ShowHistoryOfJob(driver, 0);
 
                 PopUpBody body = new PopUpBody(driver);
                 JobHistoryFilter filter = new JobHistoryFilter(driver);
 
                 filter.FiltersPanelInitialization(driver);
-                filter.ChosenActivityClick(driver, "Translation");
+                filter.ChosenActivityClick(driver, "Translation");*/
+
+                //filter.ChosenSourceLanguageClick(driver, asob.)
 
                 Thread.Sleep(5000);
 
@@ -230,7 +282,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
 
                 StatusPage translationPage = new StatusPage(driver);
 
-                translationPage.LanguageFilterClick(driver);
+                translationPage.TargetLanguageFilterClick(driver);
                 Thread.Sleep(1000);
 
                 //translationPage.ChosenGetTargetLanguageClick(driver, differentLanguages.ElementAt(1));

@@ -431,7 +431,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public void LanguageFilterClick(IWebDriver driver)
+        public void TargetLanguageFilterClick(IWebDriver driver)
         {
             if (LanguageFilterIsDisplayed == 1)
             {
@@ -444,7 +444,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         public void ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
-            LanguageFilterClick(driver);
+            TargetLanguageFilterClick(driver);
 
             if (LanguagesFilterIsExpanded == 1)
             {

@@ -488,8 +488,8 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
                 chosenElement = sourceLanguageList.Where(x => x.Text.Contains(chosenLanguageCode)).ElementAt(0);
                 chosenElement.Click();
 
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup_lod_c")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("pup_lod_c")));
             }
         }
 
@@ -516,8 +516,8 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
                 chosenElement = targetLanguageList.Where(x => x.Text.Contains(chosenLanguageCode)).ElementAt(0);
                 chosenElement.Click();
 
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup_lod_c")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("pup_lod_c")));
             }
         }
 
@@ -544,8 +544,8 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow
                 chosenElement = activitiesList.Where(x => x.Text == chosenActivityName).ElementAt(0);
                 chosenElement.Click();
 
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("pup_lod_c")));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("pup_lod_c")));
             }
         }
 
