@@ -1,17 +1,21 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
+using System.Runtime.Remoting.Messaging;
 using System.Threading;
-using System.Threading.Tasks;
+using TMS_Constant_Evaluation.DataFormats;
+using TMS_Constant_Evaluation.Pages;
+using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
+using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
+using TMS_Constant_Evaluation.PagesObjects.JobObject;
+using TMS_Constant_Evaluation.PagesObjects.JobObject.JobsHistoryWindow;
 
-/* TODO: Create a class modeling home page for a project with at least two elements - title and "Status" section's element. 
- * TODO: Add an implication when Database Error occurs on the Status page.
- * TODO: All paths to the elements should be validated. 
- * TODO: All Thread.Sleep() occurances should be replaced with Explicit or Implicit waits.*/
 
 namespace TMS_Constant_Evaluation
 {
@@ -20,47 +24,119 @@ namespace TMS_Constant_Evaluation
         static void Main(string[] args)
         {
 
-            IWebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+            using (var driver = new ChromeDriver())
+            {
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            
-            string projectTitle = "Porsche BAL 2.0";
-            
-            string projectXPath = "//div[contains(text(),'" + projectTitle + "')]";
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//div[contains(text(),'Porsche BAL 2.0')]")));
-            IWebElement projectTMS =  driver.FindElement(By.XPath("//div[contains(text(),'Porsche BAL 2.0')]"));
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.ProfileClick(driver);
+                testProjectPage.ChangeItemsPerPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+                testPageBar.ItemsPerPageSetMaximalValue(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+
+                List<StatusAssgineeInfo> listOfStatusAssgineeInfo = new List<StatusAssgineeInfo>();
+                StatusAssgineeInfo auxiliary;
+
+                foreach (Assignee ass in asob.assigneesList)
+                {
+                    for (int i = 0; i < ass.GetAssingeeJobsNumberInt; i++)
+                    {
+                        auxiliary = new StatusAssgineeInfo(ass, asob.assigneesJobsList.ElementAt(i));
+                        listOfStatusAssgineeInfo.Add(auxiliary);
+                    }
+                    asob.assigneesJobsList.RemoveRange(0, ass.GetAssingeeJobsNumberInt - 1);
+                }
+
+                asob = new AssigneesAndJobs(driver);
+                asob.TagMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
+
+                ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
+                assigneesViewsMenu.JobsClick(driver);
+
+                JobsSectionJobs jsj = new JobsSectionJobs(driver);
+
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                ResultJob auxiliaryJobs = new ResultJob();
+                IWebElement jobsResultsContainer;
+
+                foreach (var info in listOfStatusAssgineeInfo)
+                {
+
+                    jsj.ShowHistoryOfJob(driver, info.jobName);
+
+                    JobHistoryFilter filter = new JobHistoryFilter(driver);
+
+                    filter.FiltersPanelInitialization(driver);
+                    filter.ChosenActivityClick(driver, "Translation");
+
+                    filter = new JobHistoryFilter(driver);
+                    filter.FiltersPanelInitialization(driver);
+
+                    filter.SourceLanguageFilterClick(driver);
+                    filter.ChosenSourceLanguageClick(driver, info.sourceLanguage);
+
+                    filter = new JobHistoryFilter(driver);
+                    filter.FiltersPanelInitialization(driver);
+
+                    filter.TargetLanguageFilterClick(driver);
+                    filter.ChosenTargetLanguageClick(driver, info.targetLanguage);
+
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("r_L")));
+                    auxiliaryCollection = driver.FindElements(By.Id("pup_avw"));
+
+                    jobsResultsContainer = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = jobsResultsContainer.FindElements(By.ClassName("r_L"));
+                    auxiliaryJobs = new ResultJob(auxiliaryCollection.ElementAt(0));
+
+                    listOfStatusAssgineeInfo.ElementAt(listOfStatusAssgineeInfo.IndexOf(info)).TranslatorName = auxiliaryJobs.GetTranlatorName;
+
+                    PopUpBody popuPBody = new PopUpBody(driver);
+                    popuPBody.CloseButtonClick(driver);
+
+                }
 
 
-            projectTMS.Click();
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "TestFile.csv");
 
-            Thread.Sleep(5000);
-            IWebElement planningPage = driver.FindElement(By.XPath("//li[@id='status']"));
-
-            planningPage.Click();
-            Thread.Sleep(35000);
-
-/*StatusPage st = new StatusPage(driver);
-            Console.WriteLine(st.pageTitle.Text);
-            Console.WriteLine(st.filtersButton.Text);
-            Console.WriteLine(st.jobsFilter.Text);
-            Console.WriteLine(st.activityFilter.Text);
-
-            Console.WriteLine(st.activityListGeneratedProperly);
-            Console.WriteLine(st.jobsListGeneratedProperly);
-
-
-            st.ChoseActivity("Translation", driver);
-            Thread.Sleep(7000);
-            // This should be the returning bool value for the function which will check whether the job under the name is within the PMExcel.
-            // If yes, the program wont work for it. 
-            bool ifTheJobIsOnPMExcel;
-
-            driver.Quit();
-            Thread.Sleep(2000);*/
-
+                using (StreamWriter sw = new StreamWriter(path))
+                {
+                    // iterates over the users
+                    foreach (var info in listOfStatusAssgineeInfo)
+                    {
+                        // creates an array of the user's values
+                        string[] values = { info.jobName, info.reviewerName, info.translatorName, info.sourceLanguage, info.targetLanguage };
+                        // creates a new line
+                        string line = String.Join(";", values);
+                        // writes the line
+                        sw.WriteLine(line);
+                    }
+                    // flushes the buffer
+                    sw.Flush();
+                }
+            }
         }
     }
 }

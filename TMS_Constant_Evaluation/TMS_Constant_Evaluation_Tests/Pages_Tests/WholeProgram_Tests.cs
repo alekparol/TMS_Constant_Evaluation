@@ -313,7 +313,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                     foreach (var info in listOfStatusAssgineeInfo)
                     {
                         // creates an array of the user's values
-                        string[] values = {info.jobName, info.reviewerName, info.translatorName, info.sourceLanguage, info.targetLanguage };
+                        string[] values = { info.jobName, info.reviewerName, info.translatorName, info.sourceLanguage, info.targetLanguage };
                         // creates a new line
                         string line = String.Join(";", values);
                         // writes the line
@@ -321,95 +321,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                     }
                     // flushes the buffer
                     sw.Flush();
-                }
-
-                /*using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create(path, SpreadsheetDocumentType.Workbook))
-                {
-
-                    // Add a WorkbookPart to the document.
-                    WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
-                    workbookpart.Workbook = new Workbook();
-
-                    // Add a WorksheetPart to the WorkbookPart.
-                    WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
-                    worksheetPart.Worksheet = new Worksheet(new SheetData());
-
-                    // Add Sheets to the Workbook.
-                    Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.
-                                                        AppendChild<Sheets>(new Sheets());
-
-                    // Append a new worksheet and associate it with the workbook.
-                    Sheet sheet = new Sheet()
-                    {
-                        Id = spreadsheetDocument.WorkbookPart.
-                                                     GetIdOfPart(worksheetPart),
-                        SheetId = 1,
-                        Name = "mySheet"
-                    };
-
-
-                    sheets.Append(sheet);
-                    SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
-
-
-                    UInt32 rowIndex = 0;
-
-                    for (int i = 0; i < listOfStatusAssgineeInfo.Count; i++)
-                    {
-                        var row = new Row() { RowIndex = rowIndex };
-
-                        var firstNameCell = new Cell() { CellReference = "A" + (rowIndex + 1) };
-                        firstNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).jobName) ;
-                        firstNameCell.DataType = CellValues.String;
-
-                        row.AppendChild(firstNameCell);
-
-                        Cell secondNameCell = new Cell() { CellReference = "B" + (rowIndex + 1) };
-                        secondNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).sourceLanguage);
-                        secondNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                        row.AppendChild(secondNameCell);
-
-                        Cell thirdNameCell = new Cell() { CellReference = "C" + (rowIndex + 1) };
-                        thirdNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).targetLanguage);
-                        thirdNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                        row.AppendChild(thirdNameCell);
-
-                        Cell fourthNameCell = new Cell() { CellReference = "D" + (rowIndex + 1) };
-                        fourthNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).reviewerName);
-                        fourthNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                        row.AppendChild(fourthNameCell);
-
-                        Cell fifthNameCell = new Cell() { CellReference = "E" + (rowIndex + 1) };
-                        fifthNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).TranslatorName);
-                        fifthNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
-
-                        row.AppendChild(fifthNameCell);
-
-                        sheetData.AppendChild(row);
-
-                        rowIndex++;
-                    }
-
-                    workbookpart.Workbook.Save();
-                }*/
-
-
-                /*SearchResults sr = new SearchResults(driver);
-                Assert.AreEqual("", sr.jobsList.ElementAt(0).GetTranlatorName);*/
-
-                /*jsj.ShowHistoryOfJob(driver, 0);
-
-                PopUpBody body = new PopUpBody(driver);
-                JobHistoryFilter filter = new JobHistoryFilter(driver);
-
-                filter.FiltersPanelInitialization(driver);
-                filter.ChosenActivityClick(driver, "Translation");*/
-
-                //filter.ChosenSourceLanguageClick(driver, asob.)
-
+                }          
             }
         }
 
