@@ -1,10 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Threading;
@@ -96,7 +100,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 filter.TargetLanguageFilterClick(driver);
                 filter.ChosenTargetLanguageClick(driver, listOfStatusAssgineeInfo.ElementAt(0).targetLanguage);
 
-                /*IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
                 ResultJob auxiliaryJobs = new ResultJob();
 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("r_L")));
@@ -105,10 +109,296 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 IWebElement jobsResultsContainer = auxiliaryCollection.ElementAt(0);
 
                 auxiliaryCollection = jobsResultsContainer.FindElements(By.ClassName("r_L"));
-                auxiliaryJobs = new ResultJob(auxiliaryCollection.ElementAt(0));*/
+                auxiliaryJobs = new ResultJob(auxiliaryCollection.ElementAt(0));
 
-                SearchResults sr = new SearchResults(driver);
-                Assert.AreEqual("", sr.GetListOfTranslatorNames.ElementAt(0));
+                listOfStatusAssgineeInfo.ElementAt(0).TranslatorName = auxiliaryJobs.GetTranlatorName;
+
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "TestFile");
+
+                using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create(path, SpreadsheetDocumentType.Workbook))
+                {
+
+                    // Add a WorkbookPart to the document.
+                    WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
+                    workbookpart.Workbook = new Workbook();
+
+                    // Add a WorksheetPart to the WorkbookPart.
+                    WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
+                    worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+                    // Add Sheets to the Workbook.
+                    Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.
+                                                        AppendChild<Sheets>(new Sheets());
+
+                    // Append a new worksheet and associate it with the workbook.
+                    Sheet sheet = new Sheet()
+                    {
+                        Id = spreadsheetDocument.WorkbookPart.
+                                                     GetIdOfPart(worksheetPart),
+                        SheetId = 1,
+                        Name = "mySheet"
+                    };
+
+
+                    sheets.Append(sheet);
+                    SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+
+
+                    UInt32 rowIndex = 0;
+
+                    foreach (var info in listOfStatusAssgineeInfo)
+                    {
+                        var row = new Row() { RowIndex = rowIndex };
+
+                        var firstNameCell = new Cell() { CellReference = "A" + (rowIndex + 1) };
+                        firstNameCell.CellValue = new CellValue(info.jobName);
+                        firstNameCell.DataType = CellValues.String;
+
+                        row.AppendChild(firstNameCell);
+
+                        Cell secondNameCell = new Cell() { CellReference = "B" + (rowIndex + 1) };
+                        secondNameCell.CellValue = new CellValue(info.sourceLanguage);
+                        secondNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                        row.AppendChild(secondNameCell);
+
+                        Cell thirdNameCell = new Cell() { CellReference = "C" + (rowIndex + 1) };
+                        thirdNameCell.CellValue = new CellValue(info.targetLanguage);
+                        thirdNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                        row.AppendChild(thirdNameCell);
+
+                        Cell fourthNameCell = new Cell() { CellReference = "D" + (rowIndex + 1) };
+                        fourthNameCell.CellValue = new CellValue(info.reviewerName);
+                        fourthNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                        row.AppendChild(fourthNameCell);
+
+                        Cell fifthNameCell = new Cell() { CellReference = "E" + (rowIndex + 1) };
+                        fifthNameCell.CellValue = new CellValue(info.TranslatorName);
+                        fifthNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                        row.AppendChild(fifthNameCell);
+
+                        sheetData.AppendChild(row);
+
+                        rowIndex++;
+                    }
+
+                    workbookpart.Workbook.Save();
+                }
+            
+
+            /*SearchResults sr = new SearchResults(driver);
+            Assert.AreEqual("", sr.jobsList.ElementAt(0).GetTranlatorName);*/
+
+            /*jsj.ShowHistoryOfJob(driver, 0);
+
+            PopUpBody body = new PopUpBody(driver);
+            JobHistoryFilter filter = new JobHistoryFilter(driver);
+
+            filter.FiltersPanelInitialization(driver);
+            filter.ChosenActivityClick(driver, "Translation");*/
+
+            //filter.ChosenSourceLanguageClick(driver, asob.)
+
+            Thread.Sleep(5000);
+
+            }
+        }
+
+        [TestMethod]
+        public void WholeProgram_NewParsingCorrectly_Test_3()
+        {
+            using (var driver = new ChromeDriver())
+            {
+
+                /* Initialization */
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+                driver.Manage().Window.Maximize();
+                driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
+
+                string projectTitle = "Porsche BAL 2.0";
+                ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
+
+                testPage.ClickChosenProject();
+                ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
+
+                testProjectPage.ProfileClick(driver);
+                testProjectPage.ChangeItemsPerPage(driver);
+
+                testProjectPage.StatusClick(driver);
+                StatusPage testStatusPage = new StatusPage(driver);
+
+                testStatusPage.AssigneesClick(driver);
+                AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
+
+                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                porscheAssigneesPage = new AssigneesPage(driver);
+
+                PageBar testPageBar = new PageBar(driver);
+                testPageBar.ItemsPerPageSetMaximalValue(driver);
+
+                AssigneesAndJobs asob = new AssigneesAndJobs(driver);
+
+                List<StatusAssgineeInfo> listOfStatusAssgineeInfo = new List<StatusAssgineeInfo>();
+                StatusAssgineeInfo auxiliary;
+
+                foreach (Assignee ass in asob.assigneesList)
+                {
+                    for (int i = 0; i < ass.GetAssingeeJobsNumberInt; i++)
+                    {
+                        auxiliary = new StatusAssgineeInfo(ass, asob.assigneesJobsList.ElementAt(i));
+                        listOfStatusAssgineeInfo.Add(auxiliary);
+                    }
+                    asob.assigneesJobsList.RemoveRange(0, ass.GetAssingeeJobsNumberInt - 1);
+                }
+
+                asob = new AssigneesAndJobs(driver);
+                asob.TagMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
+
+                ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
+                assigneesViewsMenu.JobsClick(driver);
+
+                JobsSectionJobs jsj = new JobsSectionJobs(driver);
+
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                ResultJob auxiliaryJobs = new ResultJob();
+                IWebElement jobsResultsContainer;
+
+                foreach (var info in listOfStatusAssgineeInfo)
+                {
+
+                    jsj.ShowHistoryOfJob(driver, info.jobName);
+
+                    JobHistoryFilter filter = new JobHistoryFilter(driver);
+
+                    filter.FiltersPanelInitialization(driver);
+                    filter.ChosenActivityClick(driver, "Translation");
+
+                    filter = new JobHistoryFilter(driver);
+                    filter.FiltersPanelInitialization(driver);
+
+                    filter.SourceLanguageFilterClick(driver);
+                    filter.ChosenSourceLanguageClick(driver, info.sourceLanguage);
+
+                    filter = new JobHistoryFilter(driver);
+                    filter.FiltersPanelInitialization(driver);
+
+                    filter.TargetLanguageFilterClick(driver);
+                    filter.ChosenTargetLanguageClick(driver, info.targetLanguage);
+
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("r_L")));
+                    auxiliaryCollection = driver.FindElements(By.Id("pup_avw"));
+
+                    jobsResultsContainer = auxiliaryCollection.ElementAt(0);
+
+                    auxiliaryCollection = jobsResultsContainer.FindElements(By.ClassName("r_L"));
+                    auxiliaryJobs = new ResultJob(auxiliaryCollection.ElementAt(0));
+
+                    listOfStatusAssgineeInfo.ElementAt(listOfStatusAssgineeInfo.IndexOf(info)).TranslatorName = auxiliaryJobs.GetTranlatorName;
+
+                    PopUpBody popuPBody = new PopUpBody(driver);
+                    popuPBody.CloseButtonClick(driver);
+
+                }
+                
+
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "TestFile.csv");
+
+                using (StreamWriter sw = new StreamWriter(path))
+                {
+                    // iterates over the users
+                    foreach (var info in listOfStatusAssgineeInfo)
+                    {
+                        // creates an array of the user's values
+                        string[] values = {info.jobName, info.reviewerName, info.translatorName, info.sourceLanguage, info.targetLanguage };
+                        // creates a new line
+                        string line = String.Join(";", values);
+                        // writes the line
+                        sw.WriteLine(line);
+                    }
+                    // flushes the buffer
+                    sw.Flush();
+                }
+
+                /*using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create(path, SpreadsheetDocumentType.Workbook))
+                {
+
+                    // Add a WorkbookPart to the document.
+                    WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
+                    workbookpart.Workbook = new Workbook();
+
+                    // Add a WorksheetPart to the WorkbookPart.
+                    WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
+                    worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+                    // Add Sheets to the Workbook.
+                    Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.
+                                                        AppendChild<Sheets>(new Sheets());
+
+                    // Append a new worksheet and associate it with the workbook.
+                    Sheet sheet = new Sheet()
+                    {
+                        Id = spreadsheetDocument.WorkbookPart.
+                                                     GetIdOfPart(worksheetPart),
+                        SheetId = 1,
+                        Name = "mySheet"
+                    };
+
+
+                    sheets.Append(sheet);
+                    SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+
+
+                    UInt32 rowIndex = 0;
+
+                    for (int i = 0; i < listOfStatusAssgineeInfo.Count; i++)
+                    {
+                        var row = new Row() { RowIndex = rowIndex };
+
+                        var firstNameCell = new Cell() { CellReference = "A" + (rowIndex + 1) };
+                        firstNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).jobName) ;
+                        firstNameCell.DataType = CellValues.String;
+
+                        row.AppendChild(firstNameCell);
+
+                        Cell secondNameCell = new Cell() { CellReference = "B" + (rowIndex + 1) };
+                        secondNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).sourceLanguage);
+                        secondNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                        row.AppendChild(secondNameCell);
+
+                        Cell thirdNameCell = new Cell() { CellReference = "C" + (rowIndex + 1) };
+                        thirdNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).targetLanguage);
+                        thirdNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                        row.AppendChild(thirdNameCell);
+
+                        Cell fourthNameCell = new Cell() { CellReference = "D" + (rowIndex + 1) };
+                        fourthNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).reviewerName);
+                        fourthNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                        row.AppendChild(fourthNameCell);
+
+                        Cell fifthNameCell = new Cell() { CellReference = "E" + (rowIndex + 1) };
+                        fifthNameCell.CellValue = new CellValue(listOfStatusAssgineeInfo.ElementAt(i).TranslatorName);
+                        fifthNameCell.DataType = new EnumValue<CellValues>(CellValues.String);
+
+                        row.AppendChild(fifthNameCell);
+
+                        sheetData.AppendChild(row);
+
+                        rowIndex++;
+                    }
+
+                    workbookpart.Workbook.Save();
+                }*/
+
+
+                /*SearchResults sr = new SearchResults(driver);
+                Assert.AreEqual("", sr.jobsList.ElementAt(0).GetTranlatorName);*/
 
                 /*jsj.ShowHistoryOfJob(driver, 0);
 
@@ -119,8 +409,6 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 filter.ChosenActivityClick(driver, "Translation");*/
 
                 //filter.ChosenSourceLanguageClick(driver, asob.)
-
-                Thread.Sleep(5000);
 
             }
         }
