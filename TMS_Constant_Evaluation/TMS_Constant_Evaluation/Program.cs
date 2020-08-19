@@ -59,6 +59,12 @@ namespace TMS_Constant_Evaluation
                 List<StatusAssgineeInfo> listOfStatusAssgineeInfo = new List<StatusAssgineeInfo>();
                 StatusAssgineeInfo auxiliary;
 
+                foreach(var ass in asob.assigneesJobsList)
+                {
+                    Console.WriteLine(ass.GetJobsName);
+                }
+
+
                 foreach (Assignee ass in asob.assigneesList)
                 {
                     for (int i = 0; i < ass.GetAssingeeJobsNumberInt; i++)
@@ -66,7 +72,17 @@ namespace TMS_Constant_Evaluation
                         auxiliary = new StatusAssgineeInfo(ass, asob.assigneesJobsList.ElementAt(i));
                         listOfStatusAssgineeInfo.Add(auxiliary);
                     }
-                    asob.assigneesJobsList.RemoveRange(0, ass.GetAssingeeJobsNumberInt - 1);
+                    for(int i = 0; i < ass.GetAssingeeJobsNumberInt; i++)
+                    {
+                        asob.assigneesJobsList.RemoveAt(0);
+                    }
+                    
+                    Console.WriteLine(ass.GetAssigneeName + " " + ass.GetAssingeeJobsNumberInt);
+                }
+                
+                foreach(var ass in listOfStatusAssgineeInfo)
+                {
+                    Console.WriteLine(ass.jobName + " " + ass.reviewerName + " " + ass.sourceLanguage);
                 }
 
                 asob = new AssigneesAndJobs(driver);
