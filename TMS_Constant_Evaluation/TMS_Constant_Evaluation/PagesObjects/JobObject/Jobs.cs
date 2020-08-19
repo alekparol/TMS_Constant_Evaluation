@@ -21,7 +21,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
         private IWebElement jobsContainer;
         private IWebElement jobsButton;
 
-        private IWebElement jobsName;
+        public IWebElement jobsName;
 
         /* Properties */
 

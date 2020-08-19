@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -106,6 +107,9 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
+                Actions action = new Actions(driver);
+
+                action.MoveToElement(showHistoryButton).Build().Perform();
                 showHistoryButton.Click();
 
                 //wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,15 @@ using System.Threading.Tasks;
  * TODO: 
  * 
  */
-
 namespace TMS_Constant_Evaluation.Pages.PagesObjects
 {
     public class ViewsMenu
     {
+
+        private IWebDriver driver;
+
+        [FindsBy(How = How.Id, Using = "log")]
+        public IWebElement UserName { get; set; }
 
         /* Fields */
 

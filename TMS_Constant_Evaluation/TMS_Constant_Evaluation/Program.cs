@@ -81,61 +81,74 @@ namespace TMS_Constant_Evaluation
                 ResultJob auxiliaryJobs = new ResultJob();
                 IWebElement jobsResultsContainer;
 
-                foreach (var info in listOfStatusAssgineeInfo)
-                {
-
-                    jsj.ShowHistoryOfJob(driver, info.jobName);
-
-                    JobHistoryFilter filter = new JobHistoryFilter(driver);
-
-                    filter.FiltersPanelInitialization(driver);
-                    filter.ChosenActivityClick(driver, "Translation");
-
-                    filter = new JobHistoryFilter(driver);
-                    filter.FiltersPanelInitialization(driver);
-
-                    filter.SourceLanguageFilterClick(driver);
-                    filter.ChosenSourceLanguageClick(driver, info.sourceLanguage);
-
-                    filter = new JobHistoryFilter(driver);
-                    filter.FiltersPanelInitialization(driver);
-
-                    filter.TargetLanguageFilterClick(driver);
-                    filter.ChosenTargetLanguageClick(driver, info.targetLanguage);
-
-                    wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("r_L")));
-                    auxiliaryCollection = driver.FindElements(By.Id("pup_avw"));
-
-                    jobsResultsContainer = auxiliaryCollection.ElementAt(0);
-
-                    auxiliaryCollection = jobsResultsContainer.FindElements(By.ClassName("r_L"));
-                    auxiliaryJobs = new ResultJob(auxiliaryCollection.ElementAt(0));
-
-                    listOfStatusAssgineeInfo.ElementAt(listOfStatusAssgineeInfo.IndexOf(info)).TranslatorName = auxiliaryJobs.GetTranlatorName;
-
-                    PopUpBody popuPBody = new PopUpBody(driver);
-                    popuPBody.CloseButtonClick(driver);
-
-                }
-
+                IJavaScriptExecutor jse;
 
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "TestFile.csv");
 
                 using (StreamWriter sw = new StreamWriter(path))
                 {
-                    // iterates over the users
+
                     foreach (var info in listOfStatusAssgineeInfo)
                     {
-                        // creates an array of the user's values
+
+                        jse = (IJavaScriptExecutor)driver;
+                        jse.ExecuteScript("arguments[0].scrollIntoView();", jsj.GetJobElement(driver, info.jobName));
+
+                        jsj.ShowHistoryOfJob(driver, info.jobName);
+
+                        JobHistoryFilter filter = new JobHistoryFilter(driver);
+
+                        filter.FiltersPanelInitialization(driver);
+                        filter.ChosenActivityClick(driver, "Translation");
+
+                        filter = new JobHistoryFilter(driver);
+                        filter.FiltersPanelInitialization(driver);
+
+                        filter.SourceLanguageFilterClick(driver);
+                        filter.ChosenSourceLanguageClick(driver, info.sourceLanguage);
+
+                        filter = new JobHistoryFilter(driver);
+                        filter.FiltersPanelInitialization(driver);
+
+                        filter.TargetLanguageFilterClick(driver);
+                        filter.ChosenTargetLanguageClick(driver, info.targetLanguage);
+
+                        wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("r_L")));
+                        auxiliaryCollection = driver.FindElements(By.Id("pup_avw"));
+
+                        jobsResultsContainer = auxiliaryCollection.ElementAt(0);
+
+                        auxiliaryCollection = jobsResultsContainer.FindElements(By.ClassName("r_L"));
+                        auxiliaryJobs = new ResultJob(auxiliaryCollection.ElementAt(0));
+
+                        listOfStatusAssgineeInfo.ElementAt(listOfStatusAssgineeInfo.IndexOf(info)).TranslatorName = auxiliaryJobs.GetTranlatorName;
+
+                        PopUpBody popuPBody = new PopUpBody(driver);
+                        popuPBody.CloseButtonClick(driver);
+
                         string[] values = { info.jobName, info.reviewerName, info.translatorName, info.sourceLanguage, info.targetLanguage };
-                        // creates a new line
                         string line = String.Join(";", values);
-                        // writes the line
+
                         sw.WriteLine(line);
                     }
-                    // flushes the buffer
+
                     sw.Flush();
                 }
+
+               
+                    // iterates over the users
+                    //foreach (var info in listOfStatusAssgineeInfo)
+                 //   {
+                        // creates an array of the user's values
+                      //  string[] values = { info.jobName, info.reviewerName, info.translatorName, info.sourceLanguage, info.targetLanguage };
+                        // creates a new line
+                     //   string line = String.Join(";", values);
+                        // writes the line
+                       // sw.WriteLine(line);
+                  //  }
+                    // flushes the buffer
+                   // sw.Flush();
+              //  }
             }
         }
     }

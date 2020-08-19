@@ -113,6 +113,22 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
 
         /* Methods */
 
+        public IWebElement GetJobElement(IWebDriver driver, string jobName)
+        {
+            if (JobsListIsEmpty == false)
+            {
+                //if (jobsList.ElementAt(jobNumber).JobsButtonIsEnabled == 1)
+                //{
+                jobsPageBar = null;
+                return jobsList.Find(x => x.GetJobsName.Equals(jobName)).jobsName;
+                //}
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public void SelectJob(IWebDriver driver, string jobName)
         {
             if (JobsListIsEmpty == false)
