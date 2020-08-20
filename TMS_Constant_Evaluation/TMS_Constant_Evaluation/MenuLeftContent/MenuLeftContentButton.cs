@@ -10,10 +10,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using TMS_Constant_Evaluation.MenuLeftContent;
 
 namespace TMS_Constant_Evaluation.PagesObjects
 {
-    public class MenuLeftContentButton
+    public class MenuLeftContentButton : IMenuLeftContentButton
     {
 
         /* Fields */
