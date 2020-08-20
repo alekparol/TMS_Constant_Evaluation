@@ -10,6 +10,8 @@ using OpenQA.Selenium.Support.UI;
 using TMS_Constant_Evaluation;
 using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.PagesObjects;
+using TMS_Constant_Evaluation.PagesObjects.JobObject;
 
 namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 {
@@ -42,8 +44,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 /* Set of assertions */
 
                 Assert.IsFalse(viewsMenu.ViewsPanelIsNull);
-                Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
-                Assert.IsTrue(viewsMenu.IsParsingCorrect);
+                //Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
+                //Assert.IsTrue(viewsMenu.IsParsingCorrect);
 
             }
 
@@ -67,8 +69,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 /* Set of assertions */
 
                 Assert.IsTrue(viewsMenu.ViewsPanelIsNull);
-                Assert.AreEqual(-1, viewsMenu.ViewsListIsFull);
-                Assert.IsFalse(viewsMenu.IsParsingCorrect);
+                //Assert.IsFalse(viewsMenu.IsParsingCorrect);
 
             }
 
@@ -99,9 +100,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 /* Set of assertions */
 
-                Assert.AreEqual(0, viewsMenu.JobsViewIsClicked);
-                Assert.AreEqual(0, viewsMenu.PlanningViewIsClicked);
-                Assert.AreEqual(0, viewsMenu.StatusViewIsClicked);
+                Assert.AreEqual(0, viewsMenu.JobsView.ButtonIsClicked);
+                Assert.AreEqual(0, viewsMenu.PlanningView.ButtonIsClicked);
+                Assert.AreEqual(0, viewsMenu.StatusView.ButtonIsClicked);
 
             }
         }
@@ -123,9 +124,9 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
                 /* Set of assertions */
 
-                Assert.AreEqual(-1, viewsMenu.JobsViewIsClicked);
-                Assert.AreEqual(-1, viewsMenu.PlanningViewIsClicked);
-                Assert.AreEqual(-1, viewsMenu.StatusViewIsClicked);
+                Assert.AreEqual(-1, viewsMenu.JobsView.ButtonIsClicked);
+                Assert.AreEqual(-1, viewsMenu.PlanningView.ButtonIsClicked);
+                Assert.AreEqual(-1, viewsMenu.StatusView.ButtonIsClicked);
 
             }
 
@@ -153,15 +154,15 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ViewsMenu viewsMenu = new ViewsMenu(driver);
-                viewsMenu.JobsClick(driver);
+                viewsMenu.JobsView.ButtonClick();
 
                 viewsMenu = new ViewsMenu(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(viewsMenu.IsParsingCorrect);
-                Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
-                Assert.AreEqual(1, viewsMenu.JobsViewIsClicked);
+                //Assert.IsTrue(viewsMenu.IsParsingCorrect);
+               // Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
+                Assert.AreEqual(1, viewsMenu.JobsView.ButtonIsClicked);
 
             }
         }
@@ -186,15 +187,15 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ViewsMenu viewsMenu = new ViewsMenu(driver);
-                viewsMenu.PlanningClick(driver);
+                viewsMenu.PlanningView.ButtonClick();
 
                 viewsMenu = new ViewsMenu(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(viewsMenu.IsParsingCorrect);
-                Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
-                Assert.AreEqual(1, viewsMenu.PlanningViewIsClicked);
+                //Assert.IsTrue(viewsMenu.IsParsingCorrect);
+                //Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
+                Assert.AreEqual(1, viewsMenu.PlanningView.ButtonIsClicked);
 
             }
         }
@@ -219,15 +220,15 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 ViewsMenu viewsMenu = new ViewsMenu(driver);
-                viewsMenu.StatusClick(driver);
+                viewsMenu.StatusView.ButtonClick();
 
                 viewsMenu = new ViewsMenu(driver);
 
                 /* Set of assertions */
 
-                Assert.IsTrue(viewsMenu.IsParsingCorrect);
-                Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
-                Assert.AreEqual(1, viewsMenu.StatusViewIsClicked);
+                //Assert.IsTrue(viewsMenu.IsParsingCorrect);
+                //Assert.AreEqual(1, viewsMenu.ViewsListIsFull);
+                Assert.AreEqual(1, viewsMenu.StatusView.ButtonIsClicked);
 
             }
         }

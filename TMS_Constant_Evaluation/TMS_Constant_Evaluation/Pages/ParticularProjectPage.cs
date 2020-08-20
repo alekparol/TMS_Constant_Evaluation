@@ -100,7 +100,7 @@ namespace TMS_Constant_Evaluation.Pages
             {
                 if (myViewsMenu != null)
                 {
-                    return myViewsMenu.JobsViewIsClicked;
+                    return myViewsMenu.JobsView.ButtonIsClicked;
                 }
                 else
                 {
@@ -115,7 +115,7 @@ namespace TMS_Constant_Evaluation.Pages
             {
                 if (myViewsMenu != null)
                 {
-                    return myViewsMenu.PlanningViewIsClicked;
+                    return myViewsMenu.PlanningView.ButtonIsClicked;
                 }
                 else
                 {
@@ -130,7 +130,7 @@ namespace TMS_Constant_Evaluation.Pages
             {
                 if (myViewsMenu != null)
                 {
-                    return myViewsMenu.StatusViewIsClicked;
+                    return myViewsMenu.StatusView.ButtonIsClicked;
                 }
                 else
                 {
@@ -145,15 +145,15 @@ namespace TMS_Constant_Evaluation.Pages
             {
                 if (myViewsMenu != null)
                 {
-                    if (JobsViewIsClicked == 1)
+                    if (myViewsMenu.JobsView.ButtonIsClicked == 1)
                     {
                         return "Jobs";
                     }
-                    else if (PlanningViewIsClicked == 1)
+                    else if (myViewsMenu.PlanningView.ButtonIsClicked == 1)
                     {
                         return "Planning";
                     }
-                    else if (StatusViewIsClicked == 1)
+                    else if (myViewsMenu.StatusView.ButtonIsClicked == 1)
                     {
                         return "Status";
                     }
@@ -219,20 +219,20 @@ namespace TMS_Constant_Evaluation.Pages
         public void JobsClick(IWebDriver driver)
         {
 
-            myViewsMenu.JobsClick(driver);
+            myViewsMenu.JobsView.ButtonClick();
 
         }
 
         public void PlanningClick(IWebDriver driver)
         {
 
-            myViewsMenu.PlanningClick(driver);
+            myViewsMenu.PlanningView.ButtonClick();
 
         }
         public void StatusClick(IWebDriver driver)
         {
 
-            myViewsMenu.StatusClick(driver);
+            myViewsMenu.StatusView.ButtonClick();
 
         }
 

@@ -10,6 +10,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using TMS_Constant_Evaluation.PagesObjects;
+using TMS_Constant_Evaluation.PagesObjects.JobObject;
 
 
 /*
@@ -30,13 +32,113 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
         /* Fields */
 
         private IWebElement viewsPanel;
+
+        private MenuLeftContentButton jobsView;
+        private MenuLeftContentButton planningView;
+        private MenuLeftContentButton statusView;
+
+        /* Properties */
+
+        public bool ViewsPanelIsNull
+        {
+            get
+            {
+                if (viewsPanel != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        public MenuLeftContentButton JobsView
+        {
+            get
+            {
+                return jobsView;
+            }
+        }
+
+        public MenuLeftContentButton PlanningView
+        {
+            get
+            {
+                return planningView;
+            }
+        }
+
+        public MenuLeftContentButton StatusView
+        {
+            get
+            {
+                return statusView;
+            }
+        }
+
+        public bool IsParsingCorrect
+        {
+            get
+            {
+                if (true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        /* Methods */
+
+        /* Constructors */
+
+        public ViewsMenu()
+        {
+
+        }
+
+        public ViewsMenu(IWebDriver driver)
+        {
+
+            if (driver.Url == "https://tms.lionbridge.com/")
+            {
+
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+                IEnumerable<IWebElement> auxiliaryIEnumerable;
+
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("lup_actionPanel")));
+
+                auxiliaryCollection = driver.FindElements(By.Id("lup_actionPanel"));
+                if (auxiliaryCollection.Count == 1)
+                {
+
+                    viewsPanel = auxiliaryCollection.ElementAt(0);
+
+                    jobsView = new MenuLeftContentButton(viewsPanel, driver, "jobsdashboard");
+                    planningView = new MenuLeftContentButton(viewsPanel, driver, "planning");
+                    statusView = new MenuLeftContentButton(viewsPanel, driver, "status");
+
+                }
+
+            }
+
+        }
+        /*
+
+        private IWebElement viewsPanel;
         private IWebElement viewsList;
 
         private IWebElement jobsView;
         private IWebElement planningView;
         private IWebElement statusView;
 
-        /* Properties */
+      
 
         public bool ViewsPanelIsNull
         {
@@ -101,7 +203,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int JobsViewIsClicked
+        public int JobsView.ButtonIsClicked
         {
             get
             {
@@ -121,7 +223,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 else
                 {
                     return -1;
-                }              
+                }
             }
         }
 
@@ -147,7 +249,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public int PlanningViewIsClicked
+        public int PlanningView.ButtonIsClicked
         {
             get
             {
@@ -232,7 +334,6 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        /* Methods */
 
         public void JobsClick(IWebDriver driver)
         {
@@ -265,7 +366,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
 
             }
-            
+
         }
         public void StatusClick(IWebDriver driver)
         {
@@ -279,10 +380,8 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("cup_fp_btn")));
             }
-            
-        }
 
-        /* Constructors */
+        }
 
         public ViewsMenu()
         {
@@ -304,7 +403,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 {
 
                     auxiliaryCollection = driver.FindElements(By.Id("lup_actionPanel"));
-                    if (auxiliaryCollection.Count == 1) 
+                    if (auxiliaryCollection.Count == 1)
                     {
 
                         viewsPanel = auxiliaryCollection.ElementAt(0);
@@ -330,15 +429,14 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                             }
 
                         }
-                       
+
                     }
 
                 }
 
             }
 
-        }
-
+        }*/
 
     }
 }

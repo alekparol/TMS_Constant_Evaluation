@@ -66,6 +66,7 @@
     <Compile Include="PagesObjects\JobObject\JobsOnClickJobsMenu.cs" />
     <Compile Include="PagesObjects\JobObject\JobsSectionJobs.cs" />
     <Compile Include="PagesObjects\JobsNavigationBar.cs" />
+    <Compile Include="PagesObjects\MenuLeftContentButton.cs" />
     <Compile Include="PagesObjects\SearchEngine.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage1.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage2.cs" />

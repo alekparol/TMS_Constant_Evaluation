@@ -308,13 +308,13 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                testProjectPage.PlanningClick(driver);
+                 testProjectPage.PlanningClick(driver);
                 testProjectPage = new ParticularProjectPage(driver);
 
                 Assert.AreEqual(0, testProjectPage.JobsViewIsClicked);
                 Assert.AreNotEqual(sectionName, testProjectPage.GetNameOfClickedView);
 
-                testProjectPage.JobsClick(driver);
+                 testProjectPage.JobsClick(driver);
                 testProjectPage = new ParticularProjectPage(driver);
 
                 Assert.AreEqual(1, testProjectPage.JobsViewIsClicked);
@@ -383,7 +383,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                testProjectPage.PlanningClick(driver);
+                 testProjectPage.PlanningClick(driver);
                 testProjectPage = new ParticularProjectPage(driver);
 
                 Assert.AreEqual(1, testProjectPage.PlanningViewIsClicked);
@@ -424,7 +424,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
                 Assert.AreEqual(0, testProjectPage.JobsViewIsClicked);
                 Assert.AreNotEqual(sectionName, testProjectPage.GetNameOfClickedView);
 
-                testProjectPage.PlanningClick(driver);
+                 testProjectPage.PlanningClick(driver);
                 testProjectPage = new ParticularProjectPage(driver);
 
                 Assert.AreEqual(1, testProjectPage.PlanningViewIsClicked);
@@ -529,7 +529,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Porsche_Bal_2._0_Tests
 
                 /* Set of assertions */
 
-                testProjectPage.PlanningClick(driver);
+                 testProjectPage.PlanningClick(driver);
                 testProjectPage = new ParticularProjectPage(driver);
 
                 Assert.AreEqual(0, testProjectPage.StatusViewIsClicked);

@@ -91,7 +91,7 @@ namespace TMS_Constant_Evaluation.PagesObjects
         {
             if (buttonWebElement != null)
             {
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                 buttonWebElement.Click();
 
                 // Wait for the loading animation to appear and then to disapeear. 
@@ -109,8 +109,21 @@ namespace TMS_Constant_Evaluation.PagesObjects
 
         public MenuLeftContentButton(IWebDriver driver, string idLocator)
         {
+            IReadOnlyCollection<IWebElement> auxiliaryCollection;
+            this.driver = driver;
+            
+            auxiliaryCollection = driver.FindElements(By.Id(idLocator));
+            if (auxiliaryCollection.Count == 1) buttonWebElement = auxiliaryCollection.ElementAt(0); 
 
-            buttonWebElement = driver.FindElement(By.Id(idLocator));
+        }
+
+        public MenuLeftContentButton(IWebElement parentElement, IWebDriver driver, string idLocator)
+        {
+            IReadOnlyCollection<IWebElement> auxiliaryCollection;
+            this.driver = driver;
+
+            auxiliaryCollection = parentElement.FindElements(By.Id(idLocator));
+            if (auxiliaryCollection.Count == 1) buttonWebElement = auxiliaryCollection.ElementAt(0);
 
         }
 

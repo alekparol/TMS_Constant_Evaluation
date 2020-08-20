@@ -89,7 +89,7 @@ namespace TMS_Constant_Evaluation
                 asob.TagMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
 
                 ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
-                assigneesViewsMenu.JobsClick(driver);
+                assigneesViewsMenu.JobsView.ButtonClick();
 
                 JobsSectionJobs jsj = new JobsSectionJobs(driver);
 
