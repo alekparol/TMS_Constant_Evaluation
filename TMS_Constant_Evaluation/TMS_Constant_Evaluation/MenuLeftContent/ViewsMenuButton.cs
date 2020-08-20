@@ -26,7 +26,7 @@ namespace TMS_Constant_Evaluation.PagesObjects
 
         /* Properties */
 
-          public bool ButtonIsNull
+        public bool ButtonIsNull
         {
             get
             {
@@ -47,7 +47,7 @@ namespace TMS_Constant_Evaluation.PagesObjects
             {
                 if (ButtonIsNull == false)
                 {
-                    if (buttonWebElement.Displayed)
+                    if (buttonWebElement.Enabled)
                     {
                         return 1;
                     }
