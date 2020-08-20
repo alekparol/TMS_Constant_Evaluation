@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataFormats\StatusAssgineeInfo.cs" />
+    <Compile Include="MenuLeftContent\Interface\IMenuLeftContentButton.cs" />
     <Compile Include="PagesObjects\AssigneesFilters.cs" />
     <Compile Include="PagesObjects\JobObject\JobHistoryWindow.cs" />
     <Compile Include="PagesObjects\JobObject\Jobs.cs" />
@@ -66,7 +67,7 @@
     <Compile Include="PagesObjects\JobObject\JobsOnClickJobsMenu.cs" />
     <Compile Include="PagesObjects\JobObject\JobsSectionJobs.cs" />
     <Compile Include="PagesObjects\JobsNavigationBar.cs" />
-    <Compile Include="PagesObjects\MenuLeftContentButton.cs" />
+    <Compile Include="MenuLeftContent\MenuLeftContentButton.cs" />
     <Compile Include="PagesObjects\SearchEngine.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage1.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage2.cs" />
@@ -75,7 +76,7 @@
     <Compile Include="PagesObjects\StatusFilters.cs" />
     <Compile Include="PagesObjects\StatusNavigationBar.cs" />
     <Compile Include="PagesObjects\TabMenu.cs" />
-    <Compile Include="PagesObjects\ViewsMenu.cs" />
+    <Compile Include="MenuLeftContent\MenuLeftContent.cs" />
     <Compile Include="Pages\AssigneesPage.cs" />
     <Compile Include="PagesObjects\ActivitiesObject.cs" />
     <Compile Include="PagesObjects\AssigneeObject\Assignee.cs" />

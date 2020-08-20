@@ -26,26 +26,28 @@ using TMS_Constant_Evaluation.PagesObjects.JobObject;
  */
 namespace TMS_Constant_Evaluation.Pages.PagesObjects
 {
-    public class MenuLeftContent
+    public class ViewsMenu
     {
 
         /* Fields */
 
+        private IWebElement tagsPanel;
+
         private IWebElement viewsPanel;
 
-        private MenuLeftContentButton tasksView;
-        private MenuLeftContentButton jobsView;
-        private MenuLeftContentButton planningView;
-        private MenuLeftContentButton statusView;
-        private MenuLeftContentButton activityLogsView;
-        private MenuLeftContentButton reportsView;
+        private ViewsMenuButton tasksView;
+        private ViewsMenuButton jobsView;
+        private ViewsMenuButton planningView;
+        private ViewsMenuButton statusView;
+        private ViewsMenuButton activityLogsView;
+        private ViewsMenuButton reportsView;
 
-        private MenuLeftContentButton referencesView;
-        private MenuLeftContentButton deliverablesView;
+        private ViewsMenuButton referencesView;
+        private ViewsMenuButton deliverablesView;
 
-        private MenuLeftContentButton categoriesView;
-        private MenuLeftContentButton usersView;
-        private MenuLeftContentButton workflowsView;
+        private ViewsMenuButton categoriesView;
+        private ViewsMenuButton usersView;
+        private ViewsMenuButton workflowsView;
 
         /* Properties */
 
@@ -86,7 +88,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton TasksView
+        public ViewsMenuButton TasksView
         {
             get
             {
@@ -94,7 +96,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton JobsView
+        public ViewsMenuButton JobsView
         {
             get
             {
@@ -102,7 +104,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton PlanningView
+        public ViewsMenuButton PlanningView
         {
             get
             {
@@ -110,7 +112,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton StatusView
+        public ViewsMenuButton StatusView
         {
             get
             {
@@ -118,7 +120,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton ActivityLogsView
+        public ViewsMenuButton ActivityLogsView
         {
             get
             {
@@ -126,7 +128,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton ReportsView
+        public ViewsMenuButton ReportsView
         {
             get
             {
@@ -134,7 +136,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton ReferencesView
+        public ViewsMenuButton ReferencesView
         {
             get
             {
@@ -142,7 +144,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton DeliverablesView
+        public ViewsMenuButton DeliverablesView
         {
             get
             {
@@ -150,7 +152,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton CategoriesView
+        public ViewsMenuButton CategoriesView
         {
             get
             {
@@ -158,7 +160,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton UsersView
+        public ViewsMenuButton UsersView
         {
             get
             {
@@ -166,7 +168,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public MenuLeftContentButton WorkflowsView
+        public ViewsMenuButton WorkflowsView
         {
             get
             {
@@ -193,12 +195,12 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         /* Constructors */
 
-        public MenuLeftContent()
+        public ViewsMenu()
         {
 
         }
 
-        public MenuLeftContent(IWebDriver driver)
+        public ViewsMenu(IWebDriver driver)
         {
 
             if (driver.Url == "https://tms.lionbridge.com/")
@@ -214,19 +216,19 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
                     viewsPanel = auxiliaryCollection.ElementAt(0);
 
-                    tasksView = new MenuLeftContentButton(viewsPanel, driver, "inworktasks");
-                    jobsView = new MenuLeftContentButton(viewsPanel, driver, "jobsdashboard");
-                    planningView = new MenuLeftContentButton(viewsPanel, driver, "planning");
-                    statusView = new MenuLeftContentButton(viewsPanel, driver, "status");
-                    activityLogsView = new MenuLeftContentButton(viewsPanel, driver, "referencelog");
-                    reportsView = new MenuLeftContentButton(viewsPanel, driver, "reports");
+                    tasksView = new ViewsMenuButton(viewsPanel, driver, "inworktasks");
+                    jobsView = new ViewsMenuButton(viewsPanel, driver, "jobsdashboard");
+                    planningView = new ViewsMenuButton(viewsPanel, driver, "planning");
+                    statusView = new ViewsMenuButton(viewsPanel, driver, "status");
+                    activityLogsView = new ViewsMenuButton(viewsPanel, driver, "referencelog");
+                    reportsView = new ViewsMenuButton(viewsPanel, driver, "reports");
 
-                    referencesView = new MenuLeftContentButton(viewsPanel, driver, "documentreference");
-                    deliverablesView = new MenuLeftContentButton(viewsPanel, driver, "documentdeliverable");
+                    referencesView = new ViewsMenuButton(viewsPanel, driver, "documentreference");
+                    deliverablesView = new ViewsMenuButton(viewsPanel, driver, "documentdeliverable");
 
-                    categoriesView = new MenuLeftContentButton(viewsPanel, driver, "admincategories");
-                    usersView = new MenuLeftContentButton(viewsPanel, driver, "projectuser");
-                    workflowsView = new MenuLeftContentButton(viewsPanel, driver, "adminconfig");
+                    categoriesView = new ViewsMenuButton(viewsPanel, driver, "admincategories");
+                    usersView = new ViewsMenuButton(viewsPanel, driver, "projectuser");
+                    workflowsView = new ViewsMenuButton(viewsPanel, driver, "adminconfig");
                 }
             }
         }
@@ -484,12 +486,12 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
 
         }
 
-        public MenuLeftContent()
+        public ViewsMenu()
         {
 
         }
 
-        public MenuLeftContent(IWebDriver driver)
+        public ViewsMenu(IWebDriver driver)
         {
 
             if (driver.Url == "https://tms.lionbridge.com/")

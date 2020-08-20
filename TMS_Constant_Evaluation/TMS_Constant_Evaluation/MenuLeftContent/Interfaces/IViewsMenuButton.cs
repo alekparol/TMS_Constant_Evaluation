@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMS_Constant_Evaluation.MenuLeftContent
 {
-    interface IMenuLeftContentButton
+    interface IViewsMenuButton
     {
 
         /* Properties */

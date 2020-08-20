@@ -15,6 +15,7 @@ using System.Threading;
 using TMS_Constant_Evaluation.DataFormats;
 using TMS_Constant_Evaluation.Pages;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
+using TMS_Constant_Evaluation.Pages.PagesObjects.MenuLeftContent;
 using TMS_Constant_Evaluation.Pages.Status.Assignees.PageObjects;
 using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 using TMS_Constant_Evaluation.PagesObjects.JobObject;
@@ -77,8 +78,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 asob = new AssigneesAndJobs(driver);
                 asob.TagMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
 
-                ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
-                assigneesViewsMenu.JobsView.ButtonClick();
+                MenuLeftContent assigneesMenuLeftContent = new MenuLeftContent(driver);
+                assigneesMenuLeftContent.JobsView.ButtonClick();
 
                 JobsSectionJobs jsj = new JobsSectionJobs(driver);
                 jsj.ShowHistoryOfJob(driver, listOfStatusAssgineeInfo.ElementAt(0).jobName.Trim());
@@ -258,8 +259,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 asob = new AssigneesAndJobs(driver);
                 asob.TagMultipleJobs(driver, 0, asob.GetAssigneeJobsListSize - 1);
 
-                ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
-                assigneesViewsMenu.JobsView.ButtonClick();
+                MenuLeftContent assigneesMenuLeftContent = new MenuLeftContent(driver);
+                assigneesMenuLeftContent.JobsView.ButtonClick();
 
                 JobsSectionJobs jsj = new JobsSectionJobs(driver);
 
@@ -346,8 +347,8 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 testProjectPage.ProfileClick(driver);
                 testProjectPage.ChangeItemsPerPage(driver);
 
-                ViewsMenu assigneesViewsMenu = new ViewsMenu(driver);
-                assigneesViewsMenu.JobsView.ButtonClick();
+                MenuLeftContent assigneesMenuLeftContent = new MenuLeftContent(driver);
+                assigneesMenuLeftContent.JobsView.ButtonClick();
 
                 Thread.Sleep(5000);
 

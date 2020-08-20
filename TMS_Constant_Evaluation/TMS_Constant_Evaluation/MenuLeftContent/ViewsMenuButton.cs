@@ -14,7 +14,7 @@ using TMS_Constant_Evaluation.MenuLeftContent;
 
 namespace TMS_Constant_Evaluation.PagesObjects
 {
-    public class MenuLeftContentButton : IMenuLeftContentButton
+    public class ViewsMenuButton : IViewsMenuButton
     {
 
         /* Fields */
@@ -108,7 +108,7 @@ namespace TMS_Constant_Evaluation.PagesObjects
 
         /* Constructors */
 
-        public MenuLeftContentButton(IWebDriver driver, string idLocator)
+        public ViewsMenuButton(IWebDriver driver, string idLocator)
         {
             IReadOnlyCollection<IWebElement> auxiliaryCollection;
             this.driver = driver;
@@ -118,7 +118,7 @@ namespace TMS_Constant_Evaluation.PagesObjects
 
         }
 
-        public MenuLeftContentButton(IWebElement parentElement, IWebDriver driver, string idLocator)
+        public ViewsMenuButton(IWebElement parentElement, IWebDriver driver, string idLocator)
         {
             IReadOnlyCollection<IWebElement> auxiliaryCollection;
             this.driver = driver;

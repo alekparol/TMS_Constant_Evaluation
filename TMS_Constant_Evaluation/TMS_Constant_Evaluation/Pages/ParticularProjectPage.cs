@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TMS_Constant_Evaluation.Pages.PagesObjects;
 
+
 /* TODO: Make a new class for sections which would contain: 
  * 1. IWebElement section;
  * 2. Name = section.FindElements(By.ClassName("act_ttl")).ElementAt(0).Text;
@@ -28,7 +29,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         private MyProfile myProfileInstance;
 
-        private MenuLeftContent myMenuLeftContent;
+        private ViewsMenu myMenuLeftContent;
 
         private IWebElement infoMessage;
 
@@ -248,14 +249,14 @@ namespace TMS_Constant_Evaluation.Pages
 
                 myApplicationBoard = new ApplicationBoard(driver);
                 myTabMenu = new TabMenu(driver);
-                myMenuLeftContent = new MenuLeftContent(driver);
+                myMenuLeftContent = new ViewsMenu(driver);
 
             }
             else
             {
                 myApplicationBoard = new ApplicationBoard();
                 myTabMenu = new TabMenu();
-                myMenuLeftContent = new MenuLeftContent();
+                myMenuLeftContent = new ViewsMenu();
             }
         }
     }
