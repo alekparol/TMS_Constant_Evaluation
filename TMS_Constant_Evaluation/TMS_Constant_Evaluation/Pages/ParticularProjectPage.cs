@@ -28,7 +28,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         private MyProfile myProfileInstance;
 
-        private ViewsMenu myViewsMenu;
+        private MenuLeftContent myMenuLeftContent;
 
         private IWebElement infoMessage;
 
@@ -98,9 +98,9 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                if (myViewsMenu != null)
+                if (myMenuLeftContent != null)
                 {
-                    return myViewsMenu.JobsView.ButtonIsClicked;
+                    return myMenuLeftContent.JobsView.ButtonIsClicked;
                 }
                 else
                 {
@@ -113,9 +113,9 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                if (myViewsMenu != null)
+                if (myMenuLeftContent != null)
                 {
-                    return myViewsMenu.PlanningView.ButtonIsClicked;
+                    return myMenuLeftContent.PlanningView.ButtonIsClicked;
                 }
                 else
                 {
@@ -128,9 +128,9 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                if (myViewsMenu != null)
+                if (myMenuLeftContent != null)
                 {
-                    return myViewsMenu.StatusView.ButtonIsClicked;
+                    return myMenuLeftContent.StatusView.ButtonIsClicked;
                 }
                 else
                 {
@@ -143,17 +143,17 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                if (myViewsMenu != null)
+                if (myMenuLeftContent != null)
                 {
-                    if (myViewsMenu.JobsView.ButtonIsClicked == 1)
+                    if (myMenuLeftContent.JobsView.ButtonIsClicked == 1)
                     {
                         return "Jobs";
                     }
-                    else if (myViewsMenu.PlanningView.ButtonIsClicked == 1)
+                    else if (myMenuLeftContent.PlanningView.ButtonIsClicked == 1)
                     {
                         return "Planning";
                     }
-                    else if (myViewsMenu.StatusView.ButtonIsClicked == 1)
+                    else if (myMenuLeftContent.StatusView.ButtonIsClicked == 1)
                     {
                         return "Status";
                     }
@@ -173,7 +173,7 @@ namespace TMS_Constant_Evaluation.Pages
         {
             get
             {
-                if (myApplicationBoard.IsParsingCorrect && myTabMenu.IsParsingCorrect && myViewsMenu.IsParsingCorrect)
+                if (myApplicationBoard.IsParsingCorrect && myTabMenu.IsParsingCorrect && myMenuLeftContent.IsParsingCorrect)
                 {
                     return true;
                 }
@@ -219,20 +219,20 @@ namespace TMS_Constant_Evaluation.Pages
         public void JobsClick(IWebDriver driver)
         {
 
-            myViewsMenu.JobsView.ButtonClick();
+            myMenuLeftContent.JobsView.ButtonClick();
 
         }
 
         public void PlanningClick(IWebDriver driver)
         {
 
-            myViewsMenu.PlanningView.ButtonClick();
+            myMenuLeftContent.PlanningView.ButtonClick();
 
         }
         public void StatusClick(IWebDriver driver)
         {
 
-            myViewsMenu.StatusView.ButtonClick();
+            myMenuLeftContent.StatusView.ButtonClick();
 
         }
 
@@ -248,14 +248,14 @@ namespace TMS_Constant_Evaluation.Pages
 
                 myApplicationBoard = new ApplicationBoard(driver);
                 myTabMenu = new TabMenu(driver);
-                myViewsMenu = new ViewsMenu(driver);
+                myMenuLeftContent = new MenuLeftContent(driver);
 
             }
             else
             {
                 myApplicationBoard = new ApplicationBoard();
                 myTabMenu = new TabMenu();
-                myViewsMenu = new ViewsMenu();
+                myMenuLeftContent = new MenuLeftContent();
             }
         }
     }

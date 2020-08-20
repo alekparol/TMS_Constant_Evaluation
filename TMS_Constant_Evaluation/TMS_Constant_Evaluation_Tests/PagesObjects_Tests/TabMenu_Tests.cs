@@ -19,7 +19,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
         /* Parsing Correctly Tests */
         [TestMethod]
-        public void ViewsMenu_ParsingCorrectly_Test_1()
+        public void MenuLeftContent_ParsingCorrectly_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -52,7 +52,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void ViewsMenu_ParsingCorrectly_Test_2()
+        public void MenuLeftContent_ParsingCorrectly_Test_2()
         {
 
             using (var driver = new ChromeDriver())
@@ -80,7 +80,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
 
         /* Current Project Tests */
         [TestMethod]
-        public void ViewsMenu_CurrentProject_Test_1()
+        public void MenuLeftContent_CurrentProject_Test_1()
         {
 
             using (var driver = new ChromeDriver())
@@ -110,7 +110,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
         }
 
         [TestMethod]
-        public void ViewsMenu_CurrentProject_Test_2()
+        public void MenuLeftContent_CurrentProject_Test_2()
         {
 
             using (var driver = new ChromeDriver())
