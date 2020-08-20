@@ -13,22 +13,19 @@ using System.Threading.Tasks;
 
 
 /*
- * This class mean to model TMS Views Menu which is displayed on most of the pages after clicking on particular project, on the left side of the screen. 
+ * This class means to model TMS Views Menu which is a part of MenuLeftContent displayed on most of the pages after clicking on particular project, on the left side of the screen. 
  * 
  * Preassumptions: 
  * 
- * TODO: 
+ * TODO: This class should be splitted in at least two other classes:
+ * 1) Interface which would describe the methods of every button.
+ * 2) 
  * 
  */
 namespace TMS_Constant_Evaluation.Pages.PagesObjects
 {
     public class ViewsMenu
     {
-
-        private IWebDriver driver;
-
-        [FindsBy(How = How.Id, Using = "log")]
-        public IWebElement UserName { get; set; }
 
         /* Fields */
 
