@@ -34,6 +34,7 @@ namespace TMS_Constant_Evaluation
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
                 string projectTitle = "Porsche BAL 2.0";
+                string firstStepName = "InternalReview";
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
@@ -48,7 +49,11 @@ namespace TMS_Constant_Evaluation
                 testStatusPage.AssigneesClick(driver);
                 AssigneesPage porscheAssigneesPage = new AssigneesPage(driver);
 
-                porscheAssigneesPage.ChosenActivityClick(driver, "InternalReview");
+                if (porscheAssigneesPage.ChosenActivityClick(driver, firstStepName) != 1)
+                {
+                    Console.WriteLine("There is no {0} steps!", firstStepName);
+                    return;
+                }
                 porscheAssigneesPage = new AssigneesPage(driver);
 
                 PageBar testPageBar = new PageBar(driver);

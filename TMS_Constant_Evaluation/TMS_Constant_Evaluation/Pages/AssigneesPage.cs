@@ -147,13 +147,15 @@ namespace TMS_Constant_Evaluation.Pages
             assigneeNavigationBar = new StatusNavigationBar(driver);
         }
 
-        public void ChosenActivityClick(IWebDriver driver, string chosenActivityName)
+        public int ChosenActivityClick(IWebDriver driver, string chosenActivityName)
         {
             ActivitiesFilterClick(driver);
-            assigneeFilters.ChosenActivityClick(driver, chosenActivityName);
+            int outcoume = assigneeFilters.ChosenActivityClick(driver, chosenActivityName);
 
             assigneeNavigationBar = new StatusNavigationBar(driver);
             assigneeFilters = new AssigneesFilters(driver);
+
+            return outcoume;
         }
 
         public void TargetLanguageFilterClick(IWebDriver driver)
@@ -164,13 +166,15 @@ namespace TMS_Constant_Evaluation.Pages
             assigneeNavigationBar = new StatusNavigationBar(driver);
         }
 
-        public void ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
+        public int ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
             TargetLanguageFilterClick(driver);
-            assigneeFilters.ChosenGetTargetLanguageClick(driver, chosenLanguageCode);
+            int outcome = assigneeFilters.ChosenGetTargetLanguageClick(driver, chosenLanguageCode);
 
             assigneeNavigationBar = new StatusNavigationBar(driver);
             assigneeFilters = new AssigneesFilters(driver);
+
+            return outcome;
         }
 
         public void ClickAll(IWebDriver driver)

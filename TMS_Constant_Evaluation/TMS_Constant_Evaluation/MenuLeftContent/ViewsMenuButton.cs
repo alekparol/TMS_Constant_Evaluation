@@ -14,7 +14,7 @@ using TMS_Constant_Evaluation.MenuLeftContent;
 
 namespace TMS_Constant_Evaluation.PagesObjects
 {
-    public class ViewsMenuButton : IViewsMenuButton
+    public class ViewsMenuButton
     {
 
         /* Fields */

@@ -56,7 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataFormats\StatusAssgineeInfo.cs" />
-    <Compile Include="MenuLeftContent\Interface\IMenuLeftContentButton.cs" />
+    <Compile Include="MenuLeftContent\Interfaces\IMenuLeftContentButton.cs" />
+    <Compile Include="MenuLeftContent\TagMenuPopUp.cs" />
+    <Compile Include="MenuLeftContent\TagsMenuButton.cs" />
     <Compile Include="PagesObjects\AssigneesFilters.cs" />
     <Compile Include="PagesObjects\JobObject\JobHistoryWindow.cs" />
     <Compile Include="PagesObjects\JobObject\Jobs.cs" />
@@ -67,7 +69,7 @@
     <Compile Include="PagesObjects\JobObject\JobsOnClickJobsMenu.cs" />
     <Compile Include="PagesObjects\JobObject\JobsSectionJobs.cs" />
     <Compile Include="PagesObjects\JobsNavigationBar.cs" />
-    <Compile Include="MenuLeftContent\MenuLeftContentButton.cs" />
+    <Compile Include="MenuLeftContent\ViewsMenuButton.cs" />
     <Compile Include="PagesObjects\SearchEngine.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage1.cs" />
     <Compile Include="Pages\AbstractPages\AbstractPage2.cs" />
@@ -96,11 +98,11 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.83.0.4103.3910\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.83.0.4103.3910\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Ten projekt zawiera odwołania do pakietów NuGet, których nie ma na tym komputerze. Użyj przywracania pakietów NuGet, aby je pobrać. Aby uzyskać więcej informacji, zobacz http://go.microsoft.com/fwlink/?LinkID=322105. Brakujący plik: {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.83.0.4103.3910\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.83.0.4103.3910\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets'))" />
   </Target>
 </Project>

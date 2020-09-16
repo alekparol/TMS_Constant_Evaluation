@@ -442,7 +442,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public void ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
+        public int ChosenGetTargetLanguageClick(IWebDriver driver, string chosenLanguageCode)
         {
             TargetLanguageFilterClick(driver);
 
@@ -450,12 +450,25 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             {
                 IWebElement chosenElement;
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+             
+                if (languageList.Where(x => x.Text.Contains(chosenLanguageCode)).Count() != 0)
+                {
+                    chosenElement = languageList.Where(x => x.Text.Contains(chosenLanguageCode)).ElementAt(0);
+                    chosenElement.Click();
 
-                chosenElement = languageList.Where(x => x.Text.Contains(chosenLanguageCode)).ElementAt(0);
-                chosenElement.Click();
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                    wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
 
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return -1; 
             }
         }
 
@@ -470,7 +483,7 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
             }
         }
 
-        public void ChosenActivityClick(IWebDriver driver, string chosenActivityName)
+        public int ChosenActivityClick(IWebDriver driver, string chosenActivityName)
         {
             ActivitiesFilterClick(driver);
 
@@ -479,11 +492,25 @@ namespace TMS_Constant_Evaluation.Pages.PagesObjects
                 IWebElement chosenElement;
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
-                chosenElement = activitiesList.Where(x => x.Text == chosenActivityName).ElementAt(0);
-                chosenElement.Click();
+                if (activitiesList.Where(x => x.Text == chosenActivityName).Count() != 0)
+                {
+                    chosenElement = activitiesList.Where(x => x.Text == chosenActivityName).ElementAt(0);
+                    chosenElement.Click();
 
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.Id("cup_lod")));
+                    wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.Id("cup_lod")));
+
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+
+            }
+            else
+            {
+                return - 1;
             }
         }
 
