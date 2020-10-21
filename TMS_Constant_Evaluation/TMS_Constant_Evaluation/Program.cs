@@ -33,7 +33,7 @@ namespace TMS_Constant_Evaluation
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = ""; // Project Name
                 string firstStepName = "InternalReview";
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
