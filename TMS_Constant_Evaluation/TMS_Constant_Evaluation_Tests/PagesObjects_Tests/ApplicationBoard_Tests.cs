@@ -31,7 +31,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = ""; // Project Name
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
@@ -89,7 +89,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = ""; // Project Name
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
@@ -145,7 +145,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = ""; // Project Name
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
@@ -176,7 +176,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = ""; // Project Name
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
@@ -235,7 +235,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = ""; // Project Name
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
@@ -268,7 +268,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = ""; // Project Name
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
@@ -302,7 +302,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = "Porsche BAL 2.0";
+                string projectTitle = ""; // Project Name
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();

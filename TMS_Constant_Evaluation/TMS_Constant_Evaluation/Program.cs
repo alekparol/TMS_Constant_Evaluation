@@ -108,6 +108,10 @@ namespace TMS_Constant_Evaluation
 
                 using (StreamWriter sw = new StreamWriter(path))
                 {
+                    string[] values1 = { "Job Name", "Reviewer Name", "Translator Name", "Source Language", "Target Language" };
+                    string line1 = String.Join(";", values1);
+
+                    sw.WriteLine(line1);
 
                     foreach (var info in listOfStatusAssgineeInfo)
                     {
