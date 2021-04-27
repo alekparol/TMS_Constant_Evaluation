@@ -55,40 +55,88 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataFormats\StatusAssgineeInfo.cs" />
-    <Compile Include="MenuLeftContent\Interfaces\IMenuLeftContentButton.cs" />
-    <Compile Include="MenuLeftContent\TagMenuPopUp.cs" />
-    <Compile Include="MenuLeftContent\TagsMenuButton.cs" />
-    <Compile Include="PagesObjects\AssigneesFilters.cs" />
-    <Compile Include="PagesObjects\JobObject\JobHistoryWindow.cs" />
-    <Compile Include="PagesObjects\JobObject\Jobs.cs" />
-    <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\JobHistoryFilter.cs" />
-    <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\ResultJob.cs" />
-    <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\SearchResults.cs" />
-    <Compile Include="PagesObjects\JobObject\JobsHistoryWindow\PopUpBody.cs" />
-    <Compile Include="PagesObjects\JobObject\JobsOnClickJobsMenu.cs" />
-    <Compile Include="PagesObjects\JobObject\JobsSectionJobs.cs" />
-    <Compile Include="PagesObjects\JobsNavigationBar.cs" />
-    <Compile Include="MenuLeftContent\ViewsMenuButton.cs" />
-    <Compile Include="PagesObjects\SearchEngine.cs" />
-    <Compile Include="Pages\AbstractPages\AbstractPage1.cs" />
-    <Compile Include="Pages\AbstractPages\AbstractPage2.cs" />
-    <Compile Include="PagesObjects\ApplicationBoard.cs" />
-    <Compile Include="PagesObjects\MyProfile.cs" />
-    <Compile Include="PagesObjects\StatusFilters.cs" />
-    <Compile Include="PagesObjects\StatusNavigationBar.cs" />
-    <Compile Include="PagesObjects\TabMenu.cs" />
-    <Compile Include="MenuLeftContent\MenuLeftContent.cs" />
-    <Compile Include="Pages\AssigneesPage.cs" />
-    <Compile Include="PagesObjects\ActivitiesObject.cs" />
-    <Compile Include="PagesObjects\AssigneeObject\Assignee.cs" />
-    <Compile Include="PagesObjects\AssigneeObject\AssigneesAndJobs.cs" />
-    <Compile Include="PagesObjects\AssigneeObject\AssigneeJobs.cs" />
-    <Compile Include="PagesObjects\PageBar.cs" />
-    <Compile Include="Pages\ParticularProjectPage.cs" />
-    <Compile Include="Pages\ProjectsPage.cs" />
-    <Compile Include="PagesObjects\AssigneeObject\AssingeesOnClickJobsMenu.cs" />
-    <Compile Include="Pages\StatusPage.cs" />
+    <Compile Include="DEPRECATED\DataFormats\StatusAssgineeInfo.cs" />
+    <Compile Include="DEPRECATED\MenuLeftContent\Interfaces\IMenuLeftContentButton.cs" />
+    <Compile Include="DEPRECATED\MenuLeftContent\TagMenuPopUp.cs" />
+    <Compile Include="DEPRECATED\MenuLeftContent\TagsMenuButton.cs" />
+    <Compile Include="New Structure\Page Elements\Buttons\Button.cs" />
+    <Compile Include="New Structure\Page Elements\Drop Downs\DropDown.cs" />
+    <Compile Include="New Structure\Page Elements\Buttons\FilterInitButton.cs" />
+    <Compile Include="New Structure\Page Elements\Buttons\LeftMenuButton.cs" />
+    <Compile Include="New Structure\Page Elements\Buttons\ListMenuButton.cs" />
+    <Compile Include="New Structure\Page Elements\Buttons\NavBarButton.cs" />
+    <Compile Include="New Structure\Page Elements\Drop Downs\LoggedUserDropDown.cs" />
+    <Compile Include="New Structure\Page Elements\Drop Downs\PopUpDropDown.cs" />
+    <Compile Include="New Structure\Page Elements\Data\AssigneeData.cs" />
+    <Compile Include="New Structure\Page Elements\Data\AssigneeDataElement.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\AssigneeItemHeader.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\AssigneeItem.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\AssigneeItemElement.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\HistoryItem.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\HistoryItemElement.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\HistoryItemHeader.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\ItemElement.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\ItemHeader.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\JobsItem.cs" />
+    <Compile Include="New Structure\Page Elements\List Elements\ListItem.cs" />
+    <Compile Include="New Structure\Page Elements\Lists\AssigneeList.cs" />
+    <Compile Include="New Structure\Page Elements\Lists\History Window\HistoryFilterInitBar.cs" />
+    <Compile Include="New Structure\Page Elements\Lists\History Window\HistoryFiltersPanel.cs" />
+    <Compile Include="New Structure\Page Elements\Lists\History Window\HistoryPopUp.cs" />
+    <Compile Include="New Structure\Page Elements\Lists\HistoryList.cs" />
+    <Compile Include="New Structure\Page Elements\Lists\JobList.cs" />
+    <Compile Include="New Structure\Page Elements\Lists\List Objects\AssigneeListMenu.cs" />
+    <Compile Include="New Structure\Page Elements\Lists\List Objects\JobsListMenu.cs" />
+    <Compile Include="New Structure\Page Elements\Lists\List Objects\ListMenu.cs" />
+    <Compile Include="New Structure\Page Elements\Pop Ups\PersonalInfo.cs" />
+    <Compile Include="New Structure\Page Elements\TMS Home Page Elements\ElementsCount.cs" />
+    <Compile Include="New Structure\Page Elements\TMS Home Page Elements\CupMessage.cs" />
+    <Compile Include="New Structure\Page Elements\TMS Home Page Elements\ErrorMessage.cs" />
+    <Compile Include="New Structure\Page Elements\TMS Home Page Elements\LeftMenu.cs" />
+    <Compile Include="New Structure\Page Elements\TMS Home Page Elements\PageList.cs" />
+    <Compile Include="New Structure\Page Elements\TMS Home Page Elements\PageNavBar.cs" />
+    <Compile Include="New Structure\Page Elements\Pop Ups\UserProfile.cs" />
+    <Compile Include="New Structure\Page Elements\TMS Home Page Elements\AppBoard.cs" />
+    <Compile Include="New Structure\Page Elements\TMS Home Page Elements\TableMenu.cs" />
+    <Compile Include="New Structure\Page Elements\TMS View Elements\FiltersInitBar.cs" />
+    <Compile Include="New Structure\Page Elements\TMS View Elements\NavBar.cs" />
+    <Compile Include="New Structure\Page Elements\TMS View Elements\TMS Status Page Elements\TMS Assingees Subpage Elements\AssigneesFiltersPanel.cs" />
+    <Compile Include="New Structure\Page Elements\TMS View Elements\TMS Status Page Elements\StatusFiltersPanel.cs" />
+    <Compile Include="New Structure\Page Elements\TMS View Elements\TMS Status Page Elements\StatusNavBar.cs" />
+    <Compile Include="New Structure\Page Elements\Pages\TMSAssigneesSubpage.cs" />
+    <Compile Include="New Structure\Page Elements\Pages\TMSStatusPage.cs" />
+    <Compile Include="New Structure\Page Elements\Pages\TMSProjectHomePage.cs" />
+    <Compile Include="New Structure\Page Elements\Pages\TMSProjectsPage.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\AssigneesFilters.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\JobObject\JobHistoryWindow.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\JobObject\Jobs.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\JobObject\JobsHistoryWindow\JobHistoryFilter.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\JobObject\JobsHistoryWindow\ResultJob.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\JobObject\JobsHistoryWindow\SearchResults.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\JobObject\JobsHistoryWindow\PopUpBody.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\JobObject\JobsOnClickJobsMenu.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\JobObject\JobsSectionJobs.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\JobsNavigationBar.cs" />
+    <Compile Include="DEPRECATED\MenuLeftContent\ViewsMenuButton.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\SearchEngine.cs" />
+    <Compile Include="DEPRECATED\Pages\AbstractPages\AbstractPage1.cs" />
+    <Compile Include="DEPRECATED\Pages\AbstractPages\AbstractPage2.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\ApplicationBoard.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\MyProfile.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\StatusFilters.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\StatusNavigationBar.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\TabMenu.cs" />
+    <Compile Include="DEPRECATED\MenuLeftContent\MenuLeftContent.cs" />
+    <Compile Include="DEPRECATED\Pages\AssigneesPage.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\ActivitiesObject.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\AssigneeObject\Assignee.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\AssigneeObject\AssigneesAndJobs.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\AssigneeObject\AssigneeJobs.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\PageBar.cs" />
+    <Compile Include="DEPRECATED\Pages\ParticularProjectPage.cs" />
+    <Compile Include="DEPRECATED\Pages\ProjectsPage.cs" />
+    <Compile Include="DEPRECATED\PagesObjects\AssigneeObject\AssingeesOnClickJobsMenu.cs" />
+    <Compile Include="DEPRECATED\Pages\StatusPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,11 +146,11 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Ten projekt zawiera odwołania do pakietów NuGet, których nie ma na tym komputerze. Użyj przywracania pakietów NuGet, aby je pobrać. Aby uzyskać więcej informacji, zobacz http://go.microsoft.com/fwlink/?LinkID=322105. Brakujący plik: {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets'))" />
   </Target>
 </Project>

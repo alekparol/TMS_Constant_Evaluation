@@ -24,7 +24,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.JobObject
         private IWebElement jobsResultsContainer;
         public List<Jobs> jobsList = new List<Jobs>();
 
-        private PageBar jobsPageBar;
+        public PageBar jobsPageBar;
         private JobsOnClickJobsMenu jobMenu;
 
         /* Properties */

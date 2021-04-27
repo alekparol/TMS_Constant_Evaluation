@@ -202,7 +202,7 @@ namespace TMS_Constant_Evaluation.Pages
 
         }
 
-        public void ChangeItemsPerPage(IWebDriver driver)
+        public void ChangeItemsPerPageMin(IWebDriver driver)
         {
             if (myProfileInstance != null)
             {
@@ -216,7 +216,22 @@ namespace TMS_Constant_Evaluation.Pages
                 if (auxiliaryCollection.Count == 1) infoMessage = auxiliaryCollection.ElementAt(0);
             }
         }
-            
+
+        public void ChangeItemsPerPageMax(IWebDriver driver)
+        {
+            if (myProfileInstance != null)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                IReadOnlyCollection<IWebElement> auxiliaryCollection;
+
+                myProfileInstance.ChangeNumberOfItems(driver, 1000);
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("jnotify-item-msg")));
+
+                auxiliaryCollection = driver.FindElements(By.Id("jnotify-item-msg"));
+                if (auxiliaryCollection.Count == 1) infoMessage = auxiliaryCollection.ElementAt(0);
+            }
+        }
+
         public void JobsClick(IWebDriver driver)
         {
 

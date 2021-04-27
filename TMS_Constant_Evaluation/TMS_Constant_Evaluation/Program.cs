@@ -28,20 +28,61 @@ namespace TMS_Constant_Evaluation
             {
 
                 /* Initialization */
+
+
+                string projectTitle = ""; // Project Name
+                string firstStepName = "InternalReview";
+
+                Console.WriteLine("Hi, please chose TMS project name: \n" +
+                                  "1) Porsche BAL 2.0 \n" +
+                                  "2) Porsche Cosima");
+
+                int projectChose = Int32.Parse(Console.ReadLine());
+
+                switch(projectChose)
+                {
+                    case 1:
+                        projectTitle = "Porsche BAL 2.0";
+                        break;
+                    case 2: 
+                        projectTitle = "Porsche Cosima";
+                        break;
+                    default:
+                        System.Environment.Exit(1);
+                        break;
+                }
+
+                Console.WriteLine("Now, please chose TMS setting name: \n" +
+                                  "1) Internal Review; " +
+                                  "2) Editing");
+
+                int settingChose = Int32.Parse(Console.ReadLine());
+
+                switch(settingChose)
+                {
+                    case 1:
+                        firstStepName = "InternalReview";
+                        break;
+                    case 2:
+                        firstStepName = "Editing";
+                        break;
+                    default:
+                        System.Environment.Exit(1);
+                        break;
+                }
+
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
 
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = ""; // Project Name
-                string firstStepName = "InternalReview";
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -61,8 +102,8 @@ namespace TMS_Constant_Evaluation
 
                 AssigneesAndJobs asob = new AssigneesAndJobs(driver);
 
-                List<StatusAssgineeInfo> listOfStatusAssgineeInfo = new List<StatusAssgineeInfo>();
-                StatusAssgineeInfo auxiliary;
+                List<StatusAssigneeInfo> listOfStatusAssgineeInfo = new List<StatusAssigneeInfo>();
+                StatusAssigneeInfo auxiliary;
 
                 foreach(var ass in asob.assigneesJobsList)
                 {
@@ -74,7 +115,7 @@ namespace TMS_Constant_Evaluation
                 {
                     for (int i = 0; i < ass.GetAssingeeJobsNumberInt; i++)
                     {
-                        auxiliary = new StatusAssgineeInfo(ass, asob.assigneesJobsList.ElementAt(i));
+                        auxiliary = new StatusAssigneeInfo(ass, asob.assigneesJobsList.ElementAt(i));
                         listOfStatusAssgineeInfo.Add(auxiliary);
                     }
                     for(int i = 0; i < ass.GetAssingeeJobsNumberInt; i++)
@@ -97,6 +138,9 @@ namespace TMS_Constant_Evaluation
                 assigneesViewsMenu.JobsView.ButtonClick();
 
                 JobsSectionJobs jsj = new JobsSectionJobs(driver);
+                jsj.jobsPageBar.ItemsPerPageSetMaximalValue(driver);
+
+                jsj = new JobsSectionJobs(driver);
 
                 IReadOnlyCollection<IWebElement> auxiliaryCollection;
                 ResultJob auxiliaryJobs = new ResultJob();
@@ -108,7 +152,7 @@ namespace TMS_Constant_Evaluation
 
                 using (StreamWriter sw = new StreamWriter(path))
                 {
-                    string[] values1 = { "Job Name", "Reviewer Name", "Translator Name", "Source Language", "Target Language" };
+                    string[] values1 = { "Job Name", "Reviewer Name", "Translator Name", "Source Language", "Target Language", "Effort", "Wordcount" };
                     string line1 = String.Join(";", values1);
 
                     sw.WriteLine(line1);
@@ -151,7 +195,7 @@ namespace TMS_Constant_Evaluation
                         PopUpBody popuPBody = new PopUpBody(driver);
                         popuPBody.CloseButtonClick(driver);
 
-                        string[] values = { info.jobName, info.reviewerName, info.translatorName, info.sourceLanguage, info.targetLanguage };
+                        string[] values = { info.jobName, info.reviewerName, info.translatorName, info.sourceLanguage, info.targetLanguage, info.effort, info.wordcount };
                         string line = String.Join(";", values);
 
                         sw.WriteLine(line);

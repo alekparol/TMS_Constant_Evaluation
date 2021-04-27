@@ -29,7 +29,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.Status_Tests.Assignees_Tests
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl("https://tms.lionbridge.com/");
 
-                string projectTitle = ""; // Project Name
+                string projectTitle = "Corteva"; // Project Name
                 ProjectsPage testPage = new ProjectsPage(driver, projectTitle);
 
                 testPage.ClickChosenProject();

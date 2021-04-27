@@ -7,7 +7,7 @@ using TMS_Constant_Evaluation.PagesObjects.AssigneeObject;
 
 namespace TMS_Constant_Evaluation.DataFormats
 {
-    public class StatusAssgineeInfo
+    public class StatusAssigneeInfo
     {
 
         /* Fields */
@@ -16,6 +16,8 @@ namespace TMS_Constant_Evaluation.DataFormats
         public string jobName;
         public string sourceLanguage;
         public string targetLanguage;
+        public string effort;
+        public string wordcount;
 
         public string translatorName;
 
@@ -37,7 +39,7 @@ namespace TMS_Constant_Evaluation.DataFormats
         
         /* Constructors */
 
-        public StatusAssgineeInfo(Assignee assignee, AssigneeJobs assigneeJob)
+        public StatusAssigneeInfo(Assignee assignee, AssigneeJobs assigneeJob)
         {
 
             if (assignee.AssigneeNameObjectIsNull == false && assigneeJob.JobsButtonIsNull == 0)
@@ -47,6 +49,8 @@ namespace TMS_Constant_Evaluation.DataFormats
                 jobName = assigneeJob.GetJobsName.Trim();
                 sourceLanguage = assigneeJob.GetSourceLanguage.Trim();
                 targetLanguage = assigneeJob.GetTargetLanguage.Trim();
+                effort = assigneeJob.GetEffort.Trim();
+                wordcount = assigneeJob.GetWordcount.Trim();
 
             }
 

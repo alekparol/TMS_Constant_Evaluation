@@ -39,7 +39,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -89,7 +89,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -185,7 +185,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 StatusPage testStatusPage = new StatusPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 PageBar testPageBar = new PageBar(driver);
 
@@ -219,7 +219,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -674,7 +674,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -714,7 +714,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -785,7 +785,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -824,7 +824,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -870,7 +870,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -919,7 +919,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -978,7 +978,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -1021,7 +1021,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -1095,7 +1095,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -1143,7 +1143,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -1191,7 +1191,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);
@@ -1242,7 +1242,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests.PagesObjects_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 testProjectPage.StatusClick(driver);
                 StatusPage testStatusPage = new StatusPage(driver);

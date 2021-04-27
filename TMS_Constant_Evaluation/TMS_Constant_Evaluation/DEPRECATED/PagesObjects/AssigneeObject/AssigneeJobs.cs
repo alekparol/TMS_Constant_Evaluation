@@ -24,6 +24,10 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
         private string sourceLanguage;
         private string targetLanguage;
 
+        private string effortWordcount;
+        private string effort;
+        private string wordcount;
+
         private IWebElement jobsName;
 
         /* Properties */
@@ -176,6 +180,58 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
             }
         }
 
+        public int EffortWordcountIsNull
+        {
+            get
+            {
+                if (JobsButtonIsNull == 0)
+                {
+                    if (effortWordcount != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public string GetEffort
+        {
+            get
+            {
+                if (EffortWordcountIsNull == 0)
+                {
+                    return effort;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        public string GetWordcount
+        {
+            get
+            {
+                if (EffortWordcountIsNull == 0)
+                {
+                    return wordcount;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
         public bool JobsNameIsNull
         {
             get
@@ -238,6 +294,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
             IEnumerable<IWebElement> auxiliarayEnumerable;
 
             Regex languagesRegex = new Regex("(\\w{2,3}\\-\\w{2,3})\\s{1}→\\s{1}(\\w{2,3}\\-\\w{2,3})");
+            Regex effortRegex = new Regex("(\\d+).*?/.*?(\\d+)");
 
             if (r_LObject.GetAttribute("class") == "r_L")
             {
@@ -254,7 +311,17 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
 
                     sourceLanguage = languagesRegex.Match(languages).Groups[1].Value;
                     targetLanguage = languagesRegex.Match(languages).Groups[2].Value;
-                }               
+                }
+
+                auxiliarayEnumerable = r_LObject.FindElements(By.XPath("child::*")).Where(x => effortRegex.IsMatch(x.Text));
+                if (auxiliarayEnumerable.Count() == 1)
+                {
+                    effortWordcount = auxiliarayEnumerable.ElementAt(0).Text;
+
+                    effort = effortRegex.Match(effortWordcount).Groups[1].Value;
+                    wordcount = effortRegex.Match(effortWordcount).Groups[2].Value;
+                }
+
             }
         }
     }

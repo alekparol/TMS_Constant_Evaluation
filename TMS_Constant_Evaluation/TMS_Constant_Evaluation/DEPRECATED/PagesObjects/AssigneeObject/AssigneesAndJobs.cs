@@ -388,7 +388,7 @@ namespace TMS_Constant_Evaluation.PagesObjects.AssigneeObject
                         foreach (IWebElement element in auxiliaryCollection)
                         {
                             auxiliaryAssigneeJobs = new AssigneeJobs(element);
-                            if (auxiliaryAssigneeJobs.IsParsingCorrect) assigneesJobsList.Add(auxiliaryAssigneeJobs);
+                            /*if (auxiliaryAssigneeJobs.IsParsingCorrect)*/ assigneesJobsList.Add(auxiliaryAssigneeJobs);
                         }
                     }
 

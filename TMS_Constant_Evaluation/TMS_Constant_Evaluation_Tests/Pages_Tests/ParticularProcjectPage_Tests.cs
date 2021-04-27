@@ -206,7 +206,7 @@ namespace TMS_Constant_Evaluation_Tests.Pages_Tests
                 ParticularProjectPage testProjectPage = new ParticularProjectPage(driver);
 
                 testProjectPage.ProfileClick(driver);
-                testProjectPage.ChangeItemsPerPage(driver);
+                testProjectPage.ChangeItemsPerPageMin(driver);
 
                 /* Set of assertions */
 
